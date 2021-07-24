@@ -9,9 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var email: String = ""
+    
+    @State var password: String = ""
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack(alignment: .leading) {
+            Text("Email")
+            TextField("Enter your name", text: $email)
+            Text("Password")
+            TextField("Enter your password", text: $password)
+        }
     }
 }
 
