@@ -28,8 +28,7 @@ struct LoginView: View {
                 Button(action: actionLogin) {
                     Text("LOGIN").font(.system(size: 15, weight: .semibold)).frame(width: 200, alignment: .center).padding(12.5).background(RoundedRectangle(cornerRadius: 3).strokeBorder())
                 }
-                NavigationLink(
-                    destination: RegisterView()) {
+                NavigationLink(destination: RegisterView()) {
                     Text("Register").font(.system(size: 13)).padding(5)
                 }
             }.padding(16).navigationBarHidden(true)
