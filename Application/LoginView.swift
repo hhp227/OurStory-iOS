@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct LoginView: View {
     @State var email: String = ""
@@ -36,7 +37,20 @@ struct LoginView: View {
     }
     
     func actionLogin() {
-        print("email: \(email), password: \(password)")
+        if !email.isEmpty && !password.isEmpty {
+            AF.request(URL_LOGIN, method: .post, parameters: ["email": email, "password": password]).responseJSON { response in
+                switch response.result {
+                case .success(let data):
+                    print(data)
+                    break
+                case .failure(_):
+                    print("fail")
+                    break
+                }
+            }
+        } else {
+            print("email 또는 password가 잘못되었습니다.")
+        }
     }
 }
 
