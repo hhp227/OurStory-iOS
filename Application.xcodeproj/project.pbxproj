@@ -54,6 +54,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A00A80F26BD78D500280CBD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0AD3BE9626B2AD3F00E857B4 /* UserView.swift */,
+				0AD3BE9326B2AD3100E857B4 /* GroupView.swift */,
+				0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */,
+				0AD3BE8D26B2ACED00E857B4 /* MainView.swift */,
+				0AD3BE8A26B2ACC500E857B4 /* RegisterView.swift */,
+				0A964AF626ABFE0800FDB511 /* TestView.swift */,
+				0A7132B62470FEE80049F7FB /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0A05D8C326BAD1A10030333A /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,18 +98,12 @@
 		0A7132B12470FEE80049F7FB /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				0A00A80F26BD78D500280CBD /* View */,
 				0A05D8C326BAD1A10030333A /* App */,
 				0A24102A2694CF020007E5EB /* Preview Content */,
 				0A7132B42470FEE80049F7FB /* SceneDelegate.swift */,
-				0A7132B62470FEE80049F7FB /* LoginView.swift */,
 				0A7132BB2470FEEC0049F7FB /* Assets.xcassets */,
 				0A7132C02470FEEC0049F7FB /* Info.plist */,
-				0A964AF626ABFE0800FDB511 /* TestView.swift */,
-				0AD3BE8A26B2ACC500E857B4 /* RegisterView.swift */,
-				0AD3BE8D26B2ACED00E857B4 /* MainView.swift */,
-				0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */,
-				0AD3BE9326B2AD3100E857B4 /* GroupView.swift */,
-				0AD3BE9626B2AD3F00E857B4 /* UserView.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
