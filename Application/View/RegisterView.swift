@@ -9,30 +9,22 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @State var name: String = ""
-    
-    @State var email: String = ""
-    
-    @State var password: String = ""
+    @ObservedObject var viewModel = RegisterViewModel()
     
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
                 Text("Name")
-                TextField("Name", text: $name).padding(10)
+                TextField("Name", text: $viewModel.name).padding(10)
                 Text("Email")
-                TextField("Email", text: $email).padding(10)
+                TextField("Email", text: $viewModel.email).padding(10)
                 Text("Password")
-                SecureField("Password", text: $password).padding(10)
+                SecureField("Password", text: $viewModel.password).padding(10)
             }.padding(10)
-            Button(action: actionRegister) {
+            Button(action: viewModel.register) {
                 Text("REGISTER").font(.system(size: 15, weight: .semibold)).frame(width: 200, alignment: .center).padding(12.5).background(RoundedRectangle(cornerRadius: 3).strokeBorder())
             }
         }.padding(16)
-    }
-    
-    func actionRegister() {
-        
     }
 }
 
