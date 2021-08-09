@@ -49,9 +49,7 @@ class LoginViewModel: ObservableObject {
     func loginTest() {
         ApiService().login(email: email, password: password) { result, data in
             if result == .success {
-                guard let data = data else {
-                    return
-                }
+                guard let data = data else { return }
                 do {
                     let decodedResponse = try JSONDecoder().decode(User.self, from: data as! Data)
                     
@@ -69,7 +67,7 @@ class LoginViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.loginResult = false
                 }
-                print("failure: \(data)")
+                print("failure: \(String(describing: data))")
             }
         }
     }
