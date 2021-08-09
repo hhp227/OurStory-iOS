@@ -23,13 +23,15 @@ struct LoginView: View {
                         SecureField("Password", text: $viewModel.password).padding(10)
                     }.padding(10)
                 }
-                Button(action: viewModel.login) {
+                Button(action: viewModel.loginTest) {
                     Text("LOGIN").font(.system(size: 15, weight: .semibold)).frame(width: 200, alignment: .center).padding(12.5).background(RoundedRectangle(cornerRadius: 3).strokeBorder())
                 }
                 NavigationLink(destination: RegisterView()) {
                     Text("Register").font(.system(size: 13)).padding(5)
                 }
-            }.padding(16).navigationBarHidden(true)
+            }.padding(16).navigationBarHidden(true).onReceive(viewModel.$loginResult) { result in
+                print("result: \(result)")
+            }
         }
     }
 }

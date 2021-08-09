@@ -110,6 +110,7 @@
 		0A32EB2326BE7B6B006A5295 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0A00BE3826C02660001C7CD5 /* Data */,
 				0A32EB2426BE7B7B006A5295 /* User.swift */,
 			);
 			path = Model;
@@ -144,7 +145,6 @@
 		0A7132B12470FEE80049F7FB /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				0A00BE3826C02660001C7CD5 /* Data */,
 				0A32EB2726BE7C3B006A5295 /* Api */,
 				0A32EB2326BE7B6B006A5295 /* Model */,
 				0A32EB1B26BE515D006A5295 /* ViewModel */,
