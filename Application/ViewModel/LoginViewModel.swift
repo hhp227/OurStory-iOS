@@ -14,8 +14,13 @@ class LoginViewModel: ObservableObject {
     
     @Published var password: String = ""
     
+    private func isEmailVaild(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        return email.contains("@") ? NSPredicate(format: "SELF MATCHES %@", emailRegEx).evaluate(with: email) : !email.isEmpty
+    }
+    
     func login() {
-        if !email.isEmpty && !password.isEmpty {
+        if isEmailVaild(email) && !password.isEmpty {
             AF.request(URL_LOGIN, method: .post, parameters: ["email": email, "password": password]).responseJSON { response in
                 switch response.result {
                 case .success(let data):
