@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @ObservedObject var viewModel = LoginViewModel()
+    @ObservedObject var viewModel: LoginViewModel
     
     var body: some View {
         NavigationView {
@@ -29,15 +29,17 @@ struct LoginView: View {
                 NavigationLink(destination: RegisterView()) {
                     Text("Register").font(.system(size: 13)).padding(5)
                 }
-            }.padding(16).navigationBarHidden(true).onReceive(viewModel.$loginResult) { result in
-                print("result: \(result)")
-            }
+            }.padding(16).navigationBarHidden(true).background(NavigationLink(destination: MainView(), isActive: $viewModel.loginResult) {
+                EmptyView()
+            })/*.onReceive(viewModel.$loginResult) { result in
+                print(result)
+            }*/
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(viewModel: .init(LoginRepository()))
     }
 }

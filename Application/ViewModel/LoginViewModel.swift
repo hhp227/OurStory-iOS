@@ -10,11 +10,17 @@ import Combine
 import Alamofire
 
 class LoginViewModel: ObservableObject {
+    private let loginRepository: LoginRepository
+    
     @Published var email: String = ""
     
     @Published var password: String = ""
     
     @Published var loginResult: Bool = false
+    
+    init(_ loginRepository: LoginRepository) {
+        self.loginRepository = loginRepository
+    }
     
     private func isEmailValid(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
