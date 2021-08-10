@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ApiService {
+class ApiServiceTemp {
     func login(email: String, password: String, completion: @escaping (_ result: ResponseResult, _ data: Any?) -> ()) {
         let param = "email=\(email)&password=\(password)".data(using: .utf8)
         var urlRequest = URLRequest(url: URL(string: URL_LOGIN)!)
@@ -26,8 +26,18 @@ class ApiService {
         }.resume()
     }
     
-    enum ResponseResult {
+    /*enum ResponseResult {
         case success
         case failure
-    }
+    }*/
+}
+
+protocol ApiService {
+    @discardableResult
+    func request(with endpoint: String, completion: @escaping (_ result: ResponseResult, _ data: Any?) -> ())
+}
+
+enum ResponseResult {
+    case success
+    case failure
 }

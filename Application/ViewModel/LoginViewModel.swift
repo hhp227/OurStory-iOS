@@ -53,7 +53,7 @@ class LoginViewModel: ObservableObject {
     
     //TODO 이것을 해야할지
     func loginTest() {
-        ApiService().login(email: email, password: password) { result, data in
+        ApiServiceTemp().login(email: email, password: password) { result, data in
             if result == .success {
                 guard let data = data else { return }
                 do {
