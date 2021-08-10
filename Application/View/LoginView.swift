@@ -18,7 +18,7 @@ struct LoginView: View {
                     Text("Welcome!").font(.title)
                     VStack(alignment: .leading) {
                         Text("Email")
-                        TextField("Email", text: $viewModel.email).padding(10)
+                        TextField("Email", text: $viewModel.email).autocapitalization(.none).keyboardType(.emailAddress).disableAutocorrection(true).padding(10)
                         Text("Password")
                         SecureField("Password", text: $viewModel.password).padding(10)
                     }.padding(10)

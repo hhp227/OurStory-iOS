@@ -53,7 +53,7 @@ class LoginViewModel: ObservableObject {
                 do {
                     let decodedResponse = try JSONDecoder().decode(User.self, from: data as! Data)
                     
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.loginResult = true
                     }
                     print("success: \(decodedResponse)")
