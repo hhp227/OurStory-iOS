@@ -23,7 +23,7 @@ struct LoginView: View {
                         SecureField("Password", text: $viewModel.password).padding(10)
                     }.padding(10)
                 }
-                Button(action: viewModel.loginTest) {
+                Button(action: viewModel.login) {
                     Text("LOGIN").font(.system(size: 15, weight: .semibold)).frame(width: 200, alignment: .center).padding(12.5).background(RoundedRectangle(cornerRadius: 3).strokeBorder())
                 }
                 NavigationLink(destination: RegisterView(viewModel: .init(RegisterRepository()))) {
