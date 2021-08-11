@@ -20,6 +20,7 @@
 		0A7132B72470FEE80049F7FB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7132B62470FEE80049F7FB /* LoginView.swift */; };
 		0A7132BC2470FEEC0049F7FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7132BB2470FEEC0049F7FB /* Assets.xcassets */; };
 		0A964AF726ABFE0800FDB511 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A964AF626ABFE0800FDB511 /* TestView.swift */; };
+		0AC332DC26C4032400ACB62E /* RegisterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC332DB26C4032400ACB62E /* RegisterRepository.swift */; };
 		0AD3BE8B26B2ACC500E857B4 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE8A26B2ACC500E857B4 /* RegisterView.swift */; };
 		0AD3BE8E26B2ACED00E857B4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE8D26B2ACED00E857B4 /* MainView.swift */; };
 		0AD3BE9126B2AD1C00E857B4 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */; };
@@ -44,6 +45,7 @@
 		0A7132BB2470FEEC0049F7FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A7132C02470FEEC0049F7FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A964AF626ABFE0800FDB511 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		0AC332DB26C4032400ACB62E /* RegisterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRepository.swift; sourceTree = "<group>"; };
 		0AD3BE8A26B2ACC500E857B4 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		0AD3BE8D26B2ACED00E857B4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				0A00BE3926C02678001C7CD5 /* LoginRepository.swift */,
+				0AC332DB26C4032400ACB62E /* RegisterRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			files = (
 				0A00BE3D26C026B2001C7CD5 /* WriteView.swift in Sources */,
 				0A32EB2526BE7B7B006A5295 /* User.swift in Sources */,
+				0AC332DC26C4032400ACB62E /* RegisterRepository.swift in Sources */,
 				0A964AF726ABFE0800FDB511 /* TestView.swift in Sources */,
 				0AD3BE8E26B2ACED00E857B4 /* MainView.swift in Sources */,
 				0A32EB1D26BE5178006A5295 /* LoginViewModel.swift in Sources */,

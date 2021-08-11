@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @ObservedObject var viewModel = RegisterViewModel()
+    @ObservedObject var viewModel: RegisterViewModel
     
     var body: some View {
         VStack {
@@ -30,6 +30,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        RegisterView(viewModel: .init(RegisterRepository()))
     }
 }

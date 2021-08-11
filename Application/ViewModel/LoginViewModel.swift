@@ -18,8 +18,8 @@ class LoginViewModel: ObservableObject {
     
     @Published var loginResult: Bool = false
     
-    init(_ loginRepository: LoginRepository) {
-        self.loginRepository = loginRepository
+    init(_ repository: LoginRepository) {
+        self.loginRepository = repository
     }
     
     private func isEmailValid(_ email: String) -> Bool {

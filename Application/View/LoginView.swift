@@ -26,7 +26,7 @@ struct LoginView: View {
                 Button(action: viewModel.loginTest) {
                     Text("LOGIN").font(.system(size: 15, weight: .semibold)).frame(width: 200, alignment: .center).padding(12.5).background(RoundedRectangle(cornerRadius: 3).strokeBorder())
                 }
-                NavigationLink(destination: RegisterView()) {
+                NavigationLink(destination: RegisterView(viewModel: .init(RegisterRepository()))) {
                     Text("Register").font(.system(size: 13)).padding(5)
                 }
             }.padding(16).navigationBarHidden(true).background(NavigationLink(destination: MainView(), isActive: $viewModel.loginResult) {
