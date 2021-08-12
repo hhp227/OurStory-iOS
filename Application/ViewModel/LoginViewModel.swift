@@ -33,8 +33,10 @@ class LoginViewModel: ObservableObject {
     
     func login() {
         if isEmailValid(email) && isPasswordValid(password) {
-            loginRepository.login(email, password) { success in
-                self.loginResult = success
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+                self.loginRepository.login(self.email, self.password) { success in
+                    self.loginResult = success
+                }
             }
         } else {
             print("email 또는 password가 잘못되었습니다.")

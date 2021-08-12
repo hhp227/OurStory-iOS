@@ -15,6 +15,12 @@
 		0A32EB2126BE642B006A5295 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32EB2026BE642B006A5295 /* RegisterViewModel.swift */; };
 		0A32EB2526BE7B7B006A5295 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32EB2426BE7B7B006A5295 /* User.swift */; };
 		0A32EB2926BE7C55006A5295 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32EB2826BE7C55006A5295 /* ApiService.swift */; };
+		0A3A395026C5582D0068FCE3 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A394F26C5582D0068FCE3 /* DrawerView.swift */; };
+		0A3A395326C558BD0068FCE3 /* DrawerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395226C558BD0068FCE3 /* DrawerControl.swift */; };
+		0A3A395626C558EF0068FCE3 /* SliderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395526C558EF0068FCE3 /* SliderStatus.swift */; };
+		0A3A395926C5594F0068FCE3 /* DrawerDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */; };
+		0A3A395C26C559830068FCE3 /* MainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395B26C559830068FCE3 /* MainContainer.swift */; };
+		0A3A395F26C559D90068FCE3 /* SliderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395E26C559D90068FCE3 /* SliderContainer.swift */; };
 		0A7132B32470FEE80049F7FB /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7132B22470FEE80049F7FB /* Application.swift */; };
 		0A7132B52470FEE80049F7FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7132B42470FEE80049F7FB /* SceneDelegate.swift */; };
 		0A7132B72470FEE80049F7FB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7132B62470FEE80049F7FB /* LoginView.swift */; };
@@ -38,6 +44,12 @@
 		0A32EB2026BE642B006A5295 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		0A32EB2426BE7B7B006A5295 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0A32EB2826BE7C55006A5295 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		0A3A394F26C5582D0068FCE3 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
+		0A3A395226C558BD0068FCE3 /* DrawerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerControl.swift; sourceTree = "<group>"; };
+		0A3A395526C558EF0068FCE3 /* SliderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderStatus.swift; sourceTree = "<group>"; };
+		0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerDefine.swift; sourceTree = "<group>"; };
+		0A3A395B26C559830068FCE3 /* MainContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainer.swift; sourceTree = "<group>"; };
+		0A3A395E26C559D90068FCE3 /* SliderContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderContainer.swift; sourceTree = "<group>"; };
 		0A7132AF2470FEE80049F7FB /* Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7132B22470FEE80049F7FB /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		0A7132B42470FEE80049F7FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +83,7 @@
 		0A00A80F26BD78D500280CBD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A3A394D26C557AA0068FCE3 /* UI */,
 				0AD3BE9626B2AD3F00E857B4 /* UserView.swift */,
 				0AD3BE9326B2AD3100E857B4 /* GroupView.swift */,
 				0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */,
@@ -124,6 +137,27 @@
 				0A32EB2826BE7C55006A5295 /* ApiService.swift */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		0A3A394D26C557AA0068FCE3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0A3A394E26C557F20068FCE3 /* Drawer */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0A3A394E26C557F20068FCE3 /* Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				0A3A394F26C5582D0068FCE3 /* DrawerView.swift */,
+				0A3A395226C558BD0068FCE3 /* DrawerControl.swift */,
+				0A3A395526C558EF0068FCE3 /* SliderStatus.swift */,
+				0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */,
+				0A3A395B26C559830068FCE3 /* MainContainer.swift */,
+				0A3A395E26C559D90068FCE3 /* SliderContainer.swift */,
+			);
+			path = Drawer;
 			sourceTree = "<group>";
 		};
 		0A7132A62470FEE80049F7FB = {
@@ -295,18 +329,24 @@
 				0A00BE3D26C026B2001C7CD5 /* WriteView.swift in Sources */,
 				0A32EB2526BE7B7B006A5295 /* User.swift in Sources */,
 				0AC332DC26C4032400ACB62E /* RegisterRepository.swift in Sources */,
+				0A3A395026C5582D0068FCE3 /* DrawerView.swift in Sources */,
+				0A3A395C26C559830068FCE3 /* MainContainer.swift in Sources */,
+				0A3A395626C558EF0068FCE3 /* SliderStatus.swift in Sources */,
 				0A964AF726ABFE0800FDB511 /* TestView.swift in Sources */,
 				0AD3BE8E26B2ACED00E857B4 /* MainView.swift in Sources */,
 				0A32EB1D26BE5178006A5295 /* LoginViewModel.swift in Sources */,
 				0AD3BE9426B2AD3100E857B4 /* GroupView.swift in Sources */,
 				0A00BE3A26C02678001C7CD5 /* LoginRepository.swift in Sources */,
 				0AD3BE8B26B2ACC500E857B4 /* RegisterView.swift in Sources */,
+				0A3A395F26C559D90068FCE3 /* SliderContainer.swift in Sources */,
+				0A3A395926C5594F0068FCE3 /* DrawerDefine.swift in Sources */,
 				0A7132B72470FEE80049F7FB /* LoginView.swift in Sources */,
 				0A05D8C526BAD2160030333A /* URLs.swift in Sources */,
 				0A32EB2126BE642B006A5295 /* RegisterViewModel.swift in Sources */,
 				0AD3BE9126B2AD1C00E857B4 /* ChatView.swift in Sources */,
 				0A7132B32470FEE80049F7FB /* Application.swift in Sources */,
 				0AD3BE9726B2AD3F00E857B4 /* UserView.swift in Sources */,
+				0A3A395326C558BD0068FCE3 /* DrawerControl.swift in Sources */,
 				0A32EB2926BE7C55006A5295 /* ApiService.swift in Sources */,
 				0A7132B52470FEE80049F7FB /* SceneDelegate.swift in Sources */,
 			);
