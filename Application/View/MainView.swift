@@ -13,7 +13,7 @@ struct MainView: View {
         let drawer = DrawerViewModel()
         
         drawer.setMain(view: LoungeView())
-        drawer.setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.6), shadowRadius: 10)
+        drawer.setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.8), shadowRadius: 10)
         return drawer
     }()
     

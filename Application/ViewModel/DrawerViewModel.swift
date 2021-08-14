@@ -38,7 +38,7 @@ public class DrawerViewModel: ObservableObject {
         }
     }
     
-    public func setDrawer<V: DrawerViewProtocol>(view: V, widthType: DrawerWidth = .percent(rate: 0.6), shadowRadius: CGFloat = 10) {
+    public func setDrawer<V: DrawerViewProtocol>(view: V, widthType: DrawerWidth = .percent(rate: 0.8), shadowRadius: CGFloat = 10) {
         let status = DrawerStatus(type: view.type)
         status.maxWidth = widthType
         status.shadowRadius = shadowRadius
