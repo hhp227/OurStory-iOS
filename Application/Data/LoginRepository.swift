@@ -28,8 +28,9 @@ class LoginRepository {
     
     //TODO 이것을 해야할지
     func login(_ email: String, _ password: String, success: @escaping (Bool) -> Void) {
-        ApiServiceTemp().request(with: URL_LOGIN, method: "POST", params: ["email": email, "password": password]) { result, data in
-            if result == .success {
+        ApiServiceImpl().request(with: URL_LOGIN, method: .post, params: ["email": email, "password": password]) { result, data in
+            switch result {
+            case .success:
                 guard let data = data else { return }
                 do {
                     let decodedResponse = try JSONDecoder().decode(User.self, from: data as! Data)
@@ -40,9 +41,11 @@ class LoginRepository {
                     DispatchQueue.main.async { success(false) }
                     print("error")
                 }
-            } else if result == .failure {
+                break
+            case .failure:
                 DispatchQueue.main.async { success(false) }
                 print("failure: \(String(describing: data))")
+                break
             }
         }
     }

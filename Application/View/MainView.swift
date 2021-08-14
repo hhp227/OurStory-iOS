@@ -9,8 +9,20 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject private var drawerViewModel: DrawerViewModel = {
+        let drawer = DrawerViewModel()
+        
+        drawer.setMain(view: LoungeView())
+        drawer.setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.6), shadowRadius: 10)
+        return drawer
+    }()
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/).navigationBarBackButtonHidden(true)
+        ZStack {
+            drawerViewModel.main
+            drawerViewModel.drawerView[.left]
+        }.navigationBarHidden(true)
     }
 }
 

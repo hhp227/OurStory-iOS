@@ -16,21 +16,7 @@ class RegisterRepository {
     }*/
     
     func register(_ name: String, _ email: String, _ password: String) {
-        /*apiService.request(with: URL_REGISTER, method: "POST", params: ["name": name, "email": email, "password": password]) { result, data in
-            if result == .success {
-                guard let data = data else { return }
-                do {
-                    let decodedResponse = try JSONDecoder().decode(User.self, from: data as! Data)
-                    
-                    print("success: \(decodedResponse)")
-                } catch {
-                    print("error")
-                }
-            } else if result == .failure {
-                print("failure: \(String(describing: data))")
-            }
-        }*/
-        ApiServiceTemp().request(with: URL_REGISTER, method: "POST", params: ["name": name, "email": email, "password": password]) { result, data in
+        ApiServiceImpl().request(with: URL_REGISTER, method: .post, params: ["name": name, "email": email, "password": password]) { result, data in
             if result == .success {
                 guard let data = data else { return }
                 do {
