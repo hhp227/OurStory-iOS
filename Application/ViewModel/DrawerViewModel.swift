@@ -25,9 +25,7 @@ public class DrawerViewModel: ObservableObject {
             statusObserver.removeAll()
             status.forEach { info in
                 let observer = info.value.objectDidChange.sink { [weak self] s in
-                    let maxRate = self?.status.sorted { (s0, s1) -> Bool in
-                        s0.value.showRate > s1.value.showRate
-                    }.first?.value.showRate ?? 0
+                    let maxRate = self?.status.sorted { $0.value.showRate > $1.value.showRate }.first?.value.showRate ?? 0
                     
                     if self?.maxShowRate == maxRate {
                         return
