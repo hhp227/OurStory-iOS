@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct MainContainer<Content: View>: View {
-    @ObservedObject private var drawerControl: DrawerViewModel
+    @ObservedObject private var drawerViewModel: DrawerViewModel
     
     @State private var gestureCurrent: CGFloat = 0
     
@@ -25,8 +25,8 @@ struct MainContainer<Content: View>: View {
             ZStack {
                 self.main
                 if maskEnable {
-                    Color.black.opacity(Double(drawerControl.maxShowRate * self.maxMaskAlpha)).animation(.easeIn(duration: 0.15)).onTapGesture {
-                        self.drawerControl.hideAllSlider()
+                    Color.black.opacity(Double(drawerViewModel.maxShowRate * self.maxMaskAlpha)).animation(.easeIn(duration: 0.15)).onTapGesture {
+                        self.drawerViewModel.hideAll()
                     }.padding(EdgeInsets(top: -proxy.safeAreaInsets.top, leading: 0, bottom: -proxy.safeAreaInsets.bottom, trailing: 0))
                 }
             }.gesture(DragGesture().onEnded { value in
@@ -35,10 +35,10 @@ struct MainContainer<Content: View>: View {
         }.animation(.default)
     }
     
-    init(content: Content, maxMaskAlpha: CGFloat = 0.25, maskEnable: Bool = true, drawerControl: DrawerViewModel) {
-        self.main = AnyView.init(content.environmentObject(drawerControl))
+    init(content: Content, maxMaskAlpha: CGFloat = 0.25, maskEnable: Bool = true, drawerViewModel: DrawerViewModel) {
+        self.main = AnyView.init(content.environmentObject(drawerViewModel))
         self.maxMaskAlpha = maxMaskAlpha
         self.maskEnable = maskEnable
-        self.drawerControl = drawerControl
+        self.drawerViewModel = drawerViewModel
     }
 }

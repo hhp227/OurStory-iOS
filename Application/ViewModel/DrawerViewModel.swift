@@ -47,7 +47,7 @@ public class DrawerViewModel: ObservableObject {
     }
     
     public func setMain<Main: View>(view: Main) {
-        let container = MainContainer(content: view, drawerControl: self)
+        let container = MainContainer(content: view, drawerViewModel: self)
         self.main = AnyView(container)
     }
     
@@ -58,7 +58,7 @@ public class DrawerViewModel: ObservableObject {
         self.status[type]?.currentStatus = isShow ? .show : .hide
     }
     
-    public func hideAllSlider() {
+    public func hideAll() {
         self.status.forEach { $0.value.currentStatus = .hide }
     }
 }
