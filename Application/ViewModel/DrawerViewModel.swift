@@ -38,17 +38,16 @@ public class DrawerViewModel: ObservableObject {
         }
     }
     
+    public init<Main: View>(main: Main) {
+        self.main = AnyView(MainContainer(content: main, drawerViewModel: self))
+    }
+    
     public func setDrawer<V: DrawerViewProtocol>(view: V, widthType: DrawerWidth = .percent(rate: 0.8), shadowRadius: CGFloat = 10) {
         let status = DrawerStatus(type: view.type)
         status.maxWidth = widthType
         status.shadowRadius = shadowRadius
         self.status[view.type] = status
         self.drawerView[view.type] = AnyView(DrawerContainer(content: view, drawerControl: self))
-    }
-    
-    public func setMain<Main: View>(view: Main) {
-        let container = MainContainer(content: view, drawerViewModel: self)
-        self.main = AnyView(container)
     }
     
     public func show(type: DrawerType, isShow: Bool) {

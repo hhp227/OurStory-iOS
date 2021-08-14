@@ -10,9 +10,8 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject private var drawerViewModel: DrawerViewModel = {
-        let drawer = DrawerViewModel()
-        
-        drawer.setMain(view: LoungeView())
+        let drawer = DrawerViewModel(main: LoungeView())
+
         drawer.setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.8), shadowRadius: 10)
         return drawer
     }()

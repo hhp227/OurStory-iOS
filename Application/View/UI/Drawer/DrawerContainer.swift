@@ -63,7 +63,7 @@ struct DrawerContainer<Content: DrawerViewProtocol>: View {
 
 struct DrawerContainer_Previews: PreviewProvider {
     static var previews: some View {
-        DrawerContainer(content: PreviewDrawer.init(type: .left), drawerControl: DrawerViewModel())
+        DrawerContainer(content: PreviewDrawer.init(type: .left), drawerControl: DrawerViewModel(main: LoungeView()))
     }
     
     public struct PreviewDrawer: View, DrawerProtocol {
