@@ -9,15 +9,9 @@
 import SwiftUI
 
 struct LoungeView: View {
-    @EnvironmentObject var drawerViewModel: DrawerViewModel
     
     var body: some View {
-        NavigationView {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/).navigationBarTitle(Text("Home"), displayMode: .inline)
-                .navigationBarItems(leading: Text("left").onTapGesture {
-                    self.drawerViewModel.show(type: .left, isShow: true)
-                })
-        }
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 

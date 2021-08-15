@@ -17,6 +17,8 @@ public class DrawerViewModel: ObservableObject {
     
     @Published private(set) var maxShowRate: CGFloat = .zero
     
+    var title: String?
+    
     private var statusObserver = [AnyCancellable]()
     
     private(set) var status = [DrawerType: DrawerStatus]() {
@@ -38,8 +40,9 @@ public class DrawerViewModel: ObservableObject {
         }
     }
     
-    public init<Main: View>(main: Main) {
+    public func setMain<Main: View>(main: Main, title: String) {
         self.main = AnyView(MainContainer(content: main, drawerViewModel: self))
+        self.title = title
     }
     
     public func setDrawer<V: DrawerViewProtocol>(view: V, widthType: DrawerWidth = .percent(rate: 0.8), shadowRadius: CGFloat = 10) {

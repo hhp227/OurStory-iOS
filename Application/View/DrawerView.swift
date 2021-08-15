@@ -14,11 +14,55 @@ struct DrawerView: View, DrawerProtocol {
     var type: DrawerType
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading) {
+                Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/).padding(.top, 8)
+                Text("E-mail").font(.system(size: 12))
+            }.frame(maxWidth: .infinity, alignment: .topLeading).padding(16)
+            Divider()
+            DrawerButton(icon: "text.bubble", label: "Lounge", isSelected: drawerViewModel.title == "Lounge") {
+                drawerViewModel.setMain(main: LoungeView(), title: "Lounge")
+                drawerViewModel.hideAll()
+            }
+            DrawerButton(icon: "person.2", label: "Group", isSelected: drawerViewModel.title == "Group") {
+                drawerViewModel.setMain(main: GroupView(), title: "Group")
+                drawerViewModel.hideAll()
+            }
+            DrawerButton(icon: "message", label: "Chat List", isSelected: drawerViewModel.title == "Chat List") {
+                drawerViewModel.setMain(main: ChatView(), title: "Chat List")
+                drawerViewModel.hideAll()
+            }
+            DrawerButton(icon: "rectangle.righthalf.inset.fill.arrow.right", label: "Logout", isSelected: false) {
+                print("Action Logout")
+                drawerViewModel.hideAll()
+            }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     
     init(type: DrawerType) {
         self.type = type
+    }
+}
+
+struct DrawerButton: View {
+    var icon: String
+    
+    var label: String
+    
+    var isSelected: Bool
+    
+    let action: () -> Void
+    
+    var body: some View {
+        VStack {
+            Button(action: action) {
+                HStack(spacing: 16) {
+                    Image(systemName: icon)
+                    Text(label)
+                }.frame(maxWidth: .infinity, alignment: .leading).foregroundColor(isSelected ? .purple : .gray)
+            }
+        }.padding(8).background(isSelected ? Color("DrawerButtonColor") : Color.clear).cornerRadius(4).padding(8)
     }
 }
 
