@@ -42,7 +42,7 @@ public enum ShowStatus {
 public protocol DrawerProtocol {
     var type: DrawerType { get }
     
-    init(type: DrawerType)
+    //init(type: DrawerType)
 }
 
 public typealias DrawerViewProtocol = (View & DrawerProtocol)

@@ -26,20 +26,18 @@ struct LoginView: View {
                 Button(action: viewModel.login) {
                     Text("LOGIN").font(.system(size: 15, weight: .semibold)).frame(width: 200, alignment: .center).padding(12.5).background(RoundedRectangle(cornerRadius: 3).strokeBorder())
                 }
-                NavigationLink(destination: RegisterView(viewModel: .init(RegisterRepository()))) {
+                NavigationLink(destination: RegisterView(viewModel: .init(RegisterRepository(ApiServiceImpl())))) {
                     Text("Register").font(.system(size: 13)).padding(5)
                 }
-            }.padding(16).navigationBarHidden(true).background(NavigationLink(destination: MainView(), isActive: $viewModel.loginResult) {
+            }.padding(16).navigationBarHidden(true).background(NavigationLink(destination: MainView().environmentObject(viewModel), isActive: $viewModel.loginResult) {
                 EmptyView()
-            })/*.onReceive(viewModel.$loginResult) { result in
-                print(result)
-            }*/
+            })
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewModel: .init(LoginRepository()))
+        LoginView(viewModel: .init(LoginRepository(ApiServiceImpl())))
     }
 }

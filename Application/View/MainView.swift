@@ -17,20 +17,26 @@ struct MainView: View {
         return drawer
     }()
     
+    @EnvironmentObject var loginViewModel: LoginViewModel
+    
     var body: some View {
         ZStack {
             NavigationView {
                 drawerViewModel.main?.navigationBarTitle(Text(drawerViewModel.title ?? ""), displayMode: .inline).navigationBarItems(leading: Text("left").onTapGesture {
                     self.drawerViewModel.show(type: .left, isShow: true)
                 })
-            }
+            }.onReceive(drawerViewModel.$isLogout) { isLogout in
+                if isLogout {
+                    loginViewModel.loginResult = !isLogout
+                }
+             }
             drawerViewModel.drawerView[.left]
         }.navigationBarHidden(true)
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+/*struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }
-}
+}*/

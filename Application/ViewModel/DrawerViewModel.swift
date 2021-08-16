@@ -17,6 +17,8 @@ public class DrawerViewModel: ObservableObject {
     
     @Published private(set) var maxShowRate: CGFloat = .zero
     
+    @Published var isLogout = false
+    
     var title: String?
     
     private var statusObserver = [AnyCancellable]()

@@ -34,6 +34,7 @@ struct DrawerView: View, DrawerProtocol {
                 drawerViewModel.hideAll()
             }
             DrawerButton(icon: "rectangle.righthalf.inset.fill.arrow.right", label: "Logout", isSelected: false) {
+                drawerViewModel.isLogout = true
                 print("Action Logout")
                 drawerViewModel.hideAll()
             }

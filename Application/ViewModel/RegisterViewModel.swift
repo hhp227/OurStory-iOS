@@ -17,13 +17,17 @@ class RegisterViewModel: ObservableObject {
     
     @Published var password: String = ""
     
+    @Published var registerResult = false
+    
     init(_ repository: RegisterRepository) {
         self.registerRepository = repository
     }
     
     func register() {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-            self.registerRepository.register(self.name, self.email, self.password)
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+            self.registerRepository.register(self.name, self.email, self.password) {
+                self.registerResult = $0
+            }
         }
     }
 }
