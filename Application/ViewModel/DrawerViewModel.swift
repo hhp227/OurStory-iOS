@@ -19,8 +19,6 @@ public class DrawerViewModel: ObservableObject {
     
     @Published var isLogout = false
     
-    var title: String?
-    
     private var statusObserver = [AnyCancellable]()
     
     private(set) var status = [DrawerType: DrawerStatus]() {
@@ -41,6 +39,8 @@ public class DrawerViewModel: ObservableObject {
             }
         }
     }
+    
+    var title: String?
     
     public func setMain<Main: View>(main: Main, title: String) {
         self.main = AnyView(MainContainer(content: main, drawerViewModel: self))
