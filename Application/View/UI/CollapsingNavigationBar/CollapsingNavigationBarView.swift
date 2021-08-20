@@ -12,7 +12,9 @@ struct CollapsingNavigationBarView: View {
     var body: some View {
         GeometryReader { globalProxy in
             ScrollView {
-                
+                VStack {
+                    
+                }
             }
         }
     }
