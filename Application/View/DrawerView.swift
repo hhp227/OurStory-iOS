@@ -17,25 +17,28 @@ struct DrawerView: View, DrawerProtocol {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading) {
                 Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/).padding(.top, 8)
+                Text("Hello, World!").padding(.top, 8)
                 Text("E-mail").font(.system(size: 12))
             }.frame(maxWidth: .infinity, alignment: .topLeading).padding(16)
             Divider()
-            DrawerButton(icon: "text.bubble", label: "Lounge", isSelected: drawerViewModel.title == "Lounge") {
-                drawerViewModel.setMain(main: LoungeView(), title: "Lounge")
+            DrawerButton(icon: "text.bubble", label: "Lounge", isSelected: drawerViewModel.route == "Lounge") {
+                drawerViewModel.route = "Lounge"
+                
                 drawerViewModel.hideAll()
             }
-            DrawerButton(icon: "person.2", label: "Group", isSelected: drawerViewModel.title == "Group") {
-                drawerViewModel.setMain(main: GroupView(), title: "Group")
+            DrawerButton(icon: "person.2", label: "Group", isSelected: drawerViewModel.route == "Group") {
+                drawerViewModel.route = "Group"
+                
                 drawerViewModel.hideAll()
             }
-            DrawerButton(icon: "message", label: "Chat List", isSelected: drawerViewModel.title == "Chat List") {
-                drawerViewModel.setMain(main: ChatView(), title: "Chat List")
+            DrawerButton(icon: "message", label: "Chat List", isSelected: drawerViewModel.route == "Chat") {
+                drawerViewModel.route = "Chat"
+                
                 drawerViewModel.hideAll()
             }
             DrawerButton(icon: "rectangle.righthalf.inset.fill.arrow.right", label: "Logout", isSelected: false) {
-                drawerViewModel.isLogout = true
-                print("Action Logout")
+                drawerViewModel.route = "Logout"
+                
                 drawerViewModel.hideAll()
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

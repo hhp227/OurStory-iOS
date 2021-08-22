@@ -29,7 +29,7 @@ struct LoginView: View {
                 NavigationLink(destination: RegisterView(viewModel: .init(RegisterRepository(ApiServiceImpl())))) {
                     Text("Register").font(.system(size: 13)).padding(5)
                 }
-            }.padding(16).navigationBarHidden(true).background(NavigationLink(destination: MainView().environmentObject(viewModel), isActive: $viewModel.loginResult) {
+            }.padding(16).navigationBarHidden(true).background(NavigationLink(destination: MainView(main: AnyView(LoungeView())).environmentObject(viewModel), isActive: $viewModel.loginResult) {
                 EmptyView()
             })
         }

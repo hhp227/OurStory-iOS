@@ -11,25 +11,39 @@ import SwiftUI
 struct MainView: View {
     @ObservedObject private var drawerViewModel: DrawerViewModel = {
         let drawer = DrawerViewModel()
-
-        drawer.setMain(main: LoungeView(), title: "Lounge")
+        
         drawer.setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.8), shadowRadius: 10)
         return drawer
     }()
+    
+    @State var main: AnyView
     
     @EnvironmentObject var loginViewModel: LoginViewModel
     
     var body: some View {
         ZStack {
             NavigationView {
-                drawerViewModel.main?.navigationBarTitle(Text(drawerViewModel.title ?? ""), displayMode: .inline).navigationBarItems(leading: Text("left").onTapGesture {
+                main.onReceive(drawerViewModel.$route) { route in
+                    switch route {
+                    case "Lounge":
+                        main = AnyView(MainContainer(content: LoungeView(), drawerViewModel: drawerViewModel))
+                        break
+                    case "Group":
+                        main = AnyView(MainContainer(content: GroupView(), drawerViewModel: drawerViewModel))
+                        break
+                    case "Chat": 
+                        main = AnyView(MainContainer(content: ChatView(), drawerViewModel: drawerViewModel))
+                        break
+                    case "Logout": print(route)
+                        loginViewModel.loginResult = false
+                        break
+                    default:
+                        break
+                    }
+                }.navigationBarTitle(Text(drawerViewModel.route), displayMode: .inline).navigationBarItems(leading: Text("left").onTapGesture {
                     self.drawerViewModel.show(type: .left, isShow: true)
                 })
-            }.onReceive(drawerViewModel.$isLogout) { isLogout in
-                if isLogout {
-                    loginViewModel.loginResult = !isLogout
-                }
-             }
+            }
             drawerViewModel.drawerView[.left]
         }.navigationBarHidden(true)
     }

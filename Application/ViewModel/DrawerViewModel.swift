@@ -13,11 +13,9 @@ import Combine
 public class DrawerViewModel: ObservableObject {
     @Published private(set) var drawerView = [DrawerType: AnyView]()
     
-    @Published private(set) var main: AnyView?
-    
     @Published private(set) var maxShowRate: CGFloat = .zero
     
-    @Published var isLogout = false
+    @Published var route = "Lounge"
     
     private var statusObserver = [AnyCancellable]()
     
@@ -38,13 +36,6 @@ public class DrawerViewModel: ObservableObject {
                 statusObserver.append(observer)
             }
         }
-    }
-    
-    var title: String?
-    
-    public func setMain<Main: View>(main: Main, title: String) {
-        self.main = AnyView(MainContainer(content: main, drawerViewModel: self))
-        self.title = title
     }
     
     public func setDrawer<V: DrawerViewProtocol>(view: V, widthType: DrawerWidth = .percent(rate: 0.8), shadowRadius: CGFloat = 10) {
