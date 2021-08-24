@@ -18,8 +18,6 @@ struct MainView: View {
     
     @State var main: AnyView
     
-    @State var drawer = [DrawerType: AnyView]()
-    
     @EnvironmentObject var loginViewModel: LoginViewModel
     
     var body: some View {
