@@ -12,7 +12,7 @@ struct LoungeView: View {
     
     var body: some View {
         ZStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text("Lounge View")
             VStack {
                 Spacer()
                 HStack {
