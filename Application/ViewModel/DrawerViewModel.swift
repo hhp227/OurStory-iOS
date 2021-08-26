@@ -43,7 +43,7 @@ public class DrawerViewModel: ObservableObject {
         status.maxWidth = widthType
         status.shadowRadius = shadowRadius
         self.status[view.type] = status
-        self.drawerView[view.type] = AnyView(DrawerContainer(content: view, drawerControl: self))
+        self.drawerView[view.type] = AnyView(DrawerContainer(content: view, drawerModel: self))
     }
     
     public func show(type: DrawerType, isShow: Bool) {

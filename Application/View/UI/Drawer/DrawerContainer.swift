@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct DrawerContainer<Content: DrawerViewProtocol>: View {
-    @ObservedObject public var control: DrawerViewModel
+    @ObservedObject public var viewModel: DrawerViewModel
     
     @ObservedObject private var status: DrawerStatus
     
@@ -53,17 +53,17 @@ struct DrawerContainer<Content: DrawerViewProtocol>: View {
         }
     }
     
-    init(content: Content, drawerControl: DrawerViewModel) {
-        self.drawer = AnyView.init(content.environmentObject(drawerControl))
+    init(content: Content, drawerModel: DrawerViewModel) {
+        self.drawer = AnyView.init(content.environmentObject(drawerModel))
         self.type = content.type
-        self.control = drawerControl
-        self.status = drawerControl.status[content.type]!
+        self.viewModel = drawerModel
+        self.status = drawerModel.status[content.type]!
     }
 }
 
 struct DrawerContainer_Previews: PreviewProvider {
     static var previews: some View {
-        DrawerContainer(content: PreviewDrawer.init(type: .left), drawerControl: DrawerViewModel())
+        DrawerContainer(content: PreviewDrawer.init(type: .left), drawerModel: DrawerViewModel())
     }
     
     public struct PreviewDrawer: View, DrawerProtocol {
