@@ -18,7 +18,7 @@ struct MainView: View {
     
     @State var main: AnyView
     
-    @EnvironmentObject var loginViewModel: LoginViewModel
+    @EnvironmentObject var viewModel: LoginViewModel
     
     var body: some View {
         ZStack {
@@ -34,8 +34,8 @@ struct MainView: View {
                     case "Chat": 
                         main = AnyView(MainContainer(content: ChatView(), drawerViewModel: drawerViewModel))
                         break
-                    case "Logout": print(route)
-                        loginViewModel.loginResult = false
+                    case "Logout":
+                        viewModel.loginState = .logout
                         break
                     default:
                         break
@@ -45,7 +45,7 @@ struct MainView: View {
                 })
             }
             drawerViewModel.drawerView[.left]
-        }.navigationBarHidden(true)
+        }
     }
 }
 

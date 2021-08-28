@@ -12,7 +12,7 @@ import SwiftUI
 struct Application: App {
     var body: some Scene {
         WindowGroup {
-            LoginView(viewModel: .init(LoginRepository(ApiServiceImpl())))
+            ContentView(viewModel: .init(LoginRepository(ApiServiceImpl())))
         }
     }
 }

@@ -25,8 +25,10 @@ class RegisterViewModel: ObservableObject {
     
     func register() {
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-            self.registerRepository.register(self.name, self.email, self.password) {
-                self.registerResult = $0
+            self.registerRepository.register(self.name, self.email, self.password) { isRegister in
+                DispatchQueue.main.async {
+                    self.registerResult = isRegister
+                }
             }
         }
     }

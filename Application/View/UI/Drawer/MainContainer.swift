@@ -25,7 +25,7 @@ struct MainContainer<Content: View>: View {
             ZStack {
                 self.main
                 if maskEnable {
-                    Color.black.opacity(Double(drawerViewModel.maxShowRate * self.maxMaskAlpha)).animation(.easeIn(duration: 0.15)).onTapGesture {
+                    Color.black.opacity(Double(drawerViewModel.maxShowRate * self.maxMaskAlpha))/*.animation(.easeIn(duration: 0.15))*/.onTapGesture {
                         self.drawerViewModel.hideAll()
                     }.padding(EdgeInsets(top: -proxy.safeAreaInsets.top, leading: 0, bottom: -proxy.safeAreaInsets.bottom, trailing: 0))
                 }

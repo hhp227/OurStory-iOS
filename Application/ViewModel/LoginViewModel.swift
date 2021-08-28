@@ -16,7 +16,9 @@ class LoginViewModel: ObservableObject {
     
     @Published var password: String = ""
     
-    @Published var loginResult: Bool = false
+    @Published var loginState: LoginState = .logout
+    
+    @Published var isShowRegister = false
     
     init(_ repository: LoginRepository) {
         self.loginRepository = repository
@@ -35,11 +37,16 @@ class LoginViewModel: ObservableObject {
         if isEmailValid(email) && isPasswordValid(password) {
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
                 self.loginRepository.login(self.email, self.password) { success in
-                    self.loginResult = success
+                    self.loginState = success ? .login : .logout
                 }
             }
         } else {
             print("email 또는 password가 잘못되었습니다.")
         }
+    }
+    
+    enum LoginState {
+        case login
+        case logout
     }
 }
