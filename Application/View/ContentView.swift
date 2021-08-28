@@ -16,7 +16,7 @@ struct ContentView: View {
         case .login:
             MainView(main: AnyView(LoungeView())).environmentObject(viewModel)
         case .logout:
-            LoginView().environmentObject(viewModel)
+            LoginView().environmentObject(viewModel).animation(.easeIn)
         }
     }
 }

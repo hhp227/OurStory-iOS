@@ -10,18 +10,19 @@ import Combine
 import Alamofire
 
 class LoginViewModel: ObservableObject {
-    private let loginRepository: LoginRepository
-    
     @Published var email: String = ""
     
     @Published var password: String = ""
     
-    @Published var loginState: LoginState = .logout
+    @Published var loginState: LoginState
     
     @Published var isShowRegister = false
     
+    private let loginRepository: LoginRepository
+    
     init(_ repository: LoginRepository) {
         self.loginRepository = repository
+        loginState = UserDefaults.standard.value(forKey: "user") != nil ? .login : .logout
     }
     
     private func isEmailValid(_ email: String) -> Bool {

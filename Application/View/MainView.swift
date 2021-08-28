@@ -36,6 +36,8 @@ struct MainView: View {
                         break
                     case "Logout":
                         viewModel.loginState = .logout
+                        
+                        UserDefaults.standard.removeObject(forKey: "user")
                         break
                     default:
                         break
@@ -49,8 +51,8 @@ struct MainView: View {
     }
 }
 
-/*struct MainView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(main: AnyView(EmptyView()))
     }
-}*/
+}

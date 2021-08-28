@@ -41,8 +41,10 @@ class LoginRepository {
                 do {
                     let decodedResponse = try JSONDecoder().decode(User.self, from: data as! Data)
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { success(true) }
-                    print("success: \(decodedResponse)")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        success(true)
+                        UserDefaults.standard.set(try? PropertyListEncoder().encode(decodedResponse), forKey: "user")
+                    }
                 } catch {
                     DispatchQueue.main.async { success(false) }
                     print("error")
