@@ -1,0 +1,15 @@
+//
+//  ImageItem.swift
+//  Application
+//
+//  Created by 홍희표 on 2021/08/30.
+//  Copyright © 2021 홍희표. All rights reserved.
+//
+
+struct ImageItem: Codable {
+    var id: Int
+    
+    var image: String
+    
+    var tag: String
+}

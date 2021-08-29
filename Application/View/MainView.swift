@@ -25,7 +25,7 @@ struct MainView: View {
             NavigationView {
                 switch drawerViewModel.route {
                 case "Lounge":
-                    LoungeView().environmentObject(LoungeViewModel()).navigationBarItems(leading: Text("drawer").onTapGesture {
+                    LoungeView().environmentObject(LoungeViewModel(LoungeRepository(ApiServiceImpl()))).navigationBarItems(leading: Text("drawer").onTapGesture {
                         drawerViewModel.show(type: .left, isShow: true)
                     })
                 case "Group":

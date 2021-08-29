@@ -18,7 +18,11 @@ struct LoungeView: View {
             }) {
                 VStack(spacing: 0) {
                     ForEach(viewModel.temp) { i in
-                        Text("Mock Data \(i)")
+                        Text("Mock Data \(i)").onTapGesture {
+                            viewModel.getPosts()
+                        }.onReceive(viewModel.$posts) { data in
+                            print("Test: \(data)")
+                        }
                     }
                 }
             }.ignoresSafeArea(.all, edges: .top)
@@ -34,6 +38,8 @@ struct LoungeView: View {
             }
         }
     }
+    
+    
 }
 
 struct LoungeView_Previews: PreviewProvider {

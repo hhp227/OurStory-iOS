@@ -17,8 +17,8 @@ struct DrawerView: View, DrawerProtocol {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading) {
                 Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
-                Text("Name").padding(.top, 8)
-                Text("E-mail").font(.system(size: 12))
+                Text(drawerViewModel.user?.name ?? "Name").padding(.top, 8)
+                Text(drawerViewModel.user?.email ?? "E-mail").font(.system(size: 12))
             }.frame(maxWidth: .infinity, alignment: .topLeading).padding(16)
             Divider()
             DrawerButton(icon: "text.bubble", label: "Lounge", isSelected: drawerViewModel.route == "Lounge") {
