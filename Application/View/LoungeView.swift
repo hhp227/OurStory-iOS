@@ -9,10 +9,19 @@
 import SwiftUI
 
 struct LoungeView: View {
+    @EnvironmentObject var viewModel: LoungeViewModel
     
     var body: some View {
         ZStack {
-            Text("Lounge View")
+            CollapsingNavigationBar(scrollUpBehavior: .sticky, scrollDownBehavior: .offset, header: {
+                Image("image3").resizable().aspectRatio(contentMode: .fill)
+            }) {
+                VStack(spacing: 0) {
+                    ForEach(viewModel.temp) { i in
+                        Text("Mock Data \(i)")
+                    }
+                }
+            }.ignoresSafeArea(.all, edges: .top)
             VStack {
                 Spacer()
                 HStack {

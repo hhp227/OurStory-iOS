@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-struct MainContainer<Content: View>: View {
+/*struct MainContainer<Content: View>: View {
     @ObservedObject private var drawerViewModel: DrawerViewModel
     
     @State private var gestureCurrent: CGFloat = 0
@@ -41,4 +41,4 @@ struct MainContainer<Content: View>: View {
         self.maskEnable = maskEnable
         self.drawerViewModel = drawerViewModel
     }
-}
+}*/

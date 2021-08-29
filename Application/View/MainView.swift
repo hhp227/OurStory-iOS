@@ -16,36 +16,37 @@ struct MainView: View {
         return drawer
     }()
     
-    @State var main: AnyView
-    
     @EnvironmentObject var viewModel: LoginViewModel
+    
+    private static let MAX_MASK_ALPHA: CGFloat = 0.25
     
     var body: some View {
         ZStack {
             NavigationView {
-                main.onReceive(drawerViewModel.$route) { route in
-                    switch route {
-                    case "Lounge":
-                        main = AnyView(MainContainer(content: LoungeView(), drawerViewModel: drawerViewModel))
-                        break
-                    case "Group":
-                        main = AnyView(MainContainer(content: GroupView(), drawerViewModel: drawerViewModel))
-                        break
-                    case "Chat": 
-                        main = AnyView(MainContainer(content: ChatView(), drawerViewModel: drawerViewModel))
-                        break
-                    case "Logout":
-                        viewModel.loginState = .logout
-                        
-                        UserDefaults.standard.removeObject(forKey: "user")
-                        break
-                    default:
-                        break
-                    }
-                }.navigationBarTitle(Text(drawerViewModel.route), displayMode: .inline).navigationBarItems(leading: Text("left").onTapGesture {
-                    self.drawerViewModel.show(type: .left, isShow: true)
+                switch drawerViewModel.route {
+                case "Lounge":
+                    LoungeView().environmentObject(LoungeViewModel()).navigationBarItems(leading: Text("drawer").onTapGesture {
+                        drawerViewModel.show(type: .left, isShow: true)
+                    })
+                case "Group":
+                    GroupView().navigationBarItems(leading: Text("drawer").onTapGesture {
+                        drawerViewModel.show(type: .left, isShow: true)
+                    })
+                case "Chat":
+                    ChatView().navigationBarItems(leading: Text("drawer").onTapGesture {
+                    drawerViewModel.show(type: .left, isShow: true)
                 })
+                case "Logout":
+                    Text("Logout").onAppear {
+                        viewModel.loginState = .logout
+                                                
+                        UserDefaults.standard.removeObject(forKey: "user")
+                    }
+                default:
+                    EmptyView()
+                }
             }
+            Color.black.opacity(Double(drawerViewModel.maxShowRate * MainView.MAX_MASK_ALPHA)).ignoresSafeArea()
             drawerViewModel.drawerView[.left]
         }
     }
@@ -53,6 +54,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(main: AnyView(EmptyView()))
+        MainView()
     }
 }

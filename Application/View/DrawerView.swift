@@ -17,7 +17,7 @@ struct DrawerView: View, DrawerProtocol {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading) {
                 Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
-                Text("Hello, World!").padding(.top, 8)
+                Text("Name").padding(.top, 8)
                 Text("E-mail").font(.system(size: 12))
             }.frame(maxWidth: .infinity, alignment: .topLeading).padding(16)
             Divider()
@@ -37,9 +37,11 @@ struct DrawerView: View, DrawerProtocol {
                 drawerViewModel.hideAll()
             }
             DrawerButton(icon: "rectangle.righthalf.inset.fill.arrow.right", label: "Logout", isSelected: false) {
-                drawerViewModel.route = "Logout"
-                
-                drawerViewModel.hideAll()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    drawerViewModel.route = "Logout"
+                    
+                    drawerViewModel.hideAll()
+                }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }

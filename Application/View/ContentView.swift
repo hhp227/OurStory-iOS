@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         switch viewModel.loginState {
         case .login:
-            MainView(main: AnyView(LoungeView())).environmentObject(viewModel)
+            MainView().environmentObject(viewModel)
         case .logout:
             LoginView().environmentObject(viewModel).animation(.easeIn)
         }
