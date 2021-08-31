@@ -10,7 +10,24 @@ import SwiftUI
 
 struct GroupView: View {
     var body: some View {
-        Text("Group View")
+        VStack {
+            HStack {
+                VStack {
+                    Image(systemName: "phone.fill")
+                    Text("first Item")
+                }
+                VStack {
+                    Image(systemName: "phone.fill")
+                    Text("first Item")
+                }
+                VStack {
+                    Image(systemName: "phone.fill")
+                    Text("first Item")
+                }
+            }.frame(width: .infinity, height: 70, alignment: .center)
+            Divider()
+            Text("Group View")
+        }.frame(width: .infinity, height: .infinity, alignment: .top)
     }
 }
 
