@@ -17,6 +17,9 @@
 		0A1F585026DA02D9006CECE6 /* WriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F584F26DA02D9006CECE6 /* WriteViewModel.swift */; };
 		0A1F585326DA265A006CECE6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F585226DA265A006CECE6 /* LoginView.swift */; };
 		0A24102B2694CF030007E5EB /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = 0A24102A2694CF020007E5EB /* Preview Content */; };
+		0A2B1F9B26DE798D00C52E73 /* GroupFindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1F9A26DE798D00C52E73 /* GroupFindView.swift */; };
+		0A2B1F9E26DE79AF00C52E73 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1F9D26DE79AF00C52E73 /* CreateGroupView.swift */; };
+		0A2B1FA126DE79FD00C52E73 /* NotJoinedGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */; };
 		0A30045826DBC0F500123C55 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30045726DBC0F500123C55 /* PostItem.swift */; };
 		0A30045B26DBC25900123C55 /* GroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30045A26DBC25900123C55 /* GroupItem.swift */; };
 		0A32EB1D26BE5178006A5295 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32EB1C26BE5178006A5295 /* LoginViewModel.swift */; };
@@ -56,6 +59,9 @@
 		0A1F584F26DA02D9006CECE6 /* WriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewModel.swift; sourceTree = "<group>"; };
 		0A1F585226DA265A006CECE6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A24102A2694CF020007E5EB /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
+		0A2B1F9A26DE798D00C52E73 /* GroupFindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFindView.swift; sourceTree = "<group>"; };
+		0A2B1F9D26DE79AF00C52E73 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
+		0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotJoinedGroupView.swift; sourceTree = "<group>"; };
 		0A30045726DBC0F500123C55 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		0A30045A26DBC25900123C55 /* GroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItem.swift; sourceTree = "<group>"; };
 		0A32EB1C26BE5178006A5295 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -116,6 +122,9 @@
 				0A1DF13226C5955500BC58E1 /* LoungeView.swift */,
 				0A450FA826C8B81200365F19 /* GroupDetailView.swift */,
 				0A1F585226DA265A006CECE6 /* LoginView.swift */,
+				0A2B1F9A26DE798D00C52E73 /* GroupFindView.swift */,
+				0A2B1F9D26DE79AF00C52E73 /* CreateGroupView.swift */,
+				0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,6 +382,7 @@
 				0ABB4A4226DBEB81000DB759 /* ImageItem.swift in Sources */,
 				0A3A395C26C559830068FCE3 /* MainContainer.swift in Sources */,
 				0A3A395626C558EF0068FCE3 /* DrawerStatus.swift in Sources */,
+				0A2B1F9B26DE798D00C52E73 /* GroupFindView.swift in Sources */,
 				0A3EBB3926CC01F200AFE90A /* CollapsingNavigationBarView.swift in Sources */,
 				0A1DF13326C5955500BC58E1 /* LoungeView.swift in Sources */,
 				0A450FA926C8B81200365F19 /* GroupDetailView.swift in Sources */,
@@ -395,6 +405,8 @@
 				0A7132B32470FEE80049F7FB /* Application.swift in Sources */,
 				0AD3BE9726B2AD3F00E857B4 /* UserView.swift in Sources */,
 				0A3A395326C558BD0068FCE3 /* DrawerViewModel.swift in Sources */,
+				0A2B1F9E26DE79AF00C52E73 /* CreateGroupView.swift in Sources */,
+				0A2B1FA126DE79FD00C52E73 /* NotJoinedGroupView.swift in Sources */,
 				0A32EB2926BE7C55006A5295 /* ApiService.swift in Sources */,
 				0A7132B52470FEE80049F7FB /* SceneDelegate.swift in Sources */,
 			);

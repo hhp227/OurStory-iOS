@@ -13,16 +13,22 @@ struct GroupView: View {
         VStack {
             HStack {
                 VStack {
-                    Image(systemName: "phone.fill")
-                    Text("first Item")
+                    NavigationLink(destination: GroupFindView()) {
+                        Image(systemName: "phone.fill")
+                        Text("first Item")
+                    }
                 }
                 VStack {
-                    Image(systemName: "phone.fill")
-                    Text("first Item")
+                    NavigationLink(destination: NotJoinedGroupView()) {
+                        Image(systemName: "phone.fill")
+                        Text("first Item")
+                    }
                 }
                 VStack {
-                    Image(systemName: "phone.fill")
-                    Text("first Item")
+                    NavigationLink(destination: CreateGroupView() {
+                        Image(systemName: "phone.fill")
+                        Text("first Item")
+                    }
                 }
             }.frame(width: .infinity, height: 70, alignment: .center)
             Divider()
