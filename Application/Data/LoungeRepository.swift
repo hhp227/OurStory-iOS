@@ -18,16 +18,23 @@ class LoungeRepository {
     
     func getPosts(offset: Int, success: @escaping (Any) -> Void) {
         apiService.request(with: URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, params: [:]) { result, data in
-            print("Test: \(result), \(data)")
-            print("data: \(String(describing: data))")
-            let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any]
-            
-            if let posts = jsonObject?["posts"] {
+            switch result {
+            case .success:
+                print("Test: \(result), \(data)")
+                print("data: \(String(describing: data))")
+                let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any]
                 
-                print("Test: \(posts)")
+                if let posts = jsonObject?["posts"] as? [Any] {
+                    posts.forEach { object -> Void in
+                        guard let post = object as? [String: Any] else { return }
+                        let id = post["id"] as! Int
+                        print(id)
+                    }
+                }
+                break
+            case .failure:
+                break
             }
-            
-            //print("TEST: \(array)")
         }
         /*AF.request(URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, parameters: [:]).responseJSON { response in
             switch response.result {

@@ -19,6 +19,8 @@ class ApiServiceImpl: ApiService {
             guard let data = data else { return }
             if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
                 completion(.success, data)
+            } else if let error = failure {
+                completion(.failure, nil)
             } else {
                 completion(.failure, data)
             }
