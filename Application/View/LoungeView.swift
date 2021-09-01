@@ -17,13 +17,13 @@ struct LoungeView: View {
                 Image("image3").resizable().aspectRatio(contentMode: .fill)
             }) {
                 VStack(spacing: 0) {
-                    ForEach(viewModel.temp) { i in
-                        Text("Mock Data \(i)").onTapGesture {
+                    ForEach(viewModel.posts) { post in
+                        Text("Mock Data \(post.id)").onTapGesture {
                             viewModel.getPosts()
-                        }.onReceive(viewModel.$posts) { data in
-                            print("Test: \(data)")
                         }
                     }
+                }.onAppear {
+                    viewModel.getPosts()
                 }
             }.ignoresSafeArea(.all, edges: .top)
             VStack {

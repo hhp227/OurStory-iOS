@@ -6,7 +6,7 @@
 //  Copyright © 2021 홍희표. All rights reserved.
 //
 
-struct PostItem: Codable {
+struct PostItem: Codable, Identifiable {
     var id: Int
     
     var userId: Int
@@ -15,9 +15,9 @@ struct PostItem: Codable {
     
     var text: String
     
-    var status: String
+    var status: Int
     
-    var profileImage: String
+    var profileImage: String?
     
     var timeStamp: String
     

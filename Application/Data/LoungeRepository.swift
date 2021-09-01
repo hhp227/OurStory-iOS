@@ -16,20 +16,37 @@ class LoungeRepository {
         self.apiService = apiService
     }
     
-    func getPosts(offset: Int, success: @escaping (Any) -> Void) {
+    func getPosts<T>(offset: Int, success: @escaping (T) -> Void) {
         apiService.request(with: URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, params: [:]) { result, data in
             switch result {
             case .success:
-                print("Test: \(result), \(data)")
-                print("data: \(String(describing: data))")
                 let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any]
+                var postItems = [PostItem]()
                 
                 if let posts = jsonObject?["posts"] as? [Any] {
                     posts.forEach { object -> Void in
                         guard let post = object as? [String: Any] else { return }
-                        let id = post["id"] as! Int
-                        print(id)
+                        //TODO attachment 파싱해야됨
+                        let attach = post["attachment"] as! [String: Any]
+                        let video = attach["video"]
+                        let images = attach["images"] as? [String: Any]
+                        //여기까지
+                        let postItem = PostItem(
+                            id: post["id"] as! Int,
+                            userId: post["user_id"] as! Int,
+                            name: post["name"] as! String,
+                            text: post["text"] as! String,
+                            status: post["status"] as! Int,
+                            profileImage: post["profile_img"] as? String,
+                            timeStamp: post["created_at"] as! String,
+                            replyCount: post["reply_count"] as! Int,
+                            likeCount: post["like_count"] as! Int,
+                            attachment: PostItem.Attachment(images: [], video: nil)
+                        )
+                        
+                        postItems.append(postItem)
                     }
+                    success(postItems as! T)
                 }
                 break
             case .failure:

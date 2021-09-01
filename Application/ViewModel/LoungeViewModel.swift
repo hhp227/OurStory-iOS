@@ -9,13 +9,9 @@
 import Foundation
 
 class LoungeViewModel: ObservableObject {
-    //@Published var posts: [PostItem] = []
+    @Published var posts: [PostItem] = []
     
     private let repository: LoungeRepository
-    
-    let temp = (1..<50)
-    
-    @Published var posts: Any? = nil
     
     init(_ repository: LoungeRepository) {
         self.repository = repository
@@ -23,7 +19,9 @@ class LoungeViewModel: ObservableObject {
     
     func getPosts() {
         repository.getPosts(offset: 0) { data in
-            self.posts = data
+            DispatchQueue.main.async {
+                self.posts = data
+            }
         }
     }
 }
