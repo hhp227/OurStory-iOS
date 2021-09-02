@@ -27,7 +27,7 @@ struct CollapsingNavigationBar<Header: View, Content: View>: View {
                     GeometryReader { proxy in
                         header().opacity(getOpacity()).foregroundColor(.white).frame(maxWidth: .infinity).frame(height: getHeaderHeight(edgeInsets: globalProxy.safeAreaInsets), alignment: .bottom).background(Color.red)
                     }.frame(height: maxHeight).offset(y: -offset).zIndex(1)
-                    content().padding().zIndex(0)
+                    content().zIndex(0)
                 }.modifier(OffsetModifier(offset: $offset))
             }.coordinateSpace(name: "SCROLL")
         }

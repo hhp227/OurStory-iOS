@@ -18,8 +18,8 @@ struct LoungeView: View {
             }) {
                 VStack(spacing: 0) {
                     ForEach(viewModel.posts) { post in
-                        Text("Mock Data \(post.id)").onTapGesture {
-                            viewModel.getPosts()
+                        NavigationLink(destination: PostDetailView()) {
+                            CardView(postItem: post)
                         }
                     }
                 }.onAppear {
