@@ -9,8 +9,15 @@
 import SwiftUI
 
 struct WriteView: View {
+    @EnvironmentObject var viewModel: WriteViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ZStack {
+                TextEditor(text: $viewModel.text)
+                Text(viewModel.text).opacity(0).padding(.all, 8)
+            }.shadow(radius: 1)
+        }
     }
 }
 

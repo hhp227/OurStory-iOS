@@ -9,5 +9,5 @@
 import Foundation
 
 class WriteViewModel: ObservableObject {
-    
+    @Published var text: String = ""
 }
