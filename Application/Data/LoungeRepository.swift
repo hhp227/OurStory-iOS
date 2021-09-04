@@ -26,11 +26,8 @@ class LoungeRepository {
                 if let posts = jsonObject?["posts"] as? [Any] {
                     posts.forEach { object -> Void in
                         guard let post = object as? [String: Any] else { return }
-                        //TODO attachment 파싱해야됨
                         let attach = post["attachment"] as! [String: Any]
-                        let video = attach["video"]
-                        let images = attach["images"] as? [String: Any]
-                        //여기까지
+                        let images = attach["images"] as! [Any]
                         let postItem = PostItem(
                             id: post["id"] as! Int,
                             userId: post["user_id"] as! Int,
@@ -41,7 +38,15 @@ class LoungeRepository {
                             timeStamp: post["created_at"] as! String,
                             replyCount: post["reply_count"] as! Int,
                             likeCount: post["like_count"] as! Int,
-                            attachment: PostItem.Attachment(images: [], video: nil)
+                            attachment: PostItem.Attachment(
+                                images: images.map { jsonObj -> ImageItem in
+                                    if let image = jsonObj as? [String: Any] {
+                                        return ImageItem(id: image["id"] as! Int, image: image["image"] as! String, tag: image["tag"] as! String)
+                                    } else {
+                                        return ImageItem(id: 0, image: "", tag: "")
+                                    }
+                                },
+                                video: String(describing: attach["video"] as Any))
                         )
                         
                         postItems.append(postItem)

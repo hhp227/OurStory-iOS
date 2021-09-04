@@ -16,13 +16,31 @@ struct LoungeView: View {
             CollapsingNavigationBar(scrollUpBehavior: .sticky, scrollDownBehavior: .offset, header: {
                 Image("image3").resizable().aspectRatio(contentMode: .fill)
             }) {
-                VStack(spacing: 0) {
+                VStack(spacing: 10) {
                     ForEach(viewModel.posts) { post in
                         NavigationLink(destination: PostDetailView()) {
-                            CardView(postItem: post)
+                            CardView {
+                                VStack(alignment: .leading) {
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 60, height: 60).cornerRadius(45)
+                                            VStack(alignment: .leading) {
+                                                Text(post.name).fontWeight(.bold)
+                                                Text(post.timeStamp)
+                                            }
+                                        }
+                                        Text(post.text)
+                                    }.padding()
+                                    if let imageItem = post.attachment.images.first {
+                                        AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!)
+                                    }
+                                    Spacer(minLength: 10)
+                                }
+                                
+                            }
                         }
                     }
-                }.onAppear {
+                }.padding([.top, .bottom], 8).onAppear {
                     viewModel.getPosts()
                 }
             }.ignoresSafeArea(.all, edges: .top)

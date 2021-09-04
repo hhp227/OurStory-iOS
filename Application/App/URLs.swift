@@ -13,3 +13,7 @@ let URL_PROFILE_EDIT = "\(BASEURL)/profile"
 let URL_POST = "\(BASEURL)/post"
 let URL_POSTS = "\(BASEURL)/posts?offset={OFFSET}"
 let URL_USER_POSTS = "\(BASEURL)/posts/?offset={OFFSET}"
+
+let URL_POST_IMAGE_PATH = "\(BASEURL)/php/Images/"
+
+let URL_USER_PROFILE_IMAGE = "\(BASEURL)/php/ProfileImages/"
