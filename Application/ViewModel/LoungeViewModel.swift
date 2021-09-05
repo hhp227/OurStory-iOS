@@ -24,4 +24,8 @@ class LoungeViewModel: ObservableObject {
             }
         }
     }
+    
+    func actionLike() {
+        print("좋아요 눌름")
+    }
 }

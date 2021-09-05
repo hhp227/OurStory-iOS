@@ -18,25 +18,43 @@ struct LoungeView: View {
             }) {
                 VStack(spacing: 10) {
                     ForEach(viewModel.posts) { post in
-                        NavigationLink(destination: PostDetailView()) {
-                            CardView {
-                                VStack(alignment: .leading) {
-                                    VStack(alignment: .leading) {
-                                        HStack {
+                        CardView {
+                            VStack(alignment: .leading, spacing: 0) {
+                                NavigationLink(destination: PostDetailView()) {
+                                    VStack(alignment: .leading, spacing: 0) {
+                                        HStack(alignment: .top) {
                                             AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 60, height: 60).cornerRadius(45)
                                             VStack(alignment: .leading) {
                                                 Text(post.name).fontWeight(.bold)
                                                 Text(post.timeStamp)
-                                            }
+                                            }.padding([.leading, .trailing], 8)
+                                        }.padding([.top, .leading, .trailing])
+                                        if !post.text.isEmpty {
+                                            Text(post.text).padding()
                                         }
-                                        Text(post.text)
-                                    }.padding()
-                                    if let imageItem = post.attachment.images.first {
-                                        AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!)
-                                    }
-                                    Spacer(minLength: 10)
+                                        if let imageItem = post.attachment.images.first {
+                                            AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
+                                        }
+                                        Spacer(minLength: 10)
+                                    }.padding([.top, .bottom], 8)
                                 }
-                                
+                                Divider()
+                                HStack(alignment: .center) {
+                                    HStack {
+                                        Button(action: viewModel.actionLike) {
+                                            Text("hello")
+                                        }
+                                    }.frame(maxWidth: .infinity).padding()
+                                    Divider()
+                                    NavigationLink(destination: PostDetailView(), label: {
+                                        HStack {
+                                            Text("Comment")
+                                            if post.replyCount > 0 {
+                                                Text(String(post.replyCount))
+                                            }
+                                        }.frame(maxWidth: .infinity).padding()
+                                    })
+                                }
                             }
                         }
                     }
