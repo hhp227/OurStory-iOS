@@ -41,8 +41,11 @@ struct LoungeView: View {
                                 Divider()
                                 HStack(alignment: .center) {
                                     HStack {
-                                        Button(action: viewModel.actionLike) {
-                                            Text("hello")
+                                        if post.likeCount > 0 {
+                                            Image(systemName: "heart.fill")
+                                        }
+                                        Button(action: { viewModel.actionLike(post) }) {
+                                            Text("Like")
                                         }
                                     }.frame(maxWidth: .infinity).padding()
                                     Divider()

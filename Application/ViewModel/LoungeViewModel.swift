@@ -25,7 +25,10 @@ class LoungeViewModel: ObservableObject {
         }
     }
     
-    func actionLike() {
-        print("좋아요 눌름")
+    func actionLike(_ postItem: PostItem) {
+        guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
+            return
+        }
+        repository.actionLike(post: postItem, user: user)
     }
 }

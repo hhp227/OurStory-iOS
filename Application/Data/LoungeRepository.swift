@@ -17,7 +17,7 @@ class LoungeRepository {
     }
     
     func getPosts<T>(offset: Int, success: @escaping (T) -> Void) {
-        apiService.request(with: URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, params: [:]) { result, data in
+        apiService.request(with: URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, header: [:], params: [:]) { result, data in
             switch result {
             case .success:
                 let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any]
@@ -70,5 +70,20 @@ class LoungeRepository {
                 break
             }
         }*/
+    }
+    
+    func actionLike(post: PostItem, user: User) {
+        apiService.request(with: URL_POST_LIKE.replacingOccurrences(of: "{POST_ID}", with: String(post.id)), method: .get, header: ["Authorization": user.apiKey], params: [:]) { result, data  in
+            switch result {
+            case .success:
+                let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any]
+                
+                print(jsonObject)
+                break
+            case .failure:
+                print("failure")
+                break
+            }
+        }
     }
 }

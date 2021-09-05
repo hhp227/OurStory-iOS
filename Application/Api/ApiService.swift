@@ -9,12 +9,13 @@
 import Foundation
 
 class ApiServiceImpl: ApiService {
-    func request(with endpoint: String, method: HttpMethod, params: [String: String], completion: @escaping (_ result: ResponseResult, _ data: Any?) -> ()) {
+    func request(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], completion: @escaping (_ result: ResponseResult, _ data: Any?) -> ()) {
         let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
         var urlRequest = URLRequest(url: URL(string: endpoint)!)
         urlRequest.httpMethod = method.method
         urlRequest.httpBody = param
         
+        header.forEach { (k, v) in urlRequest.setValue(v, forHTTPHeaderField: k) }
         URLSession.shared.dataTask(with: urlRequest) { data, response, failure in
             guard let data = data else { return }
             if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
@@ -30,7 +31,7 @@ class ApiServiceImpl: ApiService {
 
 protocol ApiService {
     @discardableResult
-    func request(with endpoint: String, method: HttpMethod, params: [String: String], completion: @escaping (_ result: ResponseResult, _ data: Any?) -> ())
+    func request(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], completion: @escaping (_ result: ResponseResult, _ data: Any?) -> ())
 }
 
 enum ResponseResult {

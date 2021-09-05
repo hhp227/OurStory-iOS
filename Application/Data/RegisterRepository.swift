@@ -16,7 +16,7 @@ class RegisterRepository {
     }
     
     func register(_ name: String, _ email: String, _ password: String, success: @escaping (Bool) -> Void) {
-        apiService.request(with: URL_REGISTER, method: .post, params: ["name": name, "email": email, "password": password]) { result, data in
+        apiService.request(with: URL_REGISTER, method: .post, header: [:], params: ["name": name, "email": email, "password": password]) { result, data in
             switch result {
             case .success:
                 guard let data = data else { return }
