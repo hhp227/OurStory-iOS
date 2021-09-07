@@ -35,7 +35,7 @@ class LoungeRepository {
                             text: post["text"] as! String,
                             status: post["status"] as! Int,
                             profileImage: post["profile_img"] as? String,
-                            timeStamp: post["created_at"] as! String,
+                            timeStamp: DateUtil.parseDate(post["created_at"] as! String),
                             replyCount: post["reply_count"] as! Int,
                             likeCount: post["like_count"] as! Int,
                             attachment: PostItem.Attachment(

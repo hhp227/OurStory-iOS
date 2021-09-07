@@ -26,7 +26,7 @@ struct LoungeView: View {
                                             AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 60, height: 60).cornerRadius(45)
                                             VStack(alignment: .leading) {
                                                 Text(post.name).fontWeight(.bold)
-                                                Text(post.timeStamp)
+                                                Text(DateUtil.formatDate(post.timeStamp))
                                             }.padding([.leading, .trailing], 8)
                                         }.padding([.top, .leading, .trailing])
                                         if !post.text.isEmpty {
