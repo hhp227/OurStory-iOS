@@ -79,7 +79,6 @@ class LoungeRepository {
                 let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any]
                 
                 print(jsonObject)
-                print("Test")
                 break
             case .failure:
                 print("failure")
