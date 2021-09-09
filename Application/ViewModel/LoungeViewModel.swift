@@ -29,6 +29,8 @@ class LoungeViewModel: ObservableObject {
         guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
             return
         }
-        repository.actionLike(post: postItem, user: user)
+        repository.actionLike(post: postItem, user: user) {
+            
+        }
     }
 }
