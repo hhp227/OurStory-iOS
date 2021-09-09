@@ -25,10 +25,10 @@ class DateUtil {
     }
     
     static func getPeriodTimeGenerator(_ date: Date) -> String {
-        let millisecs = Date().timeIntervalSince1970 - date.timeIntervalSince1970
-        let secs = Int(millisecs)
-        let mins = secs / 60
-        let hours = mins / 60
+        let milliSeconds = Date().timeIntervalSince1970 - date.timeIntervalSince1970
+        let seconds = Int(milliSeconds)
+        let minutes = seconds / 60
+        let hours = minutes / 60
         let days = hours / 24
         
         if days > 1 {
@@ -37,12 +37,12 @@ class DateUtil {
             return String(format: "%dday ago", days)
         } else if hours > 0 {
             return String(format: "%dhour ago", hours)
-        } else if mins > 0 {
-            return String(format: "%dminute ago", mins)
-        } else if secs > 1 {
-            return String(format: "%dsecond ago", secs)
-        } else if secs < 2 {
-            return String(format: "now", secs)
+        } else if minutes > 0 {
+            return String(format: "%dminute ago", minutes)
+        } else if seconds > 1 {
+            return String(format: "%dsecond ago", seconds)
+        } else if seconds < 2 {
+            return String(format: "now", seconds)
         } else {
             return formatDate(date)
         }
