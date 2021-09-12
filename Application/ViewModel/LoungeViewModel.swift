@@ -25,12 +25,14 @@ class LoungeViewModel: ObservableObject {
         }
     }
     
-    func actionLike(_ postItem: PostItem) {
+    func actionLike(_ position: Int, _ postItem: PostItem) {
         guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
             return
         }
-        repository.actionLike(post: postItem, user: user) {
-            
+        repository.actionLike(post: postItem, user: user) { (p: PostItem) in
+            DispatchQueue.main.async {
+                self.posts[position] = p
+            }
         }
     }
 }

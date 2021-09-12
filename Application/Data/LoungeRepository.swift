@@ -78,9 +78,11 @@ class LoungeRepository {
             case .success:
                 if let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any] {
                     if let error = jsonObject["error"], error as! Int == 0 {
+                        var postItem = post
                         let result = jsonObject["result"] as! String
+                        postItem.likeCount = result == "insert" ? post.likeCount + 1 : post.likeCount - 1
                         
-                        success((result == "insert" ? post.likeCount + 1 : post.likeCount - 1) as! T)
+                        success(postItem as! T)
                     }
                 }
                 break

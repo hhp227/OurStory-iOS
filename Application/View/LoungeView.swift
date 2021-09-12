@@ -17,7 +17,7 @@ struct LoungeView: View {
                 Image("image3").resizable().aspectRatio(contentMode: .fill)
             }) {
                 VStack(spacing: 10) {
-                    ForEach(viewModel.posts) { post in
+                    ForEach(Array(viewModel.posts.enumerated()), id: \.offset) { i, post in
                         CardView {
                             VStack(alignment: .leading, spacing: 0) {
                                 NavigationLink(destination: PostDetailView()) {
@@ -44,8 +44,11 @@ struct LoungeView: View {
                                         if post.likeCount > 0 {
                                             Image(systemName: "heart.fill")
                                         }
-                                        Button(action: { viewModel.actionLike(post) }) {
+                                        Button(action: { viewModel.actionLike(i, post) }) {
                                             Text("Like")
+                                            if post.likeCount > 0 {
+                                                Text(String(post.likeCount))
+                                            }
                                         }
                                     }.frame(maxWidth: .infinity).padding()
                                     Divider()
