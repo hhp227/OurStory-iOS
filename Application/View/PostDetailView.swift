@@ -9,9 +9,23 @@
 import SwiftUI
 
 struct PostDetailView: View {
+    @ObservedObject var viewModel: PostDetailViewModel = PostDetailViewModel()
     
     var body: some View {
-        Text("Hello PostDetailView")
+        VStack {
+            ScrollView {
+                
+            }
+            VStack(spacing: 0) {
+                Divider()
+                HStack(spacing: 5) {
+                    TextField("Add a Comment", text: $viewModel.message).padding(10)
+                    Button(action: {}) {
+                        Text("Send").foregroundColor(.gray).padding(10).overlay(RoundedRectangle(cornerRadius: 2).stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1))
+                    }
+                }.padding(5)
+            }
+        }
     }
 }
 
