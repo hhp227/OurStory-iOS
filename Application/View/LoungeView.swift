@@ -23,14 +23,14 @@ struct LoungeView: View {
                                 NavigationLink(destination: PostDetailView()) {
                                     VStack(alignment: .leading, spacing: 0) {
                                         HStack(alignment: .top) {
-                                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 60, height: 60).cornerRadius(45)
+                                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
                                             VStack(alignment: .leading) {
                                                 Text(post.name).fontWeight(.bold)
                                                 Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
                                             }.padding([.leading, .trailing], 8)
                                         }.padding([.top, .leading, .trailing])
                                         if !post.text.isEmpty {
-                                            Text(post.text).padding()
+                                            Text(post.text).padding([.top, .leading, .trailing]).padding(.bottom, 5)
                                         }
                                         if let imageItem = post.attachment.images.first {
                                             AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
