@@ -10,4 +10,12 @@ import Foundation
 
 class PostDetailViewModel: ObservableObject {
     @Published var message = ""
+    
+    func actionSend() {
+        if message.isEmpty {
+            print("action send")
+        } else {
+            
+        }
+    }
 }
