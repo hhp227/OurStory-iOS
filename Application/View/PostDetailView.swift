@@ -12,9 +12,14 @@ struct PostDetailView: View {
     @ObservedObject var viewModel: PostDetailViewModel = PostDetailViewModel()
     
     var body: some View {
-        VStack {
-            ScrollView {
-                
+        VStack(spacing: 0) {
+            List {
+                Section(header: EmptyView()) {
+                    Text("Content")
+                }
+                ForEach(0..<100) { i in
+                    Text("Item \(i)")
+                }
             }
             VStack(spacing: 0) {
                 Divider()
