@@ -11,11 +11,30 @@ import Foundation
 class PostDetailViewModel: ObservableObject {
     @Published var message = ""
     
+    @Published var post: PostItem? = nil
+    
+    private var repository: PostDetailRepository
+    
+    private var postId = 0
+    
+    init(_ postId: Int, _ repository: PostDetailRepository) {
+        self.postId = postId
+        self.repository = repository
+    }
+    
     func actionSend() {
         if message.isEmpty {
             print("action send")
         } else {
             
+        }
+    }
+    
+    func getPost() {
+        repository.getPost(postId) { post in
+            DispatchQueue.main.async {
+                self.post = post
+            }
         }
     }
 }

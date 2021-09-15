@@ -9,17 +9,19 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    @ObservedObject var viewModel: PostDetailViewModel = PostDetailViewModel()
+    @EnvironmentObject var viewModel: PostDetailViewModel
     
     var body: some View {
         VStack(spacing: 0) {
             List {
                 Section(header: EmptyView()) {
-                    Text("Content")
+                    
                 }
                 ForEach(0..<100) { i in
                     Text("Item \(i)")
                 }
+            }.onAppear {
+                viewModel.getPost()
             }
             VStack(spacing: 0) {
                 Divider()
