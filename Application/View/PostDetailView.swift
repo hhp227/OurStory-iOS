@@ -15,13 +15,14 @@ struct PostDetailView: View {
         VStack(spacing: 0) {
             List {
                 Section(header: EmptyView()) {
-                    
+                    PostHeaderView(post: $viewModel.post)
                 }
                 ForEach(0..<100) { i in
                     Text("Item \(i)")
                 }
             }.onAppear {
                 viewModel.getPost()
+                print("test")
             }
             VStack(spacing: 0) {
                 Divider()
@@ -34,6 +35,15 @@ struct PostDetailView: View {
             }
         }
     }
+}
+
+struct PostHeaderView: View {
+    @Binding var post: PostItem?
+    
+    var body: some View {
+        Text("Test \(post?.id ?? 5)")
+    }
+    
 }
 
 struct PostDetailView_Previews: PreviewProvider {
