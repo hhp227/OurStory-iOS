@@ -24,7 +24,7 @@ class PostDetailViewModel: ObservableObject {
     
     func actionSend() {
         if message.isEmpty {
-            print("action send")
+            
         } else {
             
         }
