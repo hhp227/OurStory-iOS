@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct PostItem: Codable, Identifiable {
+struct PostItem: Codable, Identifiable, Equatable {
     var id: Int
     
     var userId: Int
@@ -27,6 +27,10 @@ struct PostItem: Codable, Identifiable {
     var likeCount: Int
     
     var attachment: Attachment
+    
+    static func == (lhs: PostItem, rhs: PostItem) -> Bool {
+        return lhs.id == rhs.id
+    }
     
     enum CodingKeys: String, CodingKey {
         case id, name, text, status, attachment

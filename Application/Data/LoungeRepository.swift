@@ -72,6 +72,13 @@ class LoungeRepository {
         }*/
     }
     
+    //TODO https://www.vadimbulavin.com/infinite-list-scroll-swiftui-combine/
+    func getPostItems(offset: Int) {
+        let temp = apiService.test(with: URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, header: [:], params: [:])
+        
+        print(temp)
+    }
+    
     func actionLike<T>(post: PostItem, user: User, success: @escaping (T) -> Void) {
         apiService.request(with: URL_POST_LIKE.replacingOccurrences(of: "{POST_ID}", with: String(post.id)), method: .get, header: ["Authorization": user.apiKey], params: [:]) { result, data  in
             switch result {

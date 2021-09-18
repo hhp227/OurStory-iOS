@@ -15,7 +15,7 @@ class PostDetailViewModel: ObservableObject {
     
     private var repository: PostDetailRepository
     
-    private var postId = 0
+    private var postId: Int
     
     init(_ postId: Int, _ repository: PostDetailRepository) {
         self.postId = postId

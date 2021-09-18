@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import Combine
 
 class ApiServiceImpl: ApiService {
+    
     func request(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], completion: @escaping (_ result: ResponseResult, _ data: Any?) -> ()) {
         let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
         var urlRequest = URLRequest(url: URL(string: endpoint)!)
@@ -27,11 +29,25 @@ class ApiServiceImpl: ApiService {
             }
         }.resume()
     }
+    
+    func test(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String]) -> AnyPublisher<PostItem, Error> {
+        let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
+        var urlRequest = URLRequest(url: URL(string: endpoint)!)
+        urlRequest.httpMethod = method.method
+        urlRequest.httpBody = param
+        
+        header.forEach { (k, v) in urlRequest.setValue(v, forHTTPHeaderField: k) }
+        return URLSession.shared.dataTaskPublisher(for: urlRequest).tryMap { try JSONDecoder().decode(PostItem.self, from: $0.data) }.receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        
+    }
 }
 
 protocol ApiService {
     @discardableResult
     func request(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], completion: @escaping (_ result: ResponseResult, _ data: Any?) -> ())
+    
+    @discardableResult
+    func test(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String]) -> AnyPublisher<PostItem, Error>
 }
 
 enum ResponseResult {
