@@ -63,6 +63,7 @@ struct LoungeView: View {
                                 }
                             }.onAppear {
                                 if viewModel.state.posts.last == post {
+                                    print("getNext")
                                     viewModel.getPosts()
                                 }
                             }
