@@ -17,7 +17,7 @@ struct LoungeView: View {
                 Image("image3").resizable().aspectRatio(contentMode: .fill)
             }) {
                 VStack(spacing: 10) {
-                    ForEach(Array(viewModel.posts.enumerated()), id: \.offset) { i, post in
+                    ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, post in
                         CardView {
                             VStack(alignment: .leading, spacing: 0) {
                                 NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(post.id, PostDetailRepository(ApiServiceImpl())))) {
@@ -61,12 +61,14 @@ struct LoungeView: View {
                                         }.frame(maxWidth: .infinity).padding(10)
                                     })
                                 }
+                            }.onAppear {
+                                if viewModel.state.posts.last == post {
+                                    viewModel.getPosts()
+                                }
                             }
                         }
                     }
-                }.padding([.top, .bottom], 8).onAppear {
-                    viewModel.getPosts()
-                }
+                }.padding([.top, .bottom], 8).onAppear(perform: viewModel.getPosts)
             }.ignoresSafeArea(.all, edges: .top)
             VStack {
                 Spacer()

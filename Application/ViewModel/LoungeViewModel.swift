@@ -7,32 +7,55 @@
 //
 
 import Foundation
+import Combine
 
 class LoungeViewModel: ObservableObject {
-    @Published var posts: [PostItem] = []
+    @Published private(set) var state = State()
+    
+    private static let PAGE_ITEM_COUNT = 15
     
     private let repository: LoungeRepository
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     init(_ repository: LoungeRepository) {
         self.repository = repository
     }
     
     func getPosts() {
-        repository.getPosts(offset: 0) { data in
-            DispatchQueue.main.async {
-                self.posts = data
-            }
-        }
+        guard state.canLoadNextPage else { return }
+        repository.getPostItems(offset: state.page).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func actionLike(_ position: Int, _ postItem: PostItem) {
         guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
             return
         }
-        repository.actionLike(post: postItem, user: user) { (p: PostItem) in
+        repository.actionLike(post: postItem, user: user) { p in
             DispatchQueue.main.async {
-                self.posts[position] = p
+                self.state.posts[position] = p
             }
         }
+    }
+    
+    func onReceive(_ completion: Subscribers.Completion<Error>) {
+        switch completion {
+        case .finished:
+            break
+        case .failure:
+            state.canLoadNextPage = false
+        }
+    }
+    
+    private func onReceive(_ batch: [PostItem]) {
+        state.posts += batch
+        state.page += LoungeViewModel.PAGE_ITEM_COUNT
+        state.canLoadNextPage = batch.count == LoungeViewModel.PAGE_ITEM_COUNT
+    }
+    
+    struct State {
+        var posts: [PostItem] = []
+        var page: Int = 0
+        var canLoadNextPage = true
     }
 }
