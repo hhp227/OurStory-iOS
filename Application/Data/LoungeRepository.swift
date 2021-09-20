@@ -59,18 +59,6 @@ class LoungeRepository {
                 break
             }
         }
-        /*AF.request(URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, parameters: [:]).responseJSON { response in
-            switch response.result {
-            case .success(let data):
-                print("data: \(String(describing: data))")
-                
-                success(data)
-                break
-            case .failure(_):
-                print("fail")
-                break
-            }
-        }*/
     }
     
     //TODO https://www.vadimbulavin.com/infinite-list-scroll-swiftui-combine/

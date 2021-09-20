@@ -30,7 +30,7 @@ struct LoungeView: View {
                                             }.padding([.leading, .trailing], 8)
                                         }.padding([.top, .leading, .trailing])
                                         if !post.text.isEmpty {
-                                            Text(post.text).padding([.top, .leading, .trailing]).padding(.bottom, 5)
+                                            Text(post.text).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding([.top, .leading, .trailing]).padding(.bottom, 5)
                                         }
                                         if let imageItem = post.attachment.images.first {
                                             AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
@@ -61,13 +61,17 @@ struct LoungeView: View {
                                         }.frame(maxWidth: .infinity).padding(10)
                                     })
                                 }
-                            }.onAppear {
-                                if viewModel.state.posts.last == post {
-                                    print("getNext")
-                                    viewModel.getPosts()
-                                }
+                            }
+                        }.onAppear {
+                            if viewModel.state.posts.last == post {
+                                print("getNext")
+                                viewModel.getPosts()
                             }
                         }
+                    }
+                    if viewModel.state.canLoadNextPage {
+                        // TODO loading indicator
+                        Text("Loading")
                     }
                 }.padding([.top, .bottom], 8).onAppear(perform: viewModel.getPosts)
             }.ignoresSafeArea(.all, edges: .top)
