@@ -17,6 +17,17 @@ struct WriteView: View {
                 TextEditor(text: $viewModel.text)
                 Text(viewModel.text).opacity(0).padding(.all, 8)
             }.shadow(radius: 1)
+        }.navigationBarTitleDisplayMode(.inline)
+        VStack(alignment: .leading, spacing: 0) {
+            Divider()
+            HStack(spacing: 5) {
+                Button(action: {}) {
+                    Text("Image")
+                }
+                Button(action: {}) {
+                    Text("Video")
+                }
+            }.padding(5)
         }
     }
 }
