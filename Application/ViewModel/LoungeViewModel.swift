@@ -53,6 +53,10 @@ class LoungeViewModel: ObservableObject {
         state.canLoadNextPage = batch.count == LoungeViewModel.PAGE_ITEM_COUNT
     }
     
+    deinit {
+        subscriptions.removeAll()
+    }
+    
     struct State {
         var posts: [PostItem] = []
         var page: Int = 0

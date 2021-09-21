@@ -9,6 +9,8 @@
 import Foundation
 
 class PostDetailViewModel: ObservableObject {
+    @Published private(set) var state = State.idle
+    
     @Published var message = ""
     
     @Published var post: PostItem? = nil
@@ -36,5 +38,12 @@ class PostDetailViewModel: ObservableObject {
                 self.post = post
             }
         }
+    }
+    
+    enum State {
+        case idle
+        case loading
+        case success
+        case error
     }
 }

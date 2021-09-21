@@ -14,8 +14,17 @@ struct PostDetailView: View {
     var body: some View {
         VStack(spacing: 0) {
             List {
-                Section(header: EmptyView()) {
-                    PostHeaderView(post: $viewModel.post)
+                switch viewModel.state {
+                case .idle:
+                    AnyView(Color.clear)
+                case .loading:
+                    Text("Loading")
+                case .success:
+                    Section(header: EmptyView()) {
+                        PostHeaderView(post: $viewModel.post)
+                    }
+                case .error:
+                    Text("error")
                 }
                 ForEach(0..<100) { i in
                     Text("Item \(i)")

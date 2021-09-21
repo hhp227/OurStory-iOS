@@ -22,10 +22,10 @@ struct WriteView: View {
             Divider()
             HStack(spacing: 5) {
                 Button(action: {}) {
-                    Text("Image")
+                    Image(systemName: "photo.fill").padding(10)
                 }
                 Button(action: {}) {
-                    Text("Video")
+                    Image(systemName: "video.fill").padding(10)
                 }
             }.padding(5)
         }
