@@ -64,10 +64,9 @@ struct LoungeView: View {
                             }
                         }.onAppear {
                             /*if viewModel.state.posts.last == post {
-                                print("getNext")
+                                print("getNext \(i)")
                                 viewModel.getPosts()
                             }*/
-                            print("Test \(i)")
                         }
                     }
                     if viewModel.state.canLoadNextPage {
