@@ -14,7 +14,7 @@ struct WriteView: View {
     var body: some View {
         List {
             ZStack {
-                TextEditor(text: $viewModel.text)
+                TextEditor(text: $viewModel.text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
                 Text(viewModel.text).opacity(0).padding(.all, 8)
             }.shadow(radius: 1)
         }.navigationBarTitleDisplayMode(.inline)

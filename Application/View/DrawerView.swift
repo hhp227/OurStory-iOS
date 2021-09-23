@@ -16,7 +16,11 @@ struct DrawerView: View, DrawerProtocol {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading) {
-                Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
+                Button(action: { drawerViewModel.isShowProfile.toggle() }) {
+                    Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
+                }.fullScreenCover(isPresented: $drawerViewModel.isShowProfile) {
+                    ProfileView()
+                }
                 Text(drawerViewModel.user?.name ?? "Name").padding(.top, 8)
                 Text(drawerViewModel.user?.email ?? "E-mail").font(.system(size: 12))
             }.frame(maxWidth: .infinity, alignment: .topLeading).padding(16)
@@ -31,8 +35,8 @@ struct DrawerView: View, DrawerProtocol {
                 
                 drawerViewModel.hideAll()
             }
-            DrawerButton(icon: "message", label: "Chat List", isSelected: drawerViewModel.route == "Chat") {
-                drawerViewModel.route = "Chat"
+            DrawerButton(icon: "message", label: "Chat List", isSelected: drawerViewModel.route == "ChatList") {
+                drawerViewModel.route = "ChatList"
                 
                 drawerViewModel.hideAll()
             }

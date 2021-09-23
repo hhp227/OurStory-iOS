@@ -17,6 +17,8 @@ public class DrawerViewModel: ObservableObject {
     
     @Published var route = "Lounge"
     
+    @Published var isShowProfile = false
+    
     private var statusObserver = [AnyCancellable]()
     
     var user: User? {

@@ -25,14 +25,12 @@ struct LoginView: View {
             Button(action: viewModel.login) {
                 Text("LOGIN").font(.system(size: 15, weight: .semibold)).frame(width: 200, alignment: .center).padding(12.5).background(RoundedRectangle(cornerRadius: 3).strokeBorder())
             }
-            Button(action: { viewModel.isShowRegister = true }) {
+            Button(action: { viewModel.isShowRegister.toggle() }) {
                 Text("Register").font(.system(size: 13)).padding(5)
             }.sheet(isPresented: $viewModel.isShowRegister) {
                 RegisterView(viewModel: .init(RegisterRepository(ApiServiceImpl())))
             }
-        }.padding(16)/*.background(NavigationLink(destination: MainView(main: AnyView(LoungeView())).environmentObject(viewModel), isActive: $viewModel.loginResult) {
-        EmptyView()
-    })*/
+        }.padding(16)
     }
 }
 

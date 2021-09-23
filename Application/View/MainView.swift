@@ -32,8 +32,8 @@ struct MainView: View {
                     GroupView().navigationBarItems(leading: Text("drawer").onTapGesture {
                         drawerViewModel.show(type: .left, isShow: true)
                     })
-                case "Chat":
-                    ChatView().navigationBarItems(leading: Text("drawer").onTapGesture {
+                case "ChatList":
+                    ChatListView().navigationBarItems(leading: Text("drawer").onTapGesture {
                     drawerViewModel.show(type: .left, isShow: true)
                 })
                 case "Logout":
@@ -46,7 +46,7 @@ struct MainView: View {
                     EmptyView()
                 }
             }
-            Color.black.opacity(Double(drawerViewModel.maxShowRate * MainView.MAX_MASK_ALPHA)).ignoresSafeArea()
+            Color.black.opacity(Double(drawerViewModel.maxShowRate * MainView.MAX_MASK_ALPHA)).onTapGesture(perform: drawerViewModel.hideAll).ignoresSafeArea()
             drawerViewModel.drawerView[.left]
         }
     }
