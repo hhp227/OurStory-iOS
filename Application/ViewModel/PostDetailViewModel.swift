@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import Combine
 
 class PostDetailViewModel: ObservableObject {
-    @Published private(set) var state = State.idle
+    @Published private(set) var state = State()
     
     @Published var message = ""
-    
-    @Published var post: PostItem? = nil
     
     private var repository: PostDetailRepository
     
     private var postId: Int
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     init(_ postId: Int, _ repository: PostDetailRepository) {
         self.postId = postId
@@ -33,17 +34,41 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func getPost() {
-        repository.getPost(postId) { post in
-            DispatchQueue.main.async {
-                self.post = post
-            }
+        repository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+    }
+    
+    func getReplys() {
+        guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
+            return
+        }
+        repository.getReplys(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+    }
+    
+    func onReceive(_ completion: Subscribers.Completion<Error>) {
+        switch completion {
+        case .finished:
+            print("success")
+            break
+        case .failure:
+            print("failure")
+            break
         }
     }
     
-    enum State {
-        case idle
-        case loading
-        case success
-        case error
+    private func onReceive(_ batch: PostItem) {
+        
+    }
+    
+    private func onReceive(_ batch: [ReplyItem]) {
+        state.replys += batch
+    }
+    
+    deinit {
+        subscriptions.removeAll()
+    }
+    
+    struct State {
+        var post: PostItem? = nil
+        var replys: [ReplyItem] = []
     }
 }

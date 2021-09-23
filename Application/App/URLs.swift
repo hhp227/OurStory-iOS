@@ -17,5 +17,7 @@ let URL_POST_LIKE = "\(BASEURL)/like/{POST_ID}"
 let URL_POST_IMAGE = "\(BASEURL)/image"
 let URL_POST_IMAGE_DELETE = "\(BASEURL)/images"
 let URL_POST_IMAGE_PATH = "\(BASEURL)/php/Images/"
+let URL_REPLYS = "\(BASEURL)/replys/{POST_ID}"
+let URL_REPLY = "\(BASEURL)/replys/post/{REPLY_ID}" // 댓글 url
 
 let URL_USER_PROFILE_IMAGE = "\(BASEURL)/php/ProfileImages/"

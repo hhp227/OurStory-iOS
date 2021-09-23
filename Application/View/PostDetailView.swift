@@ -14,24 +14,16 @@ struct PostDetailView: View {
     var body: some View {
         VStack(spacing: 0) {
             List {
-                switch viewModel.state {
-                case .idle:
-                    AnyView(Color.clear)
-                case .loading:
-                    Text("Loading")
-                case .success:
-                    Section(header: EmptyView()) {
-                        PostHeaderView(post: $viewModel.post)
-                    }
-                case .error:
-                    Text("error")
+                Text("Hello World nice to meet you")
+                ForEach(viewModel.state.replys) { reply in
+                    Text("reply \(reply.id)")
+                }.onReceive(viewModel.$state) { state in
+                    print(state.replys.count)
                 }
-                ForEach(0..<100) { i in
-                    Text("Item \(i)")
-                }
+                
             }.onAppear {
                 viewModel.getPost()
-                print("test")
+                viewModel.getReplys()
             }
             VStack(spacing: 0) {
                 Divider()
@@ -42,7 +34,7 @@ struct PostDetailView: View {
                     }
                 }.padding(5)
             }
-        }
+        }.navigationBarTitleDisplayMode(.inline)
     }
 }
 

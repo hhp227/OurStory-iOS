@@ -100,19 +100,17 @@ class LoungeRepository {
         }
     }
     
-    
-    
     func actionLike<T>(post: PostItem, user: User, success: @escaping (T) -> Void) {
         apiService.request(with: URL_POST_LIKE.replacingOccurrences(of: "{POST_ID}", with: String(post.id)), method: .get, header: ["Authorization": user.apiKey], params: [:]) { result, data  in
             switch result {
             case .success:
                 if let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any] {
                     if let error = jsonObject["error"], error as! Int == 0 {
-                        var postItem = post
+                        var mutablePost = post
                         let result = jsonObject["result"] as! String
-                        postItem.likeCount = result == "insert" ? post.likeCount + 1 : post.likeCount - 1
+                        mutablePost.likeCount = result == "insert" ? post.likeCount + 1 : post.likeCount - 1
                         
-                        success(postItem as! T)
+                        success(mutablePost as! T)
                     }
                 }
                 break

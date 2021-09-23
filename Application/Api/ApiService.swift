@@ -10,7 +10,6 @@ import Foundation
 import Combine
 
 class ApiServiceImpl: ApiService {
-    
     func request(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], completion: @escaping (_ result: ResponseResult, _ data: Any?) -> Void) {
         let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
         var urlRequest = URLRequest(url: URL(string: endpoint)!)
@@ -30,6 +29,16 @@ class ApiServiceImpl: ApiService {
         }.resume()
     }
     
+    func request<T>(with endpoint: String, method: HttpMethod, header: [String : String], params: [String : String], transform: @escaping ((data: Data, response: URLResponse)) throws -> T) -> AnyPublisher<T, Error> {
+        let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
+        var urlRequest = URLRequest(url: URL(string: endpoint)!)
+        urlRequest.httpMethod = method.method
+        urlRequest.httpBody = param
+        
+        header.forEach { (k, v) in urlRequest.setValue(v, forHTTPHeaderField: k) }
+        return URLSession.shared.dataTaskPublisher(for: urlRequest).tryMap(transform).receive(on: DispatchQueue.main).eraseToAnyPublisher()
+    }
+    
     func request<T>(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], transform: @escaping ((data: Data, response: URLResponse)) throws -> [T]) -> AnyPublisher<[T], Error> {
         let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
         var urlRequest = URLRequest(url: URL(string: endpoint)!)
@@ -46,6 +55,9 @@ protocol ApiService {
     
     @discardableResult
     func request<T>(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], transform: @escaping ((data: Data, response: URLResponse)) throws -> [T]) -> AnyPublisher<[T], Error>
+    
+    @discardableResult
+    func request<T>(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], transform: @escaping ((data: Data, response: URLResponse)) throws -> T) -> AnyPublisher<T, Error>
 }
 
 enum ResponseResult {
