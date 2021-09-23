@@ -28,8 +28,8 @@ struct MainView: View {
                     LoungeView().environmentObject(LoungeViewModel(LoungeRepository(ApiServiceImpl()))).navigationBarItems(leading: Text("drawer").onTapGesture {
                         drawerViewModel.show(type: .left, isShow: true)
                     })
-                case "Group":
-                    GroupView().navigationBarItems(leading: Text("drawer").onTapGesture {
+                case "GroupList":
+                    GroupListView().navigationBarItems(leading: Text("drawer").onTapGesture {
                         drawerViewModel.show(type: .left, isShow: true)
                     })
                 case "ChatList":

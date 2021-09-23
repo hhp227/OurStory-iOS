@@ -30,8 +30,8 @@ struct DrawerView: View, DrawerProtocol {
                 
                 drawerViewModel.hideAll()
             }
-            DrawerButton(icon: "person.2", label: "Group", isSelected: drawerViewModel.route == "Group") {
-                drawerViewModel.route = "Group"
+            DrawerButton(icon: "person.2", label: "Group", isSelected: drawerViewModel.route == "GroupList") {
+                drawerViewModel.route = "GroupList"
                 
                 drawerViewModel.hideAll()
             }
