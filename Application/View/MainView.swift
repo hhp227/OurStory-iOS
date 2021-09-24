@@ -29,7 +29,7 @@ struct MainView: View {
                         drawerViewModel.show(type: .left, isShow: true)
                     })
                 case "GroupList":
-                    GroupListView().navigationBarItems(leading: Text("drawer").onTapGesture {
+                    GroupListView().environmentObject(GroupListViewModel(GroupListRepository(ApiServiceImpl()))).navigationBarItems(leading: Text("drawer").onTapGesture {
                         drawerViewModel.show(type: .left, isShow: true)
                     })
                 case "ChatList":

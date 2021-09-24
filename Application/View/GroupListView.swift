@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct GroupListView: View {
-    @ObservedObject var viewModel = GroupListViewModel(GroupListRepository(ApiServiceImpl()))
+    @EnvironmentObject var viewModel: GroupListViewModel
     
     var body: some View {
         VStack(spacing: 0) {

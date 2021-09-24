@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 class PostDetailViewModel: ObservableObject {
-    @Published private(set) var state = State()
+    @Published var state = State()
     
     @Published var message = ""
     
@@ -56,11 +56,11 @@ class PostDetailViewModel: ObservableObject {
     }
     
     private func onReceive(_ batch: PostItem) {
-        
+        self.state.post = batch
     }
     
     private func onReceive(_ batch: [ReplyItem]) {
-        state.replys += batch
+        self.state.replys += batch
     }
     
     deinit {

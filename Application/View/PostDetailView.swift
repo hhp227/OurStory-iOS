@@ -16,9 +16,7 @@ struct PostDetailView: View {
             List {
                 Text("Hello World nice to meet you")
                 ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
-                    Text("reply \(reply.id)")
-                }.onReceive(viewModel.$state) { state in
-                    print(state.replys.count)
+                    Text("reply \(i), \(reply.id)")
                 }
             }.onAppear {
                 viewModel.getPost()
@@ -43,7 +41,6 @@ struct PostHeaderView: View {
     var body: some View {
         Text("Test \(post?.id ?? 5)")
     }
-    
 }
 
 struct PostDetailView_Previews: PreviewProvider {
