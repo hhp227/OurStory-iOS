@@ -18,10 +18,10 @@ class LoginViewModel: ObservableObject {
     
     @Published var isShowRegister = false
     
-    private let loginRepository: LoginRepository
+    private let repository: LoginRepository
     
     init(_ repository: LoginRepository) {
-        self.loginRepository = repository
+        self.repository = repository
         loginState = UserDefaults.standard.value(forKey: "user") != nil ? .login : .logout
     }
     
@@ -37,7 +37,7 @@ class LoginViewModel: ObservableObject {
     func login() {
         if isEmailValid(email) && isPasswordValid(password) {
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-                self.loginRepository.login(self.email, self.password) { success in
+                self.repository.login(self.email, self.password) { success in
                     self.loginState = success ? .login : .logout
                 }
             }

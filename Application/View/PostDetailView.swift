@@ -15,12 +15,11 @@ struct PostDetailView: View {
         VStack(spacing: 0) {
             List {
                 Text("Hello World nice to meet you")
-                ForEach(viewModel.state.replys) { reply in
+                ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
                     Text("reply \(reply.id)")
                 }.onReceive(viewModel.$state) { state in
                     print(state.replys.count)
                 }
-                
             }.onAppear {
                 viewModel.getPost()
                 viewModel.getReplys()

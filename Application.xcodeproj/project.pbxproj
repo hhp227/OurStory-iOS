@@ -37,6 +37,8 @@
 		0A3A395F26C559D90068FCE3 /* DrawerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395E26C559D90068FCE3 /* DrawerContainer.swift */; };
 		0A3EBB3926CC01F200AFE90A /* CollapsingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EBB3826CC01F200AFE90A /* CollapsingNavigationBarView.swift */; };
 		0A450FA926C8B81200365F19 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A450FA826C8B81200365F19 /* GroupView.swift */; };
+		0A4B4A5826FDB16D00B825F3 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */; };
+		0A4B4A5B26FDB49B00B825F3 /* GroupListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5A26FDB49B00B825F3 /* GroupListRepository.swift */; };
 		0A6324D726E7B4F100D574C9 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6324D626E7B4F100D574C9 /* DateUtil.swift */; };
 		0A6EAE8A26FCC059000698B1 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EAE8926FCC059000698B1 /* ChatListView.swift */; };
 		0A7132B32470FEE80049F7FB /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7132B22470FEE80049F7FB /* Application.swift */; };
@@ -86,6 +88,8 @@
 		0A3A395E26C559D90068FCE3 /* DrawerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerContainer.swift; sourceTree = "<group>"; };
 		0A3EBB3826CC01F200AFE90A /* CollapsingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsingNavigationBarView.swift; sourceTree = "<group>"; };
 		0A450FA826C8B81200365F19 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
+		0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
+		0A4B4A5A26FDB49B00B825F3 /* GroupListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListRepository.swift; sourceTree = "<group>"; };
 		0A6324D626E7B4F100D574C9 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		0A6EAE8926FCC059000698B1 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		0A7132AF2470FEE80049F7FB /* Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Application.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +156,7 @@
 				0AC332DB26C4032400ACB62E /* RegisterRepository.swift */,
 				0A10A3F926DB69DB00490E96 /* LoungeRepository.swift */,
 				0A3288D126F0F9DC009A2E99 /* PostDetailRepository.swift */,
+				0A4B4A5A26FDB49B00B825F3 /* GroupListRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				0A1F584F26DA02D9006CECE6 /* WriteViewModel.swift */,
 				0A10A3F626DB69A600490E96 /* LoungeViewModel.swift */,
 				0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */,
+				0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -427,6 +433,7 @@
 				0A1DF13026C5930E00BC58E1 /* DrawerView.swift in Sources */,
 				0ABB4A4226DBEB81000DB759 /* ImageItem.swift in Sources */,
 				0A3A395C26C559830068FCE3 /* ProfileView.swift in Sources */,
+				0A4B4A5B26FDB49B00B825F3 /* GroupListRepository.swift in Sources */,
 				0A2232AD26EE2F19009B7585 /* PostDetailViewModel.swift in Sources */,
 				0A3A395626C558EF0068FCE3 /* DrawerStatus.swift in Sources */,
 				0A2B1F9B26DE798D00C52E73 /* GroupFindView.swift in Sources */,
@@ -442,6 +449,7 @@
 				0AD3BE9426B2AD3100E857B4 /* GroupListView.swift in Sources */,
 				0ACE011F26FC3A82005B60E9 /* ReplyItem.swift in Sources */,
 				0A00BE3A26C02678001C7CD5 /* LoginRepository.swift in Sources */,
+				0A4B4A5826FDB16D00B825F3 /* GroupListViewModel.swift in Sources */,
 				0AD3BE8B26B2ACC500E857B4 /* RegisterView.swift in Sources */,
 				0A30045B26DBC25900123C55 /* GroupItem.swift in Sources */,
 				0A3A395F26C559D90068FCE3 /* DrawerContainer.swift in Sources */,

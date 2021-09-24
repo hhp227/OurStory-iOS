@@ -9,8 +9,6 @@ import Combine
 import Foundation
 
 class RegisterViewModel: ObservableObject {
-    private let registerRepository: RegisterRepository
-    
     @Published var name: String = ""
     
     @Published var email: String = ""
@@ -19,13 +17,15 @@ class RegisterViewModel: ObservableObject {
     
     @Published var registerResult = false
     
+    private let repository: RegisterRepository
+    
     init(_ repository: RegisterRepository) {
-        self.registerRepository = repository
+        self.repository = repository
     }
     
     func register() {
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-            self.registerRepository.register(self.name, self.email, self.password) { isRegister in
+            self.repository.register(self.name, self.email, self.password) { isRegister in
                 DispatchQueue.main.async {
                     self.registerResult = isRegister
                 }

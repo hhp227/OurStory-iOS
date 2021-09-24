@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct GroupListView: View {
+    @ObservedObject var viewModel = GroupListViewModel(GroupListRepository(ApiServiceImpl()))
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .bottom) {
@@ -34,14 +36,14 @@ struct GroupListView: View {
             Divider()
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 2), spacing: 2) {
-                    ForEach(1...20, id: \.self) { index in
+                    ForEach(Array(viewModel.state.groups.enumerated()), id: \.offset) { index, group in
                         NavigationLink(destination: GroupView()) {
                             CardView {
                                 Text("Group \(index)")
                             }.frame(height: 120)
                         }
                     }
-                }
+                }.onAppear(perform: viewModel.getGroups)
             }
         }.navigationBarTitleDisplayMode(.inline)
     }

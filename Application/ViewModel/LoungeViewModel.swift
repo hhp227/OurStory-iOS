@@ -59,7 +59,9 @@ class LoungeViewModel: ObservableObject {
     
     struct State {
         var posts: [PostItem] = []
+        
         var page: Int = 0
+        
         var canLoadNextPage = true
     }
 }

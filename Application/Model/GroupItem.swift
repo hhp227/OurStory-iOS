@@ -7,3 +7,30 @@
 //
 
 import Foundation
+
+struct GroupItem: Codable, Identifiable {
+    var id: Int
+    
+    var authorId: Int
+    
+    var groupName: String?
+    
+    var authorName: String?
+    
+    var image: String?
+    
+    var description: String?
+    
+    var createdAt: String?
+    
+    var joinType: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id, description, image
+        case authorId = "author_id"
+        case authorName = "author_name"
+        case createdAt = "created_at"
+        case groupName = "group_name"
+        case joinType = "join_type"
+    }
+}

@@ -21,3 +21,5 @@ let URL_REPLYS = "\(BASEURL)/replys/{POST_ID}"
 let URL_REPLY = "\(BASEURL)/replys/post/{REPLY_ID}" // 댓글 url
 
 let URL_USER_PROFILE_IMAGE = "\(BASEURL)/php/ProfileImages/"
+
+let URL_USER_GROUP = "\(BASEURL)/user_groups"
