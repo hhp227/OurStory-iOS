@@ -61,6 +61,8 @@ class PostDetailViewModel: ObservableObject {
     
     private func onReceive(_ batch: [ReplyItem]) {
         self.state.replys += batch
+        
+        print("Test: \(state.replys)")
     }
     
     deinit {

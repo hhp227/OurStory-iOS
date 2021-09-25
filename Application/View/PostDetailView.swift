@@ -14,7 +14,7 @@ struct PostDetailView: View {
     var body: some View {
         VStack(spacing: 0) {
             List {
-                Text("Hello World nice to meet you")
+                Text("Hello World nice to meet you \(viewModel.state.post?.text ?? "Error")")
                 ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
                     Text("reply \(i), \(reply.id)")
                 }
@@ -32,14 +32,6 @@ struct PostDetailView: View {
                 }.padding(5)
             }
         }.navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-struct PostHeaderView: View {
-    @Binding var post: PostItem?
-    
-    var body: some View {
-        Text("Test \(post?.id ?? 5)")
     }
 }
 

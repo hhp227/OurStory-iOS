@@ -9,8 +9,16 @@
 import SwiftUI
 
 struct GroupFindView: View {
+    @ObservedObject var viewModel = GroupFindViewModel(.init(ApiServiceImpl()))
+    
     var body: some View {
-        Text("Hello, GroupFindView")
+        VStack(spacing: 0) {
+            List {
+                ForEach(viewModel.state.groups) { group in
+                    Text("Groups \(group.description ?? "noname")")
+                }
+            }.onAppear(perform: viewModel.getGroups)
+        }
     }
 }
 
