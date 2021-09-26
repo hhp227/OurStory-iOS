@@ -87,8 +87,6 @@ struct LoungeView: View {
             }
         }
     }
-    
-    
 }
 
 struct LoungeView_Previews: PreviewProvider {

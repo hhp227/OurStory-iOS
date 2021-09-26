@@ -14,7 +14,25 @@ struct PostDetailView: View {
     var body: some View {
         VStack(spacing: 0) {
             List {
-                Text("Hello World nice to meet you \(viewModel.state.post?.text ?? "Error")")
+                if let post = viewModel.state.post {
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack(alignment: .top) {
+                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
+                            VStack(alignment: .leading) {
+                                Text(post.name).fontWeight(.bold)
+                                Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
+                            }.padding([.leading, .trailing], 8)
+                        }.padding([.top, .leading, .trailing])
+                        if !post.text.isEmpty {
+                            Text(post.text).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding([.top, .leading, .trailing]).padding(.bottom, 5)
+                        }
+                        if let imageItem = post.attachment.images.first {
+                            AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
+                        }
+                        Spacer(minLength: 10)
+                    }.padding([.top, .bottom], 8)
+                }
+                //Text("Hello World nice to meet you \(viewModel.state.post?.text ?? "Error")")
                 ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
                     Text("reply \(i), \(reply.id)")
                 }
