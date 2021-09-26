@@ -32,9 +32,17 @@ struct PostDetailView: View {
                         Spacer(minLength: 10)
                     }.padding([.top, .bottom], 8)
                 }
-                //Text("Hello World nice to meet you \(viewModel.state.post?.text ?? "Error")")
                 ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
-                    Text("reply \(i), \(reply.id)")
+                    VStack {
+                        HStack {
+                            AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + (reply.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
+                            VStack(alignment: .leading) {
+                                Text(reply.name).fontWeight(.bold)
+                                Text(reply.reply)
+                            }
+                        }.padding(.horizontal, 5)
+                        Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp)))
+                    }
                 }
             }.onAppear {
                 viewModel.getPost()
