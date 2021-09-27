@@ -30,7 +30,7 @@ struct PostDetailView: View {
                             AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
                         }
                         Spacer(minLength: 10)
-                    }.padding([.top, .bottom], 8)
+                    }.listRowInsets(EdgeInsets()).padding([.top, .bottom], 8)
                 }
                 ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
                     VStack {
@@ -42,8 +42,8 @@ struct PostDetailView: View {
                             }
                         }.padding(.horizontal, 5)
                         Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp)))
-                    }
-                }
+                    }.frame(maxWidth: .infinity)
+                }.listRowInsets(EdgeInsets()).background(Color.red)
             }.onAppear {
                 viewModel.getPost()
                 viewModel.getReplys()
