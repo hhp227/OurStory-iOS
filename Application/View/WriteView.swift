@@ -16,7 +16,7 @@ struct WriteView: View {
             ZStack {
                 TextEditor(text: $viewModel.text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
                 Text(viewModel.text).opacity(0).padding(.all, 8)
-            }.shadow(radius: 1)
+            }.listRowInsets(EdgeInsets()).shadow(radius: 1)
         }.navigationBarTitleDisplayMode(.inline)
         VStack(alignment: .leading, spacing: 0) {
             Divider()
