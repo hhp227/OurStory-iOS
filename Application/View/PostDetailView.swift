@@ -13,7 +13,7 @@ struct PostDetailView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            List {
+            ScrollView {
                 if let post = viewModel.state.post {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .top) {
@@ -22,6 +22,7 @@ struct PostDetailView: View {
                                 Text(post.name).fontWeight(.bold)
                                 Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
                             }.padding([.leading, .trailing], 8)
+                            Spacer()
                         }.padding([.top, .leading, .trailing])
                         if !post.text.isEmpty {
                             Text(post.text).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding([.top, .leading, .trailing]).padding(.bottom, 5)
@@ -30,7 +31,7 @@ struct PostDetailView: View {
                             AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
                         }
                         Spacer(minLength: 10)
-                    }.listRowInsets(EdgeInsets()).padding([.top, .bottom], 8)
+                    }.padding([.top, .bottom], 8)
                 }
                 ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
                     VStack {
@@ -43,7 +44,7 @@ struct PostDetailView: View {
                         }.padding(.horizontal, 5)
                         Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp)))
                     }.frame(maxWidth: .infinity)
-                }.listRowInsets(EdgeInsets()).background(Color.red)
+                }.background(Color.red)
             }.onAppear {
                 viewModel.getPost()
                 viewModel.getReplys()
