@@ -44,7 +44,7 @@ struct PostDetailView: View {
                             Spacer()
                         }.padding(.horizontal, 5)
                         Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp)))
-                    }.frame(maxWidth: .infinity)
+                    }
                 }//.onAppear(perform: viewModel.getReplys)
             }.onAppear {
                 viewModel.getPost()
