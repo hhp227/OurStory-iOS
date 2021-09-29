@@ -34,7 +34,7 @@ struct PostDetailView: View {
                     }.padding([.top, .bottom], 8)
                 }
                 ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
-                    VStack {
+                    VStack(alignment: .trailing) {
                         HStack {
                             AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + (reply.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
                             VStack(alignment: .leading) {
