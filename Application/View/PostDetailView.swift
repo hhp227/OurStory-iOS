@@ -41,12 +41,14 @@ struct PostDetailView: View {
                                 Text(reply.name).fontWeight(.bold)
                                 Text(reply.reply)
                             }
+                            Spacer()
                         }.padding(.horizontal, 5)
                         Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp)))
                     }.frame(maxWidth: .infinity)
-                }.onAppear(perform: viewModel.getReplys)
+                }//.onAppear(perform: viewModel.getReplys)
             }.onAppear {
                 viewModel.getPost()
+                viewModel.getReplys()
             }
             VStack(spacing: 0) {
                 Divider()
