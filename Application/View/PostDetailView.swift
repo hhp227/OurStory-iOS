@@ -45,11 +45,8 @@ struct PostDetailView: View {
                         }.padding(.horizontal, 5)
                         Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp)))
                     }
-                }//.onAppear(perform: viewModel.getReplys)
-            }.onAppear {
-                viewModel.getPost()
-                viewModel.getReplys()
-            }
+                }
+            }.onAppear(perform: viewModel.getReplys)
             VStack(spacing: 0) {
                 Divider()
                 HStack(spacing: 5) {
@@ -59,7 +56,7 @@ struct PostDetailView: View {
                     }
                 }.padding(5)
             }
-        }.navigationBarTitleDisplayMode(.inline)
+        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline)
     }
 }
 
