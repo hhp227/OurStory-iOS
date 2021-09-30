@@ -29,7 +29,7 @@ class PostDetailViewModel: ObservableObject {
         if message.isEmpty {
             print("메시지를 입력해주세요.")
         } else {
-            
+            repository.addReply()
         }
     }
     
