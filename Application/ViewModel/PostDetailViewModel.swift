@@ -29,7 +29,11 @@ class PostDetailViewModel: ObservableObject {
         if message.isEmpty {
             print("메시지를 입력해주세요.")
         } else {
-            repository.addReply()
+            guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
+                return
+            }
+            repository.addReply(postId, user, message)
+            message.removeAll()
         }
     }
     

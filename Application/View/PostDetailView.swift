@@ -43,7 +43,7 @@ struct PostDetailView: View {
                             }
                             Spacer()
                         }.padding(.horizontal, 5)
-                        Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp)))
+                        Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
                     }
                 }
             }.onAppear(perform: viewModel.getReplys)

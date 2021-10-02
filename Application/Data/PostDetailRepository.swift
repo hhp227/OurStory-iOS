@@ -86,7 +86,23 @@ class PostDetailRepository {
         return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .get, header: ["Authorization": user.apiKey], params: [:]) { data, response -> [ReplyItem] in try JSONDecoder().decode([ReplyItem].self, from: data) }
     }
     
-    func addReply() {
-        
+    func addReply(_ postId: Int, _ user: User, _ message: String) {
+        apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .post, header: ["Authorization": user.apiKey], params: ["reply": message]) { result, data in
+            switch result {
+            case .success:
+                guard let data = data else { return }
+                do {
+                    let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any]
+                    
+                    print(jsonObject)
+                    // Optional(["reply": Hi, "message": Reply created successfully, "post_id": 944, "reply_id": 807, "error": 0])
+                } catch {
+                    print("error")
+                }
+                break
+            case .failure:
+                break
+            }
+        }
     }
 }
