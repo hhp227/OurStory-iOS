@@ -14,11 +14,24 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var message = ""
     
+    @Published var isShowingActionSheet = false
+    
+    @Published var selectPostion = 0
+    
     private var repository: PostDetailRepository
     
     private var postId: Int
     
     private var subscriptions = Set<AnyCancellable>()
+    
+    var user: User {
+        get {
+            guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
+                fatalError()
+            }
+            return user
+        }
+    }
     
     init(_ postId: Int, _ repository: PostDetailRepository) {
         self.postId = postId
@@ -29,10 +42,7 @@ class PostDetailViewModel: ObservableObject {
         if message.isEmpty {
             print("메시지를 입력해주세요.")
         } else {
-            guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
-                return
-            }
-            repository.addReply(postId, user, message)
+            repository.addReply(postId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
             message.removeAll()
         }
     }
@@ -42,9 +52,6 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func getReplys() {
-        guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
-            return
-        }
         repository.getReplys(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
@@ -65,7 +72,10 @@ class PostDetailViewModel: ObservableObject {
     
     private func onReceive(_ batch: [ReplyItem]) {
         self.state.replys += batch
-        
+    }
+    
+    private func onReceive(_ batch: ReplyItem) {
+        self.state.replys.append(batch)
     }
     
     deinit {

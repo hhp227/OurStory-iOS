@@ -44,9 +44,27 @@ struct PostDetailView: View {
                             Spacer()
                         }.padding(.horizontal, 5)
                         Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
+                    }.onLongPressGesture {
+                        viewModel.selectPostion = i
+                        
+                        viewModel.isShowingActionSheet.toggle()
                     }
                 }
-            }.onAppear(perform: viewModel.getReplys)
+            }.onAppear(perform: viewModel.getReplys).actionSheet(isPresented: $viewModel.isShowingActionSheet) {
+                let selectedReply = viewModel.state.replys[viewModel.selectPostion]
+                var buttons = [ActionSheet.Button]()
+                
+                if viewModel.user.id == selectedReply.userId {
+                    buttons.append(.default(Text("Edit Comment")))
+                    buttons.append(.destructive(Text("Delete Comment")))
+                    print("내 댓글")
+                } else {
+                    print("남의 댓글")
+                }
+                buttons.append(.cancel())
+                print("action sheet \(selectedReply)")
+                return ActionSheet(title: Text("Selection Action"), buttons: buttons)
+            }
             VStack(spacing: 0) {
                 Divider()
                 HStack(spacing: 5) {
