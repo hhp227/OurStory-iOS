@@ -105,4 +105,10 @@ class PostDetailRepository {
             }
         }
     }
+    
+    func addReply(_ postId: Int, _ user: User, _ message: String) -> AnyPublisher<ReplyItem, Error> {
+        return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .post, header: ["Authorization": user.apiKey], params: ["reply": message]) { data, response -> ReplyItem in
+            return ReplyItem(id: 0, userId: 0, name: "", reply: "", status: 0, profileImage: user.profileImage, timeStamp: "")
+        }
+    }
 }
