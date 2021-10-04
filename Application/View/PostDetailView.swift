@@ -50,26 +50,24 @@ struct PostDetailView: View {
                         viewModel.isShowingActionSheet.toggle()
                     }
                 }
+                NavigationLink(destination: ReplyModifyView(), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
             }.onAppear(perform: viewModel.getReplys).actionSheet(isPresented: $viewModel.isShowingActionSheet) {
                 let selectedReply = viewModel.state.replys[viewModel.selectPostion]
                 var buttons = [ActionSheet.Button]()
                 
+                buttons.append(.default(Text("Copy Content")) {})
                 if viewModel.user.id == selectedReply.userId {
-                    buttons.append(.default(Text("Edit Comment")))
-                    buttons.append(.destructive(Text("Delete Comment")))
-                    print("내 댓글")
-                } else {
-                    print("남의 댓글")
+                    buttons.append(.default(Text("Edit Comment")) { viewModel.isNavigateReplyModifyView.toggle() })
+                    buttons.append(.destructive(Text("Delete Comment")) { viewModel.removeReply(selectedReply.id) })
                 }
                 buttons.append(.cancel())
-                print("action sheet \(selectedReply)")
                 return ActionSheet(title: Text("Selection Action"), buttons: buttons)
             }
             VStack(spacing: 0) {
                 Divider()
                 HStack(spacing: 5) {
                     TextField("Add a Comment", text: $viewModel.message).padding(10)
-                    Button(action: viewModel.actionSend) {
+                    Button(action: viewModel.addReply) {
                         Text("Send").foregroundColor(.gray).padding(10).overlay(RoundedRectangle(cornerRadius: 2).stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1))
                     }
                 }.padding(5)

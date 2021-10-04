@@ -16,6 +16,8 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var isShowingActionSheet = false
     
+    @Published var isNavigateReplyModifyView = false
+    
     @Published var selectPostion = 0
     
     private var repository: PostDetailRepository
@@ -38,7 +40,7 @@ class PostDetailViewModel: ObservableObject {
         self.repository = repository
     }
     
-    func actionSend() {
+    func addReply() {
         if message.isEmpty {
             print("메시지를 입력해주세요.")
         } else {
@@ -53,6 +55,10 @@ class PostDetailViewModel: ObservableObject {
     
     func getReplys() {
         repository.getReplys(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+    }
+    
+    func removeReply(_ replyId: Int) {
+        repository.removeReply(replyId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {
@@ -76,6 +82,12 @@ class PostDetailViewModel: ObservableObject {
     
     private func onReceive(_ batch: ReplyItem) {
         self.state.replys.append(batch)
+    }
+    
+    private func onReceive(_ isRemoved: Bool) {
+        if isRemoved {
+            self.state.replys.remove(at: selectPostion)
+        }
     }
     
     deinit {

@@ -55,4 +55,14 @@ class PostDetailRepository {
             return ReplyItem(id: jsonObject?["reply_id"] as! Int, userId: user.id, name: user.name, reply: jsonObject?["reply"] as! String, status: 0, profileImage: user.profileImage, timeStamp: "")
         }
     }
+    
+    func removeReply(_ replyId: Int, _ user: User) -> AnyPublisher<Bool, Error> {
+        return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .delete, header: ["Authorization": user.apiKey], params: [:]) { data, response -> Bool in
+            if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                return !(jsonObject["error"] as? Bool ?? false)
+            } else {
+                return false
+            }
+        }
+    }
 }

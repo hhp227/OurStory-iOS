@@ -20,6 +20,8 @@
 		0A2232AD26EE2F19009B7585 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */; };
 		0A24102B2694CF030007E5EB /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = 0A24102A2694CF020007E5EB /* Preview Content */; };
 		0A25FB2026E128B900794D5C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25FB1F26E128B900794D5C /* CardView.swift */; };
+		0A297EC7270AED42007FCAE7 /* ReplyModifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A297EC6270AED42007FCAE7 /* ReplyModifyView.swift */; };
+		0A297ECA270AF04C007FCAE7 /* ReplyModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A297EC9270AF04C007FCAE7 /* ReplyModifyViewModel.swift */; };
 		0A2B1F9B26DE798D00C52E73 /* GroupFindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1F9A26DE798D00C52E73 /* GroupFindView.swift */; };
 		0A2B1F9E26DE79AF00C52E73 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1F9D26DE79AF00C52E73 /* CreateGroupView.swift */; };
 		0A2B1FA126DE79FD00C52E73 /* NotJoinedGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */; };
@@ -73,6 +75,8 @@
 		0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		0A24102A2694CF020007E5EB /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
 		0A25FB1F26E128B900794D5C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0A297EC6270AED42007FCAE7 /* ReplyModifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyModifyView.swift; sourceTree = "<group>"; };
+		0A297EC9270AF04C007FCAE7 /* ReplyModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyModifyViewModel.swift; sourceTree = "<group>"; };
 		0A2B1F9A26DE798D00C52E73 /* GroupFindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFindView.swift; sourceTree = "<group>"; };
 		0A2B1F9D26DE79AF00C52E73 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
 		0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotJoinedGroupView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */,
 				0A6EAE8926FCC059000698B1 /* ChatListView.swift */,
 				0A3A395B26C559830068FCE3 /* ProfileView.swift */,
+				0A297EC6270AED42007FCAE7 /* ReplyModifyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */,
 				0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */,
 				0A7CE76B26FEBBF300F664DD /* GroupFindViewModel.swift */,
+				0A297EC9270AF04C007FCAE7 /* ReplyModifyViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				0A3288D226F0F9DC009A2E99 /* PostDetailRepository.swift in Sources */,
 				0A1A7A5826E3454E00E98406 /* AsyncImage.swift in Sources */,
 				0A32EB2126BE642B006A5295 /* RegisterViewModel.swift in Sources */,
+				0A297ECA270AF04C007FCAE7 /* ReplyModifyViewModel.swift in Sources */,
 				0AD3BE9126B2AD1C00E857B4 /* ChatView.swift in Sources */,
 				0A7132B32470FEE80049F7FB /* Application.swift in Sources */,
 				0AD3BE9726B2AD3F00E857B4 /* UserView.swift in Sources */,
@@ -477,6 +484,7 @@
 				0A6324D726E7B4F100D574C9 /* DateUtil.swift in Sources */,
 				0A32EB2926BE7C55006A5295 /* ApiService.swift in Sources */,
 				0A7132B52470FEE80049F7FB /* SceneDelegate.swift in Sources */,
+				0A297EC7270AED42007FCAE7 /* ReplyModifyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
