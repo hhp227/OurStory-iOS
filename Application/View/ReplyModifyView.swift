@@ -12,7 +12,22 @@ struct ReplyModifyView: View {
     @EnvironmentObject var viewModel: PostDetailViewModel
     
     var body: some View {
-        Text("Hello, ReplyModifyView!")
+        InputView(text: viewModel.state.replys[viewModel.selectPostion].reply, action: viewModel.setReply).navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct InputView: View {
+    @State var text: String
+    
+    var action: (String) -> Void
+    
+    var body: some View {
+        List {
+            ZStack {
+                TextEditor(text: $text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
+                Text(text).opacity(0).padding(.all, 8)
+            }.listRowInsets(EdgeInsets()).shadow(radius: 1)
+        }.navigationBarItems(trailing: Button(action: { action(text) }) { Text("Send") })
     }
 }
 

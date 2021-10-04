@@ -42,6 +42,10 @@ class PostDetailViewModel: ObservableObject {
         self.repository = repository
     }
     
+    func getPost() {
+        repository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+    }
+    
     func addReply() {
         if message.isEmpty {
             print("메시지를 입력해주세요.")
@@ -51,13 +55,13 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func getPost() {
-        repository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
-    }
-    
     func getReplys() {
         guard state.canLoadNextPage else { return }
         repository.getReplys(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+    }
+    
+    func setReply(_ message: String) {
+        print("Set Reply \(message)")
     }
     
     func removeReply(_ replyId: Int) {
