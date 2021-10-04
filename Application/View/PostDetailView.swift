@@ -50,7 +50,7 @@ struct PostDetailView: View {
                         viewModel.isShowingActionSheet.toggle()
                     }
                 }
-                NavigationLink(destination: ReplyModifyView(), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
+                NavigationLink(destination: ReplyModifyView().environmentObject(viewModel), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
             }.onAppear(perform: viewModel.getReplys).actionSheet(isPresented: $viewModel.isShowingActionSheet) {
                 let selectedReply = viewModel.state.replys[viewModel.selectPostion]
                 var buttons = [ActionSheet.Button]()

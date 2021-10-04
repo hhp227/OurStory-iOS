@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ReplyModifyView: View {
-    @ObservedObject var viewModel = ReplyModifyViewModel()
+    @EnvironmentObject var viewModel: PostDetailViewModel
     
     var body: some View {
         Text("Hello, ReplyModifyView!")
