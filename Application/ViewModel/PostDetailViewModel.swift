@@ -20,6 +20,8 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var selectPostion = 0
     
+    private static let PAGE_ITEM_COUNT = 15
+    
     private var repository: PostDetailRepository
     
     private var postId: Int
@@ -54,6 +56,7 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func getReplys() {
+        guard state.canLoadNextPage else { return }
         repository.getReplys(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
@@ -67,7 +70,7 @@ class PostDetailViewModel: ObservableObject {
             print("success")
             break
         case .failure:
-            print("failure")
+            self.state.canLoadNextPage = false
             break
         }
     }
@@ -78,6 +81,7 @@ class PostDetailViewModel: ObservableObject {
     
     private func onReceive(_ batch: [ReplyItem]) {
         self.state.replys += batch
+        self.state.canLoadNextPage = batch.count == PostDetailViewModel.PAGE_ITEM_COUNT
     }
     
     private func onReceive(_ batch: ReplyItem) {
@@ -97,5 +101,6 @@ class PostDetailViewModel: ObservableObject {
     struct State {
         var post: PostItem? = nil
         var replys: [ReplyItem] = []
+        var canLoadNextPage = true
     }
 }
