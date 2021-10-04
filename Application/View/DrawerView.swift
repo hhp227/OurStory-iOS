@@ -11,19 +11,23 @@ import SwiftUI
 struct DrawerView: View, DrawerProtocol {
     @EnvironmentObject var drawerViewModel: DrawerViewModel
     
+    private var headerView: some View {
+        VStack(alignment: .leading) {
+            Button(action: { drawerViewModel.isShowProfile.toggle() }) {
+                Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
+            }.fullScreenCover(isPresented: $drawerViewModel.isShowProfile) {
+                ProfileView()
+            }
+            Text(drawerViewModel.user?.name ?? "Name").padding(.top, 8)
+            Text(drawerViewModel.user?.email ?? "E-mail").font(.system(size: 12))
+        }
+    }
+    
     var type: DrawerType
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            VStack(alignment: .leading) {
-                Button(action: { drawerViewModel.isShowProfile.toggle() }) {
-                    Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
-                }.fullScreenCover(isPresented: $drawerViewModel.isShowProfile) {
-                    ProfileView()
-                }
-                Text(drawerViewModel.user?.name ?? "Name").padding(.top, 8)
-                Text(drawerViewModel.user?.email ?? "E-mail").font(.system(size: 12))
-            }.frame(maxWidth: .infinity, alignment: .topLeading).padding(16)
+            headerView.frame(maxWidth: .infinity, alignment: .topLeading).padding(16)
             Divider()
             DrawerButton(icon: "text.bubble", label: "Lounge", isSelected: drawerViewModel.route == "Lounge") {
                 drawerViewModel.route = "Lounge"
