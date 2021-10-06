@@ -61,7 +61,11 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func setReply(_ message: String) {
-        print("Set Reply \(message)")
+        if message.isEmpty {
+            print("메시지를 입력하세요.")
+        } else {
+            print("Set Reply \(message)")
+        }
     }
     
     func removeReply(_ replyId: Int) {
