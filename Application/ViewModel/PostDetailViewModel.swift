@@ -64,7 +64,7 @@ class PostDetailViewModel: ObservableObject {
         if message.isEmpty {
             print("메시지를 입력하세요.")
         } else {
-            print("Set Reply \(message)")
+            repository.setReply(message)
         }
     }
     
