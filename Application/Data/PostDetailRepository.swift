@@ -57,7 +57,7 @@ class PostDetailRepository {
     }
     
     func setReply(_ message: String) {
-        
+        print(message)
     }
     
     func removeReply(_ replyId: Int, _ user: User) -> AnyPublisher<Bool, Error> {
