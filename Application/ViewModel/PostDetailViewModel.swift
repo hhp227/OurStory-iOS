@@ -64,7 +64,9 @@ class PostDetailViewModel: ObservableObject {
         if message.isEmpty {
             print("메시지를 입력하세요.")
         } else {
-            repository.setReply(message)
+            let replyId = state.replys[selectPostion].id
+            
+            repository.setReply(replyId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
         }
     }
     
@@ -100,6 +102,10 @@ class PostDetailViewModel: ObservableObject {
         if isRemoved {
             self.state.replys.remove(at: selectPostion)
         }
+    }
+    
+    private func onReceive(_ batch: (Int, String)) {
+        print("Test: \(batch)")
     }
     
     deinit {

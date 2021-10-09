@@ -56,8 +56,22 @@ class PostDetailRepository {
         }
     }
     
-    func setReply(_ message: String) {
-        print(message)
+    func setReply(_ replyId: Int, _ user: User, _ message: String) -> AnyPublisher<(Int, String), Error> {
+        //print("message: \(message), user: \(user), replyId: \(replyId)")
+        return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, header: ["Authorization": user.apiKey], params: ["reply": message, "status": "0"]) { data, response -> (Int, String) in
+            let jsonObject = try? JSONSerialization.jsonObject(with: data , options: [])
+             print("message: \(message)")
+            print(jsonObject)
+            /*
+             Optional({
+                 error = 0;
+                 message = "Reply updated successfully";
+             })
+             let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: [])
+             
+             */
+            return (replyId, message)
+        }
     }
     
     func removeReply(_ replyId: Int, _ user: User) -> AnyPublisher<Bool, Error> {

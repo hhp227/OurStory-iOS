@@ -35,6 +35,8 @@ class ApiServiceImpl: ApiService {
         urlRequest.httpMethod = method.method
         urlRequest.httpBody = param
         
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         header.forEach { (k, v) in urlRequest.setValue(v, forHTTPHeaderField: k) }
         return URLSession.shared.dataTaskPublisher(for: urlRequest).tryMap(transform).receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
