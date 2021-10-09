@@ -41,6 +41,7 @@ class ApiServiceImpl: ApiService {
         return URLSession.shared.dataTaskPublisher(for: urlRequest).tryMap(transform).receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
     
+    
     func request<T>(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], transform: @escaping ((data: Data, response: URLResponse)) throws -> [T]) -> AnyPublisher<[T], Error> {
         let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
         var urlRequest = URLRequest(url: URL(string: endpoint)!)

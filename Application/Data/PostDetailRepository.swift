@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import Alamofire
 
 class PostDetailRepository {
     let apiService: ApiService
@@ -71,6 +72,19 @@ class PostDetailRepository {
              
              */
             return (replyId, message)
+        }
+    }
+    
+    func setReplyAF(_ replyId: Int, _ user: User, _ message: String) {
+        AF.request(URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, parameters: ["reply": message, "status": "0"], headers: ["Authorization": user.apiKey]).responseJSON { response in
+                switch response.result {
+                case .success(let data):
+                    print(data)
+                    break
+                case .failure(_):
+                    print("fail")
+                    break
+                }
         }
     }
     

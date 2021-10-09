@@ -67,6 +67,7 @@ class PostDetailViewModel: ObservableObject {
             let replyId = state.replys[selectPostion].id
             
             repository.setReply(replyId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+            //repository.setReplyAF(replyId, user, message)
         }
     }
     
