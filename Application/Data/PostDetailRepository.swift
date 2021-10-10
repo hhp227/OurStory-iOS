@@ -57,9 +57,9 @@ class PostDetailRepository {
         }
     }
     
-    func setReply(_ replyId: Int, _ user: User, _ message: String) -> AnyPublisher<(Int, String), Error> {
+    func setReply(_ replyId: Int, _ user: User, _ message: String) -> AnyPublisher<String, Error> {
         //print("message: \(message), user: \(user), replyId: \(replyId)")
-        return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, header: ["Authorization": user.apiKey], params: ["reply": message, "status": "0"]) { data, response -> (Int, String) in
+        return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, header: ["Authorization": user.apiKey], params: ["reply": message, "status": "0"]) { data, response -> String in
             let jsonObject = try? JSONSerialization.jsonObject(with: data , options: [])
              print("message: \(message)")
             print(jsonObject)
@@ -71,20 +71,7 @@ class PostDetailRepository {
              let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: [])
              
              */
-            return (replyId, message)
-        }
-    }
-    
-    func setReplyAF(_ replyId: Int, _ user: User, _ message: String) {
-        AF.request(URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, parameters: ["reply": message, "status": "0"], headers: ["Authorization": user.apiKey]).responseJSON { response in
-                switch response.result {
-                case .success(let data):
-                    print(data)
-                    break
-                case .failure(_):
-                    print("fail")
-                    break
-                }
+            return message
         }
     }
     

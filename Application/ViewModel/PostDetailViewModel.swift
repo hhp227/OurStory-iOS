@@ -67,7 +67,6 @@ class PostDetailViewModel: ObservableObject {
             let replyId = state.replys[selectPostion].id
             
             repository.setReply(replyId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
-            //repository.setReplyAF(replyId, user, message)
         }
     }
     
@@ -105,8 +104,10 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    private func onReceive(_ batch: (Int, String)) {
-        print("Test: \(batch)")
+    private func onReceive(_ batch: String) {
+        state.replys[selectPostion].reply = batch
+        
+        isNavigateReplyModifyView.toggle()
     }
     
     deinit {

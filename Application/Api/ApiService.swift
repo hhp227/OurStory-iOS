@@ -34,13 +34,12 @@ class ApiServiceImpl: ApiService {
         var urlRequest = URLRequest(url: URL(string: endpoint)!)
         urlRequest.httpMethod = method.method
         urlRequest.httpBody = param
+        urlRequest.timeoutInterval = 10
         
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         header.forEach { (k, v) in urlRequest.setValue(v, forHTTPHeaderField: k) }
         return URLSession.shared.dataTaskPublisher(for: urlRequest).tryMap(transform).receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
-    
     
     func request<T>(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], transform: @escaping ((data: Data, response: URLResponse)) throws -> [T]) -> AnyPublisher<[T], Error> {
         let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
