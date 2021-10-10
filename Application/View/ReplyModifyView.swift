@@ -12,7 +12,7 @@ struct ReplyModifyView: View {
     @EnvironmentObject var viewModel: PostDetailViewModel
     
     var body: some View {
-        InputView(text: viewModel.state.replys[viewModel.selectPostion].reply, action: viewModel.setReply).navigationBarTitleDisplayMode(.inline)
+        InputView(text: viewModel.state.replys[viewModel.selectPostion].reply, action: viewModel.setReply).navigationBarTitleDisplayMode(.inline) // 여기서 자꾸 arrayIndexBoundException이 일어난다
     }
 }
 

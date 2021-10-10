@@ -61,16 +61,6 @@ class PostDetailRepository {
         //print("message: \(message), user: \(user), replyId: \(replyId)")
         return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, header: ["Authorization": user.apiKey], params: ["reply": message, "status": "0"]) { data, response -> String in
             let jsonObject = try? JSONSerialization.jsonObject(with: data , options: [])
-             print("message: \(message)")
-            print(jsonObject)
-            /*
-             Optional({
-                 error = 0;
-                 message = "Reply updated successfully";
-             })
-             let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: [])
-             
-             */
             return message
         }
     }
@@ -78,6 +68,7 @@ class PostDetailRepository {
     func removeReply(_ replyId: Int, _ user: User) -> AnyPublisher<Bool, Error> {
         return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .delete, header: ["Authorization": user.apiKey], params: [:]) { data, response -> Bool in
             if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                print(jsonObject)
                 return !(jsonObject["error"] as? Bool ?? false)
             } else {
                 return false
