@@ -101,6 +101,7 @@ class PostDetailViewModel: ObservableObject {
     private func onReceive(_ isRemoved: Bool) {
         if isRemoved {
             self.state.replys.remove(at: selectPostion)
+            selectPostion -= 1
         }
     }
     
