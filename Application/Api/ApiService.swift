@@ -36,7 +36,6 @@ class ApiServiceImpl: ApiService {
         urlRequest.httpBody = param
         urlRequest.timeoutInterval = 10
         
-        urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         header.forEach { (k, v) in urlRequest.setValue(v, forHTTPHeaderField: k) }
         return URLSession.shared.dataTaskPublisher(for: urlRequest).tryMap(transform).receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
