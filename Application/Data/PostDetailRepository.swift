@@ -59,7 +59,7 @@ class PostDetailRepository {
     
     func setReply(_ replyId: Int, _ user: User, _ message: String) -> AnyPublisher<String, Error> {
         return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, header: ["Content-Type": "application/x-www-form-urlencoded; charset=utf-8", "Authorization": user.apiKey], params: ["reply": message, "status": "0"]) { data, response -> String in
-            let jsonObject = try? JSONSerialization.jsonObject(with: data , options: [])
+            //let jsonObject = try? JSONSerialization.jsonObject(with: data , options: [])
             return message
         }
     }
