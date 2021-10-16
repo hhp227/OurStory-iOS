@@ -55,7 +55,9 @@ struct PostDetailView: View {
                 let selectedReply = viewModel.state.replys[viewModel.selectPostion]
                 var buttons = [ActionSheet.Button]()
                 
-                buttons.append(.default(Text("Copy Content")) {})
+                buttons.append(.default(Text("Copy Content")) {
+                    UIPasteboard.general.string = selectedReply.reply
+                })
                 if viewModel.user.id == selectedReply.userId {
                     buttons.append(.default(Text("Edit Comment")) { viewModel.isNavigateReplyModifyView.toggle() })
                     buttons.append(.destructive(Text("Delete Comment")) { viewModel.removeReply(selectedReply.id) })
