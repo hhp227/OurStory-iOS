@@ -12,7 +12,11 @@ struct CreateGroupView: View {
     @ObservedObject var viewModel: CreateGroupViewModel
     
     var body: some View {
-        Text("Hello, CreateGroupView")
+        VStack(alignment: .leading) {
+            TextField("Enter Group Title", text: $viewModel.inputGroupTitle)
+            Text("Hello, CreateGroupView")
+            Spacer()
+        }
     }
 }
 
