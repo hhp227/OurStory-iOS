@@ -12,6 +12,7 @@
 		0A05D8C526BAD2160030333A /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05D8C426BAD2160030333A /* URLs.swift */; };
 		0A10A3F726DB69A600490E96 /* LoungeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10A3F626DB69A600490E96 /* LoungeViewModel.swift */; };
 		0A10A3FA26DB69DB00490E96 /* LoungeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10A3F926DB69DB00490E96 /* LoungeRepository.swift */; };
+		0A19E16E271C645000453018 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19E16D271C645000453018 /* CreateGroupViewModel.swift */; };
 		0A1A7A5826E3454E00E98406 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A7A5726E3454E00E98406 /* AsyncImage.swift */; };
 		0A1DF13026C5930E00BC58E1 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DF12F26C5930E00BC58E1 /* DrawerView.swift */; };
 		0A1DF13326C5955500BC58E1 /* LoungeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DF13226C5955500BC58E1 /* LoungeView.swift */; };
@@ -66,6 +67,7 @@
 		0A05D8C426BAD2160030333A /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		0A10A3F626DB69A600490E96 /* LoungeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeViewModel.swift; sourceTree = "<group>"; };
 		0A10A3F926DB69DB00490E96 /* LoungeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeRepository.swift; sourceTree = "<group>"; };
+		0A19E16D271C645000453018 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		0A1A7A5726E3454E00E98406 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		0A1DF12F26C5930E00BC58E1 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		0A1DF13226C5955500BC58E1 /* LoungeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */,
 				0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */,
 				0A7CE76B26FEBBF300F664DD /* GroupFindViewModel.swift */,
+				0A19E16D271C645000453018 /* CreateGroupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				0A3A395F26C559D90068FCE3 /* DrawerContainer.swift in Sources */,
 				0A30045826DBC0F500123C55 /* PostItem.swift in Sources */,
 				0A3A395926C5594F0068FCE3 /* DrawerDefine.swift in Sources */,
+				0A19E16E271C645000453018 /* CreateGroupViewModel.swift in Sources */,
 				0A7132B72470FEE80049F7FB /* ContentView.swift in Sources */,
 				0A05D8C526BAD2160030333A /* URLs.swift in Sources */,
 				0A3288D226F0F9DC009A2E99 /* PostDetailRepository.swift in Sources */,

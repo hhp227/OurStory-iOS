@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CreateGroupView: View {
+    @ObservedObject var viewModel: CreateGroupViewModel
+    
     var body: some View {
         Text("Hello, CreateGroupView")
     }
@@ -16,6 +18,6 @@ struct CreateGroupView: View {
 
 struct CreateGroupView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateGroupView()
+        CreateGroupView(viewModel: .init())
     }
 }
