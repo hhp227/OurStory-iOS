@@ -17,7 +17,7 @@ struct WriteView: View {
                 TextEditor(text: $viewModel.text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
                 Text(viewModel.text).opacity(0).padding(.all, 8)
             }.listRowInsets(EdgeInsets()).shadow(radius: 1)
-        }.navigationBarTitleDisplayMode(.inline)
+        }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button(action: viewModel.actionSend) { Text("Send") })
         VStack(alignment: .leading, spacing: 0) {
             Divider()
             HStack(spacing: 5) {

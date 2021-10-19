@@ -10,4 +10,8 @@ import Foundation
 
 class WriteViewModel: ObservableObject {
     @Published var text: String = ""
+    
+    func actionSend() {
+        print("Action Send \(text)")
+    }
 }
