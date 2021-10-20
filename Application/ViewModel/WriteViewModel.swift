@@ -11,7 +11,13 @@ import Foundation
 class WriteViewModel: ObservableObject {
     @Published var text: String = ""
     
+    private let repository: WriteRepository
+    
+    init(_ repository: WriteRepository) {
+        self.repository = repository
+    }
+    
     func actionSend() {
-        print("Action Send \(text)")
+        repository.actionSend(text)
     }
 }
