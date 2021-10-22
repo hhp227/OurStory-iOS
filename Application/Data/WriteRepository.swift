@@ -9,6 +9,12 @@
 import Foundation
 
 class WriteRepository {
+    let apiService: ApiService
+    
+    init(_ apiService: ApiService) {
+        self.apiService = apiService
+    }
+    
     func actionSend(_ text: String) {
         print("action Send \(text)")
     }
