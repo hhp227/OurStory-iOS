@@ -15,7 +15,15 @@ class WriteRepository {
         self.apiService = apiService
     }
     
-    func actionSend(_ text: String) {
-        print("action Send \(text)")
+    func actionSend(_ text: String, _ user: User) {
+        apiService.request(with: URL_POST, method: .post, header: ["Authorization": user.apiKey], params: ["text": text]) { result, data in
+            switch result {
+            case .success:
+                guard let data = data else { return }
+                break
+            case .failure:
+                break
+            }
+        }
     }
 }
