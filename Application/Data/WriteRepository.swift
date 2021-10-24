@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 class WriteRepository {
     let apiService: ApiService
@@ -15,15 +16,12 @@ class WriteRepository {
         self.apiService = apiService
     }
     
-    func actionSend(_ text: String, _ user: User) {
-        apiService.request(with: URL_POST, method: .post, header: ["Authorization": user.apiKey], params: ["text": text]) { result, data in
-            switch result {
-            case .success:
-                guard let data = data else { return }
-                break
-            case .failure:
-                break
+    func actionSend(_ text: String, _ user: User, _ groupId: Int) -> AnyPublisher<Int, Error> {
+        apiService.request(with: URL_POST, method: .post, header: ["Authorization": user.apiKey], params: ["text": text, "group_id": String(groupId)]) { data, response -> Int in
+            guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                return -1
             }
+            return !(jsonObject["error"] as? Bool ?? false) ? jsonObject["post_id"] as? Int ?? 0 : 0
         }
     }
 }

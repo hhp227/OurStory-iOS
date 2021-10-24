@@ -7,17 +7,44 @@
 //
 
 import Foundation
+import Combine
 
 class WriteViewModel: ObservableObject {
     @Published var text: String = ""
     
+    private let groupId: Int
+    
     private let repository: WriteRepository
     
-    init(_ repository: WriteRepository) {
+    private var subscriptions = Set<AnyCancellable>()
+    
+    init(_ repository: WriteRepository, _ groupId: Int) {
         self.repository = repository
+        self.groupId = groupId
     }
     
     func actionSend() {
-        repository.actionSend(text)
+        if !text.isEmpty {
+            guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
+                return
+            }
+            repository.actionSend(text, user, groupId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        } else {
+            print("text is empty")
+        }
+    }
+    
+    func onReceive(_ completion: Subscribers.Completion<Error>) {
+        switch completion {
+        case .finished:
+            print("success")
+            break
+        case .failure:
+            break
+        }
+    }
+    
+    private func onReceive(_ batch: Int) {
+        print("Test: \(batch)")
     }
 }
