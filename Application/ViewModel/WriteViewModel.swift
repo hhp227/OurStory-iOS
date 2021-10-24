@@ -12,7 +12,7 @@ import Combine
 class WriteViewModel: ObservableObject {
     @Published var text: String = ""
     
-    @Published var isSent = false
+    @Published var isSent = false // TODO
     
     private let groupId: Int
     
