@@ -48,5 +48,7 @@ class WriteViewModel: ObservableObject {
     
     private func onReceive(_ batch: Int) {
         print("Test: \(batch)")
+        
+        isSent.toggle()
     }
 }
