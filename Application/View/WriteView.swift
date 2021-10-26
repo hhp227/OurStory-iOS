@@ -11,6 +11,8 @@ import SwiftUI
 struct WriteView: View {
     @EnvironmentObject var viewModel: WriteViewModel
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         List {
             ZStack {
@@ -28,6 +30,10 @@ struct WriteView: View {
                     Image(systemName: "video.fill").padding(10)
                 }
             }.padding(5)
+        }.onReceive(viewModel.$sendResult) { isSent in
+            if isSent {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ import Combine
 class WriteViewModel: ObservableObject {
     @Published var text: String = ""
     
-    @Published var isSent = false // TODO
+    @Published var sendResult = false
     
     private let groupId: Int
     
@@ -49,6 +49,6 @@ class WriteViewModel: ObservableObject {
     private func onReceive(_ batch: Int) {
         print("Test: \(batch)")
         
-        isSent.toggle()
+        sendResult.toggle()
     }
 }
