@@ -74,7 +74,9 @@ struct PostDetailView: View {
                     }
                 }.padding(5)
             }
-        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline)
+        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button("Test") {
+            print("Hello world")
+        })
     }
 }
 
