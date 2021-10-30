@@ -45,22 +45,28 @@ struct PostDetailView: View {
                         }.padding(.horizontal, 5)
                         Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
                     }.onLongPressGesture {
-                        viewModel.selectPostion = i
+                        viewModel.selectPosition = i
                         
                         viewModel.isShowingActionSheet.toggle()
                     }
                 }
                 NavigationLink(destination: ReplyModifyView().environmentObject(viewModel), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
             }.onAppear(perform: viewModel.getReplys).actionSheet(isPresented: $viewModel.isShowingActionSheet) {
-                let selectedReply = viewModel.state.replys[viewModel.selectPostion]
                 var buttons = [ActionSheet.Button]()
                 
-                buttons.append(.default(Text("Copy Content")) {
-                    UIPasteboard.general.string = selectedReply.reply
-                })
-                if viewModel.user.id == selectedReply.userId {
-                    buttons.append(.default(Text("Edit Comment")) { viewModel.isNavigateReplyModifyView.toggle() })
-                    buttons.append(.destructive(Text("Delete Comment")) { viewModel.removeReply(selectedReply.id) })
+                if viewModel.selectPosition > -1 {
+                    let selectedReply = viewModel.state.replys[viewModel.selectPosition]
+                    
+                    buttons.append(.default(Text("Copy Content")) {
+                        UIPasteboard.general.string = selectedReply.reply
+                    })
+                    if viewModel.user.id == selectedReply.userId {
+                        buttons.append(.default(Text("Edit Comment")) { viewModel.isNavigateReplyModifyView.toggle() })
+                        buttons.append(.destructive(Text("Delete Comment")) { viewModel.removeReply(selectedReply.id) })
+                    }
+                } else {
+                    // TODO
+                    // PostDetail에 관한 내용을 써야됨 예를들어 글수정, 글삭제
                 }
                 buttons.append(.cancel())
                 return ActionSheet(title: Text("Selection Action"), buttons: buttons)
@@ -74,13 +80,10 @@ struct PostDetailView: View {
                     }
                 }.padding(5)
             }
-        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button("Test") {}.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
-            var buttons = [ActionSheet.Button]()
+        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button("Test") {
+            viewModel.selectPosition = -1
             
-            buttons.append(.default(Text("Copy Content")) {
-            })
-            buttons.append(.cancel())
-            return ActionSheet(title: Text("Selection Action"), buttons: buttons)
+            viewModel.isShowingActionSheet.toggle()
         })
     }
 }

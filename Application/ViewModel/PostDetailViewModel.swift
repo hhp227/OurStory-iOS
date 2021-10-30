@@ -18,7 +18,7 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var isNavigateReplyModifyView = false
     
-    @Published var selectPostion = 0
+    @Published var selectPosition = -1
     
     private static let PAGE_ITEM_COUNT = 15
     
@@ -64,7 +64,7 @@ class PostDetailViewModel: ObservableObject {
         if message.isEmpty {
             print("메시지를 입력하세요.")
         } else {
-            let replyId = state.replys[selectPostion].id
+            let replyId = state.replys[selectPosition].id
             
             repository.setReply(replyId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
         }
@@ -100,13 +100,13 @@ class PostDetailViewModel: ObservableObject {
     
     private func onReceive(_ isRemoved: Bool) {
         if isRemoved {
-            self.state.replys.remove(at: selectPostion)
-            selectPostion -= 1
+            self.state.replys.remove(at: selectPosition)
+            selectPosition -= 1
         }
     }
     
     private func onReceive(_ batch: String) {
-        state.replys[selectPostion].reply = batch
+        state.replys[selectPosition].reply = batch
         
         isNavigateReplyModifyView.toggle()
     }
