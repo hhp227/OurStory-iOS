@@ -80,10 +80,12 @@ struct PostDetailView: View {
                     }
                 }.padding(5)
             }
-        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button("Test") {
+        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
             viewModel.selectPosition = -1
             
             viewModel.isShowingActionSheet.toggle()
+        } label: {
+            Image(systemName: "ellipsis")
         })
     }
 }
