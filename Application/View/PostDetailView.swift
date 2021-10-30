@@ -74,7 +74,14 @@ struct PostDetailView: View {
                     }
                 }.padding(5)
             }
-        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button("Test") {})
+        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button("Test") {}.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
+            var buttons = [ActionSheet.Button]()
+            
+            buttons.append(.default(Text("Copy Content")) {
+            })
+            buttons.append(.cancel())
+            return ActionSheet(title: Text("Selection Action"), buttons: buttons)
+        })
     }
 }
 
