@@ -67,8 +67,8 @@ struct PostDetailView: View {
                 } else {
                     // TODO
                     // PostDetail에 관한 내용을 써야됨 예를들어 글수정, 글삭제
-                    buttons.append(.default(Text("Edit")))
-                    buttons.append(.default(Text("Delete")))
+                    buttons.append(.default(Text("Edit Post")))
+                    buttons.append(.default(Text("Delete Post"), action: viewModel.removePost))
                 }
                 buttons.append(.cancel())
                 return ActionSheet(title: Text("Selection Action"), buttons: buttons)

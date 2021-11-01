@@ -46,6 +46,10 @@ class PostDetailViewModel: ObservableObject {
         repository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
+    func removePost() {
+        print("Remove Post")
+    }
+    
     func addReply() {
         if message.isEmpty {
             print("메시지를 입력해주세요.")
