@@ -46,6 +46,10 @@ class PostDetailRepository {
         }
     }
     
+    func removePost() {
+        print("Remove Post")
+    }
+    
     func getReplys(_ postId: Int, _ user: User) -> AnyPublisher<[ReplyItem], Error> {
         return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .get, header: ["Authorization": user.apiKey], params: [:]) { data, response -> [ReplyItem] in try JSONDecoder().decode([ReplyItem].self, from: data) }
     }
