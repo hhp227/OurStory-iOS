@@ -47,7 +47,7 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func removePost() {
-        repository.removePost()
+        repository.removePost(postId, user)
     }
     
     func addReply() {
