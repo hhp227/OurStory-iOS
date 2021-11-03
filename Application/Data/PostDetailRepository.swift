@@ -47,6 +47,7 @@ class PostDetailRepository {
     }
     
     func removePost(_ postId: Int, _ user: User) {
+        apiService
         print("Remove Post")
     }
     
