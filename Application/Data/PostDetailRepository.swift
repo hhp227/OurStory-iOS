@@ -47,8 +47,7 @@ class PostDetailRepository {
     }
     
     func removePost(_ postId: Int, _ user: User) {
-        apiService
-        print("Remove Post")
+        print("Remove Post \(postId)")
     }
     
     func getReplys(_ postId: Int, _ user: User) -> AnyPublisher<[ReplyItem], Error> {
