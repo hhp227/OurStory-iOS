@@ -47,7 +47,7 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func removePost() {
-        repository.removePost(postId, user)
+        repository.removePost(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func addReply() {

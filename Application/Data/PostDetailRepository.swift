@@ -46,8 +46,11 @@ class PostDetailRepository {
         }
     }
     
-    func removePost(_ postId: Int, _ user: User) {
-        print("Remove Post \(postId)")
+    func removePost(_ postId: Int, _ user: User) -> AnyPublisher<[String: Any], Error> {
+        return apiService.request(with: "\(URL_POST)/\(postId)", method: .delete, header: ["Authorization": user.apiKey], params: [:]) { (data, response) -> [String: Any] in
+            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            return jsonObject!
+        }
     }
     
     func getReplys(_ postId: Int, _ user: User) -> AnyPublisher<[ReplyItem], Error> {
