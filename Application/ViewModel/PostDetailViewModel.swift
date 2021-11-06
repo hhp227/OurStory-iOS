@@ -18,6 +18,8 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var isNavigateReplyModifyView = false
     
+    @Published var deleteResult = false
+    
     @Published var selectPosition = -1
     
     private static let PAGE_ITEM_COUNT = 15
@@ -113,6 +115,12 @@ class PostDetailViewModel: ObservableObject {
         state.replys[selectPosition].reply = batch
         
         isNavigateReplyModifyView.toggle()
+    }
+    
+    private func onReceive(_ batch: [String: Any]) {
+        print("Test \(batch)")
+        // "message": Post Deleted Succesfully, "error": 0
+        deleteResult.toggle() // 현재는 버그발생
     }
     
     deinit {

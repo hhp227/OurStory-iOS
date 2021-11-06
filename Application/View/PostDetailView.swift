@@ -11,6 +11,8 @@ import SwiftUI
 struct PostDetailView: View {
     @EnvironmentObject var viewModel: PostDetailViewModel
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
@@ -88,7 +90,11 @@ struct PostDetailView: View {
             viewModel.isShowingActionSheet.toggle()
         } label: {
             Image(systemName: "ellipsis")
-        })
+        }).onReceive(viewModel.$deleteResult) {
+            if $0 {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
     }
 }
 
