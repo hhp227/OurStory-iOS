@@ -17,6 +17,13 @@ class LoungeRepository {
         self.apiService = apiService
     }
     
+    // TODO 아래 getPosts메소드 이걸로 고치기
+    /*func getPosts(_ offset: Int) -> AnyPublisher<Resource<[PostItem]>, Error> {
+        return apiService.request(with: URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, header: [:], params: [:]) { (data, response) -> Resource<[PostItem]> in
+            
+        }
+    }*/
+    
     func getPosts<T>(offset: Int, success: @escaping (T) -> Void) {
         apiService.request(with: URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, header: [:], params: [:]) { result, data in
             switch result {
