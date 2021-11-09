@@ -96,7 +96,7 @@ class LoungeRepository {
                     postItems.append(postItem)
                 }
             }
-            return Resource(status: Status.SUCCESS, data: postItems, message: nil)
+            return Resource.success(postItems)
         }
     }
     
