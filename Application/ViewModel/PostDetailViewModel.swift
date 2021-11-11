@@ -91,8 +91,10 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    private func onReceive(_ batch: PostItem) {
-        self.state.post = batch
+    private func onReceive<T>(_ batch: Resource<T>) {
+        if let postItem = batch.data as? PostItem {
+            self.state.post = postItem
+        }
     }
     
     private func onReceive(_ batch: [ReplyItem]) {

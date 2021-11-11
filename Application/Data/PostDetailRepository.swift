@@ -17,8 +17,8 @@ class PostDetailRepository {
         self.apiService = apiService
     }
     
-    func getPost(_ postId: Int) -> AnyPublisher<PostItem, Error> {
-        return apiService.request(with: "\(URL_POST)/\(postId)", method: .get, header: [:], params: [:]) { (data, response) -> PostItem in
+    func getPost(_ postId: Int) -> AnyPublisher<Resource<PostItem>, Error> {
+        return apiService.request(with: "\(URL_POST)/\(postId)", method: .get, header: [:], params: [:]) { (data, response) -> Resource<PostItem> in
             let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             let attach = jsonObject?["attachment"] as! [String: Any]
             let images = attach["images"] as! [Any]
@@ -42,7 +42,7 @@ class PostDetailRepository {
                     },
                     video: String(describing: attach["video"] as Any))
             )
-            return postItem
+            return Resource.success(postItem)
         }
     }
     
