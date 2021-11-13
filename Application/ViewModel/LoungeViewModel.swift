@@ -48,10 +48,10 @@ class LoungeViewModel: ObservableObject {
     }
     
     private func onReceive<T>(_ batch: Resource<T>) {
-        if batch.data is [PostItem] {
-            state.posts += (batch.data as! [PostItem])
+        if let postItem = batch.data as? [PostItem], batch.status == Status.SUCCESS {
+            state.posts += postItem
             state.page += LoungeViewModel.PAGE_ITEM_COUNT
-            state.canLoadNextPage = (batch.data as! [PostItem]).count == LoungeViewModel.PAGE_ITEM_COUNT
+            state.canLoadNextPage = postItem.count == LoungeViewModel.PAGE_ITEM_COUNT
         }
     }
     
