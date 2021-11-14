@@ -19,30 +19,34 @@ class PostDetailRepository {
     
     func getPost(_ postId: Int) -> AnyPublisher<Resource<PostItem>, Error> {
         return apiService.request(with: "\(URL_POST)/\(postId)", method: .get, header: [:], params: [:]) { (data, response) -> Resource<PostItem> in
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            let attach = jsonObject?["attachment"] as! [String: Any]
-            let images = attach["images"] as! [Any]
-            let postItem = PostItem(
-                id: jsonObject?["id"] as! Int,
-                userId: jsonObject?["user_id"] as! Int,
-                name: jsonObject?["name"] as! String,
-                text: jsonObject?["text"] as! String,
-                status: jsonObject?["status"] as! Int,
-                profileImage: jsonObject?["profile_img"] as? String,
-                timeStamp: DateUtil.parseDate(jsonObject?["created_at"] as! String),
-                replyCount: jsonObject?["reply_count"] as! Int,
-                likeCount: jsonObject?["like_count"] as! Int,
-                attachment: PostItem.Attachment(
-                    images: images.map { jsonObj -> ImageItem in
-                        if let image = jsonObj as? [String: Any] {
-                            return ImageItem(id: image["id"] as! Int, image: image["image"] as! String, tag: image["tag"] as! String)
-                        } else {
-                            return ImageItem(id: 0, image: "", tag: "")
-                        }
-                    },
-                    video: String(describing: attach["video"] as Any))
-            )
-            return Resource.success(postItem)
+            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
+                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                let attach = jsonObject?["attachment"] as! [String: Any]
+                let images = attach["images"] as! [Any]
+                let postItem = PostItem(
+                    id: jsonObject?["id"] as! Int,
+                    userId: jsonObject?["user_id"] as! Int,
+                    name: jsonObject?["name"] as! String,
+                    text: jsonObject?["text"] as! String,
+                    status: jsonObject?["status"] as! Int,
+                    profileImage: jsonObject?["profile_img"] as? String,
+                    timeStamp: DateUtil.parseDate(jsonObject?["created_at"] as! String),
+                    replyCount: jsonObject?["reply_count"] as! Int,
+                    likeCount: jsonObject?["like_count"] as! Int,
+                    attachment: PostItem.Attachment(
+                        images: images.map { jsonObj -> ImageItem in
+                            if let image = jsonObj as? [String: Any] {
+                                return ImageItem(id: image["id"] as! Int, image: image["image"] as! String, tag: image["tag"] as! String)
+                            } else {
+                                return ImageItem(id: 0, image: "", tag: "")
+                            }
+                        },
+                        video: String(describing: attach["video"] as Any))
+                )
+                return Resource.success(postItem)
+            } else {
+                return Resource.error(response.description, nil)
+            }
         }
     }
     
@@ -53,8 +57,14 @@ class PostDetailRepository {
         }
     }
     
-    func getReplys(_ postId: Int, _ user: User) -> AnyPublisher<[ReplyItem], Error> {
-        return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .get, header: ["Authorization": user.apiKey], params: [:]) { data, response -> [ReplyItem] in try JSONDecoder().decode([ReplyItem].self, from: data) }
+    func getReplys(_ postId: Int, _ user: User) -> AnyPublisher<Resource<[ReplyItem]>, Error> {
+        return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .get, header: ["Authorization": user.apiKey], params: [:]) { data, response -> Resource<[ReplyItem]> in
+            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
+                return Resource.success(try JSONDecoder().decode([ReplyItem].self, from: data))
+            } else {
+                return Resource.error(response.description, nil)
+            }
+        }
     }
     
     func addReply(_ postId: Int, _ user: User, _ message: String) -> AnyPublisher<ReplyItem, Error> {
