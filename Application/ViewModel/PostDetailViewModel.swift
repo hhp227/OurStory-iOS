@@ -70,9 +70,7 @@ class PostDetailViewModel: ObservableObject {
         if message.isEmpty {
             print("메시지를 입력하세요.")
         } else {
-            let replyId = state.replys[selectPosition].id
-            
-            repository.setReply(replyId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+            repository.setReply(state.replys[selectPosition].id, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
         }
     }
     
