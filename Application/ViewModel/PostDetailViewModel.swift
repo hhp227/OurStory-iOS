@@ -92,14 +92,12 @@ class PostDetailViewModel: ObservableObject {
     private func onReceive<T>(_ batch: Resource<T>) {
         if let postItem = batch.data as? PostItem {
             self.state.post = postItem
-        } else if let replyItem = batch.data as? [ReplyItem] {
-            self.state.replys += replyItem
-            self.state.canLoadNextPage = replyItem.count == PostDetailViewModel.PAGE_ITEM_COUNT
+        } else if let replyItems = batch.data as? [ReplyItem] {
+            self.state.replys += replyItems
+            self.state.canLoadNextPage = replyItems.count == PostDetailViewModel.PAGE_ITEM_COUNT
+        } else if let replyItem = batch.data as? ReplyItem {
+            self.state.replys.append(replyItem)
         }
-    }
-    
-    private func onReceive(_ batch: ReplyItem) {
-        self.state.replys.append(batch)
     }
     
     private func onReceive(_ isRemoved: Bool) {

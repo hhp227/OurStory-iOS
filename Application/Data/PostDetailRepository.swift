@@ -67,10 +67,15 @@ class PostDetailRepository {
         }
     }
     
-    func addReply(_ postId: Int, _ user: User, _ message: String) -> AnyPublisher<ReplyItem, Error> {
-        return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .post, header: ["Authorization": user.apiKey], params: ["reply": message]) { data, response -> ReplyItem in
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            return ReplyItem(id: jsonObject?["reply_id"] as! Int, userId: user.id, name: user.name, reply: jsonObject?["reply"] as! String, status: 0, profileImage: user.profileImage, timeStamp: "")
+    func addReply(_ postId: Int, _ user: User, _ message: String) -> AnyPublisher<Resource<ReplyItem>, Error> {
+        return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .post, header: ["Authorization": user.apiKey], params: ["reply": message]) { data, response -> Resource<ReplyItem> in
+            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
+                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                let replyItem = ReplyItem(id: jsonObject?["reply_id"] as! Int, userId: user.id, name: user.name, reply: jsonObject?["reply"] as! String, status: 0, profileImage: user.profileImage, timeStamp: "")
+                return Resource.success(replyItem)
+            } else {
+                return Resource.error(response.description, nil)
+            }
         }
     }
     
