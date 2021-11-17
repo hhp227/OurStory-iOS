@@ -41,9 +41,11 @@ class GroupListViewModel: ObservableObject {
         }
     }
     
-    private func onReceive(_ batch: [GroupItem]) {
-        self.state.groups += batch
-        self.state.canLoadNextPage = batch.count == GroupListViewModel.PAGE_ITEM_COUNT
+    private func onReceive<T>(_ batch: Resource<T>) {
+        if let groupItems = batch.data as? [GroupItem] {
+            self.state.groups += groupItems
+            self.state.canLoadNextPage = groupItems.count == GroupListViewModel.PAGE_ITEM_COUNT
+        }
     }
     
     deinit {

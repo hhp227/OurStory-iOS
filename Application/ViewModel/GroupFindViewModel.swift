@@ -27,7 +27,6 @@ class GroupFindViewModel: ObservableObject {
             self.state.groups += groupItems
             self.state.canLoadNextPage = groupItems.count == GroupFindViewModel.PAGE_ITEM_COUNT
         }
-        print("Test: \(state.groups)")
     }
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {
