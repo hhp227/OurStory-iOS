@@ -9,5 +9,9 @@
 import Foundation
 
 class NotJoinedGroupRepository {
+    let apiService: ApiService
     
+    init(_ apiService: ApiService) {
+        self.apiService = apiService
+    }
 }
