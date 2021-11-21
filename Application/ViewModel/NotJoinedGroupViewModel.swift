@@ -9,5 +9,9 @@
 import Foundation
 
 class NotJoinedGroupViewModel: ObservableObject {
+    private let repository: NotJoinedGroupRepository
     
+    init(_ repository: NotJoinedGroupRepository) {
+        self.repository = repository
+    }
 }

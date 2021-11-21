@@ -40,6 +40,7 @@
 		0A3A395926C5594F0068FCE3 /* DrawerDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */; };
 		0A3A395C26C559830068FCE3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395B26C559830068FCE3 /* ProfileView.swift */; };
 		0A3A395F26C559D90068FCE3 /* DrawerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395E26C559D90068FCE3 /* DrawerContainer.swift */; };
+		0A3C8C9D274A149700B526ED /* NotJoinedGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C8C9C274A149700B526ED /* NotJoinedGroupRepository.swift */; };
 		0A3EBB3926CC01F200AFE90A /* CollapsingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EBB3826CC01F200AFE90A /* CollapsingNavigationBarView.swift */; };
 		0A450FA926C8B81200365F19 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A450FA826C8B81200365F19 /* GroupView.swift */; };
 		0A4B4A5826FDB16D00B825F3 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */; };
@@ -99,6 +100,7 @@
 		0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerDefine.swift; sourceTree = "<group>"; };
 		0A3A395B26C559830068FCE3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0A3A395E26C559D90068FCE3 /* DrawerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerContainer.swift; sourceTree = "<group>"; };
+		0A3C8C9C274A149700B526ED /* NotJoinedGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotJoinedGroupRepository.swift; sourceTree = "<group>"; };
 		0A3EBB3826CC01F200AFE90A /* CollapsingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsingNavigationBarView.swift; sourceTree = "<group>"; };
 		0A450FA826C8B81200365F19 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
 		0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				0A4B4A5A26FDB49B00B825F3 /* GroupListRepository.swift */,
 				0A7CE76E26FEBC4300F664DD /* GroupFindRepository.swift */,
 				0A1BDAAA27202A6200E0D29E /* WriteRepository.swift */,
+				0A3C8C9C274A149700B526ED /* NotJoinedGroupRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				0A05D8C526BAD2160030333A /* URLs.swift in Sources */,
 				0A3288D226F0F9DC009A2E99 /* PostDetailRepository.swift in Sources */,
 				0A1A7A5826E3454E00E98406 /* AsyncImage.swift in Sources */,
+				0A3C8C9D274A149700B526ED /* NotJoinedGroupRepository.swift in Sources */,
 				0A32EB2126BE642B006A5295 /* RegisterViewModel.swift in Sources */,
 				0AD3BE9126B2AD1C00E857B4 /* ChatView.swift in Sources */,
 				0A7132B32470FEE80049F7FB /* Application.swift in Sources */,
