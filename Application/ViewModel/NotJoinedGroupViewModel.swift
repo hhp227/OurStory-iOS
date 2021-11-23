@@ -14,4 +14,8 @@ class NotJoinedGroupViewModel: ObservableObject {
     init(_ repository: NotJoinedGroupRepository) {
         self.repository = repository
     }
+    
+    func getGroups() {
+        
+    }
 }
