@@ -14,6 +14,8 @@ class WriteViewModel: ObservableObject {
     
     @Published var sendResult = false
     
+    @Published var isShowingActionSheet = false
+    
     private let groupId: Int
     
     private let repository: WriteRepository

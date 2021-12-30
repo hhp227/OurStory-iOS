@@ -23,7 +23,7 @@ struct WriteView: View {
         VStack(alignment: .leading, spacing: 0) {
             Divider()
             HStack(spacing: 5) {
-                Button(action: {}) {
+                Button(action: { viewModel.isShowingActionSheet.toggle() }) {
                     Image(systemName: "photo.fill").padding(10)
                 }
                 Button(action: {}) {
@@ -34,6 +34,12 @@ struct WriteView: View {
             if isSent {
                 presentationMode.wrappedValue.dismiss()
             }
+        }.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
+            ActionSheet(title: Text("Selection Action"), buttons: [
+                .default(Text("Gallery")),
+                .default(Text("Camera")),
+                .cancel()
+            ])
         }
     }
 }
