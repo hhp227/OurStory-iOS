@@ -39,10 +39,13 @@ class ReplyRepository {
         }
     }
     
-    func setReply(_ replyId: Int, _ user: User, _ message: String) -> AnyPublisher<String, Error> {
-        return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, header: ["Content-Type": "application/x-www-form-urlencoded; charset=utf-8", "Authorization": user.apiKey], params: ["reply": message, "status": "0"]) { data, response -> String in
-            //let jsonObject = try? JSONSerialization.jsonObject(with: data , options: [])
-            return message
+    func setReply(_ apiKey: String, _ replyId: Int, _ text: String) -> AnyPublisher<Resource<String>, Error> {
+        return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .put, header: ["Content-Type": "application/x-www-form-urlencoded; charset=utf-8", "Authorization": apiKey], params: ["reply": text, "status": "0"]) { data, response -> Resource<String> in
+            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
+                return Resource.success(text)
+            } else {
+                return Resource.error(response.description, nil)
+            }
         }
     }
     

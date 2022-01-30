@@ -73,7 +73,7 @@ class PostDetailViewModel: ObservableObject {
         if message.isEmpty {
             print("메시지를 입력하세요.")
         } else {
-            replyRepository.setReply(state.replys[selectPosition].id, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+            replyRepository.setReply(user.apiKey, state.replys[selectPosition].id, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
         }
     }
     
@@ -110,9 +110,15 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    private func onReceive(_ batch: String) {
-        state.replys[selectPosition].reply = batch
-        
+    private func onReceive(_ batch: Resource<String>) {
+        switch batch.status {
+        case .SUCCESS:
+            state.replys[selectPosition].reply = batch.data ?? ""
+        case .ERROR:
+            state = State(error: batch.message ?? "An unexpected error occured")
+        case .LOADING:
+            print("loading")
+        }
         isNavigateReplyModifyView.toggle()
     }
     
@@ -130,5 +136,6 @@ class PostDetailViewModel: ObservableObject {
         var post: PostItem? = nil
         var replys: [ReplyItem] = []
         var canLoadNextPage = true
+        var error: String = ""
     }
 }

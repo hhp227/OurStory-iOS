@@ -69,6 +69,9 @@ struct PostDetailView: View {
                 } else {
                     // TODO
                     // PostDetail에 관한 내용을 써야됨 예를들어 글수정, 글삭제
+                    if viewModel.user.id == viewModel.state.post?.userId {
+                        print("my post")
+                    }
                     buttons.append(.default(Text("Edit Post")))
                     buttons.append(.default(Text("Delete Post"), action: viewModel.removePost))
                 }

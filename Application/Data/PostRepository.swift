@@ -92,6 +92,16 @@ class PostRepository {
         }
     }
     
+    // TODO
+    func addPost(_ text: String, _ user: User, _ groupId: Int) -> AnyPublisher<Int, Error> {
+        apiService.request(with: URL_POST, method: .post, header: ["Authorization": user.apiKey], params: ["text": text, "group_id": String(groupId)]) { data, response -> Int in
+            guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                return -1
+            }
+            return !(jsonObject["error"] as? Bool ?? false) ? jsonObject["post_id"] as? Int ?? 0 : 0
+        }
+    }
+    
     func removePost(_ postId: Int, _ user: User) -> AnyPublisher<[String: Any], Error> {
         return apiService.request(with: "\(URL_POST)/\(postId)", method: .delete, header: ["Authorization": user.apiKey], params: [:]) { (data, response) -> [String: Any] in
             let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]

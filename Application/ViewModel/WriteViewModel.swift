@@ -21,11 +21,11 @@ class WriteViewModel: ObservableObject {
     
     private let groupId: Int
     
-    private let repository: WriteRepository
+    private let repository: PostRepository
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: WriteRepository, _ groupId: Int) {
+    init(_ repository: PostRepository, _ groupId: Int) {
         self.repository = repository
         self.groupId = groupId
     }
@@ -35,7 +35,7 @@ class WriteViewModel: ObservableObject {
             guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
                 return
             }
-            repository.actionSend(text, user, groupId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+            repository.addPost(text, user, groupId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
         } else {
             print("text is empty")
         }
