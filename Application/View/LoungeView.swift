@@ -20,7 +20,7 @@ struct LoungeView: View {
                     ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, post in
                         CardView {
                             VStack(alignment: .leading, spacing: 0) {
-                                NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(post.id, .init(ApiServiceImpl())))) {
+                                NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(post.id, .init(ApiServiceImpl()), .init(ApiServiceImpl())))) {
                                     VStack(alignment: .leading, spacing: 0) {
                                         HStack(alignment: .top) {
                                             AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
@@ -52,7 +52,7 @@ struct LoungeView: View {
                                         }
                                     }.frame(maxWidth: .infinity).padding(10)
                                     Divider()
-                                    NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(post.id, .init(ApiServiceImpl()))), label: {
+                                    NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(post.id, .init(ApiServiceImpl()), .init(ApiServiceImpl()))), label: {
                                         HStack {
                                             Text("Comment")
                                             if post.replyCount > 0 {
