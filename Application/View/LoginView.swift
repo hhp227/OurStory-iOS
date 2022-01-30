@@ -28,7 +28,7 @@ struct LoginView: View {
             Button(action: { viewModel.isShowRegister.toggle() }) {
                 Text("Register").font(.system(size: 13)).padding(5)
             }.sheet(isPresented: $viewModel.isShowRegister) {
-                RegisterView(viewModel: .init(RegisterRepository(ApiServiceImpl())))
+                RegisterView(viewModel: .init(UserRepository(ApiServiceImpl())))
             }
         }.padding(16)
     }

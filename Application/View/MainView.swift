@@ -25,7 +25,7 @@ struct MainView: View {
             NavigationView {
                 switch drawerViewModel.route {
                 case "Lounge":
-                    LoungeView().environmentObject(LoungeViewModel(LoungeRepository(ApiServiceImpl()))).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    LoungeView().environmentObject(LoungeViewModel(PostRepository(ApiServiceImpl()))).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon")
                     })
                 case "GroupList":

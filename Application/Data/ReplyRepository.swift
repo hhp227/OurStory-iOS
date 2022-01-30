@@ -1,5 +1,5 @@
 //
-//  PostDetailRepository.swift
+//  ReplyRepository.swift
 //  Application
 //
 //  Created by 홍희표 on 2021/09/15.
@@ -10,51 +10,11 @@ import Foundation
 import Combine
 import Alamofire
 
-class PostDetailRepository {
+class ReplyRepository {
     let apiService: ApiService
     
     init(_ apiService: ApiService) {
         self.apiService = apiService
-    }
-    
-    func getPost(_ postId: Int) -> AnyPublisher<Resource<PostItem>, Error> {
-        return apiService.request(with: "\(URL_POST)/\(postId)", method: .get, header: [:], params: [:]) { (data, response) -> Resource<PostItem> in
-            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
-                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                let attach = jsonObject?["attachment"] as! [String: Any]
-                let images = attach["images"] as! [Any]
-                let postItem = PostItem(
-                    id: jsonObject?["id"] as! Int,
-                    userId: jsonObject?["user_id"] as! Int,
-                    name: jsonObject?["name"] as! String,
-                    text: jsonObject?["text"] as! String,
-                    status: jsonObject?["status"] as! Int,
-                    profileImage: jsonObject?["profile_img"] as? String,
-                    timeStamp: DateUtil.parseDate(jsonObject?["created_at"] as! String),
-                    replyCount: jsonObject?["reply_count"] as! Int,
-                    likeCount: jsonObject?["like_count"] as! Int,
-                    attachment: PostItem.Attachment(
-                        images: images.map { jsonObj -> ImageItem in
-                            if let image = jsonObj as? [String: Any] {
-                                return ImageItem(id: image["id"] as! Int, image: image["image"] as! String, tag: image["tag"] as! String)
-                            } else {
-                                return ImageItem(id: 0, image: "", tag: "")
-                            }
-                        },
-                        video: String(describing: attach["video"] as Any))
-                )
-                return Resource.success(postItem)
-            } else {
-                return Resource.error(response.description, nil)
-            }
-        }
-    }
-    
-    func removePost(_ postId: Int, _ user: User) -> AnyPublisher<[String: Any], Error> {
-        return apiService.request(with: "\(URL_POST)/\(postId)", method: .delete, header: ["Authorization": user.apiKey], params: [:]) { (data, response) -> [String: Any] in
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            return jsonObject!
-        }
     }
     
     func getReplys(_ postId: Int, _ user: User) -> AnyPublisher<Resource<[ReplyItem]>, Error> {

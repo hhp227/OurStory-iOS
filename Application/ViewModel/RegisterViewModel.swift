@@ -17,9 +17,9 @@ class RegisterViewModel: ObservableObject {
     
     @Published var registerResult = false
     
-    private let repository: RegisterRepository
+    private let repository: UserRepository
     
-    init(_ repository: RegisterRepository) {
+    init(_ repository: UserRepository) {
         self.repository = repository
     }
     

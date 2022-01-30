@@ -18,9 +18,9 @@ class LoginViewModel: ObservableObject {
     
     @Published var isShowRegister = false
     
-    private let repository: LoginRepository
+    private let repository: UserRepository
     
-    init(_ repository: LoginRepository) {
+    init(_ repository: UserRepository) {
         self.repository = repository
         loginState = UserDefaults.standard.value(forKey: "user") != nil ? .login : .logout
     }

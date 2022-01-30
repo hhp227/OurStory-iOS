@@ -36,7 +36,7 @@ struct WriteView: View {
             }
         }.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
             ActionSheet(title: Text("Selection Action"), buttons: [
-                .default(Text("Gallery")),
+                .default(Text("Gallery")) {},
                 .default(Text("Camera")),
                 .cancel()
             ])

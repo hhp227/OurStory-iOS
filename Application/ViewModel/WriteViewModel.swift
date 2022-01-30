@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class WriteViewModel: ObservableObject {
     @Published var text: String = ""
@@ -15,6 +16,8 @@ class WriteViewModel: ObservableObject {
     @Published var sendResult = false
     
     @Published var isShowingActionSheet = false
+    
+    @Published var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     private let groupId: Int
     

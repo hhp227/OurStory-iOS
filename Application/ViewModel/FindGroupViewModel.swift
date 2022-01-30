@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class GroupFindViewModel: ObservableObject {
+class FindGroupViewModel: ObservableObject {
     @Published private(set) var state = State()
     
     private static let PAGE_ITEM_COUNT = 15
@@ -23,16 +23,31 @@ class GroupFindViewModel: ObservableObject {
     }
     
     private func onReceive<T>(_ batch: Resource<T>) {
-        if let groupItems = batch.data as? [GroupItem] {
-            self.state.groups += groupItems
-            self.state.canLoadNextPage = groupItems.count == GroupFindViewModel.PAGE_ITEM_COUNT
+        switch batch.status {
+        case .SUCCESS:
+            if let groupItems = batch.data as? [GroupItem] {
+                state = State(
+                    isLoading: false,
+                    offset: state.offset + groupItems.count,
+                    groups: state.groups + groupItems,
+                    canLoadNextPage: groupItems.count == FindGroupViewModel.PAGE_ITEM_COUNT
+                )
+            }
+        case .ERROR:
+            state = State(
+                isLoading: false,
+                error: batch.message ?? "An unexpected error occured"
+            )
+        case .LOADING:
+            state = State(
+                isLoading: true
+            )
         }
     }
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {
         switch completion {
         case .finished:
-            print("success")
             break
         case .failure:
             self.state.canLoadNextPage = false
@@ -40,12 +55,12 @@ class GroupFindViewModel: ObservableObject {
         }
     }
     
-    func getGroups() {
+    func fetchGroups() {
         guard state.canLoadNextPage else { return }
         guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
             return
         }
-        repository.getGroups(offset: 0, user: user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        repository.getNotJoinedGroups(user.apiKey, 0).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     deinit {
@@ -53,8 +68,14 @@ class GroupFindViewModel: ObservableObject {
     }
     
     struct State {
+        var isLoading: Bool = false
+        
+        var offset: Int = 0
+        
         var groups: [GroupItem] = Array()
         
         var canLoadNextPage = true
+        
+        var error: String = ""
     }
 }

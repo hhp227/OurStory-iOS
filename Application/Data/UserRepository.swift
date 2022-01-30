@@ -1,5 +1,5 @@
 //
-//  LoginRepository.swift
+//  UserRepository.swift
 //  Application
 //
 //  Created by 홍희표 on 2021/08/08.
@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class LoginRepository {
+class UserRepository {
     let apiService: ApiService
     
     init(_ apiService: ApiService) {
@@ -53,6 +53,24 @@ class LoginRepository {
             case .failure:
                 DispatchQueue.main.async { success(false) }
                 print("failure: \(String(describing: data))")
+                break
+            }
+        }
+    }
+    
+    func register(_ name: String, _ email: String, _ password: String, success: @escaping (Bool) -> Void) {
+        apiService.request(with: URL_REGISTER, method: .post, header: [:], params: ["name": name, "email": email, "password": password]) { result, data in
+            switch result {
+            case .success:
+                guard let data = data else { return }
+                do {
+                    success(true)
+                } catch {
+                    success(false)
+                }
+                break
+            case .failure:
+                success(false)
                 break
             }
         }

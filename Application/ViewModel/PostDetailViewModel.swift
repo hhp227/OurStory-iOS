@@ -24,7 +24,9 @@ class PostDetailViewModel: ObservableObject {
     
     private static let PAGE_ITEM_COUNT = 15
     
-    private var repository: PostDetailRepository
+    private let postRepository: PostRepository
+    
+    private let replyRepository: ReplyRepository
     
     private var postId: Int
     
@@ -39,43 +41,44 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    init(_ postId: Int, _ repository: PostDetailRepository) {
+    init(_ postId: Int, _ postRepository: PostRepository, _ replyRepository: ReplyRepository) {
         self.postId = postId
-        self.repository = repository
+        self.postRepository = postRepository
+        self.replyRepository = replyRepository
     }
     
     func getPost() {
-        repository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        postRepository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func removePost() {
-        repository.removePost(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        postRepository.removePost(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func addReply() {
         if message.isEmpty {
             print("메시지를 입력해주세요.")
         } else {
-            repository.addReply(postId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+            replyRepository.addReply(postId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
             message.removeAll()
         }
     }
     
     func getReplys() {
         guard state.canLoadNextPage else { return }
-        repository.getReplys(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        replyRepository.getReplys(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func setReply(_ message: String) {
         if message.isEmpty {
             print("메시지를 입력하세요.")
         } else {
-            repository.setReply(state.replys[selectPosition].id, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+            replyRepository.setReply(state.replys[selectPosition].id, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
         }
     }
     
     func removeReply(_ replyId: Int) {
-        repository.removeReply(replyId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        replyRepository.removeReply(replyId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {

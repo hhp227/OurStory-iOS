@@ -13,7 +13,7 @@ struct GroupListView: View {
     
     private var topNavigationLinks: some View {
         HStack(alignment: .bottom) {
-            NavigationLink(destination: GroupFindView()) {
+            NavigationLink(destination: FindGroupView()) {
                 VStack(spacing: 5) {
                     Image(systemName: "magnifyingglass").renderingMode(.template).resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25)
                     Text("Find a Groups").font(.system(size: 14)).fixedSize()

@@ -14,11 +14,11 @@ class LoungeViewModel: ObservableObject {
     
     private static let PAGE_ITEM_COUNT = 15
     
-    private let repository: LoungeRepository
+    private let repository: PostRepository
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: LoungeRepository) {
+    init(_ repository: PostRepository) {
         self.repository = repository
     }
     
