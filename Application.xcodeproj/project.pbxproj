@@ -46,7 +46,7 @@
 		0A3EBB3926CC01F200AFE90A /* CollapsingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EBB3826CC01F200AFE90A /* CollapsingNavigationBarView.swift */; };
 		0A450FA926C8B81200365F19 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A450FA826C8B81200365F19 /* GroupView.swift */; };
 		0A4B4A5826FDB16D00B825F3 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */; };
-		0A4B4A5B26FDB49B00B825F3 /* GroupListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5A26FDB49B00B825F3 /* GroupListRepository.swift */; };
+		0A4B4A5B26FDB49B00B825F3 /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */; };
 		0A4F5292277D9CA5002188EB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F5291277D9CA5002188EB /* ImagePicker.swift */; };
 		0A6324D726E7B4F100D574C9 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6324D626E7B4F100D574C9 /* DateUtil.swift */; };
 		0A6EAE8A26FCC059000698B1 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6EAE8926FCC059000698B1 /* ChatListView.swift */; };
@@ -55,7 +55,7 @@
 		0A7132B72470FEE80049F7FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7132B62470FEE80049F7FB /* ContentView.swift */; };
 		0A7132BC2470FEEC0049F7FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7132BB2470FEEC0049F7FB /* Assets.xcassets */; };
 		0A7CE76C26FEBBF300F664DD /* FindGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CE76B26FEBBF300F664DD /* FindGroupViewModel.swift */; };
-		0A7CE76F26FEBC4300F664DD /* GroupFindRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CE76E26FEBC4300F664DD /* GroupFindRepository.swift */; };
+		0A7CE76F26FEBC4300F664DD /* Temp2Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CE76E26FEBC4300F664DD /* Temp2Repository.swift */; };
 		0A964AF726ABFE0800FDB511 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A964AF626ABFE0800FDB511 /* PostDetailView.swift */; };
 		0ABB4A4226DBEB81000DB759 /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB4A4126DBEB81000DB759 /* ImageItem.swift */; };
 		0AC332DC26C4032400ACB62E /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC332DB26C4032400ACB62E /* PostRepository.swift */; };
@@ -109,7 +109,7 @@
 		0A3EBB3826CC01F200AFE90A /* CollapsingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsingNavigationBarView.swift; sourceTree = "<group>"; };
 		0A450FA826C8B81200365F19 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
 		0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
-		0A4B4A5A26FDB49B00B825F3 /* GroupListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListRepository.swift; sourceTree = "<group>"; };
+		0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
 		0A4F5291277D9CA5002188EB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0A6324D626E7B4F100D574C9 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		0A6EAE8926FCC059000698B1 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		0A7132BB2470FEEC0049F7FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A7132C02470FEEC0049F7FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A7CE76B26FEBBF300F664DD /* FindGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupViewModel.swift; sourceTree = "<group>"; };
-		0A7CE76E26FEBC4300F664DD /* GroupFindRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFindRepository.swift; sourceTree = "<group>"; };
+		0A7CE76E26FEBC4300F664DD /* Temp2Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp2Repository.swift; sourceTree = "<group>"; };
 		0A964AF626ABFE0800FDB511 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		0ABB4A4126DBEB81000DB759 /* ImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
 		0AC332DB26C4032400ACB62E /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 				0AC332DB26C4032400ACB62E /* PostRepository.swift */,
 				0A10A3F926DB69DB00490E96 /* Temp1Repository.swift */,
 				0A3288D126F0F9DC009A2E99 /* ReplyRepository.swift */,
-				0A4B4A5A26FDB49B00B825F3 /* GroupListRepository.swift */,
-				0A7CE76E26FEBC4300F664DD /* GroupFindRepository.swift */,
+				0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */,
+				0A7CE76E26FEBC4300F664DD /* Temp2Repository.swift */,
 				0A1BDAAA27202A6200E0D29E /* WriteRepository.swift */,
 				0A3C8C9C274A149700B526ED /* NotJoinedGroupRepository.swift */,
 			);
@@ -478,7 +478,7 @@
 				0A1C935427A673E60025CFFE /* Spinner.swift in Sources */,
 				0ABB4A4226DBEB81000DB759 /* ImageItem.swift in Sources */,
 				0A3A395C26C559830068FCE3 /* ProfileView.swift in Sources */,
-				0A4B4A5B26FDB49B00B825F3 /* GroupListRepository.swift in Sources */,
+				0A4B4A5B26FDB49B00B825F3 /* GroupRepository.swift in Sources */,
 				0A2232AD26EE2F19009B7585 /* PostDetailViewModel.swift in Sources */,
 				0A3A395626C558EF0068FCE3 /* DrawerStatus.swift in Sources */,
 				0A2B1F9B26DE798D00C52E73 /* FindGroupView.swift in Sources */,
@@ -490,7 +490,7 @@
 				0A964AF726ABFE0800FDB511 /* PostDetailView.swift in Sources */,
 				0AD3BE8E26B2ACED00E857B4 /* MainView.swift in Sources */,
 				0A291FA3274E89EA00EEF1AD /* ReachabilityService.swift in Sources */,
-				0A7CE76F26FEBC4300F664DD /* GroupFindRepository.swift in Sources */,
+				0A7CE76F26FEBC4300F664DD /* Temp2Repository.swift in Sources */,
 				0A6EAE8A26FCC059000698B1 /* ChatListView.swift in Sources */,
 				0A32EB1D26BE5178006A5295 /* LoginViewModel.swift in Sources */,
 				0A10A3FA26DB69DB00490E96 /* Temp1Repository.swift in Sources */,

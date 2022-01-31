@@ -25,11 +25,11 @@ struct MainView: View {
             NavigationView {
                 switch drawerViewModel.route {
                 case "Lounge":
-                    LoungeView().environmentObject(LoungeViewModel(PostRepository(ApiServiceImpl()))).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    LoungeView().environmentObject(LoungeViewModel(.init(ApiServiceImpl()))).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon")
                     })
                 case "GroupList":
-                    GroupListView().environmentObject(GroupListViewModel(GroupListRepository(ApiServiceImpl()))).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    GroupListView().environmentObject(GroupListViewModel(.init(ApiServiceImpl()))).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon")
                     })
                 case "ChatList":

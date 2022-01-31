@@ -14,11 +14,11 @@ class FindGroupViewModel: ObservableObject {
     
     private static let PAGE_ITEM_COUNT = 15
     
-    private let repository: GroupFindRepository
+    private let repository: GroupRepository
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: GroupFindRepository) {
+    init(_ repository: GroupRepository) {
         self.repository = repository
     }
     

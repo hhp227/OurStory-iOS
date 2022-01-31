@@ -47,7 +47,7 @@ struct GroupListView: View {
                             }.frame(height: 120)
                         }
                     }
-                }.onAppear(perform: viewModel.getGroups)
+                }.onAppear(perform: viewModel.fetchGroups)
             }
         }.navigationBarTitleDisplayMode(.inline)
     }

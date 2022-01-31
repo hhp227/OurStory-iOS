@@ -14,20 +14,20 @@ class GroupListViewModel: ObservableObject {
     
     private static let PAGE_ITEM_COUNT = 15
     
-    private let repository: GroupListRepository
+    private let repository: GroupRepository
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: GroupListRepository) {
+    init(_ repository: GroupRepository) {
         self.repository = repository
     }
     
-    func getGroups() {
+    func fetchGroups() {
         guard state.canLoadNextPage else { return }
         guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
             return
         }
-        repository.getGroups(user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        repository.getMyGroups(user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {
