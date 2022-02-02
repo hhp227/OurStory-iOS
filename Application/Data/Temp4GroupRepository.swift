@@ -1,5 +1,5 @@
 //
-//  NotJoinedGroupRepository.swift
+//  Temp4Repository.swift
 //  Application
 //
 //  Created by 홍희표 on 2021/11/21.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotJoinedGroupRepository {
+class Temp4Repository {
     let apiService: ApiService
     
     init(_ apiService: ApiService) {

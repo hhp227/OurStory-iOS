@@ -1,5 +1,5 @@
 //
-//  WriteRepository.swift
+//  Temp3Repository.swift
 //  Application
 //
 //  Created by 홍희표 on 2021/10/20.
@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class WriteRepository {
+class Temp3Repository {
     let apiService: ApiService
     
     init(_ apiService: ApiService) {

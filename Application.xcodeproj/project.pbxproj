@@ -16,7 +16,7 @@
 		0A15B92F2739620F009F8F2E /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15B92E2739620F009F8F2E /* Status.swift */; };
 		0A19E16E271C645000453018 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19E16D271C645000453018 /* CreateGroupViewModel.swift */; };
 		0A1A7A5826E3454E00E98406 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A7A5726E3454E00E98406 /* AsyncImage.swift */; };
-		0A1BDAAB27202A6200E0D29E /* WriteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BDAAA27202A6200E0D29E /* WriteRepository.swift */; };
+		0A1BDAAB27202A6200E0D29E /* Temp3Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BDAAA27202A6200E0D29E /* Temp3Repository.swift */; };
 		0A1C935427A673E60025CFFE /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1C935327A673E60025CFFE /* Spinner.swift */; };
 		0A1DF13026C5930E00BC58E1 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DF12F26C5930E00BC58E1 /* DrawerView.swift */; };
 		0A1DF13326C5955500BC58E1 /* LoungeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DF13226C5955500BC58E1 /* LoungeView.swift */; };
@@ -42,7 +42,7 @@
 		0A3A395926C5594F0068FCE3 /* DrawerDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */; };
 		0A3A395C26C559830068FCE3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395B26C559830068FCE3 /* ProfileView.swift */; };
 		0A3A395F26C559D90068FCE3 /* DrawerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395E26C559D90068FCE3 /* DrawerContainer.swift */; };
-		0A3C8C9D274A149700B526ED /* NotJoinedGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C8C9C274A149700B526ED /* NotJoinedGroupRepository.swift */; };
+		0A3C8C9D274A149700B526ED /* Temp4GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C8C9C274A149700B526ED /* Temp4GroupRepository.swift */; };
 		0A3EBB3926CC01F200AFE90A /* CollapsingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EBB3826CC01F200AFE90A /* CollapsingNavigationBarView.swift */; };
 		0A450FA926C8B81200365F19 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A450FA826C8B81200365F19 /* GroupView.swift */; };
 		0A4B4A5826FDB16D00B825F3 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */; };
@@ -79,7 +79,7 @@
 		0A15B92E2739620F009F8F2E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		0A19E16D271C645000453018 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		0A1A7A5726E3454E00E98406 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
-		0A1BDAAA27202A6200E0D29E /* WriteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteRepository.swift; sourceTree = "<group>"; };
+		0A1BDAAA27202A6200E0D29E /* Temp3Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp3Repository.swift; sourceTree = "<group>"; };
 		0A1C935327A673E60025CFFE /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		0A1DF12F26C5930E00BC58E1 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		0A1DF13226C5955500BC58E1 /* LoungeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeView.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerDefine.swift; sourceTree = "<group>"; };
 		0A3A395B26C559830068FCE3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0A3A395E26C559D90068FCE3 /* DrawerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerContainer.swift; sourceTree = "<group>"; };
-		0A3C8C9C274A149700B526ED /* NotJoinedGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotJoinedGroupRepository.swift; sourceTree = "<group>"; };
+		0A3C8C9C274A149700B526ED /* Temp4GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp4GroupRepository.swift; sourceTree = "<group>"; };
 		0A3EBB3826CC01F200AFE90A /* CollapsingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsingNavigationBarView.swift; sourceTree = "<group>"; };
 		0A450FA826C8B81200365F19 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
 		0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
@@ -183,8 +183,8 @@
 				0A3288D126F0F9DC009A2E99 /* ReplyRepository.swift */,
 				0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */,
 				0A7CE76E26FEBC4300F664DD /* Temp2Repository.swift */,
-				0A1BDAAA27202A6200E0D29E /* WriteRepository.swift */,
-				0A3C8C9C274A149700B526ED /* NotJoinedGroupRepository.swift */,
+				0A1BDAAA27202A6200E0D29E /* Temp3Repository.swift */,
+				0A3C8C9C274A149700B526ED /* Temp4GroupRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -507,12 +507,12 @@
 				0A19E16E271C645000453018 /* CreateGroupViewModel.swift in Sources */,
 				0A15B92F2739620F009F8F2E /* Status.swift in Sources */,
 				0A7132B72470FEE80049F7FB /* ContentView.swift in Sources */,
-				0A1BDAAB27202A6200E0D29E /* WriteRepository.swift in Sources */,
+				0A1BDAAB27202A6200E0D29E /* Temp3Repository.swift in Sources */,
 				0AFD179327493CCD00E04608 /* NotJoinedGroupViewModel.swift in Sources */,
 				0A05D8C526BAD2160030333A /* URLs.swift in Sources */,
 				0A3288D226F0F9DC009A2E99 /* ReplyRepository.swift in Sources */,
 				0A1A7A5826E3454E00E98406 /* AsyncImage.swift in Sources */,
-				0A3C8C9D274A149700B526ED /* NotJoinedGroupRepository.swift in Sources */,
+				0A3C8C9D274A149700B526ED /* Temp4GroupRepository.swift in Sources */,
 				0A32EB2126BE642B006A5295 /* RegisterViewModel.swift in Sources */,
 				0A4F5292277D9CA5002188EB /* ImagePicker.swift in Sources */,
 				0AD3BE9126B2AD1C00E857B4 /* ChatView.swift in Sources */,
