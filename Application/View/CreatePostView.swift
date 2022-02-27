@@ -1,5 +1,5 @@
 //
-//  WriteView.swift
+//  CreatePostView.swift
 //  Application
 //
 //  Created by 홍희표 on 2021/08/08.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct WriteView: View {
-    @EnvironmentObject var viewModel: WriteViewModel
+struct CreatePostView: View {
+    @EnvironmentObject var viewModel: CreatePostViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -44,8 +44,8 @@ struct WriteView: View {
     }
 }
 
-struct WriteView_Previews: PreviewProvider {
+struct CreatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        WriteView()
+        CreatePostView()
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class WriteViewModel: ObservableObject {
+class CreatePostViewModel: ObservableObject {
     @Published var text: String = ""
     
     @Published var sendResult = false

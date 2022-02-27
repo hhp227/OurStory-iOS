@@ -8,12 +8,24 @@
 
 import Foundation
 import Alamofire
+import Combine
 
 class UserRepository {
     let apiService: ApiService
     
     init(_ apiService: ApiService) {
         self.apiService = apiService
+    }
+    
+    private func parseUser(_ jsonObject: [String: Any]) -> User {
+        return User(
+            id: jsonObject["id"] as! Int,
+            name: jsonObject["name"] as! String,
+            email: jsonObject["email"] as! String,
+            apiKey: jsonObject["api_key"] as! String,
+            profileImage: jsonObject["profile_img"] as! String,
+            createdAt: jsonObject["created_at"] as! String
+        )
     }
     
     //TODO Alamofire를 사용할지
@@ -54,6 +66,24 @@ class UserRepository {
                 DispatchQueue.main.async { success(false) }
                 print("failure: \(String(describing: data))")
                 break
+            }
+        }
+    }
+    
+    func login(_ email: String, _ password: String) -> AnyPublisher<Resource<User>, Error> {
+        return apiService.request(with: URL_LOGIN, method: .post, header: [:], params: ["email": email, "password": password]) { data, response in
+            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
+                if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if !(jsonObject["error"] as? Bool ?? false) {
+                        return Resource.success(self.parseUser(jsonObject))
+                    } else {
+                        return Resource.error(jsonObject["message"] as! String, nil)
+                    }
+                } else {
+                    return Resource.error(response.debugDescription, nil)
+                }
+            } else {
+                return Resource.error(response.description, nil)
             }
         }
     }

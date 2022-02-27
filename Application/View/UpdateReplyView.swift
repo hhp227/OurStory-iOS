@@ -1,5 +1,5 @@
 //
-//  ReplyModifyView.swift
+//  UpdateReplyView.swift
 //  Application
 //
 //  Created by 홍희표 on 2021/10/04.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ReplyModifyView: View {
+struct UpdateReplyView: View {
     @EnvironmentObject var viewModel: PostDetailViewModel
     
     var body: some View {
@@ -31,8 +31,8 @@ struct InputView: View {
     }
 }
 
-struct ReplyModifyView_Previews: PreviewProvider {
+struct UpdateReplyView_Previews: PreviewProvider {
     static var previews: some View {
-        ReplyModifyView()
+        UpdateReplyView()
     }
 }

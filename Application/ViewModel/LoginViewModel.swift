@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Alamofire
+import Foundation
 
 class LoginViewModel: ObservableObject {
     @Published var email: String = ""
@@ -20,6 +20,8 @@ class LoginViewModel: ObservableObject {
     
     private let repository: UserRepository
     
+    private var subscriptions = Set<AnyCancellable>()
+    
     init(_ repository: UserRepository) {
         self.repository = repository
         loginState = UserDefaults.standard.value(forKey: "user") != nil ? .login : .logout
@@ -31,16 +33,19 @@ class LoginViewModel: ObservableObject {
     }
     
     private func isPasswordValid(_ password: String) -> Bool {
-        return !password.isEmpty
+        return password.count > 5
     }
     
     func login() {
         if isEmailValid(email) && isPasswordValid(password) {
-            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+            /*DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
                 self.repository.login(self.email, self.password) { success in
                     self.loginState = success ? .login : .logout
                 }
-            }
+            }*/
+            repository.login(email, password).sink(receiveCompletion: { _ in }) { result in
+                print(result)
+            }.store(in: &subscriptions)
         } else {
             print("email 또는 password가 잘못되었습니다.")
         }
