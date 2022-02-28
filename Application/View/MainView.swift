@@ -16,8 +16,6 @@ struct MainView: View {
         return drawer
     }()
     
-    @EnvironmentObject var viewModel: LoginViewModel
-    
     private static let MAX_MASK_ALPHA: CGFloat = 0.25
     
     var body: some View {
