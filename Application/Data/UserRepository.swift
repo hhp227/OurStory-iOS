@@ -75,7 +75,8 @@ class UserRepository {
             if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
                 if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     if !(jsonObject["error"] as? Bool ?? false) {
-                        return Resource.success(self.parseUser(jsonObject))
+                        return Resource.success(try JSONDecoder().decode(User.self, from: data))
+                        //return Resource.success(self.parseUser(jsonObject))
                     } else {
                         return Resource.error(jsonObject["message"] as! String, nil)
                     }
