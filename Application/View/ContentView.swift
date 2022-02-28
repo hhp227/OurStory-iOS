@@ -12,10 +12,11 @@ struct ContentView: View {
     @ObservedObject var viewModel: LoginViewModel
     
     var body: some View {
-        switch viewModel.loginState {
-        case .login:
-            MainView().environmentObject(viewModel)
-        case .logout:
+        if let user = UserDefaults.standard.value(forKey: "user") {
+            MainView().environmentObject(viewModel)/*.onAppear {
+                print("user: \(try! JSONDecoder().decode(User.self, from: user as! Data))")
+            }*/
+        } else {
             LoginView().environmentObject(viewModel).animation(.easeIn)
         }
     }

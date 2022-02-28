@@ -30,7 +30,11 @@ struct LoginView: View {
             }.sheet(isPresented: $viewModel.isShowRegister) {
                 RegisterView(viewModel: .init(UserRepository(ApiServiceImpl())))
             }
-        }.padding(16)
+        }.padding(16).onReceive(viewModel.$state) { state in
+            if let user = state.user {
+                UserDefaults.standard.setValue(try? JSONEncoder().encode(user), forKey: "user")
+            }
+        }
     }
 }
 

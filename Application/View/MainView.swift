@@ -37,9 +37,7 @@ struct MainView: View {
                         Image("hamburger-menu-icon")
                     })
                 case "Logout":
-                    Text("Logout").onAppear {
-                        viewModel.loginState = .logout
-                                                
+                    Text("Logout").onAppear {          
                         UserDefaults.standard.removeObject(forKey: "user")
                     }
                 default:

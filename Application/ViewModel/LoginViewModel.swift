@@ -14,7 +14,7 @@ class LoginViewModel: ObservableObject {
     
     @Published var password: String = ""
     
-    @Published var loginState: LoginState
+    @Published var state: State = State()
     
     @Published var isShowRegister = false
     
@@ -24,7 +24,6 @@ class LoginViewModel: ObservableObject {
     
     init(_ repository: UserRepository) {
         self.repository = repository
-        loginState = UserDefaults.standard.value(forKey: "user") != nil ? .login : .logout
     }
     
     private func isEmailValid(_ email: String) -> Bool {
@@ -38,21 +37,26 @@ class LoginViewModel: ObservableObject {
     
     func login() {
         if isEmailValid(email) && isPasswordValid(password) {
-            /*DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-                self.repository.login(self.email, self.password) { success in
-                    self.loginState = success ? .login : .logout
-                }
-            }*/
             repository.login(email, password).sink(receiveCompletion: { _ in }) { result in
-                print(result)
+                switch result.status {
+                case .SUCCESS:
+                    self.state = State(user: result.data)
+                case .ERROR:
+                    self.state = State(error: result.message ?? "An unexpected error occured")
+                case .LOADING:
+                    self.state = State(isLoading: true)
+                }
             }.store(in: &subscriptions)
         } else {
             print("email 또는 password가 잘못되었습니다.")
         }
     }
     
-    enum LoginState {
-        case login
-        case logout
+    struct State {
+        var isLoading: Bool = false
+        
+        var user: User? = nil
+        
+        var error: String = ""
     }
 }
