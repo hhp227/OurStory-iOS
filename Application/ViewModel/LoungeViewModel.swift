@@ -22,9 +22,9 @@ class LoungeViewModel: ObservableObject {
         self.repository = repository
     }
     
-    func getPosts() {
+    func fetchPosts(_ groupId: Int, _ offset: Int) {
         guard state.canLoadNextPage else { return }
-        repository.getPosts(state.page).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        repository.getPosts(groupId, offset).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func actionLike(_ position: Int, _ postItem: PostItem) {
@@ -50,7 +50,7 @@ class LoungeViewModel: ObservableObject {
     private func onReceive<T>(_ batch: Resource<T>) {
         if let postItem = batch.data as? [PostItem], batch.status == Status.SUCCESS {
             state.posts += postItem
-            state.page += LoungeViewModel.PAGE_ITEM_COUNT
+            state.offset += LoungeViewModel.PAGE_ITEM_COUNT
             state.canLoadNextPage = postItem.count == LoungeViewModel.PAGE_ITEM_COUNT
         }
     }
@@ -60,10 +60,14 @@ class LoungeViewModel: ObservableObject {
     }
     
     struct State {
+        var isLoading: Bool = false
+        
         var posts: [PostItem] = []
         
-        var page: Int = 0
+        var offset: Int = 0
         
         var canLoadNextPage = true
+        
+        var error: String = ""
     }
 }

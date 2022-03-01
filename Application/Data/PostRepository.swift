@@ -17,8 +17,8 @@ class PostRepository {
     }
     
     //TODO https://www.vadimbulavin.com/infinite-list-scroll-swiftui-combine/
-    func getPosts(_ offset: Int) -> AnyPublisher<Resource<[PostItem]>, Error> {
-        return apiService.request(with: URL_POSTS.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, header: [:], params: [:]) { (data, response) -> Resource<[PostItem]> in
+    func getPosts(_ groupId: Int, _ offset: Int) -> AnyPublisher<Resource<[PostItem]>, Error> {
+        return apiService.request(with: URL_POSTS.replacingOccurrences(of: "{GROUP_ID}", with: String(groupId)).replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, header: [:], params: [:]) { (data, response) -> Resource<[PostItem]> in
             if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
                 let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                 var postItems = [PostItem]()

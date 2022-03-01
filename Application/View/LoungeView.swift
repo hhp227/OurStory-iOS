@@ -65,7 +65,7 @@ struct LoungeView: View {
                         }.onAppear {
                             /*if viewModel.state.posts.last == post {
                                 print("getNext \(i)")
-                                viewModel.getPosts()
+                                viewModel.fetchPosts()
                             }*/
                         }
                     }
@@ -73,7 +73,9 @@ struct LoungeView: View {
                         // TODO loading indicator
                         Text("Loading")
                     }
-                }.padding([.top, .bottom], 8).onAppear(perform: viewModel.getPosts)
+                }.padding([.top, .bottom], 8).onAppear {
+                    viewModel.fetchPosts(0, viewModel.state.offset)
+                }
             }.ignoresSafeArea(.all, edges: .top)
             VStack {
                 Spacer()
