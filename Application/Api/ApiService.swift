@@ -37,9 +37,7 @@ class ApiServiceImpl: ApiService {
         urlRequest.timeoutInterval = 10
         
         header.forEach { (k, v) in urlRequest.setValue(v, forHTTPHeaderField: k) }
-        return URLSession.shared.dataTaskPublisher(for: urlRequest).prefix(while: { data, response in
-                                                                            print("prefix")
-                                                                            return true }).tryMap(transform).receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return URLSession.shared.dataTaskPublisher(for: urlRequest).tryMap(transform).receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
     
     func request<T>(with endpoint: String, method: HttpMethod, header: [String: String], params: [String: String], transform: @escaping ((data: Data, response: URLResponse)) throws -> [T]) -> AnyPublisher<[T], Error> {
