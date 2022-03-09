@@ -23,11 +23,11 @@ struct MainView: View {
             NavigationView {
                 switch drawerViewModel.route {
                 case "Lounge":
-                    LoungeView().environmentObject(LoungeViewModel(.init(ApiServiceImpl()))).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    LoungeView().environmentObject(LoungeViewModel(.init(ApiServiceImpl()), UserDefaultsManager.instance)).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon")
                     })
                 case "GroupList":
-                    GroupListView().environmentObject(GroupListViewModel(.init(ApiServiceImpl()))).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    GroupListView().environmentObject(GroupListViewModel(.init(ApiServiceImpl()), UserDefaultsManager.instance)).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon")
                     })
                 case "ChatList":
@@ -35,8 +35,8 @@ struct MainView: View {
                         Image("hamburger-menu-icon")
                     })
                 case "Logout":
-                    Text("Logout").onAppear {          
-                        UserDefaults.standard.removeObject(forKey: "user")
+                    Text("Logout").onAppear {
+                        UserDefaultsManager.instance.clear()
                     }
                 default:
                     EmptyView()

@@ -25,7 +25,7 @@ struct GroupListView: View {
                     Text("Join Request Groups").font(.system(size: 14)).fixedSize()
                 }
             }.frame(maxWidth: .infinity)
-            NavigationLink(destination: CreateGroupView(viewModel: .init())) {
+            NavigationLink(destination: CreateGroupView(viewModel: CreateGroupViewModel(.init(ApiServiceImpl()), UserDefaultsManager.instance))) {
                 VStack(spacing: 5) {
                     Image(systemName: "plus").renderingMode(.template).resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25)
                     Text("Create Group").font(.system(size: 14)).fixedSize()
@@ -47,7 +47,9 @@ struct GroupListView: View {
                             }.frame(height: 120)
                         }
                     }
-                }.onAppear(perform: viewModel.fetchGroups)
+                }.onAppear {
+                    viewModel.fetchGroups(viewModel.state.offset)
+                }
             }
         }.navigationBarTitleDisplayMode(.inline)
     }

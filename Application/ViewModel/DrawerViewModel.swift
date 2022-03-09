@@ -21,12 +21,6 @@ public class DrawerViewModel: ObservableObject {
     
     private var statusObserver = [AnyCancellable]()
     
-    var user: User? {
-        get {
-            getUser()
-        }
-    }
-    
     private(set) var status = [DrawerType: DrawerStatus]() {
         didSet {
             statusObserver.forEach { $0.cancel() }
@@ -44,13 +38,6 @@ public class DrawerViewModel: ObservableObject {
                 statusObserver.append(observer)
             }
         }
-    }
-    
-    private func getUser() -> User? {
-        guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
-            return nil
-        }
-        return user
     }
     
     public func setDrawer<V: DrawerViewProtocol>(view: V, widthType: DrawerWidth = .percent(rate: 0.8), shadowRadius: CGFloat = 10) {

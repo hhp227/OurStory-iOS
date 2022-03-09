@@ -92,25 +92,32 @@ class PostRepository {
         }
     }
     
-    // TODO
-    func addPost(_ text: String, _ user: User, _ groupId: Int) -> AnyPublisher<Int, Error> {
-        apiService.request(with: URL_POST, method: .post, header: ["Authorization": user.apiKey], params: ["text": text, "group_id": String(groupId)]) { data, response -> Int in
+    func addPost(_ apiKey: String, _ groupId: Int, _ text: String) -> AnyPublisher<Resource<Int>, Error> {
+        apiService.request(with: URL_POST, method: .post, header: ["Authorization": apiKey], params: ["text": text, "group_id": String(groupId)]) { data, response -> Resource<Int> in
             guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                return -1
+                return Resource.error("JSONException Error", nil)
             }
-            return !(jsonObject["error"] as? Bool ?? false) ? jsonObject["post_id"] as? Int ?? 0 : 0
+            if !(jsonObject["error"] as? Bool ?? false) {
+                let postId = jsonObject["post_id"] as? Int ?? 0
+                
+                return Resource.success(postId)
+            } else {
+                return Resource.error(jsonObject["message"] as? String ?? "An unexpected error occured", nil)
+            }
         }
     }
     
-    func removePost(_ postId: Int, _ user: User) -> AnyPublisher<[String: Any], Error> {
-        return apiService.request(with: "\(URL_POST)/\(postId)", method: .delete, header: ["Authorization": user.apiKey], params: [:]) { (data, response) -> [String: Any] in
+    // TODO
+    func removePost(_ apiKey: String, _ postId: Int) -> AnyPublisher<[String: Any], Error> {
+        return apiService.request(with: "\(URL_POST)/\(postId)", method: .delete, header: ["Authorization": apiKey], params: [:]) { (data, response) -> [String: Any] in
             let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             return jsonObject!
         }
     }
     
-    func actionLike<T>(post: PostItem, user: User, success: @escaping (T) -> Void) {
-        apiService.request(with: URL_POST_LIKE.replacingOccurrences(of: "{POST_ID}", with: String(post.id)), method: .get, header: ["Authorization": user.apiKey], params: [:]) { result, data  in
+    // TODO
+    func toggleLike<T>(_ apiKey: String, _ post: PostItem, success: @escaping (T) -> Void) {
+        apiService.request(with: URL_POST_LIKE.replacingOccurrences(of: "{POST_ID}", with: String(post.id)), method: .get, header: ["Authorization": apiKey], params: [:]) { result, data  in
             switch result {
             case .success:
                 if let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any] {

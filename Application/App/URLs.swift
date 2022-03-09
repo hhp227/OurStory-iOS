@@ -24,4 +24,4 @@ let URL_USER_PROFILE_IMAGE = "\(BASEURL)/php/ProfileImages/"
 
 let URL_GROUP = "\(BASEURL)/group"
 let URL_GROUPS = "\(BASEURL)/groups?offset={OFFSET}"
-let URL_USER_GROUP = "\(BASEURL)/user_groups"
+let URL_USER_GROUP = "\(BASEURL)/user_groups?offset={OFFSET}"

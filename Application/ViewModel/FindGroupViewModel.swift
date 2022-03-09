@@ -16,10 +16,13 @@ class FindGroupViewModel: ObservableObject {
     
     private let repository: GroupRepository
     
+    private let apiKey: String
+    
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: GroupRepository) {
+    init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
     }
     
     private func onReceive<T>(_ batch: Resource<T>) {
@@ -57,10 +60,7 @@ class FindGroupViewModel: ObservableObject {
     
     func fetchGroups() {
         guard state.canLoadNextPage else { return }
-        guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
-            return
-        }
-        repository.getNotJoinedGroups(user.apiKey, 0).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        repository.getNotJoinedGroups(apiKey, 0).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     deinit {

@@ -18,8 +18,10 @@ struct DrawerView: View, DrawerProtocol {
             }.fullScreenCover(isPresented: $drawerViewModel.isShowProfile) {
                 ProfileView()
             }
-            Text(drawerViewModel.user?.name ?? "Name").padding(.top, 8)
-            Text(drawerViewModel.user?.email ?? "E-mail").font(.system(size: 12))
+            if let user = UserDefaultsManager.instance.user {
+                Text(user.name).padding(.top, 8)
+                Text(user.email).font(.system(size: 12))
+            }
         }
     }
     

@@ -45,7 +45,7 @@ class UserRepository {
     }
     
     //TODO 이것을 해야할지
-    func login(_ email: String, _ password: String, success: @escaping (Bool) -> Void) {
+    /*func login(_ email: String, _ password: String, success: @escaping (Bool) -> Void) {
         apiService.request(with: URL_LOGIN, method: .post, header: [:], params: ["email": email, "password": password]) { result, data in
             switch result {
             case .success:
@@ -68,7 +68,7 @@ class UserRepository {
                 break
             }
         }
-    }
+    }*/
     
     func login(_ email: String, _ password: String) -> AnyPublisher<Resource<User>, Error> {
         return apiService.request(with: URL_LOGIN, method: .post, header: [:], params: ["email": email, "password": password]) { data, response in

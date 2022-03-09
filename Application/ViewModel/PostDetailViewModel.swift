@@ -28,57 +28,145 @@ class PostDetailViewModel: ObservableObject {
     
     private let replyRepository: ReplyRepository
     
+    private let apiKey: String
+    
     private var postId: Int
     
     private var subscriptions = Set<AnyCancellable>()
     
-    var user: User {
-        get {
-            guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
-                fatalError()
-            }
-            return user
-        }
-    }
-    
-    init(_ postId: Int, _ postRepository: PostRepository, _ replyRepository: ReplyRepository) {
-        self.postId = postId
+    init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ postId: Int) {
         self.postRepository = postRepository
         self.replyRepository = replyRepository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
+        self.postId = postId
     }
     
-    func getPost() {
+    // TODO
+    private func fetchReply(_ replyId: Int) {
+        
+    }
+    
+    func fetchPost() {
         postRepository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
-    func removePost() {
-        postRepository.removePost(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+    func deletePost() {
+        postRepository.removePost(apiKey, postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
-    func addReply() {
-        if message.isEmpty {
-            print("메시지를 입력해주세요.")
-        } else {
-            replyRepository.addReply(postId, user, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+    func insertReply() {
+        if !message.isEmpty {
+            replyRepository.addReply(apiKey, postId, message).sink(receiveCompletion: { _ in }) { result in
+                switch result.status {
+                case .SUCCESS:
+                    let replyId = result.data ?? -1
+                    self.state = State(
+                        isLoading: false,
+                        post: self.state.post,
+                        replys: self.state.replys,
+                        replyId: replyId,
+                        canLoadNextPage: self.state.canLoadNextPage,
+                        error: self.state.error
+                    )
+                    
+                    self.fetchReply(replyId)
+                case .ERROR:
+                    self.state = State(
+                        isLoading: false,
+                        post: self.state.post,
+                        replys: self.state.replys,
+                        replyId: self.state.replyId,
+                        canLoadNextPage: self.state.canLoadNextPage,
+                        error: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = State(isLoading: true)
+                }
+            }.store(in: &subscriptions)
             message.removeAll()
+        } else {
+            state = State(
+                isLoading: false,
+                post: self.state.post,
+                replys: self.state.replys,
+                replyId: self.state.replyId,
+                canLoadNextPage: self.state.canLoadNextPage,
+                error: "text is empty"
+            )
+            print("메시지를 입력해주세요.")
         }
     }
     
-    func getReplys() {
+    func fetchReplys() {
         guard state.canLoadNextPage else { return }
-        replyRepository.getReplys(postId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        replyRepository.getReplys(apiKey, postId).sink(receiveCompletion: onReceive) { result in
+            switch result.status {
+            case .SUCCESS:
+                self.state = State(
+                    isLoading: false,
+                    post: self.state.post,
+                    replys: self.state.replys + (result.data ?? []),
+                    replyId: self.state.replyId,
+                    canLoadNextPage: self.state.canLoadNextPage,
+                    error: self.state.error
+                )
+            case .ERROR:
+                self.state = State(
+                    isLoading: false,
+                    post: self.state.post,
+                    replys: self.state.replys,
+                    replyId: self.state.replyId,
+                    canLoadNextPage: self.state.canLoadNextPage,
+                    error: result.message ?? "An unexpected error occured"
+                )
+            case .LOADING:
+                self.state = State(isLoading: true)
+            }
+        }.store(in: &subscriptions)
     }
     
+    // TODO 이거는 CreatePostViewModel로 빼야할것
     func setReply(_ message: String) {
         if message.isEmpty {
             print("메시지를 입력하세요.")
         } else {
-            replyRepository.setReply(user.apiKey, state.replys[selectPosition].id, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+            replyRepository.setReply(apiKey, state.replys[selectPosition].id, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
         }
     }
     
-    func removeReply(_ replyId: Int) {
-        replyRepository.removeReply(replyId, user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+    func deleteReply(_ replyId: Int) {
+        replyRepository.removeReply(apiKey, replyId).sink(receiveCompletion: { _ in }) { result in
+            switch result.status {
+            case .SUCCESS:
+                var replys = self.state.replys
+                let position = replys.firstIndex { $0.id == replyId }
+                
+                if result.data == true {
+                    replys.remove(at: position ?? 0)
+                    if position ?? 0 > 1 {
+                        self.state = State(
+                            isLoading: false,
+                            post: self.state.post,
+                            replys: replys,
+                            replyId: self.state.replyId,
+                            canLoadNextPage: self.state.canLoadNextPage,
+                            error: self.state.error
+                        )
+                    }
+                }
+            case .ERROR:
+                self.state = State(
+                    isLoading: false,
+                    post: self.state.post,
+                    replys: self.state.replys,
+                    replyId: self.state.replyId,
+                    canLoadNextPage: self.state.canLoadNextPage,
+                    error: result.message ?? "An unexpected error occured"
+                )
+            case .LOADING:
+                self.state = State(isLoading: true)
+            }
+        }.store(in: &subscriptions)
     }
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {
@@ -133,9 +221,16 @@ class PostDetailViewModel: ObservableObject {
     }
     
     struct State {
+        var isLoading: Bool = false
+        
         var post: PostItem? = nil
+        
         var replys: [ReplyItem] = []
+        
+        var replyId: Int = -1
+        
         var canLoadNextPage = true
+        
         var error: String = ""
     }
 }

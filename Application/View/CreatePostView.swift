@@ -30,16 +30,16 @@ struct CreatePostView: View {
                     Image(systemName: "video.fill").padding(10)
                 }
             }.padding(5)
-        }.onReceive(viewModel.$sendResult) { isSent in
-            if isSent {
-                presentationMode.wrappedValue.dismiss()
-            }
         }.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
             ActionSheet(title: Text("Selection Action"), buttons: [
                 .default(Text("Gallery")) {},
                 .default(Text("Camera")),
                 .cancel()
             ])
+        }.onReceive(viewModel.$state) { state in
+            if state.postId >= 0 {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ struct LoginView: View {
             }
         }.padding(16).onReceive(viewModel.$state) { state in
             if let user = state.user {
-                UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "user")
+                UserDefaultsManager.instance.storeUser(user)
             }
         }
     }

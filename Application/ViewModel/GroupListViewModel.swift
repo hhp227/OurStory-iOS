@@ -16,18 +16,38 @@ class GroupListViewModel: ObservableObject {
     
     private let repository: GroupRepository
     
+    private let apiKey: String
+    
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: GroupRepository) {
+    init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
     }
     
-    func fetchGroups() {
+    func fetchGroups(_ offset: Int) {
         guard state.canLoadNextPage else { return }
-        guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
-            return
-        }
-        repository.getMyGroups(user).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        repository.getMyGroups(apiKey, offset).sink(receiveCompletion: onReceive) { result in
+            switch result.status {
+            case .SUCCESS:
+                self.state = State(
+                    isLoading: false,
+                    groups: self.state.groups + (result.data ?? []),
+                    offset: self.state.offset + (result.data?.count ?? 0),
+                    canLoadNextPage: (result.data ?? []).count == GroupListViewModel.PAGE_ITEM_COUNT,
+                    error: self.state.error
+                )
+            case .ERROR:
+                self.state = State(
+                    isLoading: false,
+                    groups: self.state.groups,
+                    offset: self.state.offset,
+                    canLoadNextPage: self.state.canLoadNextPage,
+                    error: result.message ?? "An unexpected error occured")
+            case .LOADING:
+                self.state = State(isLoading: true)
+            }
+        }.store(in: &subscriptions)
     }
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {
@@ -41,20 +61,19 @@ class GroupListViewModel: ObservableObject {
         }
     }
     
-    private func onReceive<T>(_ batch: Resource<T>) {
-        if let groupItems = batch.data as? [GroupItem] {
-            self.state.groups += groupItems
-            self.state.canLoadNextPage = groupItems.count == GroupListViewModel.PAGE_ITEM_COUNT
-        }
-    }
-    
     deinit {
         self.subscriptions.removeAll()
     }
     
     struct State {
+        var isLoading: Bool = false
+        
         var groups: [GroupItem] = Array()
         
+        var offset: Int = 0
+        
         var canLoadNextPage = true
+        
+        var error: String = ""
     }
 }

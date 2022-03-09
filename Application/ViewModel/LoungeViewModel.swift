@@ -16,28 +16,31 @@ class LoungeViewModel: ObservableObject {
     
     private let repository: PostRepository
     
+    private let apiKey: String
+    
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: PostRepository) {
+    init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
     }
     
+    // TODO
     func fetchPosts(_ groupId: Int, _ offset: Int) {
         guard state.canLoadNextPage else { return }
         repository.getPosts(groupId, offset).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
-    func actionLike(_ position: Int, _ postItem: PostItem) {
-        guard let user = try? PropertyListDecoder().decode(User.self, from: UserDefaults.standard.data(forKey: "user")!) else {
-            return
-        }
-        repository.actionLike(post: postItem, user: user) { p in
+    // TODO
+    func togglePostLike(_ position: Int, _ postItem: PostItem) {
+        repository.toggleLike(apiKey, postItem) { p in
             DispatchQueue.main.async {
                 self.state.posts[position] = p
             }
         }
     }
     
+    // TODO
     func onReceive(_ completion: Subscribers.Completion<Error>) {
         switch completion {
         case .finished:
@@ -47,6 +50,7 @@ class LoungeViewModel: ObservableObject {
         }
     }
     
+    // TODO
     private func onReceive<T>(_ batch: Resource<T>) {
         if let postItem = batch.data as? [PostItem], batch.status == Status.SUCCESS {
             state.posts += postItem

@@ -12,7 +12,7 @@ struct ContentView: View {
     @ObservedObject var viewModel: LoginViewModel = LoginViewModel(.init(ApiServiceImpl()))
     
     var body: some View {
-        if UserDefaults.standard.value(forKey: "user") != nil {
+        if UserDefaultsManager.instance.user != nil {
             MainView()
         } else {
             LoginView().environmentObject(viewModel).animation(.easeIn)

@@ -53,7 +53,7 @@ struct PostDetailView: View {
                     }
                 }
                 NavigationLink(destination: UpdateReplyView().environmentObject(viewModel), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
-            }.onAppear(perform: viewModel.getReplys).actionSheet(isPresented: $viewModel.isShowingActionSheet) {
+            }.onAppear(perform: viewModel.fetchReplys).actionSheet(isPresented: $viewModel.isShowingActionSheet) {
                 var buttons = [ActionSheet.Button]()
                 
                 if viewModel.selectPosition > -1 {
@@ -62,18 +62,18 @@ struct PostDetailView: View {
                     buttons.append(.default(Text("Copy Content")) {
                         UIPasteboard.general.string = selectedReply.reply
                     })
-                    if viewModel.user.id == selectedReply.userId {
+                    if let user = UserDefaultsManager.instance.user, user.id == selectedReply.userId {
                         buttons.append(.default(Text("Edit Comment")) { viewModel.isNavigateReplyModifyView.toggle() })
-                        buttons.append(.destructive(Text("Delete Comment")) { viewModel.removeReply(selectedReply.id) })
+                        buttons.append(.destructive(Text("Delete Comment")) { viewModel.deleteReply(selectedReply.id) })
                     }
                 } else {
                     // TODO
                     // PostDetail에 관한 내용을 써야됨 예를들어 글수정, 글삭제
-                    if viewModel.user.id == viewModel.state.post?.userId {
+                    if let user = UserDefaultsManager.instance.user, user.id == viewModel.state.post?.userId {
                         print("my post")
                     }
                     buttons.append(.default(Text("Edit Post")))
-                    buttons.append(.default(Text("Delete Post"), action: viewModel.removePost))
+                    buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
                 }
                 buttons.append(.cancel())
                 return ActionSheet(title: Text("Selection Action"), buttons: buttons)
@@ -82,12 +82,12 @@ struct PostDetailView: View {
                 Divider()
                 HStack(spacing: 5) {
                     TextField("Add a Comment", text: $viewModel.message).padding(10)
-                    Button(action: viewModel.addReply) {
+                    Button(action: viewModel.insertReply) {
                         Text("Send").padding(10).foregroundColor(viewModel.message.isEmpty ? .gray : .red).overlay(RoundedRectangle(cornerRadius: 2).stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1))
                     }
                 }.padding(5)
             }
-        }.onAppear(perform: viewModel.getPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
+        }.onAppear(perform: viewModel.fetchPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
             viewModel.selectPosition = -1
             
             viewModel.isShowingActionSheet.toggle()

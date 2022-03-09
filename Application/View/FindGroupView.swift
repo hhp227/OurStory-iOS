@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct FindGroupView: View {
-    @ObservedObject var viewModel = FindGroupViewModel(.init(ApiServiceImpl()))
+    @ObservedObject var viewModel = FindGroupViewModel(.init(ApiServiceImpl()), UserDefaultsManager.instance)
     
     var body: some View {
         ZStack {
