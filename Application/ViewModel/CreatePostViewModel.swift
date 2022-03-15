@@ -64,8 +64,28 @@ class CreatePostViewModel: ObservableObject {
         }.store(in: &subscriptions)
     }
     
+    private func updatePost(_ text: String) {
+        
+    }
+    
     private func uploadImage(_ position: Int, _ postId: Int) {
         
+    }
+    
+    private func imageUploadProcess(_ position: Int, _ postId: Int) {
+        
+    }
+    
+    private func deleteImages(_ postId: Int) {
+        
+    }
+    
+    func addItem() {
+        <#function body#>
+    }
+    
+    func removeItem() {
+        <#function body#>
     }
     
     func actionSend() {
