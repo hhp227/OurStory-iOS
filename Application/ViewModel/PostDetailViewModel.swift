@@ -50,6 +50,34 @@ class PostDetailViewModel: ObservableObject {
         postRepository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
+    func fetchReplys() {
+        guard state.canLoadNextPage else { return }
+        replyRepository.getReplys(apiKey, postId).sink(receiveCompletion: onReceive) { result in
+            switch result.status {
+            case .SUCCESS:
+                self.state = State(
+                    isLoading: false,
+                    post: self.state.post,
+                    replys: self.state.replys + (result.data ?? []),
+                    replyId: self.state.replyId,
+                    canLoadNextPage: self.state.canLoadNextPage,
+                    error: self.state.error
+                )
+            case .ERROR:
+                self.state = State(
+                    isLoading: false,
+                    post: self.state.post,
+                    replys: self.state.replys,
+                    replyId: self.state.replyId,
+                    canLoadNextPage: self.state.canLoadNextPage,
+                    error: result.message ?? "An unexpected error occured"
+                )
+            case .LOADING:
+                self.state = State(isLoading: true)
+            }
+        }.store(in: &subscriptions)
+    }
+    
     func deletePost() {
         postRepository.removePost(apiKey, postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
@@ -97,32 +125,8 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func fetchReplys() {
-        guard state.canLoadNextPage else { return }
-        replyRepository.getReplys(apiKey, postId).sink(receiveCompletion: onReceive) { result in
-            switch result.status {
-            case .SUCCESS:
-                self.state = State(
-                    isLoading: false,
-                    post: self.state.post,
-                    replys: self.state.replys + (result.data ?? []),
-                    replyId: self.state.replyId,
-                    canLoadNextPage: self.state.canLoadNextPage,
-                    error: self.state.error
-                )
-            case .ERROR:
-                self.state = State(
-                    isLoading: false,
-                    post: self.state.post,
-                    replys: self.state.replys,
-                    replyId: self.state.replyId,
-                    canLoadNextPage: self.state.canLoadNextPage,
-                    error: result.message ?? "An unexpected error occured"
-                )
-            case .LOADING:
-                self.state = State(isLoading: true)
-            }
-        }.store(in: &subscriptions)
+    func updateReply() {
+        <#function body#>
     }
     
     // TODO 이거는 CreatePostViewModel로 빼야할것
