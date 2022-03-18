@@ -81,11 +81,11 @@ class CreatePostViewModel: ObservableObject {
     }
     
     func addItem() {
-        <#function body#>
+        
     }
     
     func removeItem() {
-        <#function body#>
+        
     }
     
     func actionSend() {

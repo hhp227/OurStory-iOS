@@ -14,6 +14,8 @@ class PostRepository {
     
     init(_ apiService: ApiService) {
         self.apiService = apiService
+        
+        print("Test: \(self)")
     }
     
     //TODO https://www.vadimbulavin.com/infinite-list-scroll-swiftui-combine/

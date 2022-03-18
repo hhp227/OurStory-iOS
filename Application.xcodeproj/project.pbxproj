@@ -25,6 +25,7 @@
 		0A2232AD26EE2F19009B7585 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */; };
 		0A24102B2694CF030007E5EB /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = 0A24102A2694CF020007E5EB /* Preview Content */; };
 		0A25FB2026E128B900794D5C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25FB1F26E128B900794D5C /* CardView.swift */; };
+		0A29066327E4CFB000909571 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A29066227E4CFB000909571 /* InjectorUtils.swift */; };
 		0A291FA3274E89EA00EEF1AD /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A291FA2274E89EA00EEF1AD /* ReachabilityService.swift */; };
 		0A297EC7270AED42007FCAE7 /* UpdateReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A297EC6270AED42007FCAE7 /* UpdateReplyView.swift */; };
 		0A2B1F9B26DE798D00C52E73 /* FindGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1F9A26DE798D00C52E73 /* FindGroupView.swift */; };
@@ -88,6 +89,7 @@
 		0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		0A24102A2694CF020007E5EB /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
 		0A25FB1F26E128B900794D5C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0A29066227E4CFB000909571 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
 		0A291FA2274E89EA00EEF1AD /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		0A297EC6270AED42007FCAE7 /* UpdateReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReplyView.swift; sourceTree = "<group>"; };
 		0A2B1F9A26DE798D00C52E73 /* FindGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupView.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				0A6324D626E7B4F100D574C9 /* DateUtil.swift */,
 				0A291FA2274E89EA00EEF1AD /* ReachabilityService.swift */,
 				0A4F5291277D9CA5002188EB /* ImagePicker.swift */,
+				0A29066227E4CFB000909571 /* InjectorUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				0A7CE76C26FEBBF300F664DD /* FindGroupViewModel.swift in Sources */,
 				0A450FA926C8B81200365F19 /* GroupView.swift in Sources */,
 				0A1F585026DA02D9006CECE6 /* CreatePostViewModel.swift in Sources */,
+				0A29066327E4CFB000909571 /* InjectorUtils.swift in Sources */,
 				0A964AF726ABFE0800FDB511 /* PostDetailView.swift in Sources */,
 				0AD3BE8E26B2ACED00E857B4 /* MainView.swift in Sources */,
 				0A291FA3274E89EA00EEF1AD /* ReachabilityService.swift in Sources */,

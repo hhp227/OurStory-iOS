@@ -126,7 +126,7 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func updateReply() {
-        <#function body#>
+        
     }
     
     // TODO 이거는 CreatePostViewModel로 빼야할것
