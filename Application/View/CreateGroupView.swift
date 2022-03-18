@@ -23,6 +23,6 @@ struct CreateGroupView: View {
 
 struct CreateGroupView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateGroupView(viewModel: CreateGroupViewModel(.init(ApiServiceImpl()), UserDefaultsManager.instance))
+        CreateGroupView(viewModel: CreateGroupViewModel(InjectorUtils.instance.getGroupRepository(), InjectorUtils.instance.getUserDefaultsManager()))
     }
 }

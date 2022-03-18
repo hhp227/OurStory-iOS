@@ -8,14 +8,9 @@
 
 import Foundation
 import Combine
-import Alamofire
 
 class ReplyRepository {
     let apiService: ApiService
-    
-    init(_ apiService: ApiService) {
-        self.apiService = apiService
-    }
     
     func getReplys(_ apiKey: String, _ postId: Int) -> AnyPublisher<Resource<[ReplyItem]>, Error> {
         return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .get, header: ["Authorization": apiKey], params: [:]) { data, response -> Resource<[ReplyItem]> in
@@ -71,6 +66,22 @@ class ReplyRepository {
             } else {
                 return Resource.error(response.debugDescription, nil)
             }
+        }
+    }
+    
+    init(_ apiService: ApiService) {
+        self.apiService = apiService
+    }
+    
+    private static var instance: ReplyRepository? = nil
+    
+    static func getInstance(apiService: ApiService) -> ReplyRepository {
+        if let instance = self.instance {
+            return instance
+        } else {
+            let replyRepository = ReplyRepository(apiService)
+            self.instance = replyRepository
+            return replyRepository
         }
     }
 }

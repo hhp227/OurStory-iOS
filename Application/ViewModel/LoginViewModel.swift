@@ -22,10 +22,6 @@ class LoginViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: UserRepository) {
-        self.repository = repository
-    }
-    
     private func isEmailValid(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         return email.contains("@") ? NSPredicate(format: "SELF MATCHES %@", emailRegEx).evaluate(with: email) : !email.isEmpty
@@ -50,6 +46,14 @@ class LoginViewModel: ObservableObject {
         } else {
             print("email 또는 password가 잘못되었습니다.")
         }
+    }
+    
+    init(_ repository: UserRepository) {
+        self.repository = repository
+    }
+    
+    deinit {
+        subscriptions.removeAll()
     }
     
     struct State {

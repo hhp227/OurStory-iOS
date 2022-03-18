@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct NotJoinedGroupView: View {
-    @ObservedObject var viewModel = NotJoinedGroupViewModel(.init(ApiServiceImpl()))
+    @ObservedObject var viewModel = NotJoinedGroupViewModel(InjectorUtils.instance.getGroupRepository())
     
     var body: some View {
         Text("Hello, NotJoinedGroupView")

@@ -12,18 +12,11 @@ import Combine
 class LoungeViewModel: ObservableObject {
     @Published private(set) var state = State()
     
-    private static let PAGE_ITEM_COUNT = 15
-    
     private let repository: PostRepository
     
     private let apiKey: String
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
-        self.repository = repository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
-    }
     
     // TODO
     func fetchPosts(_ groupId: Int, _ offset: Int) {
@@ -59,9 +52,16 @@ class LoungeViewModel: ObservableObject {
         }
     }
     
+    init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
+        self.repository = repository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
+    }
+    
     deinit {
         subscriptions.removeAll()
     }
+    
+    private static let PAGE_ITEM_COUNT = 15
     
     struct State {
         var isLoading: Bool = false

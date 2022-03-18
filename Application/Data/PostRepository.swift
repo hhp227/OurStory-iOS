@@ -12,12 +12,6 @@ import Combine
 class PostRepository {
     private let apiService: ApiService
     
-    init(_ apiService: ApiService) {
-        self.apiService = apiService
-        
-        print("Test: \(self)")
-    }
-    
     //TODO https://www.vadimbulavin.com/infinite-list-scroll-swiftui-combine/
     func getPosts(_ groupId: Int, _ offset: Int) -> AnyPublisher<Resource<[PostItem]>, Error> {
         return apiService.request(with: URL_POSTS.replacingOccurrences(of: "{GROUP_ID}", with: String(groupId)).replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, header: [:], params: [:]) { (data, response) -> Resource<[PostItem]> in
@@ -136,6 +130,22 @@ class PostRepository {
                 print("failure")
                 break
             }
+        }
+    }
+    
+    init(_ apiService: ApiService) {
+        self.apiService = apiService
+    }
+    
+    private static var instance: PostRepository? = nil
+    
+    static func getInstance(apiService: ApiService) -> PostRepository {
+        if let instance = self.instance {
+            return instance
+        } else {
+            let postRepository = PostRepository(apiService)
+            self.instance = postRepository
+            return postRepository
         }
     }
 }

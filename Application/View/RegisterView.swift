@@ -36,6 +36,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(viewModel: .init(UserRepository(ApiServiceImpl())))
+        RegisterView(viewModel: .init(InjectorUtils.instance.getUserRepository()))
     }
 }

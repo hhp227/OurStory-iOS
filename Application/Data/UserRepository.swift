@@ -13,10 +13,6 @@ import Combine
 class UserRepository {
     let apiService: ApiService
     
-    init(_ apiService: ApiService) {
-        self.apiService = apiService
-    }
-    
     private func parseUser(_ jsonObject: [String: Any]) -> User {
         return User(
             id: jsonObject["id"] as! Int,
@@ -104,6 +100,22 @@ class UserRepository {
                 success(false)
                 break
             }
+        }
+    }
+    
+    init(_ apiService: ApiService) {
+        self.apiService = apiService
+    }
+    
+    private static var instance: UserRepository? = nil
+    
+    static func getInstance(apiService: ApiService) -> UserRepository {
+        if let instance = self.instance {
+            return instance
+        } else {
+            let userRepository = UserRepository(apiService)
+            self.instance = userRepository
+            return userRepository
         }
     }
 }

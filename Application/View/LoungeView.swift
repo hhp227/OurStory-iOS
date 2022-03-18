@@ -20,7 +20,7 @@ struct LoungeView: View {
                     ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, post in
                         CardView {
                             VStack(alignment: .leading, spacing: 0) {
-                                NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(.init(ApiServiceImpl()), .init(ApiServiceImpl()), UserDefaultsManager.instance, post.id))) {
+                                NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(InjectorUtils.instance.getPostRepository(), InjectorUtils.instance.getReplyRepository(), InjectorUtils.instance.getUserDefaultsManager(), post.id))) {
                                     VStack(alignment: .leading, spacing: 0) {
                                         HStack(alignment: .top) {
                                             AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
@@ -52,7 +52,7 @@ struct LoungeView: View {
                                         }
                                     }.frame(maxWidth: .infinity).padding(10)
                                     Divider()
-                                    NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(.init(ApiServiceImpl()), .init(ApiServiceImpl()), UserDefaultsManager.instance, post.id)), label: {
+                                    NavigationLink(destination: PostDetailView().environmentObject(PostDetailViewModel(InjectorUtils.instance.getPostRepository(), InjectorUtils.instance.getReplyRepository(), InjectorUtils.instance.getUserDefaultsManager(), post.id)), label: {
                                         HStack {
                                             Text("Comment")
                                             if post.replyCount > 0 {
@@ -82,7 +82,7 @@ struct LoungeView: View {
                 HStack {
                     Spacer()
                     NavigationLink(
-                        destination: CreatePostView().environmentObject(CreatePostViewModel(.init(ApiServiceImpl()), UserDefaultsManager.instance, 0))) {
+                        destination: CreatePostView().environmentObject(CreatePostViewModel(InjectorUtils.instance.getPostRepository(), InjectorUtils.instance.getUserDefaultsManager(), 0))) {
                         Text("+").font(.system(.largeTitle)).frame(width: 66, height: 60).foregroundColor(.white).padding(.bottom, 7)
                     }.background(Color.blue).cornerRadius(38.5).padding().shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3).animation(.none)
                 }

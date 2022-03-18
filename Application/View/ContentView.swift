@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: LoginViewModel = LoginViewModel(.init(ApiServiceImpl()))
+    @ObservedObject var viewModel: LoginViewModel = LoginViewModel(InjectorUtils.instance.getUserRepository())
     
     var body: some View {
-        if UserDefaultsManager.instance.user != nil {
+        if InjectorUtils.instance.getUserDefaultsManager().user != nil {
             MainView()
         } else {
             LoginView().environmentObject(viewModel).animation(.easeIn)

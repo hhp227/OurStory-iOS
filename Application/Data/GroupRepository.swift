@@ -12,10 +12,6 @@ import Foundation
 class GroupRepository {
     let apiService: ApiService
     
-    init(_ apiService: ApiService) {
-        self.apiService = apiService
-    }
-    
     func getMyGroups(_ apiKey: String, _ offset: Int) -> AnyPublisher<Resource<[GroupItem]>, Error> {
         return apiService.request(with: URL_USER_GROUP.replacingOccurrences(of: "{OFFSET}", with: String(offset)), method: .get, header: ["Authorization": apiKey], params: [:]) { data, response -> Resource<[GroupItem]> in
             if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
@@ -45,6 +41,26 @@ class GroupRepository {
             } else {
                 return Resource.error(response.description, nil)
             }
+        }
+    }
+    
+    init(_ apiService: ApiService) {
+        self.apiService = apiService
+        
+        print("TEST: \(self)")
+    }
+    
+    private static var instance: GroupRepository? = nil
+    
+    static func getInstance(apiService: ApiService) -> GroupRepository {
+        if let instance = self.instance {
+            print("getInstance")
+            return instance
+        } else {
+            let groupRepository = GroupRepository(apiService)
+            self.instance = groupRepository
+            print("newInstance")
+            return groupRepository
         }
     }
 }

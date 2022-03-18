@@ -14,7 +14,21 @@ class Temp1Repository {
     
     init(_ apiService: ApiService) {
         self.apiService = apiService
+        
+        print("TEST: \(self)")
     }
     
+    private static var instance: Temp1Repository? = nil
     
+    static func getInstance(apiService: ApiService) -> Temp1Repository {
+        if let instance = self.instance {
+            print("getInstance")
+            return instance
+        } else {
+            let temp1Repository = Temp1Repository(apiService)
+            self.instance = temp1Repository
+            print("newInstance")
+            return temp1Repository
+        }
+    }
 }

@@ -12,18 +12,11 @@ import Foundation
 class GroupListViewModel: ObservableObject {
     @Published private(set) var state = State()
     
-    private static let PAGE_ITEM_COUNT = 15
-    
     private let repository: GroupRepository
     
     private let apiKey: String
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
-        self.repository = repository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
-    }
     
     func fetchGroups(_ offset: Int) {
         guard state.canLoadNextPage else { return }
@@ -61,9 +54,16 @@ class GroupListViewModel: ObservableObject {
         }
     }
     
+    init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
+        self.repository = repository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
+    }
+    
     deinit {
         self.subscriptions.removeAll()
     }
+    
+    private static let PAGE_ITEM_COUNT = 15
     
     struct State {
         var isLoading: Bool = false

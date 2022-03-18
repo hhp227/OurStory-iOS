@@ -19,10 +19,6 @@ class RegisterViewModel: ObservableObject {
     
     private let repository: UserRepository
     
-    init(_ repository: UserRepository) {
-        self.repository = repository
-    }
-    
     func register() {
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
             self.repository.register(self.name, self.email, self.password) { isRegister in
@@ -31,5 +27,9 @@ class RegisterViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    init(_ repository: UserRepository) {
+        self.repository = repository
     }
 }

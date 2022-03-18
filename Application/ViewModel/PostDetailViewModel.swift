@@ -22,8 +22,6 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var selectPosition = -1
     
-    private static let PAGE_ITEM_COUNT = 15
-    
     private let postRepository: PostRepository
     
     private let replyRepository: ReplyRepository
@@ -33,13 +31,6 @@ class PostDetailViewModel: ObservableObject {
     private var postId: Int
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ postId: Int) {
-        self.postRepository = postRepository
-        self.replyRepository = replyRepository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
-        self.postId = postId
-    }
     
     // TODO
     private func fetchReply(_ replyId: Int) {
@@ -220,9 +211,18 @@ class PostDetailViewModel: ObservableObject {
         deleteResult.toggle() // 현재는 버그발생
     }
     
+    init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ postId: Int) {
+        self.postRepository = postRepository
+        self.replyRepository = replyRepository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
+        self.postId = postId
+    }
+    
     deinit {
         subscriptions.removeAll()
     }
+    
+    private static let PAGE_ITEM_COUNT = 15
     
     struct State {
         var isLoading: Bool = false

@@ -19,8 +19,6 @@ class CreatePostViewModel: ObservableObject {
     
     @Published var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
-    private static let IMAGE_ITEM_START_POSITION = 1
-    
     private let repository: PostRepository
     
     private let apiKey: String
@@ -28,12 +26,6 @@ class CreatePostViewModel: ObservableObject {
     private let groupId: Int
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager, _ groupId: Int) {
-        self.repository = repository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
-        self.groupId = groupId
-    }
     
     private func insertPost(_ text: String) {
         repository.addPost(apiKey, groupId, text).sink(receiveCompletion: { _ in }) { result in
@@ -95,6 +87,18 @@ class CreatePostViewModel: ObservableObject {
             print("text is empty")
         }
     }
+    
+    init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager, _ groupId: Int) {
+        self.repository = repository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
+        self.groupId = groupId
+    }
+    
+    deinit {
+        subscriptions.removeAll()
+    }
+    
+    private static let IMAGE_ITEM_START_POSITION = 1
     
     struct State {
         var isLoading: Bool = false

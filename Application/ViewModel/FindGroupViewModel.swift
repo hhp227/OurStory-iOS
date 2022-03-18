@@ -12,18 +12,11 @@ import Combine
 class FindGroupViewModel: ObservableObject {
     @Published private(set) var state = State()
     
-    private static let PAGE_ITEM_COUNT = 15
-    
     private let repository: GroupRepository
     
     private let apiKey: String
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
-        self.repository = repository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
-    }
     
     private func onReceive<T>(_ batch: Resource<T>) {
         switch batch.status {
@@ -63,9 +56,16 @@ class FindGroupViewModel: ObservableObject {
         repository.getNotJoinedGroups(apiKey, 0).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
+    init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
+        self.repository = repository
+        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
+    }
+    
     deinit {
         self.subscriptions.removeAll()
     }
+    
+    private static let PAGE_ITEM_COUNT = 15
     
     struct State {
         var isLoading: Bool = false
