@@ -88,10 +88,10 @@ class CreatePostViewModel: ObservableObject {
         }
     }
     
-    init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager, _ groupId: Int) {
+    init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
         self.repository = repository
         self.apiKey = userDefaultsManager.user?.apiKey ?? ""
-        self.groupId = groupId
+        self.groupId = handle["group_id"] as? Int ?? 0
     }
     
     deinit {

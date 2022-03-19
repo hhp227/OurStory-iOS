@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CreatePostView: View {
-    @EnvironmentObject var viewModel: CreatePostViewModel
+    @ObservedObject var viewModel: CreatePostViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -42,10 +42,14 @@ struct CreatePostView: View {
             }
         }
     }
+    
+    init(args: [String: Any]) {
+        self.viewModel = InjectorUtils.instance.provideCreatePostViewModel(params: args)
+    }
 }
 
 struct CreatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePostView()
+        CreatePostView(args: ["group_id": 0])
     }
 }

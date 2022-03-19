@@ -33,5 +33,33 @@ public final class InjectorUtils {
         return UserDefaultsManager.instance
     }
     
+    func provideGroupListViewModel() -> GroupListViewModel {
+        return GroupListViewModel(getGroupRepository(), getUserDefaultsManager())
+    }
+    
+    func provideCreateGroupViewModel() -> CreateGroupViewModel {
+        return CreateGroupViewModel(getGroupRepository(), getUserDefaultsManager())
+    }
+    
+    func provideFindGroupViewModel() -> FindGroupViewModel {
+        return FindGroupViewModel(getGroupRepository(), getUserDefaultsManager())
+    }
+    
+    func provideJoinRequestGroupViewModel() -> JoinRequestGroupViewModel {
+        return JoinRequestGroupViewModel(getGroupRepository())
+    }
+    
+    func provideCreatePostViewModel(params: [String: Any]) -> CreatePostViewModel {
+        return CreatePostViewModel(InjectorUtils.instance.getPostRepository(), InjectorUtils.instance.getUserDefaultsManager(), params)
+    }
+    
+    func providePostDetailViewModel() -> PostDetailViewModel {
+        return PostDetailViewModel(getPostRepository(), getReplyRepository(), getUserDefaultsManager(), 0)
+    }
+    
+    func provideLoungeViewModel() -> LoungeViewModel {
+        return LoungeViewModel(getPostRepository(), getUserDefaultsManager())
+    }
+    
     static var instance = InjectorUtils.init()
 }

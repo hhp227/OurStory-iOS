@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct GroupListView: View {
-    @EnvironmentObject var viewModel: GroupListViewModel
+    @ObservedObject var viewModel: GroupListViewModel = InjectorUtils.provideGroupListViewModel(InjectorUtils.instance)()
     
     private var topNavigationLinks: some View {
         HStack(alignment: .bottom) {
@@ -19,13 +19,13 @@ struct GroupListView: View {
                     Text("Find a Groups").font(.system(size: 14)).fixedSize()
                 }
             }.frame(maxWidth: .infinity)
-            NavigationLink(destination: NotJoinedGroupView()) {
+            NavigationLink(destination: JoinRequestGroupView()) {
                 VStack(spacing: 0) {
                     Image(systemName: "person.2.fill").renderingMode(.template).resizable().aspectRatio(contentMode: .fit).frame(width: 33, height: 33)
                     Text("Join Request Groups").font(.system(size: 14)).fixedSize()
                 }
             }.frame(maxWidth: .infinity)
-            NavigationLink(destination: CreateGroupView(viewModel: CreateGroupViewModel(InjectorUtils.instance.getGroupRepository(), InjectorUtils.instance.getUserDefaultsManager()))) {
+            NavigationLink(destination: CreateGroupView()) {
                 VStack(spacing: 5) {
                     Image(systemName: "plus").renderingMode(.template).resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25)
                     Text("Create Group").font(.system(size: 14)).fixedSize()

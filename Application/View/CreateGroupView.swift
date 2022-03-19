@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CreateGroupView: View {
-    @ObservedObject var viewModel: CreateGroupViewModel
+    @ObservedObject var viewModel: CreateGroupViewModel = InjectorUtils.provideCreateGroupViewModel(InjectorUtils.instance)()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,6 +23,6 @@ struct CreateGroupView: View {
 
 struct CreateGroupView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateGroupView(viewModel: CreateGroupViewModel(InjectorUtils.instance.getGroupRepository(), InjectorUtils.instance.getUserDefaultsManager()))
+        CreateGroupView()
     }
 }

@@ -7,17 +7,9 @@
 //
 
 import Foundation
+import Combine
 
 class UserDefaultsManager {
-    private static let USER_KEY = "user"
-    
-    class var instance: UserDefaultsManager {
-        struct Static {
-            static let shared = UserDefaultsManager()
-        }
-        return Static.shared
-    }
-    
     let userDefaults: UserDefaults = .standard
     
     var user: User? {
@@ -41,5 +33,29 @@ class UserDefaultsManager {
         if let appDomain = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: appDomain)
         }
+    }
+    
+    //
+    func test() -> NSObject.KeyValueObservingPublisher<UserDefaults, Data?> {
+        return userDefaults.publisher(for: \.key)
+    }
+    
+    func temp() -> AnyPublisher<Data, Never> {
+        return userDefaults.data(forKey: UserDefaultsManager.USER_KEY).publisher.eraseToAnyPublisher()
+    }
+    
+    static let USER_KEY = "user"
+    
+    class var instance: UserDefaultsManager {
+        struct Static {
+            static let shared = UserDefaultsManager()
+        }
+        return Static.shared
+    }
+}
+
+extension UserDefaults {
+    @objc dynamic var key: Data? {
+        return self.data(forKey: UserDefaultsManager.USER_KEY)
     }
 }

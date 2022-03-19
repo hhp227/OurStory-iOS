@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LoungeView: View {
-    @EnvironmentObject var viewModel: LoungeViewModel
+    @ObservedObject var viewModel: LoungeViewModel = InjectorUtils.instance.provideLoungeViewModel()
     
     var body: some View {
         ZStack {
@@ -82,7 +82,7 @@ struct LoungeView: View {
                 HStack {
                     Spacer()
                     NavigationLink(
-                        destination: CreatePostView().environmentObject(CreatePostViewModel(InjectorUtils.instance.getPostRepository(), InjectorUtils.instance.getUserDefaultsManager(), 0))) {
+                        destination: CreatePostView(args: ["group_id": 0])) {
                         Text("+").font(.system(.largeTitle)).frame(width: 66, height: 60).foregroundColor(.white).padding(.bottom, 7)
                     }.background(Color.blue).cornerRadius(38.5).padding().shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3).animation(.none)
                 }

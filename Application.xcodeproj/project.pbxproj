@@ -23,6 +23,7 @@
 		0A1F585026DA02D9006CECE6 /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F584F26DA02D9006CECE6 /* CreatePostViewModel.swift */; };
 		0A1F585326DA265A006CECE6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F585226DA265A006CECE6 /* LoginView.swift */; };
 		0A2232AD26EE2F19009B7585 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */; };
+		0A23BADC27E5F5310002C61B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A23BADB27E5F5310002C61B /* ContentViewModel.swift */; };
 		0A24102B2694CF030007E5EB /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = 0A24102A2694CF020007E5EB /* Preview Content */; };
 		0A25FB2026E128B900794D5C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25FB1F26E128B900794D5C /* CardView.swift */; };
 		0A29066327E4CFB000909571 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A29066227E4CFB000909571 /* InjectorUtils.swift */; };
@@ -30,7 +31,7 @@
 		0A297EC7270AED42007FCAE7 /* UpdateReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A297EC6270AED42007FCAE7 /* UpdateReplyView.swift */; };
 		0A2B1F9B26DE798D00C52E73 /* FindGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1F9A26DE798D00C52E73 /* FindGroupView.swift */; };
 		0A2B1F9E26DE79AF00C52E73 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1F9D26DE79AF00C52E73 /* CreateGroupView.swift */; };
-		0A2B1FA126DE79FD00C52E73 /* NotJoinedGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */; };
+		0A2B1FA126DE79FD00C52E73 /* JoinRequestGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B1FA026DE79FD00C52E73 /* JoinRequestGroupView.swift */; };
 		0A30045826DBC0F500123C55 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30045726DBC0F500123C55 /* PostItem.swift */; };
 		0A30045B26DBC25900123C55 /* GroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30045A26DBC25900123C55 /* GroupItem.swift */; };
 		0A3288D226F0F9DC009A2E99 /* ReplyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3288D126F0F9DC009A2E99 /* ReplyRepository.swift */; };
@@ -66,7 +67,7 @@
 		0AD3BE9126B2AD1C00E857B4 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */; };
 		0AD3BE9426B2AD3100E857B4 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE9326B2AD3100E857B4 /* GroupListView.swift */; };
 		0AD3BE9726B2AD3F00E857B4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE9626B2AD3F00E857B4 /* UserView.swift */; };
-		0AFD179327493CCD00E04608 /* NotJoinedGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD179227493CCD00E04608 /* NotJoinedGroupViewModel.swift */; };
+		0AFD179327493CCD00E04608 /* JoinRequestGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD179227493CCD00E04608 /* JoinRequestGroupViewModel.swift */; };
 		DA8EF379A795494E56B4FAE6 /* Pods_Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAE3DC38B91CDFC2AC84FEB /* Pods_Application.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		0A1F584F26DA02D9006CECE6 /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
 		0A1F585226DA265A006CECE6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A2232AC26EE2F19009B7585 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
+		0A23BADB27E5F5310002C61B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		0A24102A2694CF020007E5EB /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
 		0A25FB1F26E128B900794D5C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0A29066227E4CFB000909571 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 		0A297EC6270AED42007FCAE7 /* UpdateReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReplyView.swift; sourceTree = "<group>"; };
 		0A2B1F9A26DE798D00C52E73 /* FindGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupView.swift; sourceTree = "<group>"; };
 		0A2B1F9D26DE79AF00C52E73 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
-		0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotJoinedGroupView.swift; sourceTree = "<group>"; };
+		0A2B1FA026DE79FD00C52E73 /* JoinRequestGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestGroupView.swift; sourceTree = "<group>"; };
 		0A30045726DBC0F500123C55 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		0A30045A26DBC25900123C55 /* GroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItem.swift; sourceTree = "<group>"; };
 		0A3288D126F0F9DC009A2E99 /* ReplyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyRepository.swift; sourceTree = "<group>"; };
@@ -132,7 +134,7 @@
 		0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		0AD3BE9326B2AD3100E857B4 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		0AD3BE9626B2AD3F00E857B4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
-		0AFD179227493CCD00E04608 /* NotJoinedGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotJoinedGroupViewModel.swift; sourceTree = "<group>"; };
+		0AFD179227493CCD00E04608 /* JoinRequestGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestGroupViewModel.swift; sourceTree = "<group>"; };
 		2DAE3DC38B91CDFC2AC84FEB /* Pods_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5441B96A9188ED8082534360 /* Pods-Application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Application.debug.xcconfig"; path = "Target Support Files/Pods-Application/Pods-Application.debug.xcconfig"; sourceTree = "<group>"; };
 		8AB759196684A05A031DD138 /* Pods-Application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Application.release.xcconfig"; path = "Target Support Files/Pods-Application/Pods-Application.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,7 +170,7 @@
 				0A1F585226DA265A006CECE6 /* LoginView.swift */,
 				0A2B1F9A26DE798D00C52E73 /* FindGroupView.swift */,
 				0A2B1F9D26DE79AF00C52E73 /* CreateGroupView.swift */,
-				0A2B1FA026DE79FD00C52E73 /* NotJoinedGroupView.swift */,
+				0A2B1FA026DE79FD00C52E73 /* JoinRequestGroupView.swift */,
 				0A6EAE8926FCC059000698B1 /* ChatListView.swift */,
 				0A3A395B26C559830068FCE3 /* ProfileView.swift */,
 				0A297EC6270AED42007FCAE7 /* UpdateReplyView.swift */,
@@ -243,7 +245,8 @@
 				0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */,
 				0A7CE76B26FEBBF300F664DD /* FindGroupViewModel.swift */,
 				0A19E16D271C645000453018 /* CreateGroupViewModel.swift */,
-				0AFD179227493CCD00E04608 /* NotJoinedGroupViewModel.swift */,
+				0AFD179227493CCD00E04608 /* JoinRequestGroupViewModel.swift */,
+				0A23BADB27E5F5310002C61B /* ContentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -520,7 +523,7 @@
 				0A15B92F2739620F009F8F2E /* Status.swift in Sources */,
 				0A7132B72470FEE80049F7FB /* ContentView.swift in Sources */,
 				0A1BDAAB27202A6200E0D29E /* Temp3Repository.swift in Sources */,
-				0AFD179327493CCD00E04608 /* NotJoinedGroupViewModel.swift in Sources */,
+				0AFD179327493CCD00E04608 /* JoinRequestGroupViewModel.swift in Sources */,
 				0A05D8C526BAD2160030333A /* URLs.swift in Sources */,
 				0A3288D226F0F9DC009A2E99 /* ReplyRepository.swift in Sources */,
 				0A1A7A5826E3454E00E98406 /* AsyncImage.swift in Sources */,
@@ -532,7 +535,8 @@
 				0AD3BE9726B2AD3F00E857B4 /* UserView.swift in Sources */,
 				0A3A395326C558BD0068FCE3 /* DrawerViewModel.swift in Sources */,
 				0A2B1F9E26DE79AF00C52E73 /* CreateGroupView.swift in Sources */,
-				0A2B1FA126DE79FD00C52E73 /* NotJoinedGroupView.swift in Sources */,
+				0A23BADC27E5F5310002C61B /* ContentViewModel.swift in Sources */,
+				0A2B1FA126DE79FD00C52E73 /* JoinRequestGroupView.swift in Sources */,
 				0A6324D726E7B4F100D574C9 /* DateUtil.swift in Sources */,
 				0A32EB2926BE7C55006A5295 /* ApiService.swift in Sources */,
 				0A7132B52470FEE80049F7FB /* SceneDelegate.swift in Sources */,

@@ -46,20 +46,16 @@ class GroupRepository {
     
     init(_ apiService: ApiService) {
         self.apiService = apiService
-        
-        print("TEST: \(self)")
     }
     
     private static var instance: GroupRepository? = nil
     
     static func getInstance(apiService: ApiService) -> GroupRepository {
         if let instance = self.instance {
-            print("getInstance")
             return instance
         } else {
             let groupRepository = GroupRepository(apiService)
             self.instance = groupRepository
-            print("newInstance")
             return groupRepository
         }
     }

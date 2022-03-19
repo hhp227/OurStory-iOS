@@ -33,7 +33,7 @@ class LoginViewModel: ObservableObject {
     
     func login() {
         if isEmailValid(email) && isPasswordValid(password) {
-            repository.login(email, password).sink(receiveCompletion: { _ in }) { result in
+            repository.login(email, password).sink { _ in } receiveValue: { result in
                 switch result.status {
                 case .SUCCESS:
                     self.state = State(user: result.data)
@@ -50,6 +50,8 @@ class LoginViewModel: ObservableObject {
     
     init(_ repository: UserRepository) {
         self.repository = repository
+        
+        print("Test: LoginViewModel Init\(self)")
     }
     
     deinit {

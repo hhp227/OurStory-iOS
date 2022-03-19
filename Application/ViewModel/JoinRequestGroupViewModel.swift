@@ -1,5 +1,5 @@
 //
-//  NotJoinedGroupViewModel.swift
+//  JoinRequestGroupViewModel.swift
 //  Application
 //
 //  Created by 홍희표 on 2021/11/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotJoinedGroupViewModel: ObservableObject {
+class JoinRequestGroupViewModel: ObservableObject {
     private let repository: GroupRepository
     
     func getGroups() {
