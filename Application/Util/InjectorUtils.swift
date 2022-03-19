@@ -9,23 +9,23 @@
 import Foundation
 
 public final class InjectorUtils {
-    func getApiService() -> ApiService {
+    private func getApiService() -> ApiService {
         return ApiServiceImpl.init()
     }
     
-    func getGroupRepository() -> GroupRepository {
+    private func getGroupRepository() -> GroupRepository {
         return GroupRepository.getInstance(apiService: getApiService())
     }
     
-    func getPostRepository() -> PostRepository {
+    private func getPostRepository() -> PostRepository {
         return PostRepository.getInstance(apiService: getApiService())
     }
     
-    func getReplyRepository() -> ReplyRepository {
+    private func getReplyRepository() -> ReplyRepository {
         return ReplyRepository.getInstance(apiService: getApiService())
     }
     
-    func getUserRepository() -> UserRepository {
+    private func getUserRepository() -> UserRepository {
         return UserRepository.getInstance(apiService: getApiService())
     }
     
@@ -53,12 +53,20 @@ public final class InjectorUtils {
         return CreatePostViewModel(InjectorUtils.instance.getPostRepository(), InjectorUtils.instance.getUserDefaultsManager(), params)
     }
     
-    func providePostDetailViewModel() -> PostDetailViewModel {
-        return PostDetailViewModel(getPostRepository(), getReplyRepository(), getUserDefaultsManager(), 0)
+    func providePostDetailViewModel(params: [String: Any]) -> PostDetailViewModel {
+        return PostDetailViewModel(getPostRepository(), getReplyRepository(), getUserDefaultsManager(), params)
     }
     
     func provideLoungeViewModel() -> LoungeViewModel {
         return LoungeViewModel(getPostRepository(), getUserDefaultsManager())
+    }
+    
+    func provideLoginViewModel() -> LoginViewModel {
+        return LoginViewModel(getUserRepository())
+    }
+    
+    func provideRegisterViewModel() -> RegisterViewModel {
+        return RegisterViewModel(getUserRepository())
     }
     
     static var instance = InjectorUtils.init()

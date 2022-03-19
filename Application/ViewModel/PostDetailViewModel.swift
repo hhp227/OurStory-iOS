@@ -28,7 +28,7 @@ class PostDetailViewModel: ObservableObject {
     
     private let apiKey: String
     
-    private var postId: Int
+    private var post: PostItem
     
     private var subscriptions = Set<AnyCancellable>()
     
@@ -38,12 +38,12 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func fetchPost() {
-        postRepository.getPost(postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        postRepository.getPost(post.id).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func fetchReplys() {
         guard state.canLoadNextPage else { return }
-        replyRepository.getReplys(apiKey, postId).sink(receiveCompletion: onReceive) { result in
+        replyRepository.getReplys(apiKey, post.id).sink(receiveCompletion: onReceive) { result in
             switch result.status {
             case .SUCCESS:
                 self.state = State(
@@ -70,12 +70,12 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func deletePost() {
-        postRepository.removePost(apiKey, postId).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        postRepository.removePost(apiKey, post.id).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func insertReply() {
         if !message.isEmpty {
-            replyRepository.addReply(apiKey, postId, message).sink(receiveCompletion: { _ in }) { result in
+            replyRepository.addReply(apiKey, post.id, message).sink(receiveCompletion: { _ in }) { result in
                 switch result.status {
                 case .SUCCESS:
                     let replyId = result.data ?? -1
@@ -211,11 +211,13 @@ class PostDetailViewModel: ObservableObject {
         deleteResult.toggle() // 현재는 버그발생
     }
     
-    init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ postId: Int) {
+    init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
         self.postRepository = postRepository
         self.replyRepository = replyRepository
         self.apiKey = userDefaultsManager.user?.apiKey ?? ""
-        self.postId = postId
+        self.post = handle["post"] as! PostItem
+        
+        print("Test: PostDetailViewModel init \(self)")
     }
     
     deinit {

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @ObservedObject var viewModel: RegisterViewModel
+    @ObservedObject var viewModel: RegisterViewModel = InjectorUtils.instance.provideRegisterViewModel()
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -36,6 +36,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView(viewModel: .init(InjectorUtils.instance.getUserRepository()))
+        RegisterView()
     }
 }

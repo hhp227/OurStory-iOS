@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: LoginViewModel = LoginViewModel(InjectorUtils.instance.getUserRepository())
+    @ObservedObject var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
     
     var body: some View {
         if InjectorUtils.instance.getUserDefaultsManager().user != nil {

@@ -55,8 +55,6 @@ class LoungeViewModel: ObservableObject {
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
         self.apiKey = userDefaultsManager.user?.apiKey ?? ""
-        
-        print("Test: LoungeViewModel init \(self)")
     }
     
     deinit {
