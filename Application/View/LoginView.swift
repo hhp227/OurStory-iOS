@@ -10,6 +10,7 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var viewModel: LoginViewModel
+    //@ObservedObject var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
     
     var body: some View {
         VStack {
@@ -32,7 +33,7 @@ struct LoginView: View {
             }
         }.padding(16).onReceive(viewModel.$state) { state in
             if let user = state.user {
-                UserDefaultsManager.instance.storeUser(user)
+                viewModel.storeUser(user)
             }
         }
     }

@@ -49,6 +49,10 @@ public final class InjectorUtils {
         return JoinRequestGroupViewModel(getGroupRepository())
     }
     
+    func provideChatListViewModel() -> ChatListViewModel {
+        return ChatListViewModel()
+    }
+    
     func provideCreatePostViewModel(params: [String: Any]) -> CreatePostViewModel {
         return CreatePostViewModel(InjectorUtils.instance.getPostRepository(), InjectorUtils.instance.getUserDefaultsManager(), params)
     }
@@ -62,7 +66,7 @@ public final class InjectorUtils {
     }
     
     func provideLoginViewModel() -> LoginViewModel {
-        return LoginViewModel(getUserRepository())
+        return LoginViewModel(getUserRepository(), getUserDefaultsManager())
     }
     
     func provideRegisterViewModel() -> RegisterViewModel {

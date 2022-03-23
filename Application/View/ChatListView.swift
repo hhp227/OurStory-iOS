@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ChatListView: View {
+    @EnvironmentObject var viewModel: ChatListViewModel
+    
     var body: some View {
         List {
             ForEach(0..<100) { i in

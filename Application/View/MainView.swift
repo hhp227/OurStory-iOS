@@ -31,7 +31,7 @@ struct MainView: View {
                         Image("hamburger-menu-icon")
                     })
                 case "ChatList":
-                    ChatListView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    ChatListView().environmentObject(InjectorUtils.provideChatListViewModel(InjectorUtils.instance)()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon")
                     })
                 case "Logout":

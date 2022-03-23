@@ -20,6 +20,8 @@ class LoginViewModel: ObservableObject {
     
     private let repository: UserRepository
     
+    private let userDefaultsManager: UserDefaultsManager
+    
     private var subscriptions = Set<AnyCancellable>()
     
     private func isEmailValid(_ email: String) -> Bool {
@@ -29,6 +31,10 @@ class LoginViewModel: ObservableObject {
     
     private func isPasswordValid(_ password: String) -> Bool {
         return password.count > 5
+    }
+    
+    func storeUser(_ user: User) {
+        userDefaultsManager.storeUser(user)
     }
     
     func login() {
@@ -48,8 +54,9 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    init(_ repository: UserRepository) {
+    init(_ repository: UserRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
+        self.userDefaultsManager = userDefaultsManager
         
         print("Test: LoginViewModel Init\(self)")
     }
