@@ -67,10 +67,10 @@ extension UserDefaults {
     // 일단 이것으로 해결
     @objc var user: Data? {
         get {
-            return data(forKey: "user")
+            return data(forKey: UserDefaultsManager.USER_KEY)
         }
         set {
-            set(newValue, forKey: "user")
+            set(newValue, forKey: UserDefaultsManager.USER_KEY)
         }
     }
 }
