@@ -22,7 +22,8 @@ class UserDefaultsManager {
     }
     
     func storeUser(_ user: User) {
-        userDefaults.set(try? PropertyListEncoder().encode(user), forKey: UserDefaultsManager.USER_KEY)
+        userDefaults.user = try? PropertyListEncoder().encode(user)
+        //userDefaults.set(try? PropertyListEncoder().encode(user), forKey: UserDefaultsManager.USER_KEY)
     }
     
     func removeUser() {
@@ -35,9 +36,13 @@ class UserDefaultsManager {
         }
     }
     
-    //
+    // 제거하거나 수정할것
     func test() -> NSObject.KeyValueObservingPublisher<UserDefaults, Data?> {
         return userDefaults.publisher(for: \.key)
+    }
+    
+    func getUser() -> NSObject.KeyValueObservingPublisher<UserDefaults, Data?> {
+        return userDefaults.publisher(for: \.user)
     }
     
     func temp() -> AnyPublisher<Data, Never> {
@@ -55,7 +60,17 @@ class UserDefaultsManager {
 }
 
 extension UserDefaults {
+    // ??? 이상함
     @objc dynamic var key: Data? {
         return self.data(forKey: UserDefaultsManager.USER_KEY)
+    }
+    // 일단 이것으로 해결
+    @objc var user: Data? {
+        get {
+            return data(forKey: "user")
+        }
+        set {
+            set(newValue, forKey: "user")
+        }
     }
 }

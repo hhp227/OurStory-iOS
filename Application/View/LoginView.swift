@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var viewModel: LoginViewModel
-    //@ObservedObject var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
+    //@EnvironmentObject var viewModel: LoginViewModel
+    @ObservedObject var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
     
     var body: some View {
         VStack {

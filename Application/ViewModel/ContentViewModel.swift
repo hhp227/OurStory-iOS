@@ -15,22 +15,17 @@ class ContentViewModel: ObservableObject {
     private var subscription = Set<AnyCancellable>()
     
     func test() {
-        UserDefaultsManager.instance.test().handleEvents(receiveOutput: {
+        // TODO UserDefaultsManager로 이관할것
+        UserDefaultsManager.instance.getUser().handleEvents(receiveOutput: {
             if let data = $0 {
                 self.user = try? PropertyListDecoder().decode(User.self, from: data)
-                print("TEST: \(self.user)")
             }
-        }).sink { _ in }.store(in: &subscription)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            UserDefaultsManager.instance.storeUser(User(id: 0, name: "test", email: "test", apiKey: "", profileImage: "", createdAt: ""))
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            UserDefaultsManager.instance.storeUser(User(id: 1, name: "hong227", email: "hong227@naver.com", apiKey: "", profileImage: "", createdAt: ""))
-        }
+        })
+        .sink { _ in }
+        .store(in: &subscription)
     }
     
+    // 다른 preference저장을 위해 남겨놓음
     func appear() {
         UserDefaults.standard.publisher(for: \.musicVolume).handleEvents(receiveOutput: { musicVolume in
             print("Music volume is now: \(musicVolume)")
@@ -48,4 +43,20 @@ class ContentViewModel: ObservableObject {
             UserDefaults.standard.musicVolume = Float(randomInteger)
         }
     }
+    
+    init() {
+        test()
+    }
 }
+
+extension UserDefaults {
+    @objc var musicVolume: Float {
+        get {
+            return float(forKey: "music_volume")
+        }
+        set {
+            set(newValue, forKey: "music_volume")
+        }
+    }
+}
+
