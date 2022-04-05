@@ -14,17 +14,6 @@ class ContentViewModel: ObservableObject {
     
     private var subscription = Set<AnyCancellable>()
     
-    func test() {
-        // TODO UserDefaultsManager로 이관할것
-        UserDefaultsManager.instance.getUser().handleEvents(receiveOutput: {
-            if let data = $0 {
-                self.user = try? PropertyListDecoder().decode(User.self, from: data)
-            }
-        })
-        .sink { _ in }
-        .store(in: &subscription)
-    }
-    
     // 다른 preference저장을 위해 남겨놓음
     func appear() {
         UserDefaults.standard.publisher(for: \.musicVolume).handleEvents(receiveOutput: { musicVolume in
@@ -44,8 +33,14 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    init() {
-        test()
+    init(_ userDefaultManager: UserDefaultsManager) {
+        userDefaultManager.userPublisher.handleEvents(receiveOutput: {
+            if let data = $0 {
+                self.user = try? PropertyListDecoder().decode(User.self, from: data)
+            }
+        })
+        .sink { _ in }
+        .store(in: &subscription)
     }
 }
 

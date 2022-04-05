@@ -73,5 +73,9 @@ public final class InjectorUtils {
         return RegisterViewModel(getUserRepository())
     }
     
+    func provideContentViewModel() -> ContentViewModel {
+        return ContentViewModel(getUserDefaultsManager())
+    }
+    
     static var instance = InjectorUtils.init()
 }

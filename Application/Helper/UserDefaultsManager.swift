@@ -41,8 +41,10 @@ class UserDefaultsManager {
         return userDefaults.publisher(for: \.key)
     }
     
-    func getUser() -> NSObject.KeyValueObservingPublisher<UserDefaults, Data?> {
-        return userDefaults.publisher(for: \.user)
+    var userPublisher: NSObject.KeyValueObservingPublisher<UserDefaults, Data?> {
+        get {
+            return userDefaults.publisher(for: \.user)
+        }
     }
     
     func temp() -> AnyPublisher<Data, Never> {

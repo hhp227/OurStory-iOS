@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    @ObservedObject var viewModel: ContentViewModel = ContentViewModel()
+    @ObservedObject var viewModel: ContentViewModel = InjectorUtils.instance.provideContentViewModel()
     
     var body: some View {
         if viewModel.user != nil {
