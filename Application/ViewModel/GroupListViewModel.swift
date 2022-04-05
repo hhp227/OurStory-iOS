@@ -14,7 +14,7 @@ class GroupListViewModel: ObservableObject {
     
     private let repository: GroupRepository
     
-    private let apiKey: String
+    private var apiKey: String = ""
     
     private var subscriptions = Set<AnyCancellable>()
     
@@ -56,7 +56,14 @@ class GroupListViewModel: ObservableObject {
     
     init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
+        
+        userDefaultsManager.userPublisher.handleEvents(receiveOutput: {
+            if let data = $0, let user = try? PropertyListDecoder().decode(User.self, from: data) {
+                self.apiKey = user.apiKey
+            }
+        })
+        .sink { _ in }
+        .store(in: &subscriptions)
     }
     
     deinit {
