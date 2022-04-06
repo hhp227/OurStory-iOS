@@ -21,7 +21,7 @@ class CreatePostViewModel: ObservableObject {
     
     private let repository: PostRepository
     
-    private let apiKey: String
+    private var apiKey: String = ""
     
     private let groupId: Int
     
@@ -90,10 +90,14 @@ class CreatePostViewModel: ObservableObject {
     
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
         self.repository = repository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
         self.groupId = handle["group_id"] as? Int ?? 0
         
-        //
+        userDefaultsManager.userPublisher.handleEvents(receiveOutput: {
+            if let data = $0, let user = try? PropertyListDecoder().decode(User.self, from: data) {
+                self.apiKey = user.apiKey
+            }
+        }).sink { _ in }
+        .store(in: &subscriptions)
     }
     
     deinit {
