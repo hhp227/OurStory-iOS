@@ -37,6 +37,10 @@ public final class InjectorUtils {
         return GroupListViewModel(getGroupRepository(), getUserDefaultsManager())
     }
     
+    func provideFriendViewModel() -> FriendViewModel {
+        return FriendViewModel()
+    }
+    
     func provideCreateGroupViewModel() -> CreateGroupViewModel {
         return CreateGroupViewModel(getGroupRepository(), getUserDefaultsManager())
     }

@@ -30,6 +30,10 @@ struct MainView: View {
                     GroupListView().environmentObject(InjectorUtils.provideGroupListViewModel(InjectorUtils.instance)()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon")
                     })
+                case "FriendList":
+                    FriendView().environmentObject(InjectorUtils.instance.provideFriendViewModel()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                        Image("hamburger-menu-icon")
+                    })
                 case "ChatList":
                     ChatListView().environmentObject(InjectorUtils.provideChatListViewModel(InjectorUtils.instance)()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon")

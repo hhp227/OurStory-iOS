@@ -41,6 +41,11 @@ struct DrawerView: View, DrawerProtocol {
                 
                 drawerViewModel.hideAll()
             }
+            DrawerButton(icon: "person", label: "Friend", isSelected: drawerViewModel.route == "FriendList") {
+                drawerViewModel.route = "FriendList"
+                
+                drawerViewModel.hideAll()
+            }
             DrawerButton(icon: "message", label: "Chat List", isSelected: drawerViewModel.route == "ChatList") {
                 drawerViewModel.route = "ChatList"
                 

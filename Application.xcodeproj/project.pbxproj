@@ -16,7 +16,7 @@
 		0A15B92F2739620F009F8F2E /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15B92E2739620F009F8F2E /* Status.swift */; };
 		0A19E16E271C645000453018 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19E16D271C645000453018 /* CreateGroupViewModel.swift */; };
 		0A1A7A5826E3454E00E98406 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A7A5726E3454E00E98406 /* AsyncImage.swift */; };
-		0A1BDAAB27202A6200E0D29E /* Temp3Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BDAAA27202A6200E0D29E /* Temp3Repository.swift */; };
+		0A1BDAAB27202A6200E0D29E /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BDAAA27202A6200E0D29E /* FriendView.swift */; };
 		0A1C935427A673E60025CFFE /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1C935327A673E60025CFFE /* Spinner.swift */; };
 		0A1DF13026C5930E00BC58E1 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DF12F26C5930E00BC58E1 /* DrawerView.swift */; };
 		0A1DF13326C5955500BC58E1 /* LoungeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DF13226C5955500BC58E1 /* LoungeView.swift */; };
@@ -58,7 +58,7 @@
 		0A7132B72470FEE80049F7FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7132B62470FEE80049F7FB /* ContentView.swift */; };
 		0A7132BC2470FEEC0049F7FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7132BB2470FEEC0049F7FB /* Assets.xcassets */; };
 		0A7CE76C26FEBBF300F664DD /* FindGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CE76B26FEBBF300F664DD /* FindGroupViewModel.swift */; };
-		0A7CE76F26FEBC4300F664DD /* Temp2Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CE76E26FEBC4300F664DD /* Temp2Repository.swift */; };
+		0A7CE76F26FEBC4300F664DD /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CE76E26FEBC4300F664DD /* FriendViewModel.swift */; };
 		0A964AF726ABFE0800FDB511 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A964AF626ABFE0800FDB511 /* PostDetailView.swift */; };
 		0ABB4A4226DBEB81000DB759 /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB4A4126DBEB81000DB759 /* ImageItem.swift */; };
 		0AC332DC26C4032400ACB62E /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC332DB26C4032400ACB62E /* PostRepository.swift */; };
@@ -82,7 +82,7 @@
 		0A15B92E2739620F009F8F2E /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		0A19E16D271C645000453018 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		0A1A7A5726E3454E00E98406 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
-		0A1BDAAA27202A6200E0D29E /* Temp3Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp3Repository.swift; sourceTree = "<group>"; };
+		0A1BDAAA27202A6200E0D29E /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
 		0A1C935327A673E60025CFFE /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		0A1DF12F26C5930E00BC58E1 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		0A1DF13226C5955500BC58E1 /* LoungeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeView.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		0A7132BB2470FEEC0049F7FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A7132C02470FEEC0049F7FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A7CE76B26FEBBF300F664DD /* FindGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupViewModel.swift; sourceTree = "<group>"; };
-		0A7CE76E26FEBC4300F664DD /* Temp2Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp2Repository.swift; sourceTree = "<group>"; };
+		0A7CE76E26FEBC4300F664DD /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
 		0A964AF626ABFE0800FDB511 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		0ABB4A4126DBEB81000DB759 /* ImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
 		0AC332DB26C4032400ACB62E /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
@@ -163,6 +163,7 @@
 				0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */,
 				0AD3BE8D26B2ACED00E857B4 /* MainView.swift */,
 				0AD3BE8A26B2ACC500E857B4 /* RegisterView.swift */,
+				0A1BDAAA27202A6200E0D29E /* FriendView.swift */,
 				0A7132B62470FEE80049F7FB /* ContentView.swift */,
 				0A964AF626ABFE0800FDB511 /* PostDetailView.swift */,
 				0A00BE3C26C026B2001C7CD5 /* CreatePostView.swift */,
@@ -188,8 +189,6 @@
 				0A10A3F926DB69DB00490E96 /* Temp1Repository.swift */,
 				0A3288D126F0F9DC009A2E99 /* ReplyRepository.swift */,
 				0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */,
-				0A7CE76E26FEBC4300F664DD /* Temp2Repository.swift */,
-				0A1BDAAA27202A6200E0D29E /* Temp3Repository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -238,6 +237,7 @@
 		0A32EB1B26BE515D006A5295 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0A7CE76E26FEBC4300F664DD /* FriendViewModel.swift */,
 				0A3A395226C558BD0068FCE3 /* DrawerViewModel.swift */,
 				0A32EB1C26BE5178006A5295 /* LoginViewModel.swift */,
 				0A32EB2026BE642B006A5295 /* RegisterViewModel.swift */,
@@ -508,7 +508,7 @@
 				0A964AF726ABFE0800FDB511 /* PostDetailView.swift in Sources */,
 				0AD3BE8E26B2ACED00E857B4 /* MainView.swift in Sources */,
 				0A291FA3274E89EA00EEF1AD /* ReachabilityService.swift in Sources */,
-				0A7CE76F26FEBC4300F664DD /* Temp2Repository.swift in Sources */,
+				0A7CE76F26FEBC4300F664DD /* FriendViewModel.swift in Sources */,
 				0A6EAE8A26FCC059000698B1 /* ChatListView.swift in Sources */,
 				0A32EB1D26BE5178006A5295 /* LoginViewModel.swift in Sources */,
 				0A10A3FA26DB69DB00490E96 /* Temp1Repository.swift in Sources */,
@@ -525,7 +525,7 @@
 				0A19E16E271C645000453018 /* CreateGroupViewModel.swift in Sources */,
 				0A15B92F2739620F009F8F2E /* Status.swift in Sources */,
 				0A7132B72470FEE80049F7FB /* ContentView.swift in Sources */,
-				0A1BDAAB27202A6200E0D29E /* Temp3Repository.swift in Sources */,
+				0A1BDAAB27202A6200E0D29E /* FriendView.swift in Sources */,
 				0AFD179327493CCD00E04608 /* JoinRequestGroupViewModel.swift in Sources */,
 				0A05D8C526BAD2160030333A /* URLs.swift in Sources */,
 				0A3288D226F0F9DC009A2E99 /* ReplyRepository.swift in Sources */,
