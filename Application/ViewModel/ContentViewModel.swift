@@ -34,13 +34,9 @@ class ContentViewModel: ObservableObject {
     }
     
     init(_ userDefaultManager: UserDefaultsManager) {
-        userDefaultManager.userPublisher.handleEvents(receiveOutput: {
-            if let data = $0 {
-                self.user = try? PropertyListDecoder().decode(User.self, from: data)
-            }
-        })
-        .sink { _ in }
-        .store(in: &subscription)
+        userDefaultManager.userPublisher
+            .sink(receiveCompletion: { _ in }) { user in self.user = user }
+            .store(in: &subscription)
     }
 }
 

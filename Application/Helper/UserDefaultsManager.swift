@@ -41,9 +41,17 @@ class UserDefaultsManager {
         return userDefaults.publisher(for: \.key)
     }
     
-    var userPublisher: NSObject.KeyValueObservingPublisher<UserDefaults, Data?> {
+    var userPublisher: AnyPublisher<User?, Error> {
         get {
             return userDefaults.publisher(for: \.user)
+                .tryMap {
+                    if let data = $0 {
+                        return try? PropertyListDecoder().decode(User.self, from: data)
+                    } else {
+                        return nil
+                    }
+                }
+                .eraseToAnyPublisher()
         }
     }
     
