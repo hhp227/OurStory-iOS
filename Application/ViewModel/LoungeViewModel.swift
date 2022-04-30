@@ -18,10 +18,27 @@ class LoungeViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    // TODO
     func fetchPosts(_ groupId: Int = 0, offset: Int) {
-        guard state.canLoadNextPage else { return }
-        repository.getPosts(groupId, offset).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        //guard state.canLoadNextPage else { return }
+        repository.getPosts(groupId, offset).sink(receiveCompletion: onReceive) { result in
+            switch (result.status) {
+            case .SUCCESS:
+                self.state = State(
+                    isLoading: false,
+                    posts: self.state.posts + (result.data ?? []),
+                    offset: self.state.offset + (result.data?.count ?? 0),
+                    canLoadNextPage: false
+                )
+            case .ERROR:
+                self.state = State(
+                    isLoading: false,
+                    canLoadNextPage: false,
+                    error: result.message ?? "An unexpected error occured"
+                )
+            case .LOADING:
+                self.state = State(isLoading: true)
+            }
+        }.store(in: &subscriptions)
     }
     
     // TODO

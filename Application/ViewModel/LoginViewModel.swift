@@ -57,8 +57,6 @@ class LoginViewModel: ObservableObject {
     init(_ repository: UserRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
         self.userDefaultsManager = userDefaultsManager
-        
-        print("Test: LoginViewModel Init\(self)")
     }
     
     deinit {

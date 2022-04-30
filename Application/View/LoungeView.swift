@@ -16,7 +16,7 @@ struct LoungeView: View {
             CollapsingNavigationBar(scrollUpBehavior: .sticky, scrollDownBehavior: .offset, header: {
                 Image("image3").resizable().aspectRatio(contentMode: .fill)
             }) {
-                VStack(spacing: 10) {
+                VStack(spacing: 10) { // LazyVStack으로 바꾸는건가?
                     ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, post in
                         CardView {
                             VStack(alignment: .leading, spacing: 0) {
