@@ -1,5 +1,5 @@
 //
-//  GroupView.swift
+//  GroupDetailView.swift
 //  Application
 //
 //  Created by 홍희표 on 2021/08/15.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct GroupView: View {
+struct GroupDetailView: View {
     var body: some View {
         Text("Group Detail View")
     }
@@ -16,6 +16,6 @@ struct GroupView: View {
 
 struct GroupDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupView()
+        GroupDetailView()
     }
 }

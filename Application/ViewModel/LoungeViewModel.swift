@@ -19,7 +19,7 @@ class LoungeViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     
     // TODO
-    func fetchPosts(_ groupId: Int, _ offset: Int) {
+    func fetchPosts(_ groupId: Int = 0, offset: Int) {
         guard state.canLoadNextPage else { return }
         repository.getPosts(groupId, offset).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }

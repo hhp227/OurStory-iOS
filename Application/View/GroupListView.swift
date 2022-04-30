@@ -41,11 +41,7 @@ struct GroupListView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 2), spacing: 2) {
                     ForEach(Array(viewModel.state.groups.enumerated()), id: \.offset) { index, group in
-                        NavigationLink(destination: GroupView()) {
-                            CardView {
-                                Text("Group \(index)")
-                            }.frame(height: 120)
-                        }
+                        GroupCell(group: group)
                     }
                 }.onAppear {
                     viewModel.fetchGroups(viewModel.state.offset)
@@ -55,8 +51,21 @@ struct GroupListView: View {
     }
 }
 
+struct GroupCell: View {
+    let group: GroupItem
+    
+    var body: some View {
+        NavigationLink(destination: GroupDetailView()) {
+            CardView {
+                Text("Group \(group.id)")
+            }.frame(height: 120)
+        }
+    }
+    
+}
+
 struct GroupView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupView()
+        GroupDetailView()
     }
 }

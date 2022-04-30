@@ -74,7 +74,7 @@ struct LoungeView: View {
                         Text("Loading")
                     }
                 }.padding([.top, .bottom], 8).onAppear {
-                    viewModel.fetchPosts(0, viewModel.state.offset)
+                    viewModel.fetchPosts(offset: viewModel.state.offset)
                 }
             }.ignoresSafeArea(.all, edges: .top)
             VStack {
