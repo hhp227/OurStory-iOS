@@ -18,7 +18,9 @@ struct FindGroupView: View {
                     ForEach(viewModel.state.groups) { group in
                         Text("Groups \(group.description ?? "noname")")
                     }
-                }.onAppear(perform: viewModel.fetchGroups)
+                }.onAppear {
+                    viewModel.fetchGroups(viewModel.state.offset)
+                }
             }
             if viewModel.state.isLoading {
                 Spinner(style: .medium)

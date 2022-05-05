@@ -57,15 +57,18 @@ struct GroupCell: View {
     var body: some View {
         NavigationLink(destination: GroupDetailView()) {
             CardView {
-                Text("Group \(group.id)")
+                VStack {
+                    AsyncImage(url: URL(string: URL_GROUP_IMAGE_PATH + (group.image ?? ""))!)
+                    Text("Group \(group.id)")
+                }
             }.frame(height: 120)
         }
     }
     
 }
 
-struct GroupView_Previews: PreviewProvider {
+struct GroupListView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupDetailView()
+        GroupListView()
     }
 }
