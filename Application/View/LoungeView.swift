@@ -44,7 +44,7 @@ struct LoungeView: View {
                                         if post.likeCount > 0 {
                                             Image(systemName: "heart.fill")
                                         }
-                                        Button(action: { viewModel.togglePostLike(i, post) }) {
+                                        Button(action: { viewModel.togglePostLike(post) }) {
                                             Text("Like")
                                             if post.likeCount > 0 {
                                                 Text(String(post.likeCount))

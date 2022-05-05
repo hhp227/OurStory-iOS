@@ -14,7 +14,7 @@ class LoungeViewModel: ObservableObject {
     
     private let repository: PostRepository
     
-    private let apiKey: String
+    private var apiKey: String = ""
     
     private var subscriptions = Set<AnyCancellable>()
     
@@ -41,13 +41,46 @@ class LoungeViewModel: ObservableObject {
         }.store(in: &subscriptions)
     }
     
-    // TODO
-    func togglePostLike(_ position: Int, _ postItem: PostItem) {
-        repository.toggleLike(apiKey, postItem) { p in
-            DispatchQueue.main.async {
-                self.state.posts[position] = p
-            }
+    func updatePost(_ post: PostItem) {
+        var posts = state.posts
+        let position = posts.firstIndex { $0.id == post.id } ?? 0
+        
+        if position > -1 {
+            posts[position] = post
+            state = State(
+                isLoading: false,
+                posts: posts
+            )
         }
+    }
+    
+    func togglePostLike(_ post: PostItem) {
+        repository.toggleLike(apiKey, post.id).sink(receiveCompletion: onReceive) { result in
+            switch (result.status) {
+            case .SUCCESS:
+                self.updatePost(
+                    PostItem(
+                        id: post.id,
+                        userId: post.userId,
+                        name: post.name,
+                        text: post.text,
+                        status: post.status,
+                        profileImage: post.profileImage,
+                        timeStamp: post.timeStamp,
+                        replyCount: post.replyCount,
+                        likeCount: result.data == "insert" ? post.likeCount + 1 : post.likeCount - 1,
+                        attachment: post.attachment
+                    )
+                )
+            case .ERROR:
+                self.state = State(
+                    isLoading: false,
+                    error: result.message ?? "An unexpected error occured"
+                )
+            case .LOADING:
+                self.state = State(isLoading: true)
+            }
+        }.store(in: &subscriptions)
     }
     
     // TODO
@@ -71,7 +104,12 @@ class LoungeViewModel: ObservableObject {
     
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
+        
+        userDefaultsManager.userPublisher
+            .sink(receiveCompletion: { _ in }) { user in
+                self.apiKey = user?.apiKey ?? ""
+            }
+            .store(in: &subscriptions)
     }
     
     deinit {

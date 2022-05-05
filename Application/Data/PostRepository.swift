@@ -111,24 +111,18 @@ class PostRepository {
         }
     }
     
-    // TODO
-    func toggleLike<T>(_ apiKey: String, _ post: PostItem, success: @escaping (T) -> Void) {
-        apiService.request(with: URL_POST_LIKE.replacingOccurrences(of: "{POST_ID}", with: String(post.id)), method: .get, header: ["Authorization": apiKey], params: [:]) { result, data  in
-            switch result {
-            case .success:
-                if let jsonObject = try? JSONSerialization.jsonObject(with: data as! Data, options: []) as? [String: Any] {
-                    if let error = jsonObject["error"], error as! Int == 0 {
-                        var mutablePost = post
-                        let result = jsonObject["result"] as! String
-                        mutablePost.likeCount = result == "insert" ? post.likeCount + 1 : post.likeCount - 1
-                        
-                        success(mutablePost as! T)
-                    }
+    func toggleLike(_ apiKey: String, _ postId: Int) -> AnyPublisher<Resource<String>, Error> {
+        return apiService.request(with: URL_POST_LIKE.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .get, header: ["Authorization": apiKey], params: [:]) { (data, response) -> Resource<String> in
+            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
+                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                
+                if let error = jsonObject?["error"], error as! Int == 0 {
+                    return Resource.success(jsonObject?["result"] as? String)
+                } else {
+                    return Resource.error(jsonObject?["message"] as! String, nil)
                 }
-                break
-            case .failure:
-                print("failure")
-                break
+            } else {
+                return Resource.error(response.debugDescription, nil)
             }
         }
     }

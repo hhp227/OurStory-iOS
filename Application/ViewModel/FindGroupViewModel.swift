@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 
+// TODO
 class FindGroupViewModel: ObservableObject {
     @Published private(set) var state = State()
     
