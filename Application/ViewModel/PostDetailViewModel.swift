@@ -26,7 +26,7 @@ class PostDetailViewModel: ObservableObject {
     
     private let replyRepository: ReplyRepository
     
-    private let apiKey: String
+    private var apiKey: String = ""
     
     private var post: PostItem
     
@@ -37,6 +37,7 @@ class PostDetailViewModel: ObservableObject {
         
     }
     
+    // TODO
     func fetchPost() {
         postRepository.getPost(post.id).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
@@ -69,13 +70,14 @@ class PostDetailViewModel: ObservableObject {
         }.store(in: &subscriptions)
     }
     
+    // TODO
     func deletePost() {
         postRepository.removePost(apiKey, post.id).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     func insertReply() {
         if !message.isEmpty {
-            replyRepository.addReply(apiKey, post.id, message).sink(receiveCompletion: { _ in }) { result in
+            replyRepository.addReply(apiKey, post.id, message).sink(receiveCompletion: onReceive) { result in
                 switch result.status {
                 case .SUCCESS:
                     let replyId = result.data ?? -1
@@ -130,7 +132,7 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func deleteReply(_ replyId: Int) {
-        replyRepository.removeReply(apiKey, replyId).sink(receiveCompletion: { _ in }) { result in
+        replyRepository.removeReply(apiKey, replyId).sink(receiveCompletion: onReceive) { result in
             switch result.status {
             case .SUCCESS:
                 var replys = self.state.replys
@@ -214,9 +216,13 @@ class PostDetailViewModel: ObservableObject {
     init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
         self.postRepository = postRepository
         self.replyRepository = replyRepository
-        self.apiKey = userDefaultsManager.user?.apiKey ?? ""
         self.post = handle["post"] as! PostItem
         
+        userDefaultsManager.userPublisher
+            .sink(receiveCompletion: { _ in }) { user in
+                self.apiKey = user?.apiKey ?? ""
+            }
+            .store(in: &subscriptions)
         print("Test: PostDetailViewModel init \(self)")
     }
     
