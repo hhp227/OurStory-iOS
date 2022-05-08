@@ -18,6 +18,8 @@ struct FindGroupView: View {
                     ForEach(viewModel.state.groups) { group in
                         Text("Groups \(group.description ?? "noname")")
                     }
+                }.refreshable {
+                    print("refresh")
                 }.onAppear {
                     viewModel.fetchGroups(viewModel.state.offset)
                 }

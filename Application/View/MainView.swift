@@ -24,19 +24,19 @@ struct MainView: View {
                 switch drawerViewModel.route {
                 case "Lounge":
                     LoungeView().environmentObject(InjectorUtils.instance.provideLoungeViewModel()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
-                        Image("hamburger-menu-icon")
+                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "GroupList":
                     GroupListView().environmentObject(InjectorUtils.provideGroupListViewModel(InjectorUtils.instance)()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
-                        Image("hamburger-menu-icon")
+                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "FriendList":
                     FriendView().environmentObject(InjectorUtils.instance.provideFriendViewModel()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
-                        Image("hamburger-menu-icon")
+                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "ChatList":
                     ChatListView().environmentObject(InjectorUtils.provideChatListViewModel(InjectorUtils.instance)()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
-                        Image("hamburger-menu-icon")
+                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "Logout":
                     Text("Logout").onAppear {
