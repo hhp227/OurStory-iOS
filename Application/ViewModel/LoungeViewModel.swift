@@ -93,15 +93,6 @@ class LoungeViewModel: ObservableObject {
         }
     }
     
-    // TODO
-    private func onReceive<T>(_ batch: Resource<T>) {
-        if let postItem = batch.data as? [PostItem], batch.status == Status.SUCCESS {
-            state.posts += postItem
-            state.offset += LoungeViewModel.PAGE_ITEM_COUNT
-            state.canLoadNextPage = postItem.count == LoungeViewModel.PAGE_ITEM_COUNT
-        }
-    }
-    
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
         
