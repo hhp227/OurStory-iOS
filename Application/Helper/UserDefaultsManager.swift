@@ -12,6 +12,7 @@ import Combine
 class UserDefaultsManager {
     let userDefaults: UserDefaults = .standard
     
+    // TODO 지울것
     var user: User? {
         get {
             guard let user = userDefaults.data(forKey: UserDefaultsManager.USER_KEY) else {
