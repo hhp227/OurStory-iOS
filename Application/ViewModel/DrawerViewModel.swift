@@ -26,13 +26,13 @@ public class DrawerViewModel: ObservableObject {
             statusObserver.forEach { $0.cancel() }
             statusObserver.removeAll()
             status.forEach { info in
-                let observer = info.value.objectDidChange.sink { [weak self] s in
-                    let maxRate = self?.status.sorted { $0.value.showRate > $1.value.showRate }.first?.value.showRate ?? 0
+                let observer = info.value.objectDidChange.sink { s in
+                    let maxRate = self.status.sorted { $0.value.showRate > $1.value.showRate }.first?.value.showRate ?? 0
                     
-                    if self?.maxShowRate == maxRate {
+                    if self.maxShowRate == maxRate {
                         return
                     }
-                    self?.maxShowRate = maxRate
+                    self.maxShowRate = maxRate
                 }
                 
                 statusObserver.append(observer)
