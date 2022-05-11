@@ -65,6 +65,6 @@ struct PostListCell: View {
 
 struct PostListCell_Previews: PreviewProvider {
     static var previews: some View {
-        PostListCell(post: .init(id: 0, userId: 0, name: "hhp227", text: "Test", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [])), onLikeClick: {})
+        PostListCell(post: .init(id: 0, userId: 0, name: "hhp227", text: "Priview Post", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [])), onLikeClick: {})
     }
 }
