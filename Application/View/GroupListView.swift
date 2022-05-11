@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct GroupListView: View {
-    @EnvironmentObject var viewModel: GroupListViewModel
+    @StateObject var viewModel: GroupListViewModel = InjectorUtils.provideGroupListViewModel(InjectorUtils.instance)()
     
     private var topNavigationLinks: some View {
         HStack(alignment: .bottom) {
@@ -41,7 +41,7 @@ struct GroupListView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 2), spacing: 2) {
                     ForEach(Array(viewModel.state.groups.enumerated()), id: \.offset) { index, group in
-                        GroupCell(group: group)
+                        GroupGridCell(group: group)
                     }
                 }.onAppear {
                     viewModel.fetchGroups(viewModel.state.offset)
@@ -49,22 +49,6 @@ struct GroupListView: View {
             }
         }.navigationBarTitleDisplayMode(.inline)
     }
-}
-
-struct GroupCell: View {
-    let group: GroupItem
-    
-    var body: some View {
-        NavigationLink(destination: GroupDetailView()) {
-            CardView {
-                VStack {
-                    AsyncImage(url: URL(string: URL_GROUP_IMAGE_PATH + (group.image ?? ""))!)
-                    Text("Group \(group.id)")
-                }
-            }.frame(height: 120)
-        }
-    }
-    
 }
 
 struct GroupListView_Previews: PreviewProvider {

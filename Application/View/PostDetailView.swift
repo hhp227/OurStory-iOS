@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct PostDetailView: View {
+    // TODO @StateObject로 교체
     @ObservedObject var viewModel: PostDetailViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

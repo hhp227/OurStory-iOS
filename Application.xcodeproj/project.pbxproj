@@ -68,6 +68,9 @@
 		0AD3BE9126B2AD1C00E857B4 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */; };
 		0AD3BE9426B2AD3100E857B4 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE9326B2AD3100E857B4 /* GroupListView.swift */; };
 		0AD3BE9726B2AD3F00E857B4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3BE9626B2AD3F00E857B4 /* UserView.swift */; };
+		0AF67441282BF6C600719DAC /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF67440282BF6C600719DAC /* PostListCell.swift */; };
+		0AF67443282BF97800719DAC /* GroupGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF67442282BF97800719DAC /* GroupGridCell.swift */; };
+		0AF67445282C01E200719DAC /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF67444282C01E200719DAC /* GroupListCell.swift */; };
 		0AFD179327493CCD00E04608 /* JoinRequestGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD179227493CCD00E04608 /* JoinRequestGroupViewModel.swift */; };
 		DA8EF379A795494E56B4FAE6 /* Pods_Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAE3DC38B91CDFC2AC84FEB /* Pods_Application.framework */; };
 /* End PBXBuildFile section */
@@ -136,6 +139,9 @@
 		0AD3BE9026B2AD1C00E857B4 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		0AD3BE9326B2AD3100E857B4 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		0AD3BE9626B2AD3F00E857B4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		0AF67440282BF6C600719DAC /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
+		0AF67442282BF97800719DAC /* GroupGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupGridCell.swift; sourceTree = "<group>"; };
+		0AF67444282C01E200719DAC /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
 		0AFD179227493CCD00E04608 /* JoinRequestGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestGroupViewModel.swift; sourceTree = "<group>"; };
 		2DAE3DC38B91CDFC2AC84FEB /* Pods_Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5441B96A9188ED8082534360 /* Pods-Application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Application.debug.xcconfig"; path = "Target Support Files/Pods-Application/Pods-Application.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 		0A00A80F26BD78D500280CBD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AF6743F282BF6A500719DAC /* Cell */,
 				0A3A394D26C557AA0068FCE3 /* UI */,
 				0AD3BE9626B2AD3F00E857B4 /* UserView.swift */,
 				0AD3BE9326B2AD3100E857B4 /* GroupListView.swift */,
@@ -354,6 +361,16 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		0AF6743F282BF6A500719DAC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0AF67440282BF6C600719DAC /* PostListCell.swift */,
+				0AF67442282BF97800719DAC /* GroupGridCell.swift */,
+				0AF67444282C01E200719DAC /* GroupListCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		A8C975259578E44012BE96C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,9 +532,11 @@
 				0AD3BE9426B2AD3100E857B4 /* GroupListView.swift in Sources */,
 				0ACE011F26FC3A82005B60E9 /* ReplyItem.swift in Sources */,
 				0A00BE3A26C02678001C7CD5 /* UserRepository.swift in Sources */,
+				0AF67441282BF6C600719DAC /* PostListCell.swift in Sources */,
 				0A4B4A5826FDB16D00B825F3 /* GroupListViewModel.swift in Sources */,
 				0AD3BE8B26B2ACC500E857B4 /* RegisterView.swift in Sources */,
 				0A30045B26DBC25900123C55 /* GroupItem.swift in Sources */,
+				0AF67445282C01E200719DAC /* GroupListCell.swift in Sources */,
 				0A3A395F26C559D90068FCE3 /* DrawerContainer.swift in Sources */,
 				0A30045826DBC0F500123C55 /* PostItem.swift in Sources */,
 				0A3A395926C5594F0068FCE3 /* DrawerDefine.swift in Sources */,
@@ -543,6 +562,7 @@
 				0A6324D726E7B4F100D574C9 /* DateUtil.swift in Sources */,
 				0A32EB2926BE7C55006A5295 /* ApiService.swift in Sources */,
 				0A7132B52470FEE80049F7FB /* SceneDelegate.swift in Sources */,
+				0AF67443282BF97800719DAC /* GroupGridCell.swift in Sources */,
 				0A44A92027EB75D1000CEEA8 /* ChatListViewModel.swift in Sources */,
 				0A297EC7270AED42007FCAE7 /* UpdateReplyView.swift in Sources */,
 			);

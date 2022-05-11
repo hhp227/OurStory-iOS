@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct CreatePostView: View {
+    // TODO @StateObject로 교체
     @ObservedObject var viewModel: CreatePostViewModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -44,7 +45,7 @@ struct CreatePostView: View {
     }
     
     init(args: [String: Any]) {
-        self.viewModel = InjectorUtils.instance.provideCreatePostViewModel(params: args)
+        viewModel = InjectorUtils.instance.provideCreatePostViewModel(params: args)
     }
 }
 

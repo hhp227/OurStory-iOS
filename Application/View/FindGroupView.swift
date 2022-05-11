@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct FindGroupView: View {
-    @ObservedObject var viewModel = InjectorUtils.provideFindGroupViewModel(InjectorUtils.instance)()
+    @StateObject var viewModel = InjectorUtils.provideFindGroupViewModel(InjectorUtils.instance)()
     
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
                 List {
                     ForEach(viewModel.state.groups) { group in
-                        Text("Groups \(group.description ?? "noname")")
+                        GroupListCell(group: group)
                     }
                 }.refreshable {
                     print("refresh")

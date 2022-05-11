@@ -10,4 +10,8 @@ import Foundation
 
 class FriendViewModel: ObservableObject {
     
+    
+    init() {
+        
+    }
 }

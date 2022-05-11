@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject private var drawerViewModel: DrawerViewModel = {
+    @StateObject private var drawerViewModel: DrawerViewModel = {
         let drawer = DrawerViewModel()
         
         drawer.setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.8), shadowRadius: 10)
@@ -23,19 +23,19 @@ struct MainView: View {
             NavigationView {
                 switch drawerViewModel.route {
                 case "Lounge":
-                    LoungeView().environmentObject(InjectorUtils.instance.provideLoungeViewModel()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    LoungeView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "GroupList":
-                    GroupListView().environmentObject(InjectorUtils.provideGroupListViewModel(InjectorUtils.instance)()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    GroupListView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "FriendList":
-                    FriendView().environmentObject(InjectorUtils.instance.provideFriendViewModel()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    FriendView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "ChatList":
-                    ChatListView().environmentObject(InjectorUtils.provideChatListViewModel(InjectorUtils.instance)()).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    ChatListView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "Logout":

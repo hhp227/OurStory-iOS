@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct JoinRequestGroupView: View {
-    @ObservedObject var viewModel = InjectorUtils.provideJoinRequestGroupViewModel(InjectorUtils.instance)()
+    @StateObject var viewModel = InjectorUtils.provideJoinRequestGroupViewModel(InjectorUtils.instance)()
     
     var body: some View {
         Text("Hello, JoinRequestGroupView")
