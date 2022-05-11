@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 
+// TODO
 class PostDetailViewModel: ObservableObject {
     @Published var state = State()
     
