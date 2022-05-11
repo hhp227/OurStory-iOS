@@ -42,7 +42,6 @@ struct PostListCell: View {
                             Image(systemName: "heart.fill")
                         }
                         Button(action: onLikeClick) {
-
                             Text("Like")
                             if post.likeCount > 0 {
                                 Text(String(post.likeCount))
