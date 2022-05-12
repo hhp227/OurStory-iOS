@@ -16,12 +16,12 @@ struct LoungeView: View {
             CollapsingNavigationBar(scrollUpBehavior: .sticky, scrollDownBehavior: .offset, header: {
                 Image("image3").resizable().aspectRatio(contentMode: .fill)
             }) {
-                VStack(spacing: 10) { // LazyVStack으로 바꾸는건가?
+                LazyVStack(spacing: 10) {
                     ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, post in
                         PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) }).onAppear {
                             /*if viewModel.state.posts.last == post {
                                 print("getNext \(i)")
-                                viewModel.fetchPosts()
+                                viewModel.fetchPosts(offset: viewModel.state.offset)
                             }*/
                         }
                     }
@@ -30,6 +30,7 @@ struct LoungeView: View {
                         Text("Loading")
                     }
                 }.padding([.top, .bottom], 8).onAppear {
+                    // TODO 리팩토링 요망
                     viewModel.fetchPosts(offset: viewModel.state.offset)
                 }
             }.ignoresSafeArea(.all, edges: .top)

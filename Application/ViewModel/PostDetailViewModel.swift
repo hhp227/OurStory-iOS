@@ -172,8 +172,9 @@ class PostDetailViewModel: ObservableObject {
         case .finished:
             print("success")
             break
-        case .failure:
+        case .failure(let error):
             self.state.canLoadNextPage = false
+            self.state.error = error.localizedDescription
             break
         }
     }
@@ -224,7 +225,6 @@ class PostDetailViewModel: ObservableObject {
                 self.apiKey = user?.apiKey ?? ""
             }
             .store(in: &subscriptions)
-        print("Test: PostDetailViewModel init \(self)")
     }
     
     deinit {

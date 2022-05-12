@@ -20,25 +20,27 @@ class LoungeViewModel: ObservableObject {
     
     func fetchPosts(_ groupId: Int = 0, offset: Int) {
         //guard state.canLoadNextPage else { return }
-        repository.getPosts(groupId, offset).sink(receiveCompletion: onReceive) { result in
-            switch (result.status) {
-            case .SUCCESS:
-                self.state = State(
-                    isLoading: false,
-                    posts: self.state.posts + (result.data ?? []),
-                    offset: self.state.offset + (result.data?.count ?? 0),
-                    canLoadNextPage: false
-                )
-            case .ERROR:
-                self.state = State(
-                    isLoading: false,
-                    canLoadNextPage: false,
-                    error: result.message ?? "An unexpected error occured"
-                )
-            case .LOADING:
-                self.state = State(isLoading: true)
+        repository.getPosts(groupId, offset)
+            .sink(receiveCompletion: onReceive) { result in
+                switch (result.status) {
+                case .SUCCESS:
+                    self.state = State(
+                        isLoading: false,
+                        posts: self.state.posts + (result.data ?? []),
+                        offset: self.state.offset + (result.data?.count ?? 0),
+                        canLoadNextPage: false
+                    )
+                case .ERROR:
+                    self.state = State(
+                        isLoading: false,
+                        canLoadNextPage: false,
+                        error: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = State(isLoading: true)
+                }
             }
-        }.store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
     
     func updatePost(_ post: PostItem) {
@@ -55,32 +57,34 @@ class LoungeViewModel: ObservableObject {
     }
     
     func togglePostLike(_ post: PostItem) {
-        repository.toggleLike(apiKey, post.id).sink(receiveCompletion: onReceive) { result in
-            switch (result.status) {
-            case .SUCCESS:
-                self.updatePost(
-                    PostItem(
-                        id: post.id,
-                        userId: post.userId,
-                        name: post.name,
-                        text: post.text,
-                        status: post.status,
-                        profileImage: post.profileImage,
-                        timeStamp: post.timeStamp,
-                        replyCount: post.replyCount,
-                        likeCount: result.data == "insert" ? post.likeCount + 1 : post.likeCount - 1,
-                        attachment: post.attachment
+        repository.toggleLike(apiKey, post.id)
+            .sink(receiveCompletion: onReceive) { result in
+                switch (result.status) {
+                case .SUCCESS:
+                    self.updatePost(
+                        PostItem(
+                            id: post.id,
+                            userId: post.userId,
+                            name: post.name,
+                            text: post.text,
+                            status: post.status,
+                            profileImage: post.profileImage,
+                            timeStamp: post.timeStamp,
+                            replyCount: post.replyCount,
+                            likeCount: result.data == "insert" ? post.likeCount + 1 : post.likeCount - 1,
+                            attachment: post.attachment
+                        )
                     )
-                )
-            case .ERROR:
-                self.state = State(
-                    isLoading: false,
-                    error: result.message ?? "An unexpected error occured"
-                )
-            case .LOADING:
-                self.state = State(isLoading: true)
+                case .ERROR:
+                    self.state = State(
+                        isLoading: false,
+                        error: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = State(isLoading: true)
+                }
             }
-        }.store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
     
     // TODO
@@ -88,8 +92,11 @@ class LoungeViewModel: ObservableObject {
         switch completion {
         case .finished:
             break
-        case .failure:
-            state.canLoadNextPage = false
+        case .failure(let error):
+            do {
+                self.state.canLoadNextPage = false
+                self.state.error = error.localizedDescription
+            }
         }
     }
     

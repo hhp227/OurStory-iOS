@@ -28,32 +28,41 @@ class CreatePostViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     
     private func insertPost(_ text: String) {
-        repository.addPost(apiKey, groupId, text).sink(receiveCompletion: { _ in }) { result in
-            switch result.status {
-            case .SUCCESS:
-                if self.state.items.count > CreatePostViewModel.IMAGE_ITEM_START_POSITION {
-                    self.uploadImage(CreatePostViewModel.IMAGE_ITEM_START_POSITION, result.data ?? -1)
-                } else {
+        repository.addPost(apiKey, groupId, text)
+            .sink(receiveCompletion: { completion in
+                switch (completion) {
+                case .finished:
+                    break
+                case .failure(let error):
+                    do { self.state.error = error.localizedDescription }
+                }
+            }) { result in
+                switch result.status {
+                case .SUCCESS:
+                    if self.state.items.count > CreatePostViewModel.IMAGE_ITEM_START_POSITION {
+                        self.uploadImage(CreatePostViewModel.IMAGE_ITEM_START_POSITION, result.data ?? -1)
+                    } else {
+                        self.state = State(
+                            isLoading: false,
+                            items: self.state.items,
+                            postId: result.data ?? -1,
+                            error: self.state.error
+                        )
+                    }
+                case .ERROR:
                     self.state = State(
                         isLoading: false,
                         items: self.state.items,
-                        postId: result.data ?? -1,
-                        error: self.state.error
+                        postId: self.state.postId,
+                        error: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = State(
+                        isLoading: true
                     )
                 }
-            case .ERROR:
-                self.state = State(
-                    isLoading: false,
-                    items: self.state.items,
-                    postId: self.state.postId,
-                    error: result.message ?? "An unexpected error occured"
-                )
-            case .LOADING:
-                self.state = State(
-                    isLoading: true
-                )
             }
-        }.store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
     
     private func updatePost(_ text: String) {

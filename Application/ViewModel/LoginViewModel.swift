@@ -39,16 +39,25 @@ class LoginViewModel: ObservableObject {
     
     func login() {
         if isEmailValid(email) && isPasswordValid(password) {
-            repository.login(email, password).sink { _ in } receiveValue: { result in
-                switch result.status {
-                case .SUCCESS:
-                    self.state = State(user: result.data)
-                case .ERROR:
-                    self.state = State(error: result.message ?? "An unexpected error occured")
-                case .LOADING:
-                    self.state = State(isLoading: true)
+            repository.login(email, password)
+                .sink { completion in
+                    switch (completion) {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        do { self.state.error = error.localizedDescription }
+                    }
+                } receiveValue: { result in
+                    switch result.status {
+                    case .SUCCESS:
+                        self.state = State(user: result.data)
+                    case .ERROR:
+                        self.state = State(error: result.message ?? "An unexpected error occured")
+                    case .LOADING:
+                        self.state = State(isLoading: true)
+                    }
                 }
-            }.store(in: &subscriptions)
+                .store(in: &subscriptions)
         } else {
             print("email 또는 password가 잘못되었습니다.")
         }

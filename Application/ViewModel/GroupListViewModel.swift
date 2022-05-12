@@ -20,27 +20,29 @@ class GroupListViewModel: ObservableObject {
     
     func fetchGroups(_ offset: Int) {
         guard state.canLoadNextPage else { return }
-        repository.getMyGroups(apiKey, offset).sink(receiveCompletion: onReceive) { result in
-            switch result.status {
-            case .SUCCESS:
-                self.state = State(
-                    isLoading: false,
-                    groups: self.state.groups + (result.data ?? []),
-                    offset: self.state.offset + (result.data?.count ?? 0),
-                    canLoadNextPage: (result.data ?? []).count == GroupListViewModel.PAGE_ITEM_COUNT,
-                    error: self.state.error
-                )
-            case .ERROR:
-                self.state = State(
-                    isLoading: false,
-                    groups: self.state.groups,
-                    offset: self.state.offset,
-                    canLoadNextPage: self.state.canLoadNextPage,
-                    error: result.message ?? "An unexpected error occured")
-            case .LOADING:
-                self.state = State(isLoading: true)
+        repository.getMyGroups(apiKey, offset)
+            .sink(receiveCompletion: onReceive) { result in
+                switch result.status {
+                case .SUCCESS:
+                    self.state = State(
+                        isLoading: false,
+                        groups: self.state.groups + (result.data ?? []),
+                        offset: self.state.offset + (result.data?.count ?? 0),
+                        canLoadNextPage: (result.data ?? []).count == GroupListViewModel.PAGE_ITEM_COUNT,
+                        error: self.state.error
+                    )
+                case .ERROR:
+                    self.state = State(
+                        isLoading: false,
+                        groups: self.state.groups,
+                        offset: self.state.offset,
+                        canLoadNextPage: self.state.canLoadNextPage,
+                        error: result.message ?? "An unexpected error occured")
+                case .LOADING:
+                    self.state = State(isLoading: true)
+                }
             }
-        }.store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {
@@ -48,9 +50,11 @@ class GroupListViewModel: ObservableObject {
         case .finished:
             print("success")
             break
-        case .failure:
-            state.canLoadNextPage = false
-            break
+        case .failure(let error):
+            do {
+                self.state.canLoadNextPage = false
+                self.state.error = error.localizedDescription
+            }
         }
     }
     

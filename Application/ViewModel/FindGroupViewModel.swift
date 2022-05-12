@@ -18,41 +18,42 @@ class FindGroupViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    // TODO
-    func onReceive(_ completion: Subscribers.Completion<Error>) {
-        switch completion {
-        case .finished:
-            break
-        case .failure:
-            self.state.canLoadNextPage = false
-            break
-        }
-    }
-    
     func fetchGroups(_ offset: Int) {
         guard state.canLoadNextPage else { return }
-        repository.getNotJoinedGroups(apiKey, offset).sink(receiveCompletion: onReceive) { result in
-            switch result.status {
-            case .SUCCESS:
-                self.state = State(
-                    isLoading: false,
-                    groups: self.state.groups + (result.data ?? []),
-                    offset: self.state.offset + (result.data ?? []).count,
-                    canLoadNextPage: (result.data ?? []).count == FindGroupViewModel.PAGE_ITEM_COUNT
-                )
-            case .ERROR:
-                self.state = State(
-                    isLoading: false,
-                    canLoadNextPage: false,
-                    error: result.message ?? "An unexpected error occured"
-                )
-            case .LOADING:
-                self.state = State(
-                    isLoading: true,
-                    canLoadNextPage: false
-                )
+        repository.getNotJoinedGroups(apiKey, offset)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    do {
+                        self.state.canLoadNextPage = false
+                        self.state.error = error.localizedDescription
+                    }
+                }
+            }) { result in
+                switch result.status {
+                case .SUCCESS:
+                    self.state = State(
+                        isLoading: false,
+                        groups: self.state.groups + (result.data ?? []),
+                        offset: self.state.offset + (result.data ?? []).count,
+                        canLoadNextPage: (result.data ?? []).count == FindGroupViewModel.PAGE_ITEM_COUNT
+                    )
+                case .ERROR:
+                    self.state = State(
+                        isLoading: false,
+                        canLoadNextPage: false,
+                        error: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = State(
+                        isLoading: true,
+                        canLoadNextPage: false
+                    )
+                }
             }
-        }.store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
     
     init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
