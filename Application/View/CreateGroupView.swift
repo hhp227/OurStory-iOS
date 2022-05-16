@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CreateGroupView: View {
-    @ObservedObject var viewModel: CreateGroupViewModel = InjectorUtils.provideCreateGroupViewModel(InjectorUtils.instance)()
+    @StateObject var viewModel: CreateGroupViewModel = InjectorUtils.provideCreateGroupViewModel(InjectorUtils.instance)()
     
     var body: some View {
         VStack(alignment: .leading) {
