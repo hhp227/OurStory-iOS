@@ -22,6 +22,16 @@ class ReplyRepository {
         }
     }
     
+    func getReply(_ apiKey: String, _ replyId: Int) -> AnyPublisher<Resource<ReplyItem>, Error> {
+        return apiService.request(with: URL_REPLY.replacingOccurrences(of: "{REPLY_ID}", with: String(replyId)), method: .get, header: ["Authorization": apiKey], params: [:]) { data, response -> Resource<ReplyItem> in
+            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
+                return Resource.success(try JSONDecoder().decode(ReplyItem.self, from: data))
+            } else {
+                return Resource.error(response.description, nil)
+            }
+        }
+    }
+    
     func addReply(_ apiKey: String, _ postId: Int, _ text: String) -> AnyPublisher<Resource<Int>, Error> {
         return apiService.request(with: URL_REPLYS.replacingOccurrences(of: "{POST_ID}", with: String(postId)), method: .post, header: ["Authorization": apiKey], params: ["reply": text]) { data, response -> Resource<Int> in
             if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
