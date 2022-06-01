@@ -103,6 +103,7 @@ class LoungeViewModel: ObservableObject {
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
         
+        fetchPosts(offset: state.offset)
         userDefaultsManager.userPublisher
             .sink(receiveCompletion: { _ in }) { user in
                 self.apiKey = user?.apiKey ?? ""

@@ -54,7 +54,7 @@ struct PostDetailView: View {
                     }
                 }
                 NavigationLink(destination: UpdateReplyView().environmentObject(viewModel), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
-            }.onAppear(perform: viewModel.fetchReplys).actionSheet(isPresented: $viewModel.isShowingActionSheet) {
+            }.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
                 var buttons = [ActionSheet.Button]()
                 
                 if viewModel.selectPosition > -1 {
@@ -88,7 +88,7 @@ struct PostDetailView: View {
                     }
                 }.padding(5)
             }
-        }.onAppear(perform: viewModel.fetchPost).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
+        }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
             viewModel.selectPosition = -1
             
             viewModel.isShowingActionSheet.toggle()

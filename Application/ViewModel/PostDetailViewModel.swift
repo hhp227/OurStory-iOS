@@ -33,6 +33,62 @@ class PostDetailViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
+    private func fetchPost(_ postId: Int) {
+        postRepository.getPost(postId)
+            .sink(receiveCompletion: onReceive) { result in
+                switch result.status {
+                case .SUCCESS:
+                    self.post = result.data ?? PostItem(id: 0, userId: 0, name: "", text: "", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: PostItem.Attachment(images: [], video: nil))
+                    self.state = State(
+                        isLoading: false,
+                        post: self.post,
+                        replys: self.state.replys,
+                        replyId: self.state.replyId,
+                        canLoadNextPage: self.state.canLoadNextPage,
+                        error: self.state.error
+                    )
+                    
+                    self.fetchReplys(postId)
+                case .ERROR:
+                    self.state = State(
+                        isLoading: false,
+                        error: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = State(isLoading: true)
+                }
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func fetchReplys(_ postId: Int) {
+        guard state.canLoadNextPage else { return }
+        replyRepository.getReplys(apiKey, postId).sink(receiveCompletion: onReceive) { result in
+            switch result.status {
+            case .SUCCESS:
+                self.state = State(
+                    isLoading: false,
+                    post: self.state.post,
+                    replys: self.state.replys + (result.data ?? []),
+                    replyId: self.state.replyId,
+                    canLoadNextPage: self.state.canLoadNextPage,
+                    error: self.state.error
+                )
+            case .ERROR:
+                self.state = State(
+                    isLoading: false,
+                    post: self.state.post,
+                    replys: self.state.replys,
+                    replyId: self.state.replyId,
+                    canLoadNextPage: self.state.canLoadNextPage,
+                    error: result.message ?? "An unexpected error occured"
+                )
+            case .LOADING:
+                self.state = State(isLoading: true)
+            }
+        }.store(in: &subscriptions)
+    }
+    
     private func fetchReply(_ replyId: Int) {
         if replyId >= 0 {
             replyRepository.getReply(apiKey, replyId)
@@ -58,60 +114,6 @@ class PostDetailViewModel: ObservableObject {
                 }
                 .store(in: &subscriptions)
         }
-    }
-    
-    func fetchPost() {
-        postRepository.getPost(post.id)
-            .sink(receiveCompletion: onReceive) { result in
-                switch result.status {
-                case .SUCCESS:
-                    self.post = result.data ?? PostItem(id: 0, userId: 0, name: "", text: "", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: PostItem.Attachment(images: [], video: nil))
-                    self.state = State(
-                        isLoading: false,
-                        post: self.post,
-                        replys: self.state.replys,
-                        replyId: self.state.replyId,
-                        canLoadNextPage: self.state.canLoadNextPage,
-                        error: self.state.error
-                    )
-                case .ERROR:
-                    self.state = State(
-                        isLoading: false,
-                        error: result.message ?? "An unexpected error occured"
-                    )
-                case .LOADING:
-                    self.state = State(isLoading: true)
-                }
-            }
-            .store(in: &subscriptions)
-    }
-    
-    func fetchReplys() {
-        guard state.canLoadNextPage else { return }
-        replyRepository.getReplys(apiKey, post.id).sink(receiveCompletion: onReceive) { result in
-            switch result.status {
-            case .SUCCESS:
-                self.state = State(
-                    isLoading: false,
-                    post: self.state.post,
-                    replys: self.state.replys + (result.data ?? []),
-                    replyId: self.state.replyId,
-                    canLoadNextPage: self.state.canLoadNextPage,
-                    error: self.state.error
-                )
-            case .ERROR:
-                self.state = State(
-                    isLoading: false,
-                    post: self.state.post,
-                    replys: self.state.replys,
-                    replyId: self.state.replyId,
-                    canLoadNextPage: self.state.canLoadNextPage,
-                    error: result.message ?? "An unexpected error occured"
-                )
-            case .LOADING:
-                self.state = State(isLoading: true)
-            }
-        }.store(in: &subscriptions)
     }
     
     // TODO
@@ -265,14 +267,17 @@ class PostDetailViewModel: ObservableObject {
         self.replyRepository = replyRepository
         self.post = handle["post"] as! PostItem
         
+        fetchPost(post.id)
         userDefaultsManager.userPublisher
             .sink(receiveCompletion: { _ in }) { user in
                 self.apiKey = user?.apiKey ?? ""
             }
             .store(in: &subscriptions)
+        print("PostViewModel init")
     }
     
     deinit {
+        print("PostViewModel deinit")
         subscriptions.removeAll()
     }
     

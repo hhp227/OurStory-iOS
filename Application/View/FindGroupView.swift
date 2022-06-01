@@ -25,7 +25,7 @@ struct FindGroupView: View {
                 }
             }
             if viewModel.state.isLoading {
-                Spinner(style: .medium)
+                Spinner(isAnimating: true, style: .medium)
                     .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
             }
         }

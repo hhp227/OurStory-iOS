@@ -18,21 +18,13 @@ struct LoungeView: View {
             }) {
                 LazyVStack(spacing: 10) {
                     ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, post in
-                        PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) }).onAppear {
-                            /*if viewModel.state.posts.last == post {
-                                print("getNext \(i)")
-                                viewModel.fetchPosts(offset: viewModel.state.offset)
-                            }*/
-                        }
+                        PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) })
                     }
                     if viewModel.state.canLoadNextPage {
                         // TODO loading indicator
                         Text("Loading")
                     }
-                }.padding([.top, .bottom], 8).onAppear {
-                    // TODO 리팩토링 요망
-                    viewModel.fetchPosts(offset: viewModel.state.offset)
-                }
+                }.padding([.top, .bottom], 8)
             }.ignoresSafeArea(.all, edges: .top)
             VStack {
                 Spacer()
