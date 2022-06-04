@@ -39,17 +39,7 @@ struct PostDetailView: View {
                     }.padding([.top, .bottom], 8)
                 }
                 ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
-                    VStack(alignment: .trailing) {
-                        HStack {
-                            AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + (reply.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
-                            VStack(alignment: .leading) {
-                                Text(reply.name).fontWeight(.bold)
-                                Text(reply.reply)
-                            }
-                            Spacer()
-                        }.padding(.horizontal, 5)
-                        Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
-                    }.onLongPressGesture {
+                    ReplyListCell(reply: reply).onLongPressGesture {
                         viewModel.selectPosition = i
                         
                         viewModel.isShowingActionSheet.toggle()

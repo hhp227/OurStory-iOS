@@ -55,6 +55,7 @@
 		0A44A92027EB75D1000CEEA8 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A44A91F27EB75D1000CEEA8 /* ChatListViewModel.swift */; };
 		0A450FA926C8B81200365F19 /* GroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A450FA826C8B81200365F19 /* GroupDetailView.swift */; };
 		0A46C7CE284B2BF800843E73 /* ReplyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46C7CD284B2BF800843E73 /* ReplyListCell.swift */; };
+		0A46C7D0284B310B00843E73 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46C7CF284B310B00843E73 /* ListItem.swift */; };
 		0A4B4A5826FDB16D00B825F3 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */; };
 		0A4B4A5B26FDB49B00B825F3 /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */; };
 		0A4F5292277D9CA5002188EB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F5291277D9CA5002188EB /* ImagePicker.swift */; };
@@ -131,6 +132,7 @@
 		0A44A91F27EB75D1000CEEA8 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		0A450FA826C8B81200365F19 /* GroupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailView.swift; sourceTree = "<group>"; };
 		0A46C7CD284B2BF800843E73 /* ReplyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyListCell.swift; sourceTree = "<group>"; };
+		0A46C7CF284B310B00843E73 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
 		0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
 		0A4F5291277D9CA5002188EB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				0ACE011E26FC3A82005B60E9 /* ReplyItem.swift */,
 				0A15B92B27396139009F8F2E /* Resource.swift */,
 				0A15B92E2739620F009F8F2E /* Status.swift */,
+				0A46C7CF284B310B00843E73 /* ListItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				0A1A7A5826E3454E00E98406 /* AsyncImage.swift in Sources */,
 				0A15399B282EA46C00BDF55F /* MemberView.swift in Sources */,
 				0A3C8C9D274A149700B526ED /* UserDefaultsManager.swift in Sources */,
+				0A46C7D0284B310B00843E73 /* ListItem.swift in Sources */,
 				0A32EB2126BE642B006A5295 /* RegisterViewModel.swift in Sources */,
 				0A4F5292277D9CA5002188EB /* ImagePicker.swift in Sources */,
 				0AD3BE9126B2AD1C00E857B4 /* ChatView.swift in Sources */,
