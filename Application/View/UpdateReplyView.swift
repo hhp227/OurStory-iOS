@@ -27,6 +27,6 @@ struct UpdateReplyView: View {
 
 struct UpdateReplyView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateReplyView(args: ["reply": ReplyItem.init(id: 0, userId: 0, name: "hhp227", reply: "hi temp", status: 0, timeStamp: "")])
+        UpdateReplyView(args: ["reply": ReplyItem.EMPTY])
     }
 }

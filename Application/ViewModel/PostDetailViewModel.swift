@@ -229,7 +229,7 @@ class PostDetailViewModel: ObservableObject {
         self.postRepository = postRepository
         self.replyRepository = replyRepository
         guard let post = handle["post"] as? PostItem else {
-            self.post = PostItem(id: 0, userId: 0, name: "hhp227", text: "This is Dummy Post", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [], video: nil))
+            self.post = PostItem.EMPTY
             return
         }
         self.post = post

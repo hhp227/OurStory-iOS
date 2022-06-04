@@ -8,4 +8,6 @@
 
 import Foundation
 
-protocol ListItem {}
+protocol ListItem {
+    var id: Int { get set }
+}

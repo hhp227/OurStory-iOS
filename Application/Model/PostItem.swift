@@ -28,6 +28,8 @@ struct PostItem: Codable, Identifiable, Equatable, ListItem {
     
     var attachment: Attachment
     
+    static let EMPTY = PostItem(id: 0, userId: 0, name: "", text: "", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [], video: nil))
+    
     static func == (lhs: PostItem, rhs: PostItem) -> Bool {
         return lhs.id == rhs.id
     }
