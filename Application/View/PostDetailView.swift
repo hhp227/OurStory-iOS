@@ -20,7 +20,8 @@ struct PostDetailView: View {
         VStack(spacing: 0) {
             ScrollView {
                 ForEach(Array(viewModel.state.items.enumerated()), id: \.offset) { i, item in
-                    if let post = item as? PostItem {
+                    switch item {
+                    case let post as PostItem:
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(alignment: .top) {
                                 AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
@@ -38,12 +39,14 @@ struct PostDetailView: View {
                             }
                             Spacer(minLength: 10)
                         }.padding([.top, .bottom], 8)
-                    } else if let reply = item as? ReplyItem {
+                    case let reply as ReplyItem:
                         ReplyListCell(reply: reply).onLongPressGesture {
                             viewModel.selectPosition = i
                             
                             viewModel.isShowingActionSheet.toggle()
                         }
+                    default:
+                        EmptyView()
                     }
                 }
                 NavigationLink(destination: UpdateReplyView().environmentObject(viewModel), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
