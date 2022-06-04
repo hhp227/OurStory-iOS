@@ -22,20 +22,19 @@ struct PostListCell: View {
                 NavigationLink(destination: PostDetailView(args: ["post": post], onResult: onResult)) {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .top) {
-                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
+                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 55, height: 55).cornerRadius(45)
                             VStack(alignment: .leading) {
                                 Text(post.name).fontWeight(.bold)
                                 Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
-                            }.padding([.leading, .trailing], 8)
-                        }.padding([.top, .leading, .trailing])
+                            }.padding(.leading, 7)
+                        }.padding([.horizontal], 15)
                         if !post.text.isEmpty {
-                            Text(post.text).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding([.top, .leading, .trailing]).padding(.bottom, 5)
+                            Text(post.text).multilineTextAlignment(.leading).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding(.horizontal, 15).padding(.top, 10).padding(.bottom, 5)
                         }
                         if let imageItem = post.attachment.images.first {
                             AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
                         }
-                        Spacer(minLength: 10)
-                    }.padding([.top, .bottom], 8)
+                    }.padding(.vertical, 20)
                 }
                 Divider()
                 HStack(alignment: .center) {

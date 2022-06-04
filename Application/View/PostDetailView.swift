@@ -87,16 +87,16 @@ struct PostDetailView: View {
     private func postDetailView(post: PostItem) -> some View {
         VStack(alignment: .center, spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
-                HStack(alignment: .center) {
-                    AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
+                HStack(alignment: .top) {
+                    AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))).frame(width: 55, height: 55).cornerRadius(45)
                     VStack(alignment: .leading) {
                         Text(post.name).fontWeight(.bold)
                         Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
-                    }.padding(.leading, 8)
+                    }.padding(.leading, 7)
                     Spacer()
                 }.padding(.horizontal, 5)
                 if !post.text.isEmpty {
-                    Text(post.text).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding([.bottom, .horizontal], 5).padding(.top, 10)
+                    Text(post.text).fixedSize(horizontal: false, vertical: true).padding([.bottom, .horizontal], 5).padding(.top, 10)
                 }
                 if !post.attachment.images.isEmpty {
                     VStack(alignment: .center, spacing: 0) {
@@ -107,7 +107,7 @@ struct PostDetailView: View {
                 }
             }.padding([.top, .horizontal], 10)
             Spacer(minLength: 10)
-        }.padding([.top, .bottom], 8)
+        }
     }
     
     init(args: [String: Any], onResult: @escaping () -> Void) {
