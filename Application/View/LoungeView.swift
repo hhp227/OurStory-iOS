@@ -11,6 +11,13 @@ import SwiftUI
 struct LoungeView: View {
     @StateObject var viewModel: LoungeViewModel = InjectorUtils.instance.provideLoungeViewModel()
     
+    private var fab: some View {
+        NavigationLink(
+            destination: CreatePostView(args: ["group_id": 0], onResult: viewModel.refreshPosts)) {
+            Text("+").font(.system(.largeTitle)).frame(width: 66, height: 60).foregroundColor(.white).padding(.bottom, 7)
+        }.background(Color.blue).cornerRadius(38.5).padding().shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3).animation(.none)
+    }
+    
     var body: some View {
         ZStack {
             CollapsingNavigationBar(scrollUpBehavior: .sticky, scrollDownBehavior: .offset, header: {
@@ -18,7 +25,7 @@ struct LoungeView: View {
             }) {
                 LazyVStack(spacing: 10) {
                     ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, post in
-                        PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) })
+                        PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) }, onResult: viewModel.refreshPosts)
                     }
                     if viewModel.state.canLoadNextPage {
                         // TODO loading indicator
@@ -30,10 +37,7 @@ struct LoungeView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    NavigationLink(
-                        destination: CreatePostView(args: ["group_id": 0])) {
-                        Text("+").font(.system(.largeTitle)).frame(width: 66, height: 60).foregroundColor(.white).padding(.bottom, 7)
-                    }.background(Color.blue).cornerRadius(38.5).padding().shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3).animation(.none)
+                    fab
                 }
             }
         }

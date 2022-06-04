@@ -14,6 +14,8 @@ struct CreatePostView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    let onResult: () -> Void
+    
     var body: some View {
         List {
             ZStack {
@@ -39,18 +41,20 @@ struct CreatePostView: View {
             ])
         }.onReceive(viewModel.$state) { state in
             if state.postId >= 0 {
+                onResult()
                 presentationMode.wrappedValue.dismiss()
             }
         }
     }
     
-    init(args: [String: Any]) {
-        viewModel = InjectorUtils.instance.provideCreatePostViewModel(params: args)
+    init(args: [String: Any], onResult: @escaping () -> Void) {
+        self.viewModel = InjectorUtils.instance.provideCreatePostViewModel(params: args)
+        self.onResult = onResult
     }
 }
 
 struct CreatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePostView(args: ["group_id": 0])
+        CreatePostView(args: ["group_id": 0], onResult: {})
     }
 }

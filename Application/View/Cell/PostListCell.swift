@@ -14,10 +14,12 @@ struct PostListCell: View {
     
     let onLikeClick: () -> Void
     
+    let onResult: () -> Void
+    
     var body: some View {
         CardView {
             VStack(alignment: .leading, spacing: 0) {
-                NavigationLink(destination: PostDetailView(args: ["post": post])) {
+                NavigationLink(destination: PostDetailView(args: ["post": post], onResult: onResult)) {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .top) {
                             AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
@@ -49,7 +51,7 @@ struct PostListCell: View {
                         }
                     }.frame(maxWidth: .infinity).padding(10)
                     Divider()
-                    NavigationLink(destination: PostDetailView(args: ["post": post]), label: {
+                    NavigationLink(destination: PostDetailView(args: ["post": post], onResult: onResult), label: {
                         HStack {
                             Text("Comment")
                             if post.replyCount > 0 {
@@ -65,6 +67,6 @@ struct PostListCell: View {
 
 struct PostListCell_Previews: PreviewProvider {
     static var previews: some View {
-        PostListCell(post: .init(id: 0, userId: 0, name: "hhp227", text: "Priview Post", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [])), onLikeClick: {})
+        PostListCell(post: .init(id: 0, userId: 0, name: "hhp227", text: "Priview Post", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [])), onLikeClick: {}, onResult: {})
     }
 }

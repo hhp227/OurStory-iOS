@@ -56,6 +56,16 @@ class LoungeViewModel: ObservableObject {
         }
     }
     
+    func fetchNextPage() {
+        // TODO
+    }
+    
+    func refreshPosts() {
+        state = State()
+        
+        fetchPosts(offset: state.offset)
+    }
+    
     func togglePostLike(_ post: PostItem) {
         repository.toggleLike(apiKey, post.id)
             .sink(receiveCompletion: onReceive) { result in

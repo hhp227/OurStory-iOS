@@ -19,8 +19,6 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var isNavigateReplyModifyView = false
     
-    @Published var deleteResult = false
-    
     @Published var selectPosition = -1
     
     private let postRepository: PostRepository
@@ -44,7 +42,7 @@ class PostDetailViewModel: ObservableObject {
                         post: self.post,
                         replys: self.state.replys,
                         replyId: self.state.replyId,
-                        canLoadNextPage: self.state.canLoadNextPage,
+                        isSetResultOK: self.state.isSetResultOK,
                         error: self.state.error
                     )
                     
@@ -62,7 +60,6 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func fetchReplys(_ postId: Int) {
-        guard state.canLoadNextPage else { return }
         replyRepository.getReplys(apiKey, postId).sink(receiveCompletion: onReceive) { result in
             switch result.status {
             case .SUCCESS:
@@ -71,7 +68,7 @@ class PostDetailViewModel: ObservableObject {
                     post: self.state.post,
                     replys: self.state.replys + (result.data ?? []),
                     replyId: self.state.replyId,
-                    canLoadNextPage: self.state.canLoadNextPage,
+                    isSetResultOK: self.state.isSetResultOK,
                     error: self.state.error
                 )
             case .ERROR:
@@ -80,7 +77,7 @@ class PostDetailViewModel: ObservableObject {
                     post: self.state.post,
                     replys: self.state.replys,
                     replyId: self.state.replyId,
-                    canLoadNextPage: self.state.canLoadNextPage,
+                    isSetResultOK: self.state.isSetResultOK,
                     error: result.message ?? "An unexpected error occured"
                 )
             case .LOADING:
@@ -100,7 +97,7 @@ class PostDetailViewModel: ObservableObject {
                             post: self.state.post,
                             replys: self.state.replys + [(result.data ?? ReplyItem(id: 0, userId: 0, name: "", reply: "", status: 0, timeStamp: ""))],
                             replyId: -1,
-                            canLoadNextPage: self.state.canLoadNextPage,
+                            isSetResultOK: self.state.isSetResultOK,
                             error: self.state.error
                         )
                     case .ERROR:
@@ -116,9 +113,29 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    // TODO
     func deletePost() {
-        postRepository.removePost(apiKey, post.id).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
+        postRepository.removePost(apiKey, post.id)
+            .sink(receiveCompletion: onReceive) { result in
+                switch result.status {
+                case .SUCCESS:
+                    self.state = State(
+                        isLoading: false,
+                        post: self.state.post,
+                        replys: self.state.replys,
+                        replyId: self.state.replyId,
+                        isSetResultOK: result.data ?? false,
+                        error: self.state.error
+                    )
+                case .ERROR:
+                    self.state = State(
+                        isLoading: false,
+                        error: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = State(isLoading: true)
+                }
+            }
+            .store(in: &subscriptions)
     }
     
     func insertReply() {
@@ -133,7 +150,7 @@ class PostDetailViewModel: ObservableObject {
                             post: self.state.post,
                             replys: self.state.replys,
                             replyId: replyId,
-                            canLoadNextPage: self.state.canLoadNextPage,
+                            isSetResultOK: self.state.isSetResultOK,
                             error: self.state.error
                         )
                         
@@ -144,7 +161,7 @@ class PostDetailViewModel: ObservableObject {
                             post: self.state.post,
                             replys: self.state.replys,
                             replyId: self.state.replyId,
-                            canLoadNextPage: self.state.canLoadNextPage,
+                            isSetResultOK: self.state.isSetResultOK,
                             error: result.message ?? "An unexpected error occured"
                         )
                     case .LOADING:
@@ -159,7 +176,7 @@ class PostDetailViewModel: ObservableObject {
                 post: self.state.post,
                 replys: self.state.replys,
                 replyId: self.state.replyId,
-                canLoadNextPage: self.state.canLoadNextPage,
+                isSetResultOK: self.state.isSetResultOK,
                 error: "text is empty"
             )
             print("메시지를 입력해주세요.")
@@ -194,7 +211,7 @@ class PostDetailViewModel: ObservableObject {
                             post: self.state.post,
                             replys: replys,
                             replyId: self.state.replyId,
-                            canLoadNextPage: self.state.canLoadNextPage,
+                            isSetResultOK: self.state.isSetResultOK,
                             error: self.state.error
                         )
                     }
@@ -205,7 +222,7 @@ class PostDetailViewModel: ObservableObject {
                     post: self.state.post,
                     replys: self.state.replys,
                     replyId: self.state.replyId,
-                    canLoadNextPage: self.state.canLoadNextPage,
+                    isSetResultOK: self.state.isSetResultOK,
                     error: result.message ?? "An unexpected error occured"
                 )
             case .LOADING:
@@ -220,20 +237,8 @@ class PostDetailViewModel: ObservableObject {
             print("success")
             break
         case .failure(let error):
-            self.state.canLoadNextPage = false
             self.state.error = error.localizedDescription
             break
-        }
-    }
-    
-    private func onReceive<T>(_ batch: Resource<T>) {
-        if let postItem = batch.data as? PostItem {
-            self.state.post = postItem
-        } else if let replyItems = batch.data as? [ReplyItem] {
-            self.state.replys += replyItems
-            self.state.canLoadNextPage = replyItems.count == PostDetailViewModel.PAGE_ITEM_COUNT
-        } else if let replyItem = batch.data as? ReplyItem {
-            self.state.replys.append(replyItem)
         }
     }
     
@@ -254,12 +259,6 @@ class PostDetailViewModel: ObservableObject {
             print("loading")
         }
         isNavigateReplyModifyView.toggle()
-    }
-    
-    private func onReceive(_ batch: [String: Any]) {
-        print("Test \(batch)")
-        // "message": Post Deleted Succesfully, "error": 0
-        deleteResult.toggle() // 현재는 버그발생
     }
     
     init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
@@ -292,7 +291,7 @@ class PostDetailViewModel: ObservableObject {
         
         var replyId: Int = -1
         
-        var canLoadNextPage = true
+        var isSetResultOK = false
         
         var error: String = ""
     }

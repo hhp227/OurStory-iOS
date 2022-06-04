@@ -103,11 +103,19 @@ class PostRepository {
         }
     }
     
-    // TODO
-    func removePost(_ apiKey: String, _ postId: Int) -> AnyPublisher<[String: Any], Error> {
-        return apiService.request(with: "\(URL_POST)/\(postId)", method: .delete, header: ["Authorization": apiKey], params: [:]) { (data, response) -> [String: Any] in
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            return jsonObject!
+    func removePost(_ apiKey: String, _ postId: Int) -> AnyPublisher<Resource<Bool>, Error> {
+        return apiService.request(with: "\(URL_POST)/\(postId)", method: .delete, header: ["Authorization": apiKey], params: [:]) { data, response -> Resource<Bool> in
+            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
+                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                
+                if let error = jsonObject?["error"] as? Bool {
+                    return Resource.success(!error)
+                } else {
+                    return Resource.error(response.debugDescription, nil)
+                }
+            } else {
+                return Resource.error(response.debugDescription, nil)
+            }
         }
     }
     

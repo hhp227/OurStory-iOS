@@ -14,6 +14,8 @@ struct PostDetailView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    let onResult: () -> Void
+    
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
@@ -94,20 +96,22 @@ struct PostDetailView: View {
             viewModel.isShowingActionSheet.toggle()
         } label: {
             Image(systemName: "ellipsis")
-        }).onReceive(viewModel.$deleteResult) {
-            if $0 {
+        }).onReceive(viewModel.$state) { state in
+            if state.isSetResultOK {
+                onResult()
                 presentationMode.wrappedValue.dismiss()
             }
         }
     }
     
-    init(args: [String: Any]) {
+    init(args: [String: Any], onResult: @escaping () -> Void) {
         self.viewModel = InjectorUtils.instance.providePostDetailViewModel(params: args)
+        self.onResult = onResult
     }
 }
 
 struct PostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDetailView(args: ["post": PostItem(id: 0, userId: 0, name: "", text: "", status: 0, profileImage: nil, timeStamp: Date.init(), replyCount: 0, likeCount: 0, attachment: PostItem.Attachment.init(images: [], video: ""))])
+        PostDetailView(args: ["post": PostItem(id: 0, userId: 0, name: "", text: "", status: 0, profileImage: nil, timeStamp: Date.init(), replyCount: 0, likeCount: 0, attachment: PostItem.Attachment.init(images: [], video: ""))], onResult: {})
     }
 }
