@@ -69,6 +69,10 @@ public final class InjectorUtils {
         return LoungeViewModel(getPostRepository(), getUserDefaultsManager())
     }
     
+    func provideUpdateReplyViewModel(params: [String: Any]) -> UpdateReplyViewModel {
+        return UpdateReplyViewModel(getReplyRepository(), getUserDefaultsManager(), params)
+    }
+    
     func provideLoginViewModel() -> LoginViewModel {
         return LoginViewModel(getUserRepository(), getUserDefaultsManager())
     }

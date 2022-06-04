@@ -9,31 +9,24 @@
 import SwiftUI
 
 struct UpdateReplyView: View {
-    @EnvironmentObject var viewModel: PostDetailViewModel
-    
-    var body: some View {
-        /*InputView(text: viewModel.selectPosition < 0 ? "" : viewModel.state.replys[viewModel.selectPosition].reply, action: viewModel.setReply).navigationBarTitleDisplayMode(.inline)*/
-        EmptyView()
-    }
-}
-
-struct InputView: View {
-    @State var text: String
-    
-    var action: (String) -> Void
+    @ObservedObject var viewModel: UpdateReplyViewModel
     
     var body: some View {
         List {
             ZStack {
-                TextEditor(text: $text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
-                Text(text).opacity(0).padding(.all, 8)
+                TextEditor(text: $viewModel.message).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
+                Text(viewModel.message).opacity(0).padding(.all, 8)
             }.listRowInsets(EdgeInsets()).shadow(radius: 1)
-        }.navigationBarItems(trailing: Button(action: { action(text) }) { Text("Send") })
+        }.navigationBarItems(trailing: Button(action: viewModel.updateReply) { Text("Send") }).navigationBarTitleDisplayMode(.inline)
+    }
+    
+    init(args: [String: Any]) {
+        self.viewModel = InjectorUtils.instance.provideUpdateReplyViewModel(params: args)
     }
 }
 
 struct UpdateReplyView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateReplyView()
+        UpdateReplyView(args: ["reply": ReplyItem.init(id: 0, userId: 0, name: "hhp227", reply: "hi temp", status: 0, timeStamp: "")])
     }
 }

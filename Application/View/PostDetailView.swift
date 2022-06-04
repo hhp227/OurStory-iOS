@@ -26,14 +26,17 @@ struct PostDetailView: View {
                     case let reply as ReplyItem:
                         ReplyListCell(reply: reply).onLongPressGesture {
                             viewModel.selectPosition = i
-                            
-                            viewModel.isShowingActionSheet.toggle()
                         }
+                        NavigationLink(destination: UpdateReplyView(args: ["reply": reply]), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
                     default:
                         EmptyView()
                     }
+                }.onReceive(viewModel.$selectPosition) { position in
+                    if position >= 0 {
+                        print("position: \(position)")
+                        viewModel.isShowingActionSheet.toggle()
+                    }
                 }
-                NavigationLink(destination: UpdateReplyView().environmentObject(viewModel), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
             }.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
                 var buttons = [ActionSheet.Button]()
                 

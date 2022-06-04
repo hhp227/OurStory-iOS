@@ -45,6 +45,7 @@
 		0A32EB2126BE642B006A5295 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32EB2026BE642B006A5295 /* RegisterViewModel.swift */; };
 		0A32EB2526BE7B7B006A5295 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32EB2426BE7B7B006A5295 /* User.swift */; };
 		0A32EB2926BE7C55006A5295 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32EB2826BE7C55006A5295 /* ApiService.swift */; };
+		0A35C759284BA71400847F6A /* UpdateReplyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35C758284BA71400847F6A /* UpdateReplyViewModel.swift */; };
 		0A3A395326C558BD0068FCE3 /* DrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395226C558BD0068FCE3 /* DrawerViewModel.swift */; };
 		0A3A395626C558EF0068FCE3 /* DrawerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395526C558EF0068FCE3 /* DrawerStatus.swift */; };
 		0A3A395926C5594F0068FCE3 /* DrawerDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */; };
@@ -123,6 +124,7 @@
 		0A32EB2026BE642B006A5295 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		0A32EB2426BE7B7B006A5295 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0A32EB2826BE7C55006A5295 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		0A35C758284BA71400847F6A /* UpdateReplyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReplyViewModel.swift; sourceTree = "<group>"; };
 		0A3A395226C558BD0068FCE3 /* DrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewModel.swift; sourceTree = "<group>"; };
 		0A3A395526C558EF0068FCE3 /* DrawerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerStatus.swift; sourceTree = "<group>"; };
 		0A3A395826C5594F0068FCE3 /* DrawerDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerDefine.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				0AFD179227493CCD00E04608 /* JoinRequestGroupViewModel.swift */,
 				0A23BADB27E5F5310002C61B /* ContentViewModel.swift */,
 				0A44A91F27EB75D1000CEEA8 /* ChatListViewModel.swift */,
+				0A35C758284BA71400847F6A /* UpdateReplyViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				0AD3BE9726B2AD3F00E857B4 /* UserView.swift in Sources */,
 				0A3A395326C558BD0068FCE3 /* DrawerViewModel.swift in Sources */,
 				0A153997282EA3A400BDF55F /* AlbumView.swift in Sources */,
+				0A35C759284BA71400847F6A /* UpdateReplyViewModel.swift in Sources */,
 				0A2B1F9E26DE79AF00C52E73 /* CreateGroupView.swift in Sources */,
 				0A23BADC27E5F5310002C61B /* ContentViewModel.swift in Sources */,
 				0A2B1FA126DE79FD00C52E73 /* JoinRequestGroupView.swift in Sources */,

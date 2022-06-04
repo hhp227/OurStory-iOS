@@ -59,28 +59,30 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func fetchReplys(_ postId: Int) {
-        replyRepository.getReplys(apiKey, postId).sink(receiveCompletion: onReceive) { result in
-            switch result.status {
-            case .SUCCESS:
-                self.state = State(
-                    isLoading: false,
-                    items: self.state.items + (result.data ?? []),
-                    replyId: self.state.replyId,
-                    isSetResultOK: self.state.isSetResultOK,
-                    error: self.state.error
-                )
-            case .ERROR:
-                self.state = State(
-                    isLoading: false,
-                    items: self.state.items,
-                    replyId: self.state.replyId,
-                    isSetResultOK: self.state.isSetResultOK,
-                    error: result.message ?? "An unexpected error occured"
-                )
-            case .LOADING:
-                self.state = State(isLoading: true)
+        replyRepository.getReplys(apiKey, postId)
+            .sink(receiveCompletion: onReceive) { result in
+                switch result.status {
+                case .SUCCESS:
+                    self.state = State(
+                        isLoading: false,
+                        items: self.state.items + (result.data ?? []),
+                        replyId: self.state.replyId,
+                        isSetResultOK: self.state.isSetResultOK,
+                        error: self.state.error
+                    )
+                case .ERROR:
+                    self.state = State(
+                        isLoading: false,
+                        items: self.state.items,
+                        replyId: self.state.replyId,
+                        isSetResultOK: self.state.isSetResultOK,
+                        error: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = State(isLoading: true)
+                }
             }
-        }.store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
     
     private func fetchReply(_ replyId: Int) {
@@ -176,17 +178,8 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func updateReply() {
-        
+        // TODO
     }
-    
-    // TODO 이거는 CreatePostViewModel로 빼야할것
-    /*func setReply(_ message: String) {
-        if message.isEmpty {
-            print("메시지를 입력하세요.")
-        } else {
-            replyRepository.setReply(apiKey, state.replys[selectPosition].id, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
-        }
-    }*/
     
     func deleteReply(_ replyId: Int) {
         replyRepository.removeReply(apiKey, replyId).sink(receiveCompletion: onReceive) { result in
@@ -235,7 +228,11 @@ class PostDetailViewModel: ObservableObject {
     init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
         self.postRepository = postRepository
         self.replyRepository = replyRepository
-        self.post = handle["post"] as! PostItem
+        guard let post = handle["post"] as? PostItem else {
+            self.post = PostItem(id: 0, userId: 0, name: "hhp227", text: "This is Dummy Post", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [], video: nil))
+            return
+        }
+        self.post = post
         
         fetchPost(post.id)
         userDefaultsManager.userPublisher
@@ -243,11 +240,9 @@ class PostDetailViewModel: ObservableObject {
                 self.apiKey = user?.apiKey ?? ""
             }
             .store(in: &subscriptions)
-        print("PostViewModel init")
     }
     
     deinit {
-        print("PostViewModel deinit")
         subscriptions.removeAll()
     }
     
