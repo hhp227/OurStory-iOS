@@ -12,8 +12,7 @@ struct LoungeView: View {
     @StateObject var viewModel: LoungeViewModel = InjectorUtils.instance.provideLoungeViewModel()
     
     private var fab: some View {
-        NavigationLink(
-            destination: CreatePostView(args: ["group_id": 0], onResult: viewModel.refreshPosts)) {
+        NavigationLink(destination: CreatePostView(args: ["group_id": 0], onResult: viewModel.refreshPosts)) {
             Text("+").font(.system(.largeTitle)).frame(width: 66, height: 60).foregroundColor(.white).padding(.bottom, 7)
         }.background(Color.blue).cornerRadius(38.5).padding().shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3).animation(.none)
     }
