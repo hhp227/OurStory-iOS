@@ -6,7 +6,7 @@
 //  Copyright © 2021 홍희표. All rights reserved.
 //
 
-struct ReplyItem: Codable, Identifiable {
+struct ReplyItem: Codable, Identifiable, ListItem {
     var id: Int
     
     var userId: Int

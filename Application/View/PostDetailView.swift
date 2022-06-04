@@ -19,30 +19,31 @@ struct PostDetailView: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
-                if let post = viewModel.state.post {
-                    VStack(alignment: .leading, spacing: 0) {
-                        HStack(alignment: .top) {
-                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
-                            VStack(alignment: .leading) {
-                                Text(post.name).fontWeight(.bold)
-                                Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
-                            }.padding([.leading, .trailing], 8)
-                            Spacer()
-                        }.padding([.top, .leading, .trailing])
-                        if !post.text.isEmpty {
-                            Text(post.text).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding([.top, .leading, .trailing]).padding(.bottom, 5)
+                ForEach(Array(viewModel.state.items.enumerated()), id: \.offset) { i, item in
+                    if let post = item as? PostItem {
+                        VStack(alignment: .leading, spacing: 0) {
+                            HStack(alignment: .top) {
+                                AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!).frame(width: 57, height: 57).cornerRadius(45)
+                                VStack(alignment: .leading) {
+                                    Text(post.name).fontWeight(.bold)
+                                    Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
+                                }.padding([.leading, .trailing], 8)
+                                Spacer()
+                            }.padding([.top, .leading, .trailing])
+                            if !post.text.isEmpty {
+                                Text(post.text).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding([.top, .leading, .trailing]).padding(.bottom, 5)
+                            }
+                            if let imageItem = post.attachment.images.first {
+                                AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
+                            }
+                            Spacer(minLength: 10)
+                        }.padding([.top, .bottom], 8)
+                    } else if let reply = item as? ReplyItem {
+                        ReplyListCell(reply: reply).onLongPressGesture {
+                            viewModel.selectPosition = i
+                            
+                            viewModel.isShowingActionSheet.toggle()
                         }
-                        if let imageItem = post.attachment.images.first {
-                            AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!).padding(.top, 10)
-                        }
-                        Spacer(minLength: 10)
-                    }.padding([.top, .bottom], 8)
-                }
-                ForEach(Array(viewModel.state.replys.enumerated()), id: \.offset) { i, reply in
-                    ReplyListCell(reply: reply).onLongPressGesture {
-                        viewModel.selectPosition = i
-                        
-                        viewModel.isShowingActionSheet.toggle()
                     }
                 }
                 NavigationLink(destination: UpdateReplyView().environmentObject(viewModel), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
@@ -50,7 +51,9 @@ struct PostDetailView: View {
                 var buttons = [ActionSheet.Button]()
                 
                 if viewModel.selectPosition > -1 {
-                    let selectedReply = viewModel.state.replys[viewModel.selectPosition]
+                    guard let selectedReply = viewModel.state.items[viewModel.selectPosition] as? ReplyItem else {
+                        return ActionSheet(title: Text("Selection Action"), buttons: buttons)
+                    }
                     
                     buttons.append(.default(Text("Copy Content")) {
                         UIPasteboard.general.string = selectedReply.reply
@@ -62,9 +65,9 @@ struct PostDetailView: View {
                 } else {
                     // TODO
                     // PostDetail에 관한 내용을 써야됨 예를들어 글수정, 글삭제
-                    if let user = UserDefaultsManager.instance.user, user.id == viewModel.state.post?.userId {
+                    /*if let user = UserDefaultsManager.instance.user, user.id == viewModel.state.post?.userId {
                         print("my post")
-                    }
+                    }*/
                     buttons.append(.default(Text("Edit Post")))
                     buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
                 }

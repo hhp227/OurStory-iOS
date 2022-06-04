@@ -6,7 +6,7 @@
 //  Copyright © 2021 홍희표. All rights reserved.
 //
 
-struct ImageItem: Codable {
+struct ImageItem: Codable, ListItem {
     var id: Int
     
     var image: String

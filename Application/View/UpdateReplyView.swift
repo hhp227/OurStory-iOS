@@ -12,7 +12,8 @@ struct UpdateReplyView: View {
     @EnvironmentObject var viewModel: PostDetailViewModel
     
     var body: some View {
-        InputView(text: viewModel.selectPosition < 0 ? "" : viewModel.state.replys[viewModel.selectPosition].reply, action: viewModel.setReply).navigationBarTitleDisplayMode(.inline)
+        /*InputView(text: viewModel.selectPosition < 0 ? "" : viewModel.state.replys[viewModel.selectPosition].reply, action: viewModel.setReply).navigationBarTitleDisplayMode(.inline)*/
+        EmptyView()
     }
 }
 

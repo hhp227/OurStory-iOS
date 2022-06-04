@@ -39,8 +39,7 @@ class PostDetailViewModel: ObservableObject {
                     self.post = result.data ?? PostItem(id: 0, userId: 0, name: "", text: "", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: PostItem.Attachment(images: [], video: nil))
                     self.state = State(
                         isLoading: false,
-                        post: self.post,
-                        replys: self.state.replys,
+                        items: self.state.items + [self.post],
                         replyId: self.state.replyId,
                         isSetResultOK: self.state.isSetResultOK,
                         error: self.state.error
@@ -65,8 +64,7 @@ class PostDetailViewModel: ObservableObject {
             case .SUCCESS:
                 self.state = State(
                     isLoading: false,
-                    post: self.state.post,
-                    replys: self.state.replys + (result.data ?? []),
+                    items: self.state.items + (result.data ?? []),
                     replyId: self.state.replyId,
                     isSetResultOK: self.state.isSetResultOK,
                     error: self.state.error
@@ -74,8 +72,7 @@ class PostDetailViewModel: ObservableObject {
             case .ERROR:
                 self.state = State(
                     isLoading: false,
-                    post: self.state.post,
-                    replys: self.state.replys,
+                    items: self.state.items,
                     replyId: self.state.replyId,
                     isSetResultOK: self.state.isSetResultOK,
                     error: result.message ?? "An unexpected error occured"
@@ -94,8 +91,7 @@ class PostDetailViewModel: ObservableObject {
                     case .SUCCESS:
                         self.state = State(
                             isLoading: false,
-                            post: self.state.post,
-                            replys: self.state.replys + [(result.data ?? ReplyItem(id: 0, userId: 0, name: "", reply: "", status: 0, timeStamp: ""))],
+                            items: self.state.items + [(result.data ?? ReplyItem(id: 0, userId: 0, name: "", reply: "", status: 0, timeStamp: ""))],
                             replyId: -1,
                             isSetResultOK: self.state.isSetResultOK,
                             error: self.state.error
@@ -120,8 +116,7 @@ class PostDetailViewModel: ObservableObject {
                 case .SUCCESS:
                     self.state = State(
                         isLoading: false,
-                        post: self.state.post,
-                        replys: self.state.replys,
+                        items: self.state.items,
                         replyId: self.state.replyId,
                         isSetResultOK: result.data ?? false,
                         error: self.state.error
@@ -147,8 +142,7 @@ class PostDetailViewModel: ObservableObject {
                         let replyId = result.data ?? -1
                         self.state = State(
                             isLoading: false,
-                            post: self.state.post,
-                            replys: self.state.replys,
+                            items: self.state.items,
                             replyId: replyId,
                             isSetResultOK: self.state.isSetResultOK,
                             error: self.state.error
@@ -158,8 +152,7 @@ class PostDetailViewModel: ObservableObject {
                     case .ERROR:
                         self.state = State(
                             isLoading: false,
-                            post: self.state.post,
-                            replys: self.state.replys,
+                            items: self.state.items,
                             replyId: self.state.replyId,
                             isSetResultOK: self.state.isSetResultOK,
                             error: result.message ?? "An unexpected error occured"
@@ -173,8 +166,7 @@ class PostDetailViewModel: ObservableObject {
         } else {
             state = State(
                 isLoading: false,
-                post: self.state.post,
-                replys: self.state.replys,
+                items: self.state.items,
                 replyId: self.state.replyId,
                 isSetResultOK: self.state.isSetResultOK,
                 error: "text is empty"
@@ -188,28 +180,27 @@ class PostDetailViewModel: ObservableObject {
     }
     
     // TODO 이거는 CreatePostViewModel로 빼야할것
-    func setReply(_ message: String) {
+    /*func setReply(_ message: String) {
         if message.isEmpty {
             print("메시지를 입력하세요.")
         } else {
             replyRepository.setReply(apiKey, state.replys[selectPosition].id, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
         }
-    }
+    }*/
     
     func deleteReply(_ replyId: Int) {
         replyRepository.removeReply(apiKey, replyId).sink(receiveCompletion: onReceive) { result in
             switch result.status {
             case .SUCCESS:
-                var replys = self.state.replys
-                let position = replys.firstIndex { $0.id == replyId }
+                var replys = self.state.items
+                let position = replys.firstIndex { ($0 as? ReplyItem)?.id == replyId }
                 
                 if result.data == true {
                     replys.remove(at: position ?? 0)
                     if position ?? 0 > 1 {
                         self.state = State(
                             isLoading: false,
-                            post: self.state.post,
-                            replys: replys,
+                            items: replys,
                             replyId: self.state.replyId,
                             isSetResultOK: self.state.isSetResultOK,
                             error: self.state.error
@@ -219,8 +210,7 @@ class PostDetailViewModel: ObservableObject {
             case .ERROR:
                 self.state = State(
                     isLoading: false,
-                    post: self.state.post,
-                    replys: self.state.replys,
+                    items: self.state.items,
                     replyId: self.state.replyId,
                     isSetResultOK: self.state.isSetResultOK,
                     error: result.message ?? "An unexpected error occured"
@@ -240,25 +230,6 @@ class PostDetailViewModel: ObservableObject {
             self.state.error = error.localizedDescription
             break
         }
-    }
-    
-    private func onReceive(_ isRemoved: Bool) {
-        if isRemoved {
-            self.state.replys.remove(at: selectPosition)
-            selectPosition -= 1
-        }
-    }
-    
-    private func onReceive(_ batch: Resource<String>) {
-        switch batch.status {
-        case .SUCCESS:
-            state.replys[selectPosition].reply = batch.data ?? ""
-        case .ERROR:
-            state = State(error: batch.message ?? "An unexpected error occured")
-        case .LOADING:
-            print("loading")
-        }
-        isNavigateReplyModifyView.toggle()
     }
     
     init(_ postRepository: PostRepository, _ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
@@ -285,9 +256,7 @@ class PostDetailViewModel: ObservableObject {
     struct State {
         var isLoading: Bool = false
         
-        var post: PostItem? = nil
-        
-        var replys: [ReplyItem] = []
+        var items: [ListItem] = []
         
         var replyId: Int = -1
         

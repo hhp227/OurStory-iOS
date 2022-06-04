@@ -1,5 +1,5 @@
 //
-//  ListItem.swift
+//  EmptyItem.swift
 //  Application
 //
 //  Created by 홍희표 on 2022/06/04.
@@ -8,4 +8,8 @@
 
 import Foundation
 
-protocol ListItem {}
+struct EmptyItem: Codable, Identifiable, ListItem {
+    var id: Int
+    
+    var text: String
+}

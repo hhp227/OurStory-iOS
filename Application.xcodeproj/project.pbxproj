@@ -56,6 +56,7 @@
 		0A450FA926C8B81200365F19 /* GroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A450FA826C8B81200365F19 /* GroupDetailView.swift */; };
 		0A46C7CE284B2BF800843E73 /* ReplyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46C7CD284B2BF800843E73 /* ReplyListCell.swift */; };
 		0A46C7D0284B310B00843E73 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46C7CF284B310B00843E73 /* ListItem.swift */; };
+		0A46C7D2284B3FDA00843E73 /* EmptyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46C7D1284B3FDA00843E73 /* EmptyItem.swift */; };
 		0A4B4A5826FDB16D00B825F3 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */; };
 		0A4B4A5B26FDB49B00B825F3 /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */; };
 		0A4F5292277D9CA5002188EB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F5291277D9CA5002188EB /* ImagePicker.swift */; };
@@ -133,6 +134,7 @@
 		0A450FA826C8B81200365F19 /* GroupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailView.swift; sourceTree = "<group>"; };
 		0A46C7CD284B2BF800843E73 /* ReplyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyListCell.swift; sourceTree = "<group>"; };
 		0A46C7CF284B310B00843E73 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		0A46C7D1284B3FDA00843E73 /* EmptyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyItem.swift; sourceTree = "<group>"; };
 		0A4B4A5726FDB16D00B825F3 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
 		0A4B4A5A26FDB49B00B825F3 /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
 		0A4F5291277D9CA5002188EB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				0A15B92B27396139009F8F2E /* Resource.swift */,
 				0A15B92E2739620F009F8F2E /* Status.swift */,
 				0A46C7CF284B310B00843E73 /* ListItem.swift */,
+				0A46C7D1284B3FDA00843E73 /* EmptyItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				0A1F585026DA02D9006CECE6 /* CreatePostViewModel.swift in Sources */,
 				0A29066327E4CFB000909571 /* InjectorUtils.swift in Sources */,
 				0A964AF726ABFE0800FDB511 /* PostDetailView.swift in Sources */,
+				0A46C7D2284B3FDA00843E73 /* EmptyItem.swift in Sources */,
 				0AD3BE8E26B2ACED00E857B4 /* MainView.swift in Sources */,
 				0A291FA3274E89EA00EEF1AD /* ReachabilityService.swift in Sources */,
 				0A7CE76F26FEBC4300F664DD /* FriendViewModel.swift in Sources */,
@@ -725,6 +729,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W345THX6Y6;
 				INFOPLIST_FILE = application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -743,6 +748,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W345THX6Y6;
 				INFOPLIST_FILE = application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

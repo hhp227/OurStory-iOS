@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct PostItem: Codable, Identifiable, Equatable {
+struct PostItem: Codable, Identifiable, Equatable, ListItem {
     var id: Int
     
     var userId: Int

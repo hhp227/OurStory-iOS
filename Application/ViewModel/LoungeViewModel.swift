@@ -45,7 +45,7 @@ class LoungeViewModel: ObservableObject {
     
     func updatePost(_ post: PostItem) {
         var posts = state.posts
-        let position = posts.firstIndex { $0.id == post.id } ?? 0
+        let position = posts.firstIndex { ($0 as? PostItem)?.id == post.id } ?? 0
         
         if position > -1 {
             posts[position] = post
@@ -130,7 +130,7 @@ class LoungeViewModel: ObservableObject {
     struct State {
         var isLoading: Bool = false
         
-        var posts: [PostItem] = []
+        var posts: [ListItem] = []
         
         var offset: Int = 0
         

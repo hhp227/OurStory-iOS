@@ -24,8 +24,10 @@ struct LoungeView: View {
                 Image("image3").resizable().aspectRatio(contentMode: .fill)
             }) {
                 LazyVStack(spacing: 10) {
-                    ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, post in
-                        PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) }, onResult: viewModel.refreshPosts)
+                    ForEach(Array(viewModel.state.posts.enumerated()), id: \.offset) { i, item in
+                        if let post = item as? PostItem {
+                            PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) }, onResult: viewModel.refreshPosts)
+                        }
                     }
                     if viewModel.state.canLoadNextPage {
                         // TODO loading indicator
