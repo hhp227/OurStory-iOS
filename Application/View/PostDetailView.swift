@@ -121,6 +121,6 @@ struct PostDetailView: View {
 
 struct PostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDetailView(args: ["post": PostItem(id: 0, userId: 0, name: "", text: "", status: 0, profileImage: nil, timeStamp: Date.init(), replyCount: 0, likeCount: 0, attachment: PostItem.Attachment.init(images: [], video: ""))], onResult: {})
+        PostDetailView(args: ["post": PostItem.EMPTY], onResult: {})
     }
 }
