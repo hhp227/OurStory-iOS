@@ -17,10 +17,6 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var isShowingActionSheet = false
     
-    @Published var isNavigateReplyModifyView = false
-    
-    @Published var selectPosition = -1
-    
     private let postRepository: PostRepository
     
     private let replyRepository: ReplyRepository

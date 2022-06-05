@@ -24,20 +24,12 @@ struct PostDetailView: View {
                     case let post as PostItem:
                         postDetailView(post: post)
                     case let reply as ReplyItem:
-                        ReplyListCell(reply: reply).onLongPressGesture {
-                            viewModel.selectPosition = i
-                        }
-                        NavigationLink(destination: UpdateReplyView(args: ["reply": reply]), isActive: $viewModel.isNavigateReplyModifyView, label: { EmptyView() })
+                        ReplyListCell(reply: reply)
                     default:
                         EmptyView()
                     }
-                }.onReceive(viewModel.$selectPosition) { position in
-                    if position >= 0 {
-                        print("position: \(position)")
-                        viewModel.isShowingActionSheet.toggle()
-                    }
                 }
-            }.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
+            }/*.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
                 var buttons = [ActionSheet.Button]()
                 
                 if viewModel.selectPosition > -1 {
@@ -63,7 +55,7 @@ struct PostDetailView: View {
                 }
                 buttons.append(.cancel())
                 return ActionSheet(title: Text("Selection Action"), buttons: buttons)
-            }
+            }*/
             VStack(spacing: 0) {
                 Divider()
                 HStack(spacing: 5) {
@@ -74,8 +66,6 @@ struct PostDetailView: View {
                 }.padding(5)
             }
         }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
-            viewModel.selectPosition = -1
-            
             viewModel.isShowingActionSheet.toggle()
         } label: {
             Image(systemName: "ellipsis")

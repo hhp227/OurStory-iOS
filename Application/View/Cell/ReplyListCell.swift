@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct ReplyListCell: View {
+    @State private var isActionSheetVisible = false
+    
+    @State private var isNavigateReplyModifyView = false
+    
     let reply: ReplyItem
     
     var body: some View {
@@ -22,7 +26,29 @@ struct ReplyListCell: View {
                 Spacer()
             }.padding(.horizontal, 5)
             Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
-        }.padding(8)
+            NavigationLink(destination: UpdateReplyView(args: ["reply": reply]), isActive: $isNavigateReplyModifyView, label: { EmptyView() })
+        }.padding(8).onLongPressGesture {
+            isActionSheetVisible.toggle()
+        }.actionSheet(isPresented: $isActionSheetVisible, content: getActionSheet)
+    }
+    
+    func getActionSheet() -> ActionSheet {
+        var buttons = [ActionSheet.Button]()
+        
+        buttons.append(.default(Text("Copy Content")) {
+            UIPasteboard.general.string = reply.reply
+        })
+        if let user = UserDefaultsManager.instance.user, user.id == reply.userId {
+            buttons.append(.default(Text("Edit Comment")) {
+                isNavigateReplyModifyView.toggle()
+            })
+            buttons.append(.destructive(Text("Delete Comment")) {
+                print("Delete Comment: \(reply)")
+                //viewModel.deleteReply(reply.id)
+            })
+        }
+        buttons.append(.cancel())
+        return ActionSheet(title: Text("Selection Action"), buttons: buttons)
     }
 }
 
