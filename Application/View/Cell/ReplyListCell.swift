@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct ReplyListCell: View {
-    @State private var isActionSheetVisible = false
-    
     @State private var isNavigateUpdateReplyView = false
+    
+    @State private var isActionSheetVisible = false
     
     let reply: ReplyItem
     

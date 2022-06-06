@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    @State private var isShowingActionSheet = false
-    
     // TODO @StateObject로 교체
-    @ObservedObject var viewModel: PostDetailViewModel
+    @ObservedObject private var viewModel: PostDetailViewModel
+    
+    @State private var isShowingActionSheet = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -24,22 +24,22 @@ struct PostDetailView: View {
                 ForEach(Array(viewModel.state.items.enumerated()), id: \.offset) { i, item in
                     switch item {
                     case let post as PostItem:
-                        postDetailView(post: post)
+                        postDetailView(post: post).actionSheet(isPresented: $isShowingActionSheet) {
+                            var buttons = [ActionSheet.Button]()
+                            
+                            if viewModel.isAuth {
+                                buttons.append(.default(Text("Edit Post")))
+                                buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
+                            }
+                            buttons.append(.cancel())
+                            return ActionSheet(title: Text("Selection Action"), buttons: buttons)
+                        }
                     case let reply as ReplyItem:
                         ReplyListCell(reply: reply, onDelete: { viewModel.deleteReply(reply.id) })
                     default:
                         EmptyView()
                     }
                 }
-            }.actionSheet(isPresented: $isShowingActionSheet) {
-                var buttons = [ActionSheet.Button]()
-                
-                if viewModel.isAuth {
-                    buttons.append(.default(Text("Edit Post")))
-                    buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
-                }
-                buttons.append(.cancel())
-                return ActionSheet(title: Text("Selection Action"), buttons: buttons)
             }
             VStack(spacing: 0) {
                 Divider()
