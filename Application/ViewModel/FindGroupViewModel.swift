@@ -23,13 +23,13 @@ class FindGroupViewModel: ObservableObject {
         repository.getNotJoinedGroups(apiKey, offset)
             .sink(receiveCompletion: { completion in
                 switch completion {
-                case .finished:
-                    break
                 case .failure(let error):
                     do {
                         self.state.canLoadNextPage = false
                         self.state.error = error.localizedDescription
                     }
+                case .finished:
+                    break
                 }
             }) { result in
                 switch result.status {

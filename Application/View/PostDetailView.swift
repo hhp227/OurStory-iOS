@@ -14,6 +14,8 @@ struct PostDetailView: View {
     
     @State private var isShowingActionSheet = false
     
+    @State private var isNavigate = false
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let onResult: () -> Void
@@ -24,16 +26,7 @@ struct PostDetailView: View {
                 ForEach(Array(viewModel.state.items.enumerated()), id: \.offset) { i, item in
                     switch item {
                     case let post as PostItem:
-                        postDetailView(post: post).actionSheet(isPresented: $isShowingActionSheet) {
-                            var buttons = [ActionSheet.Button]()
-                            
-                            if viewModel.isAuth {
-                                buttons.append(.default(Text("Edit Post")))
-                                buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
-                            }
-                            buttons.append(.cancel())
-                            return ActionSheet(title: Text("Selection Action"), buttons: buttons)
-                        }
+                        postDetailView(post: post)
                     case let reply as ReplyItem:
                         ReplyListCell(reply: reply, onDelete: { viewModel.deleteReply(reply.id) })
                     default:
@@ -85,7 +78,21 @@ struct PostDetailView: View {
                 }
             }.padding([.top, .horizontal], 10)
             Spacer(minLength: 10)
+            NavigationLink(destination: CreatePostView(args: ["post": post], onResult: {}), isActive: $isNavigate, label: {  })
+        }.actionSheet(isPresented: $isShowingActionSheet, content: getActionSheet)
+    }
+    
+    private func getActionSheet() -> ActionSheet {
+        var buttons = [ActionSheet.Button]()
+        
+        if viewModel.isAuth {
+            buttons.append(.default(Text("Edit Post")) {
+                isNavigate.toggle()
+            })
+            buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
         }
+        buttons.append(.cancel())
+        return ActionSheet(title: Text("Selection Action"), buttons: buttons)
     }
     
     init(args: [String: Any], onResult: @escaping () -> Void) {

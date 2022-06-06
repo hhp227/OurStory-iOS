@@ -47,14 +47,14 @@ class GroupListViewModel: ObservableObject {
     
     func onReceive(_ completion: Subscribers.Completion<Error>) {
         switch completion {
-        case .finished:
-            print("success")
-            break
         case .failure(let error):
             do {
                 self.state.canLoadNextPage = false
                 self.state.error = error.localizedDescription
             }
+        case .finished:
+            print("success")
+            break
         }
     }
     

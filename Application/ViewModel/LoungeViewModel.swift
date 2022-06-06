@@ -97,7 +97,6 @@ class LoungeViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
     
-    // TODO
     func onReceive(_ completion: Subscribers.Completion<Error>) {
         switch completion {
         case .finished:

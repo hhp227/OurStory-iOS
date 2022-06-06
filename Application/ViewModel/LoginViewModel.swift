@@ -42,10 +42,10 @@ class LoginViewModel: ObservableObject {
             repository.login(email, password)
                 .sink { completion in
                     switch (completion) {
-                    case .finished:
-                        break
                     case .failure(let error):
                         do { self.state.error = error.localizedDescription }
+                    case .finished:
+                        break
                     }
                 } receiveValue: { result in
                     switch result.status {

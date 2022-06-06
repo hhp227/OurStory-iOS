@@ -25,7 +25,5 @@ class UpdateReplyViewModel: ObservableObject {
     init(_ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
         self.reply = handle["reply"] as? ReplyItem ?? ReplyItem.EMPTY
         self.message = reply.reply
-        
-        print("updateReplyViewModel init: \(handle)")
     }
 }

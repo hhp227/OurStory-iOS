@@ -51,9 +51,8 @@ struct ReplyListCell: View {
     }
 }
 
-/*struct ReplyListCell_Previews: PreviewProvider {
+struct ReplyListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ReplyListCell(reply: ReplyItem.EMPTY)
+        ReplyListCell(reply: ReplyItem.EMPTY, onDelete: {})
     }
 }
-*/

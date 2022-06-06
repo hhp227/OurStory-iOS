@@ -23,6 +23,8 @@ class CreatePostViewModel: ObservableObject {
     
     private var apiKey: String = ""
     
+    private var post: PostItem
+    
     private let groupId: Int
     
     private var subscriptions = Set<AnyCancellable>()
@@ -31,10 +33,10 @@ class CreatePostViewModel: ObservableObject {
         repository.addPost(apiKey, groupId, text)
             .sink(receiveCompletion: { completion in
                 switch (completion) {
-                case .finished:
-                    break
                 case .failure(let error):
                     do { self.state.error = error.localizedDescription }
+                case .finished:
+                    break
                 }
             }) { result in
                 switch result.status {
@@ -99,6 +101,7 @@ class CreatePostViewModel: ObservableObject {
     
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
         self.repository = repository
+        self.post = handle["post"] as? PostItem ?? PostItem.EMPTY
         self.groupId = handle["group_id"] as? Int ?? 0
         
         userDefaultsManager.userPublisher
