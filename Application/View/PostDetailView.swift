@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct PostDetailView: View {
+    @State private var isShowingActionSheet = false
+    
     // TODO @StateObject로 교체
     @ObservedObject var viewModel: PostDetailViewModel
     
@@ -24,38 +26,21 @@ struct PostDetailView: View {
                     case let post as PostItem:
                         postDetailView(post: post)
                     case let reply as ReplyItem:
-                        ReplyListCell(reply: reply)
+                        ReplyListCell(reply: reply, onDelete: { viewModel.deleteReply(reply.id) })
                     default:
                         EmptyView()
                     }
                 }
-            }/*.actionSheet(isPresented: $viewModel.isShowingActionSheet) {
+            }.actionSheet(isPresented: $isShowingActionSheet) {
                 var buttons = [ActionSheet.Button]()
                 
-                if viewModel.selectPosition > -1 {
-                    guard let selectedReply = viewModel.state.items[viewModel.selectPosition] as? ReplyItem else {
-                        return ActionSheet(title: Text("Selection Action"), buttons: buttons)
-                    }
-                    
-                    buttons.append(.default(Text("Copy Content")) {
-                        UIPasteboard.general.string = selectedReply.reply
-                    })
-                    if let user = UserDefaultsManager.instance.user, user.id == selectedReply.userId {
-                        buttons.append(.default(Text("Edit Comment")) { viewModel.isNavigateReplyModifyView.toggle() })
-                        buttons.append(.destructive(Text("Delete Comment")) { viewModel.deleteReply(selectedReply.id) })
-                    }
-                } else {
-                    // TODO
-                    // PostDetail에 관한 내용을 써야됨 예를들어 글수정, 글삭제
-                    /*if let user = UserDefaultsManager.instance.user, user.id == viewModel.state.post?.userId {
-                        print("my post")
-                    }*/
+                if viewModel.isAuth {
                     buttons.append(.default(Text("Edit Post")))
                     buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
                 }
                 buttons.append(.cancel())
                 return ActionSheet(title: Text("Selection Action"), buttons: buttons)
-            }*/
+            }
             VStack(spacing: 0) {
                 Divider()
                 HStack(spacing: 5) {
@@ -66,7 +51,7 @@ struct PostDetailView: View {
                 }.padding(5)
             }
         }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
-            viewModel.isShowingActionSheet.toggle()
+            isShowingActionSheet.toggle()
         } label: {
             Image(systemName: "ellipsis")
         }).onReceive(viewModel.$state) { state in

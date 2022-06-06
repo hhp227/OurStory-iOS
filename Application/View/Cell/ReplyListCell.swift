@@ -11,9 +11,11 @@ import SwiftUI
 struct ReplyListCell: View {
     @State private var isActionSheetVisible = false
     
-    @State private var isNavigateReplyModifyView = false
+    @State private var isNavigateUpdateReplyView = false
     
     let reply: ReplyItem
+    
+    let onDelete: () -> Void
     
     var body: some View {
         VStack(alignment: .trailing) {
@@ -26,7 +28,7 @@ struct ReplyListCell: View {
                 Spacer()
             }.padding(.horizontal, 5)
             Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
-            NavigationLink(destination: UpdateReplyView(args: ["reply": reply]), isActive: $isNavigateReplyModifyView, label: { EmptyView() })
+            NavigationLink(destination: UpdateReplyView(args: ["reply": reply]), isActive: $isNavigateUpdateReplyView, label: { EmptyView() })
         }.padding(8).onLongPressGesture {
             isActionSheetVisible.toggle()
         }.actionSheet(isPresented: $isActionSheetVisible, content: getActionSheet)
@@ -40,20 +42,18 @@ struct ReplyListCell: View {
         })
         if let user = UserDefaultsManager.instance.user, user.id == reply.userId {
             buttons.append(.default(Text("Edit Comment")) {
-                isNavigateReplyModifyView.toggle()
+                isNavigateUpdateReplyView.toggle()
             })
-            buttons.append(.destructive(Text("Delete Comment")) {
-                print("Delete Comment: \(reply)")
-                //viewModel.deleteReply(reply.id)
-            })
+            buttons.append(.destructive(Text("Delete Comment"), action: onDelete))
         }
         buttons.append(.cancel())
         return ActionSheet(title: Text("Selection Action"), buttons: buttons)
     }
 }
 
-struct ReplyListCell_Previews: PreviewProvider {
+/*struct ReplyListCell_Previews: PreviewProvider {
     static var previews: some View {
         ReplyListCell(reply: ReplyItem.EMPTY)
     }
 }
+*/

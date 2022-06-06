@@ -15,8 +15,6 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var message = ""
     
-    @Published var isShowingActionSheet = false
-    
     private let postRepository: PostRepository
     
     private let replyRepository: ReplyRepository
@@ -26,6 +24,8 @@ class PostDetailViewModel: ObservableObject {
     private var post: PostItem
     
     private var subscriptions = Set<AnyCancellable>()
+    
+    var isAuth = false
     
     private func fetchPost(_ postId: Int) {
         postRepository.getPost(postId)
@@ -234,6 +234,7 @@ class PostDetailViewModel: ObservableObject {
         userDefaultsManager.userPublisher
             .sink(receiveCompletion: { _ in }) { user in
                 self.apiKey = user?.apiKey ?? ""
+                self.isAuth = user?.id == post.userId
             }
             .store(in: &subscriptions)
     }
