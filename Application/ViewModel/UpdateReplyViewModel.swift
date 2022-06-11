@@ -11,6 +11,8 @@ import Foundation
 class UpdateReplyViewModel: ObservableObject {
     @Published var message: String
     
+    private let repository: ReplyRepository
+    
     let reply: ReplyItem
     
     func updateReply() {
@@ -19,10 +21,11 @@ class UpdateReplyViewModel: ObservableObject {
             return
         }
         print("전송")
-        /*replyRepository.setReply(apiKey, state.replys[selectPosition].id, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)*/
+        //replyRepository.setReply(apiKey, state.replys[selectPosition].id, message).sink(receiveCompletion: onReceive, receiveValue: onReceive).store(in: &subscriptions)
     }
     
     init(_ replyRepository: ReplyRepository, _ userDefaultsManager: UserDefaultsManager, _ handle: [String: Any]) {
+        self.repository = replyRepository
         self.reply = handle["reply"] as? ReplyItem ?? ReplyItem.EMPTY
         self.message = reply.reply
     }
