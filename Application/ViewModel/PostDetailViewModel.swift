@@ -32,7 +32,7 @@ class PostDetailViewModel: ObservableObject {
             .sink(receiveCompletion: onReceive) { result in
                 switch result.status {
                 case .SUCCESS:
-                    self.post = result.data ?? PostItem(id: 0, userId: 0, name: "", text: "", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: PostItem.Attachment(images: [], video: nil))
+                    self.post = result.data ?? PostItem.EMPTY
                     self.state = State(
                         isLoading: false,
                         items: self.state.items + [self.post],
@@ -89,7 +89,7 @@ class PostDetailViewModel: ObservableObject {
                     case .SUCCESS:
                         self.state = State(
                             isLoading: false,
-                            items: self.state.items + [(result.data ?? ReplyItem(id: 0, userId: 0, name: "", reply: "", status: 0, timeStamp: ""))],
+                            items: self.state.items + [(result.data ?? ReplyItem.EMPTY)],
                             replyId: -1,
                             isSetResultOK: self.state.isSetResultOK,
                             error: self.state.error
