@@ -15,7 +15,7 @@ struct ReplyListCell: View {
     
     let reply: ReplyItem
     
-    let onDelete: () -> Void
+    let onAction: ([String: Any]) -> Void
     
     var body: some View {
         VStack(alignment: .trailing) {
@@ -28,7 +28,7 @@ struct ReplyListCell: View {
                 Spacer()
             }.padding(.horizontal, 5)
             Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
-            NavigationLink(destination: UpdateReplyView(args: ["reply": reply]), isActive: $isNavigateUpdateReplyView, label: { EmptyView() })
+            NavigationLink(destination: UpdateReplyView(args: ["reply": reply], onResult: onAction), isActive: $isNavigateUpdateReplyView, label: { EmptyView() })
         }.padding(8).onLongPressGesture {
             isActionSheetVisible.toggle()
         }.actionSheet(isPresented: $isActionSheetVisible, content: getActionSheet)
@@ -44,7 +44,7 @@ struct ReplyListCell: View {
             buttons.append(.default(Text("Edit Comment")) {
                 isNavigateUpdateReplyView.toggle()
             })
-            buttons.append(.destructive(Text("Delete Comment"), action: onDelete))
+            buttons.append(.destructive(Text("Delete Comment"), action: { onAction([:]) }))
         }
         buttons.append(.cancel())
         return ActionSheet(title: Text("Selection Action"), buttons: buttons)
@@ -53,6 +53,6 @@ struct ReplyListCell: View {
 
 struct ReplyListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ReplyListCell(reply: ReplyItem.EMPTY, onDelete: {})
+        ReplyListCell(reply: ReplyItem.EMPTY, onAction: { _ in })
     }
 }

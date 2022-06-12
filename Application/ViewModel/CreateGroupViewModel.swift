@@ -18,10 +18,10 @@ class CreateGroupViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(_ repository: GroupRepository, _ userDefaultManager: UserDefaultsManager) {
+    init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
         
-        userDefaultManager.userPublisher
+        userDefaultsManager.userPublisher
             .sink(receiveCompletion: { _ in }) { user in
                 self.apiKey = user?.apiKey ?? ""
             }

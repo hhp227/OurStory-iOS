@@ -173,8 +173,17 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func updateReply() {
-        // TODO
+    func updateReply(_ reply: ReplyItem) {
+        var replys = state.items
+        let position = replys.firstIndex { ($0 as? ReplyItem)?.id == reply.id } ?? 0
+
+        if position > -1 {
+            replys[position] = reply
+            state = State(
+                isLoading: false,
+                items: replys
+            )
+        }
     }
     
     func deleteReply(_ replyId: Int) {

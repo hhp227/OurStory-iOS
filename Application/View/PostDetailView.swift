@@ -28,7 +28,13 @@ struct PostDetailView: View {
                     case let post as PostItem:
                         postDetailView(post: post)
                     case let reply as ReplyItem:
-                        ReplyListCell(reply: reply, onDelete: { viewModel.deleteReply(reply.id) })
+                        ReplyListCell(reply: reply, onAction: { bundle in
+                            if let updatedReply = bundle["reply"] as? ReplyItem {
+                                viewModel.updateReply(updatedReply)
+                            } else {
+                                viewModel.deleteReply(reply.id)
+                            }
+                        })
                     default:
                         EmptyView()
                     }
