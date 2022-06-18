@@ -120,7 +120,7 @@ class CreatePostViewModel: ObservableObject {
     struct State {
         var isLoading: Bool = false
         
-        var items: [Any] = []
+        var items: [ListItem] = []
         
         var postId: Int = -1
         
