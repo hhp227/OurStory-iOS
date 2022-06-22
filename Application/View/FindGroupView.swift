@@ -14,7 +14,7 @@ struct FindGroupView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                List {
+                LazyVStack {
                     ForEach(viewModel.state.groups) { group in
                         GroupListCell(group: group)
                     }
