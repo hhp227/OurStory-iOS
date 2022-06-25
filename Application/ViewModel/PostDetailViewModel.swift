@@ -185,7 +185,7 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    // TODO 댓글 삭제후 새로고침이 되지 않음
+    // TODO 댓글 삭제후 새로고침이 되지 않음?
     func deleteReply(_ replyId: Int) {
         replyRepository.removeReply(apiKey, replyId).sink(receiveCompletion: onReceive) { result in
             switch result.status {
