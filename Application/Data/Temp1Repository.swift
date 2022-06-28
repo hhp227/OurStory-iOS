@@ -14,8 +14,6 @@ class Temp1Repository {
     
     init(_ apiService: ApiService) {
         self.apiService = apiService
-        
-        print("TEST: \(self)")
     }
     
     private static var instance: Temp1Repository? = nil
