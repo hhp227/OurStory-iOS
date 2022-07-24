@@ -65,7 +65,18 @@ struct PostDetailView: View {
         VStack(alignment: .center, spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .top) {
-                    AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))).frame(width: 55, height: 55).cornerRadius(45)
+                    AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))) { result in
+                        switch result {
+                        case .success(let image):
+                            image.resizable().aspectRatio(contentMode: .fill)
+                        case .failure:
+                            Image(systemName: "photo")
+                        case .empty:
+                            ProgressView()
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }.frame(width: 55, height: 55).cornerRadius(45)
                     VStack(alignment: .leading) {
                         Text(post.name).fontWeight(.bold)
                         Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
@@ -78,7 +89,18 @@ struct PostDetailView: View {
                 if !post.attachment.images.isEmpty {
                     VStack(alignment: .center, spacing: 0) {
                         ForEach(post.attachment.images) { image in
-                            AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + image.image)).padding(.bottom, 15)
+                            AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + image.image)) { result in
+                                switch result {
+                                case .success(let image):
+                                    image.resizable().aspectRatio(contentMode: .fill)
+                                case .failure:
+                                    Image(systemName: "photo")
+                                case .empty:
+                                    ProgressView()
+                                @unknown default:
+                                    EmptyView()
+                                }
+                            }.padding(.bottom, 15)
                         }
                     }.padding(.top, 10)
                 }

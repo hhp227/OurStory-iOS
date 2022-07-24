@@ -12,7 +12,24 @@ struct GroupListCell: View {
     let group: GroupItem
     
     var body: some View {
-        Text("Hello, \(group.id)")
+        HStack {
+            AsyncImage(url: URL(string: URL_GROUP_IMAGE_PATH + (group.image ?? ""))!) { result in
+                switch result {
+                case .success(let image):
+                    image.resizable().aspectRatio(contentMode: .fill)
+                case .failure:
+                    Image(systemName: "photo")
+                case .empty:
+                    ProgressView()
+                @unknown default:
+                    EmptyView()
+                }
+            }.frame(width: 150, height: 100)
+            VStack(alignment: .leading, spacing: 0) {
+                Text(group.groupName ?? "Unknown GroupName")
+                Text(group.description ?? "Unknown GroupDescruption")
+            }
+        }
     }
 }
 

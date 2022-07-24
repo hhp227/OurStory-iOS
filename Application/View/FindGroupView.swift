@@ -13,8 +13,8 @@ struct FindGroupView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
-                LazyVStack {
+            ScrollView {
+                LazyVStack(alignment: .leading) {
                     ForEach(viewModel.state.groups) { group in
                         GroupListCell(group: group)
                     }

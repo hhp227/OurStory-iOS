@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 import Combine
 
-struct AsyncImage: View {
+/*struct AsyncImage: View {
     @StateObject private var viewModel = ViewModel()
 
     let url: URL?
@@ -65,4 +65,5 @@ extension AsyncImage {
                 .store(in: &cancellables)
         }
     }
-}
+}*/
+

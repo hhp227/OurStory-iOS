@@ -30,7 +30,7 @@ struct GroupItem: Codable, Identifiable {
         case authorId = "author_id"
         case authorName = "author_name"
         case createdAt = "created_at"
-        case groupName = "group_name"
+        case groupName = "name"
         case joinType = "join_type"
     }
 }

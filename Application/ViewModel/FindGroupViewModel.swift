@@ -56,6 +56,16 @@ class FindGroupViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
     
+    func refreshGroups() {
+        
+    }
+    
+    func fetchNextPage() {
+        if state.error.isEmpty {
+            state = State(canLoadNextPage: true)
+        }
+    }
+    
     init(_ repository: GroupRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
         
