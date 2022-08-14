@@ -26,7 +26,7 @@ struct PostDetailView: View {
                 ForEach(Array(viewModel.state.items.enumerated()), id: \.offset) { i, item in
                     switch item {
                     case let post as PostItem:
-                        postDetailView(post: post)
+                        PostDetailCell(post: post)
                     case let reply as ReplyItem:
                         ReplyListCell(reply: reply, onAction: { bundle in
                             if let updatedReply = bundle["reply"] as? ReplyItem {
@@ -61,7 +61,8 @@ struct PostDetailView: View {
         }
     }
     
-    private func postDetailView(post: PostItem) -> some View {
+    @ViewBuilder
+    private func PostDetailCell(post: PostItem) -> some View {
         VStack(alignment: .center, spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .top) {
