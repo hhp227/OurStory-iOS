@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: ContentViewModel = InjectorUtils.instance.provideContentViewModel()
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
