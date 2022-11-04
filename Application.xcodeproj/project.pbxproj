@@ -13,6 +13,8 @@
 		0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44129142114008B9F59 /* InjectorUtils.swift */; };
 		0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44429142261008B9F59 /* UserDefaultsManager.swift */; };
 		0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44729142401008B9F59 /* ContentViewModel.swift */; };
+		0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE4E8529156D7100CD454F /* LoginViewModel.swift */; };
+		0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE4E8829156E3E00CD454F /* UserRepository.swift */; };
 		0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF55CD1290ECAB90045505E /* ApplicationApp.swift */; };
 		0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF55CD3290ECAB90045505E /* ContentView.swift */; };
 		0AF55CD6290ECABC0045505E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF55CD5290ECABC0045505E /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 		0A62C44129142114008B9F59 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
 		0A62C44429142261008B9F59 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		0A62C44729142401008B9F59 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		0ACE4E8529156D7100CD454F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0ACE4E8829156E3E00CD454F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		0AF55CCE290ECAB90045505E /* Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF55CD1290ECAB90045505E /* ApplicationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationApp.swift; sourceTree = "<group>"; };
 		0AF55CD3290ECAB90045505E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,8 +87,17 @@
 			isa = PBXGroup;
 			children = (
 				0A62C44729142401008B9F59 /* ContentViewModel.swift */,
+				0ACE4E8529156D7100CD454F /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0ACE4E8729156E2D00CD454F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0ACE4E8829156E3E00CD454F /* UserRepository.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		0AF55CC5290ECAB80045505E = {
@@ -106,6 +119,7 @@
 		0AF55CD0290ECAB90045505E /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				0ACE4E8729156E2D00CD454F /* Data */,
 				0A62C446291423EB008B9F59 /* ViewModel */,
 				0A62C44329142253008B9F59 /* Helper */,
 				0A62C440291420D2008B9F59 /* Util */,
@@ -203,6 +217,8 @@
 				0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */,
 				0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */,
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
+				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,
+				0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

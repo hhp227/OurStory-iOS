@@ -15,6 +15,14 @@ class InjectorUtils {
         return UserDefaultsManager.instance
     }
     
+    private func getUserRepository() -> UserRepository {
+        return UserRepository()
+    }
+    
+    func provideLoginViewModel() -> LoginViewModel {
+        return LoginViewModel(getUserRepository(), getUserDefaultsManager())
+    }
+    
     func provideContentViewModel() -> ContentViewModel {
         return ContentViewModel(getUserDefaultsManager())
     }

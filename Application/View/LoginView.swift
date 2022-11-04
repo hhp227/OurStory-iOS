@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @ObservedObject var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
+    
     var body: some View {
         Text("Hello, World!")
     }
