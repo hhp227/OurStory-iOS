@@ -9,16 +9,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: ContentViewModel = InjectorUtils.instance.provideContentViewModel()
+    @StateObject var viewModel: ContentViewModel = InjectorUtils.instance.provideContentViewModel()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        if viewModel.user != nil {
+            MainView()
+        } else {
+            LoginView()
         }
-        .padding()
     }
 }
 

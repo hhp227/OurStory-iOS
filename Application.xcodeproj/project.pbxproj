@@ -7,7 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A25D49C2917C8C000AD4546 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D49B2917C8C000AD4546 /* User.swift */; };
+		0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D49D2917CE9500AD4546 /* Resource.swift */; };
+		0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A02917CF4100AD4546 /* ApiService.swift */; };
+		0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A22917D58D00AD4546 /* RegisterView.swift */; };
+		0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */; };
 		0A409EAA2914063A0036BF69 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A409EA92914063A0036BF69 /* URLs.swift */; };
+		0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D8C291A8C29005E4434 /* DrawerViewModel.swift */; };
+		0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D90291A8D4D005E4434 /* DrawerStatus.swift */; };
+		0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D92291A8DD1005E4434 /* DrawerDefine.swift */; };
+		0A573D95291A8E4A005E4434 /* DrawerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D94291A8E4A005E4434 /* DrawerContainer.swift */; };
+		0A573D97291A8FB7005E4434 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D96291A8FB7005E4434 /* DrawerView.swift */; };
+		0A573D99291A8FF3005E4434 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D98291A8FF3005E4434 /* ProfileView.swift */; };
 		0A62C43D29141D50008B9F59 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C43C29141D50008B9F59 /* MainView.swift */; };
 		0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C43E29141D8C008B9F59 /* LoginView.swift */; };
 		0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44129142114008B9F59 /* InjectorUtils.swift */; };
@@ -22,7 +33,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A25D49B2917C8C000AD4546 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0A25D49D2917CE9500AD4546 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		0A25D4A02917CF4100AD4546 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		0A25D4A22917D58D00AD4546 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		0A409EA92914063A0036BF69 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		0A573D8C291A8C29005E4434 /* DrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewModel.swift; sourceTree = "<group>"; };
+		0A573D90291A8D4D005E4434 /* DrawerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerStatus.swift; sourceTree = "<group>"; };
+		0A573D92291A8DD1005E4434 /* DrawerDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerDefine.swift; sourceTree = "<group>"; };
+		0A573D94291A8E4A005E4434 /* DrawerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerContainer.swift; sourceTree = "<group>"; };
+		0A573D96291A8FB7005E4434 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
+		0A573D98291A8FF3005E4434 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0A62C43C29141D50008B9F59 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0A62C43E29141D8C008B9F59 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A62C44129142114008B9F59 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
@@ -48,6 +70,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A25D49A2917C8AB00AD4546 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A25D49B2917C8C000AD4546 /* User.swift */,
+				0A25D49D2917CE9500AD4546 /* Resource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A25D49F2917CF1800AD4546 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				0A25D4A02917CF4100AD4546 /* ApiService.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 		0A47759729102F34006C57C1 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,11 +99,33 @@
 		0A4FE7F72912A568003DAF3B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A573D8E291A8CFC005E4434 /* UI */,
 				0AF55CD3290ECAB90045505E /* ContentView.swift */,
 				0A62C43C29141D50008B9F59 /* MainView.swift */,
 				0A62C43E29141D8C008B9F59 /* LoginView.swift */,
+				0A25D4A22917D58D00AD4546 /* RegisterView.swift */,
+				0A573D96291A8FB7005E4434 /* DrawerView.swift */,
+				0A573D98291A8FF3005E4434 /* ProfileView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0A573D8E291A8CFC005E4434 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0A573D8F291A8D21005E4434 /* Drawer */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0A573D8F291A8D21005E4434 /* Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				0A573D90291A8D4D005E4434 /* DrawerStatus.swift */,
+				0A573D92291A8DD1005E4434 /* DrawerDefine.swift */,
+				0A573D94291A8E4A005E4434 /* DrawerContainer.swift */,
+			);
+			path = Drawer;
 			sourceTree = "<group>";
 		};
 		0A62C440291420D2008B9F59 /* Util */ = {
@@ -88,6 +149,8 @@
 			children = (
 				0A62C44729142401008B9F59 /* ContentViewModel.swift */,
 				0ACE4E8529156D7100CD454F /* LoginViewModel.swift */,
+				0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */,
+				0A573D8C291A8C29005E4434 /* DrawerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -119,6 +182,8 @@
 		0AF55CD0290ECAB90045505E /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				0A25D49F2917CF1800AD4546 /* Api */,
+				0A25D49A2917C8AB00AD4546 /* Model */,
 				0ACE4E8729156E2D00CD454F /* Data */,
 				0A62C446291423EB008B9F59 /* ViewModel */,
 				0A62C44329142253008B9F59 /* Helper */,
@@ -209,16 +274,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A573D95291A8E4A005E4434 /* DrawerContainer.swift in Sources */,
 				0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */,
+				0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */,
+				0A573D97291A8FB7005E4434 /* DrawerView.swift in Sources */,
+				0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */,
+				0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */,
 				0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */,
 				0A62C43D29141D50008B9F59 /* MainView.swift in Sources */,
+				0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */,
 				0A409EAA2914063A0036BF69 /* URLs.swift in Sources */,
 				0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */,
 				0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */,
 				0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */,
+				0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */,
+				0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */,
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
 				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,
+				0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */,
 				0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */,
+				0A573D99291A8FF3005E4434 /* ProfileView.swift in Sources */,
+				0A25D49C2917C8C000AD4546 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +426,7 @@
 				DEVELOPMENT_TEAM = W345THX6Y6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -379,6 +456,7 @@
 				DEVELOPMENT_TEAM = W345THX6Y6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

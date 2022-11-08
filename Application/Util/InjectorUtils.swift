@@ -9,21 +9,29 @@
 import Foundation
 
 class InjectorUtils {
-    static var instance = InjectorUtils.init()
+    private func getApiService() -> ApiService {
+        return ApiServiceImpl.init()
+    }
     
     func getUserDefaultsManager() -> UserDefaultsManager {
         return UserDefaultsManager.instance
     }
     
     private func getUserRepository() -> UserRepository {
-        return UserRepository()
+        return UserRepository.getInstance(apiService: getApiService())
     }
     
     func provideLoginViewModel() -> LoginViewModel {
         return LoginViewModel(getUserRepository(), getUserDefaultsManager())
     }
     
+    func provideRegisterViewModel() -> RegisterViewModel {
+        return RegisterViewModel(getUserRepository())
+    }
+    
     func provideContentViewModel() -> ContentViewModel {
         return ContentViewModel(getUserDefaultsManager())
     }
+    
+    static var instance = InjectorUtils.init()
 }
