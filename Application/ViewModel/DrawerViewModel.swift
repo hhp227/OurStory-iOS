@@ -21,6 +21,8 @@ class DrawerViewModel: ObservableObject {
     
     @Published var user: User? = nil
     
+    private let userDefaultsManager: UserDefaultsManager
+    
     private var statusObserver = [AnyCancellable]()
     
     private(set) var status = [DrawerType: DrawerStatus]() {
@@ -61,9 +63,16 @@ class DrawerViewModel: ObservableObject {
         self.status.forEach { $0.value.currentStatus = .hide }
     }
     
+    func clear() {
+        userDefaultsManager.clear()
+    }
+    
     init(_ userDefaultsManager: UserDefaultsManager) {
+        self.userDefaultsManager = userDefaultsManager
+        
         userDefaultsManager.userPublisher
             .sink(receiveCompletion: { _ in }) { user in self.user = user }
             .store(in: &statusObserver)
+        setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.8), shadowRadius: 10)
     }
 }

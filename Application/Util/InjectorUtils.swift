@@ -33,6 +33,10 @@ class InjectorUtils {
         return ContentViewModel(getUserDefaultsManager())
     }
     
+    func provideDrawerViewModel() -> DrawerViewModel {
+        return DrawerViewModel(getUserDefaultsManager())
+    }
+    
     func provideLoungeViewModel() -> LoungeViewModel {
         return LoungeViewModel()
     }

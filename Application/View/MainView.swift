@@ -9,12 +9,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var drawerViewModel: DrawerViewModel = {
-        let drawer = DrawerViewModel(.instance)
-        
-        drawer.setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.8), shadowRadius: 10)
-        return drawer
-    }()
+    @StateObject private var drawerViewModel: DrawerViewModel = InjectorUtils.instance.provideDrawerViewModel()
     
     private static let MAX_MASK_ALPHA: CGFloat = 0.25
     
@@ -39,9 +34,7 @@ struct MainView: View {
                         Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "Logout":
-                    Text("Logout").onAppear {
-                        UserDefaultsManager.instance.clear()
-                    }
+                    onAppear(perform: drawerViewModel.clear)
                 default:
                     EmptyView()
                 }
