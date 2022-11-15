@@ -33,5 +33,21 @@ class InjectorUtils {
         return ContentViewModel(getUserDefaultsManager())
     }
     
+    func provideLoungeViewModel() -> LoungeViewModel {
+        return LoungeViewModel()
+    }
+    
+    func provideGroupListViewModel() -> GroupListViewModel {
+        return GroupListViewModel()
+    }
+    
+    func provideFriendViewModel() -> FriendViewModel {
+        return FriendViewModel()
+    }
+    
+    func provideChatListViewModel() -> ChatListViewModel {
+        return ChatListViewModel()
+    }
+    
     static var instance = InjectorUtils.init()
 }

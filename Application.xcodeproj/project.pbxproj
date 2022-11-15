@@ -24,6 +24,14 @@
 		0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44129142114008B9F59 /* InjectorUtils.swift */; };
 		0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44429142261008B9F59 /* UserDefaultsManager.swift */; };
 		0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44729142401008B9F59 /* ContentViewModel.swift */; };
+		0AAD2BA52923D3B7001A0310 /* LoungeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA42923D3B7001A0310 /* LoungeView.swift */; };
+		0AAD2BA72923D40C001A0310 /* LoungeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA62923D40C001A0310 /* LoungeViewModel.swift */; };
+		0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA82923D4FF001A0310 /* GroupListView.swift */; };
+		0AAD2BAB2923D549001A0310 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BAA2923D549001A0310 /* GroupListViewModel.swift */; };
+		0AAD2BAD2923D609001A0310 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BAC2923D609001A0310 /* FriendView.swift */; };
+		0AAD2BAF2923D645001A0310 /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BAE2923D645001A0310 /* FriendViewModel.swift */; };
+		0AAD2BB12923D6DD001A0310 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BB02923D6DC001A0310 /* ChatListView.swift */; };
+		0AAD2BB32923D721001A0310 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BB22923D721001A0310 /* ChatListViewModel.swift */; };
 		0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE4E8529156D7100CD454F /* LoginViewModel.swift */; };
 		0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE4E8829156E3E00CD454F /* UserRepository.swift */; };
 		0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF55CD1290ECAB90045505E /* ApplicationApp.swift */; };
@@ -50,6 +58,14 @@
 		0A62C44129142114008B9F59 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
 		0A62C44429142261008B9F59 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		0A62C44729142401008B9F59 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		0AAD2BA42923D3B7001A0310 /* LoungeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeView.swift; sourceTree = "<group>"; };
+		0AAD2BA62923D40C001A0310 /* LoungeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeViewModel.swift; sourceTree = "<group>"; };
+		0AAD2BA82923D4FF001A0310 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
+		0AAD2BAA2923D549001A0310 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
+		0AAD2BAC2923D609001A0310 /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
+		0AAD2BAE2923D645001A0310 /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
+		0AAD2BB02923D6DC001A0310 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		0AAD2BB22923D721001A0310 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		0ACE4E8529156D7100CD454F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0ACE4E8829156E3E00CD454F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		0AF55CCE290ECAB90045505E /* Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Application.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +122,10 @@
 				0A25D4A22917D58D00AD4546 /* RegisterView.swift */,
 				0A573D96291A8FB7005E4434 /* DrawerView.swift */,
 				0A573D98291A8FF3005E4434 /* ProfileView.swift */,
+				0AAD2BA42923D3B7001A0310 /* LoungeView.swift */,
+				0AAD2BA82923D4FF001A0310 /* GroupListView.swift */,
+				0AAD2BAC2923D609001A0310 /* FriendView.swift */,
+				0AAD2BB02923D6DC001A0310 /* ChatListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -151,6 +171,10 @@
 				0ACE4E8529156D7100CD454F /* LoginViewModel.swift */,
 				0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */,
 				0A573D8C291A8C29005E4434 /* DrawerViewModel.swift */,
+				0AAD2BA62923D40C001A0310 /* LoungeViewModel.swift */,
+				0AAD2BAA2923D549001A0310 /* GroupListViewModel.swift */,
+				0AAD2BAE2923D645001A0310 /* FriendViewModel.swift */,
+				0AAD2BB22923D721001A0310 /* ChatListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -276,24 +300,32 @@
 			files = (
 				0A573D95291A8E4A005E4434 /* DrawerContainer.swift in Sources */,
 				0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */,
+				0AAD2BA72923D40C001A0310 /* LoungeViewModel.swift in Sources */,
 				0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */,
 				0A573D97291A8FB7005E4434 /* DrawerView.swift in Sources */,
 				0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */,
+				0AAD2BAD2923D609001A0310 /* FriendView.swift in Sources */,
 				0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */,
 				0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */,
 				0A62C43D29141D50008B9F59 /* MainView.swift in Sources */,
 				0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */,
+				0AAD2BAF2923D645001A0310 /* FriendViewModel.swift in Sources */,
+				0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */,
 				0A409EAA2914063A0036BF69 /* URLs.swift in Sources */,
+				0AAD2BA52923D3B7001A0310 /* LoungeView.swift in Sources */,
 				0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */,
 				0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */,
 				0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */,
 				0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */,
 				0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */,
+				0AAD2BAB2923D549001A0310 /* GroupListViewModel.swift in Sources */,
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
 				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,
 				0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */,
+				0AAD2BB12923D6DD001A0310 /* ChatListView.swift in Sources */,
 				0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */,
 				0A573D99291A8FF3005E4434 /* ProfileView.swift in Sources */,
+				0AAD2BB32923D721001A0310 /* ChatListViewModel.swift in Sources */,
 				0A25D49C2917C8C000AD4546 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

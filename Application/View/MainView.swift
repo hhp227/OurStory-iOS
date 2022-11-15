@@ -9,14 +9,46 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject private var drawerViewModel: DrawerViewModel = {
+        let drawer = DrawerViewModel(.instance)
+        
+        drawer.setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.8), shadowRadius: 10)
+        return drawer
+    }()
+    
+    private static let MAX_MASK_ALPHA: CGFloat = 0.25
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, MainView!")
+        ZStack {
+            NavigationView {
+                switch drawerViewModel.route {
+                case "Lounge":
+                    LoungeView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
+                    })
+                case "GroupList":
+                    GroupListView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
+                    })
+                case "FriendList":
+                    FriendView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
+                    })
+                case "ChatList":
+                    ChatListView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
+                    })
+                case "Logout":
+                    Text("Logout").onAppear {
+                        UserDefaultsManager.instance.clear()
+                    }
+                default:
+                    EmptyView()
+                }
+            }
+            Color.black.opacity(Double(drawerViewModel.maxShowRate * MainView.MAX_MASK_ALPHA)).onTapGesture(perform: drawerViewModel.hideAll).ignoresSafeArea()
+            drawerViewModel.drawerView[.left]
         }
-        .padding()
     }
 }
 
