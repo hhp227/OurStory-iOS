@@ -19,6 +19,15 @@
 		0A573D95291A8E4A005E4434 /* DrawerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D94291A8E4A005E4434 /* DrawerContainer.swift */; };
 		0A573D97291A8FB7005E4434 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D96291A8FB7005E4434 /* DrawerView.swift */; };
 		0A573D99291A8FF3005E4434 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D98291A8FF3005E4434 /* ProfileView.swift */; };
+		0A587418292526C900879505 /* FindGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A587417292526C900879505 /* FindGroupView.swift */; };
+		0A58741A2925272D00879505 /* FindGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5874192925272D00879505 /* FindGroupViewModel.swift */; };
+		0A58741C2925295900879505 /* JoinRequestGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58741B2925295900879505 /* JoinRequestGroupView.swift */; };
+		0A58741E2925299600879505 /* JoinRequestGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58741D2925299600879505 /* JoinRequestGroupViewModel.swift */; };
+		0A58742029252A9500879505 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58741F29252A9500879505 /* CreateGroupView.swift */; };
+		0A58742229252ACE00879505 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A58742129252ACE00879505 /* CreateGroupViewModel.swift */; };
+		0A587425292535DE00879505 /* GroupGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A587424292535DE00879505 /* GroupGridCell.swift */; };
+		0A5874282925365A00879505 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5874272925365A00879505 /* CardView.swift */; };
+		0A58742A2925374100879505 /* GroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5874292925374100879505 /* GroupItem.swift */; };
 		0A62C43D29141D50008B9F59 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C43C29141D50008B9F59 /* MainView.swift */; };
 		0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C43E29141D8C008B9F59 /* LoginView.swift */; };
 		0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44129142114008B9F59 /* InjectorUtils.swift */; };
@@ -53,6 +62,15 @@
 		0A573D94291A8E4A005E4434 /* DrawerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerContainer.swift; sourceTree = "<group>"; };
 		0A573D96291A8FB7005E4434 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		0A573D98291A8FF3005E4434 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		0A587417292526C900879505 /* FindGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupView.swift; sourceTree = "<group>"; };
+		0A5874192925272D00879505 /* FindGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupViewModel.swift; sourceTree = "<group>"; };
+		0A58741B2925295900879505 /* JoinRequestGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestGroupView.swift; sourceTree = "<group>"; };
+		0A58741D2925299600879505 /* JoinRequestGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestGroupViewModel.swift; sourceTree = "<group>"; };
+		0A58741F29252A9500879505 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
+		0A58742129252ACE00879505 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
+		0A587424292535DE00879505 /* GroupGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupGridCell.swift; sourceTree = "<group>"; };
+		0A5874272925365A00879505 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0A5874292925374100879505 /* GroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItem.swift; sourceTree = "<group>"; };
 		0A62C43C29141D50008B9F59 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0A62C43E29141D8C008B9F59 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A62C44129142114008B9F59 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
@@ -91,6 +109,7 @@
 			children = (
 				0A25D49B2917C8C000AD4546 /* User.swift */,
 				0A25D49D2917CE9500AD4546 /* Resource.swift */,
+				0A5874292925374100879505 /* GroupItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +134,7 @@
 		0A4FE7F72912A568003DAF3B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A587423292535C500879505 /* Cell */,
 				0A573D8E291A8CFC005E4434 /* UI */,
 				0AF55CD3290ECAB90045505E /* ContentView.swift */,
 				0A62C43C29141D50008B9F59 /* MainView.swift */,
@@ -126,6 +146,9 @@
 				0AAD2BA82923D4FF001A0310 /* GroupListView.swift */,
 				0AAD2BAC2923D609001A0310 /* FriendView.swift */,
 				0AAD2BB02923D6DC001A0310 /* ChatListView.swift */,
+				0A587417292526C900879505 /* FindGroupView.swift */,
+				0A58741B2925295900879505 /* JoinRequestGroupView.swift */,
+				0A58741F29252A9500879505 /* CreateGroupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,6 +156,7 @@
 		0A573D8E291A8CFC005E4434 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0A5874262925364700879505 /* CardView */,
 				0A573D8F291A8D21005E4434 /* Drawer */,
 			);
 			path = UI;
@@ -146,6 +170,22 @@
 				0A573D94291A8E4A005E4434 /* DrawerContainer.swift */,
 			);
 			path = Drawer;
+			sourceTree = "<group>";
+		};
+		0A587423292535C500879505 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0A587424292535DE00879505 /* GroupGridCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A5874262925364700879505 /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				0A5874272925365A00879505 /* CardView.swift */,
+			);
+			path = CardView;
 			sourceTree = "<group>";
 		};
 		0A62C440291420D2008B9F59 /* Util */ = {
@@ -175,6 +215,9 @@
 				0AAD2BAA2923D549001A0310 /* GroupListViewModel.swift */,
 				0AAD2BAE2923D645001A0310 /* FriendViewModel.swift */,
 				0AAD2BB22923D721001A0310 /* ChatListViewModel.swift */,
+				0A5874192925272D00879505 /* FindGroupViewModel.swift */,
+				0A58741D2925299600879505 /* JoinRequestGroupViewModel.swift */,
+				0A58742129252ACE00879505 /* CreateGroupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -303,22 +346,30 @@
 				0AAD2BA72923D40C001A0310 /* LoungeViewModel.swift in Sources */,
 				0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */,
 				0A573D97291A8FB7005E4434 /* DrawerView.swift in Sources */,
+				0A5874282925365A00879505 /* CardView.swift in Sources */,
+				0A587418292526C900879505 /* FindGroupView.swift in Sources */,
 				0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */,
 				0AAD2BAD2923D609001A0310 /* FriendView.swift in Sources */,
 				0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */,
 				0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */,
 				0A62C43D29141D50008B9F59 /* MainView.swift in Sources */,
 				0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */,
+				0A58741E2925299600879505 /* JoinRequestGroupViewModel.swift in Sources */,
+				0A587425292535DE00879505 /* GroupGridCell.swift in Sources */,
 				0AAD2BAF2923D645001A0310 /* FriendViewModel.swift in Sources */,
+				0A58742029252A9500879505 /* CreateGroupView.swift in Sources */,
 				0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */,
 				0A409EAA2914063A0036BF69 /* URLs.swift in Sources */,
 				0AAD2BA52923D3B7001A0310 /* LoungeView.swift in Sources */,
 				0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */,
+				0A58742229252ACE00879505 /* CreateGroupViewModel.swift in Sources */,
 				0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */,
 				0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */,
 				0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */,
 				0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */,
 				0AAD2BAB2923D549001A0310 /* GroupListViewModel.swift in Sources */,
+				0A58741C2925295900879505 /* JoinRequestGroupView.swift in Sources */,
+				0A58742A2925374100879505 /* GroupItem.swift in Sources */,
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
 				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,
 				0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */,
@@ -326,6 +377,7 @@
 				0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */,
 				0A573D99291A8FF3005E4434 /* ProfileView.swift in Sources */,
 				0AAD2BB32923D721001A0310 /* ChatListViewModel.swift in Sources */,
+				0A58741A2925272D00879505 /* FindGroupViewModel.swift in Sources */,
 				0A25D49C2917C8C000AD4546 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

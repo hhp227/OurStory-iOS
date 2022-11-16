@@ -45,6 +45,18 @@ class InjectorUtils {
         return GroupListViewModel()
     }
     
+    func provideFindGroupViewModel() -> FindGroupViewModel {
+        return FindGroupViewModel()
+    }
+    
+    func provideJoinRequestGroupViewModel() -> JoinRequestGroupViewModel {
+        return JoinRequestGroupViewModel()
+    }
+    
+    func provideCreateGroupViewModel() -> CreateGroupViewModel {
+        return CreateGroupViewModel()
+    }
+    
     func provideFriendViewModel() -> FriendViewModel {
         return FriendViewModel()
     }
