@@ -41,6 +41,10 @@ class InjectorUtils {
         return LoungeViewModel()
     }
     
+    func provideCreatePostViewModel() -> CreatePostViewModel {
+        return CreatePostViewModel()
+    }
+    
     func provideGroupListViewModel() -> GroupListViewModel {
         return GroupListViewModel()
     }
