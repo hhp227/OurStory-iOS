@@ -31,6 +31,7 @@
 		0A587425292535DE00879505 /* GroupGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A587424292535DE00879505 /* GroupGridCell.swift */; };
 		0A5874282925365A00879505 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5874272925365A00879505 /* CardView.swift */; };
 		0A58742A2925374100879505 /* GroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5874292925374100879505 /* GroupItem.swift */; };
+		0A5CF5AC29280C9400FE34DA /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CF5AB29280C9400FE34DA /* PostRepository.swift */; };
 		0A62C43D29141D50008B9F59 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C43C29141D50008B9F59 /* MainView.swift */; };
 		0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C43E29141D8C008B9F59 /* LoginView.swift */; };
 		0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44129142114008B9F59 /* InjectorUtils.swift */; };
@@ -77,6 +78,7 @@
 		0A587424292535DE00879505 /* GroupGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupGridCell.swift; sourceTree = "<group>"; };
 		0A5874272925365A00879505 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0A5874292925374100879505 /* GroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItem.swift; sourceTree = "<group>"; };
+		0A5CF5AB29280C9400FE34DA /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		0A62C43C29141D50008B9F59 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0A62C43E29141D8C008B9F59 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A62C44129142114008B9F59 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				0ACE4E8829156E3E00CD454F /* UserRepository.swift */,
+				0A5CF5AB29280C9400FE34DA /* PostRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				0AAD2BAB2923D549001A0310 /* GroupListViewModel.swift in Sources */,
 				0A58741C2925295900879505 /* JoinRequestGroupView.swift in Sources */,
 				0A58742A2925374100879505 /* GroupItem.swift in Sources */,
+				0A5CF5AC29280C9400FE34DA /* PostRepository.swift in Sources */,
 				0A3034432926958B00FF9D97 /* CollapsingNavigationBarView.swift in Sources */,
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
 				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,
