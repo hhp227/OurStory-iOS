@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A10430B2929250D00B4B3A2 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10430A2929250D00B4B3A2 /* PostItem.swift */; };
+		0A10430D2929255300B4B3A2 /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10430C2929255300B4B3A2 /* ImageItem.swift */; };
+		0A10430F292926B000B4B3A2 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10430E292926B000B4B3A2 /* ListItem.swift */; };
 		0A25D49C2917C8C000AD4546 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D49B2917C8C000AD4546 /* User.swift */; };
 		0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D49D2917CE9500AD4546 /* Resource.swift */; };
 		0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A02917CF4100AD4546 /* ApiService.swift */; };
@@ -54,6 +57,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A10430A2929250D00B4B3A2 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
+		0A10430C2929255300B4B3A2 /* ImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
+		0A10430E292926B000B4B3A2 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		0A25D49B2917C8C000AD4546 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0A25D49D2917CE9500AD4546 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		0A25D4A02917CF4100AD4546 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -118,6 +124,9 @@
 				0A25D49B2917C8C000AD4546 /* User.swift */,
 				0A25D49D2917CE9500AD4546 /* Resource.swift */,
 				0A5874292925374100879505 /* GroupItem.swift */,
+				0A10430A2929250D00B4B3A2 /* PostItem.swift */,
+				0A10430C2929255300B4B3A2 /* ImageItem.swift */,
+				0A10430E292926B000B4B3A2 /* ListItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,11 +398,14 @@
 				0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */,
 				0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */,
 				0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */,
+				0A10430D2929255300B4B3A2 /* ImageItem.swift in Sources */,
 				0AAD2BAB2923D549001A0310 /* GroupListViewModel.swift in Sources */,
+				0A10430F292926B000B4B3A2 /* ListItem.swift in Sources */,
 				0A58741C2925295900879505 /* JoinRequestGroupView.swift in Sources */,
 				0A58742A2925374100879505 /* GroupItem.swift in Sources */,
 				0A5CF5AC29280C9400FE34DA /* PostRepository.swift in Sources */,
 				0A3034432926958B00FF9D97 /* CollapsingNavigationBarView.swift in Sources */,
+				0A10430B2929250D00B4B3A2 /* PostItem.swift in Sources */,
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
 				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,
 				0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */,
