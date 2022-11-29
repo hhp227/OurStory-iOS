@@ -40,6 +40,7 @@ class ApiServiceImpl: ApiService {
         method: HttpMethod,
         header: [String : String],
         params: [String : String],
+        prepend: T,
         transform: @escaping ((data: Data, response: URLResponse)) throws -> T
     ) -> AnyPublisher<T, Error> {
         let param = params.map { "\($0)=\($1)" }.joined(separator: "&").data(using: .utf8)
@@ -52,9 +53,14 @@ class ApiServiceImpl: ApiService {
         return URLSession.shared
             .dataTaskPublisher(for: urlRequest)
             .tryMap(transform)
+            .prepend(prepend)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+    
+    
+    
+    
     
     func request<T>(
         with endpoint: String,
@@ -101,6 +107,7 @@ protocol ApiService {
         method: HttpMethod,
         header: [String: String],
         params: [String: String],
+        prepend: T,
         transform: @escaping ((data: Data, response: URLResponse)) throws -> T
     ) -> AnyPublisher<T, Error>
 }

@@ -71,7 +71,8 @@ class DrawerViewModel: ObservableObject {
         self.userDefaultsManager = userDefaultsManager
         
         userDefaultsManager.userPublisher
-            .sink(receiveCompletion: { _ in }) { user in self.user = user }
+            .replaceError(with: user)
+            .assign(to: \.user, on: self)
             .store(in: &statusObserver)
         setDrawer(view: DrawerView(type: .left), widthType: .percent(rate: 0.8), shadowRadius: 10)
     }

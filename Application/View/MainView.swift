@@ -15,7 +15,7 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
+            NavigationStack {
                 switch drawerViewModel.route {
                 case "Lounge":
                     LoungeView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {

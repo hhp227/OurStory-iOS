@@ -13,19 +13,17 @@ class UserRepository {
     private let apiService: ApiService
     
     func login(_ email: String, _ password: String) -> AnyPublisher<Resource<User>, Error> {
-        return apiService.request(with: URL_LOGIN, method: .post, header: [:], params: ["email": email, "password": password]) { data, response in
-            if let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) {
-                if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    if !(jsonObject["error"] as? Bool ?? false) {
-                        return Resource.success(try JSONDecoder().decode(User.self, from: data))
-                    } else {
-                        return Resource.error(jsonObject["message"] as! String, nil)
-                    }
-                } else {
-                    return Resource.error(response.debugDescription, nil)
-                }
-            } else {
+        return apiService.request(with: URL_LOGIN, method: .post, header: [:], params: ["email": email, "password": password], prepend: Resource<User>.loading(nil)) { data, response in
+            guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
                 return Resource.error(response.description, nil)
+            }
+            guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                return Resource.error(response.debugDescription, nil)
+            }
+            if !(jsonObject["error"] as? Bool ?? false) {
+                return Resource.success(try JSONDecoder().decode(User.self, from: data))
+            } else {
+                return Resource.error(jsonObject["message"] as! String, nil)
             }
         }
     }

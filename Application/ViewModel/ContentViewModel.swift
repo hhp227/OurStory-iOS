@@ -16,7 +16,8 @@ class ContentViewModel: ObservableObject {
     
     init(_ userDefaultManager: UserDefaultsManager) {
         userDefaultManager.userPublisher
-            .sink(receiveCompletion: { _ in }) { user in self.user = user }
+            .replaceError(with: user)
+            .assign(to: \.user, on: self)
             .store(in: &subscription)
     }
 }

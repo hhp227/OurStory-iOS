@@ -19,6 +19,8 @@
 		0A303440292693D400FF9D97 /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */; };
 		0A3034432926958B00FF9D97 /* CollapsingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3034422926958B00FF9D97 /* CollapsingNavigationBarView.swift */; };
 		0A409EAA2914063A0036BF69 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A409EA92914063A0036BF69 /* URLs.swift */; };
+		0A4E3EFD29310C8D002D990D /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E3EFC29310C8D002D990D /* PostListCell.swift */; };
+		0A5547B52932544000CC2E82 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5547B42932544000CC2E82 /* PostDetailView.swift */; };
 		0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D8C291A8C29005E4434 /* DrawerViewModel.swift */; };
 		0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D90291A8D4D005E4434 /* DrawerStatus.swift */; };
 		0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D92291A8DD1005E4434 /* DrawerDefine.swift */; };
@@ -40,6 +42,7 @@
 		0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44129142114008B9F59 /* InjectorUtils.swift */; };
 		0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44429142261008B9F59 /* UserDefaultsManager.swift */; };
 		0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44729142401008B9F59 /* ContentViewModel.swift */; };
+		0A6CA530292D26E8002EFBEC /* SavedStateHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CA52F292D26E8002EFBEC /* SavedStateHandle.swift */; };
 		0AAD2BA52923D3B7001A0310 /* LoungeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA42923D3B7001A0310 /* LoungeView.swift */; };
 		0AAD2BA72923D40C001A0310 /* LoungeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA62923D40C001A0310 /* LoungeViewModel.swift */; };
 		0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA82923D4FF001A0310 /* GroupListView.swift */; };
@@ -69,6 +72,8 @@
 		0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
 		0A3034422926958B00FF9D97 /* CollapsingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsingNavigationBarView.swift; sourceTree = "<group>"; };
 		0A409EA92914063A0036BF69 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		0A4E3EFC29310C8D002D990D /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
+		0A5547B42932544000CC2E82 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		0A573D8C291A8C29005E4434 /* DrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewModel.swift; sourceTree = "<group>"; };
 		0A573D90291A8D4D005E4434 /* DrawerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerStatus.swift; sourceTree = "<group>"; };
 		0A573D92291A8DD1005E4434 /* DrawerDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerDefine.swift; sourceTree = "<group>"; };
@@ -90,6 +95,7 @@
 		0A62C44129142114008B9F59 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
 		0A62C44429142261008B9F59 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		0A62C44729142401008B9F59 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		0A6CA52F292D26E8002EFBEC /* SavedStateHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedStateHandle.swift; sourceTree = "<group>"; };
 		0AAD2BA42923D3B7001A0310 /* LoungeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeView.swift; sourceTree = "<group>"; };
 		0AAD2BA62923D40C001A0310 /* LoungeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeViewModel.swift; sourceTree = "<group>"; };
 		0AAD2BA82923D4FF001A0310 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 				0A58741B2925295900879505 /* JoinRequestGroupView.swift */,
 				0A58741F29252A9500879505 /* CreateGroupView.swift */,
 				0A30343D2926937200FF9D97 /* CreatePostView.swift */,
+				0A5547B42932544000CC2E82 /* PostDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				0A587424292535DE00879505 /* GroupGridCell.swift */,
+				0A4E3EFC29310C8D002D990D /* PostListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -227,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				0A62C44429142261008B9F59 /* UserDefaultsManager.swift */,
+				0A6CA52F292D26E8002EFBEC /* SavedStateHandle.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -373,6 +382,7 @@
 				0A573D95291A8E4A005E4434 /* DrawerContainer.swift in Sources */,
 				0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */,
 				0A303440292693D400FF9D97 /* CreatePostViewModel.swift in Sources */,
+				0A5547B52932544000CC2E82 /* PostDetailView.swift in Sources */,
 				0A30343E2926937200FF9D97 /* CreatePostView.swift in Sources */,
 				0AAD2BA72923D40C001A0310 /* LoungeViewModel.swift in Sources */,
 				0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */,
@@ -395,6 +405,7 @@
 				0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */,
 				0A58742229252ACE00879505 /* CreateGroupViewModel.swift in Sources */,
 				0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */,
+				0A6CA530292D26E8002EFBEC /* SavedStateHandle.swift in Sources */,
 				0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */,
 				0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */,
 				0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */,
@@ -405,6 +416,7 @@
 				0A58742A2925374100879505 /* GroupItem.swift in Sources */,
 				0A5CF5AC29280C9400FE34DA /* PostRepository.swift in Sources */,
 				0A3034432926958B00FF9D97 /* CollapsingNavigationBarView.swift in Sources */,
+				0A4E3EFD29310C8D002D990D /* PostListCell.swift in Sources */,
 				0A10430B2929250D00B4B3A2 /* PostItem.swift in Sources */,
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
 				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,

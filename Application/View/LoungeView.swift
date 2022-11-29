@@ -14,18 +14,20 @@ struct LoungeView: View {
     private var fab: some View {
         NavigationLink(destination: CreatePostView()) {
             Text("+").font(.system(.largeTitle)).frame(width: 66, height: 60).foregroundColor(.white).padding(.bottom, 7)
-        }.background(Color.blue).cornerRadius(38.5).padding().shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3).animation(.none)
+        }.background(Color.blue).cornerRadius(38.5).padding().shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
     }
     
     var body: some View {
         ZStack {
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                Text("Hello, LoungeView!")
+            ScrollView {
+                LazyVStack(spacing: 10) {
+                    ForEach(Array(viewModel.posts.enumerated()), id: \.offset) { i, item in
+                        if let post = item as? PostItem {
+                            PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) }, onResult: viewModel.refreshPosts)
+                        }
+                    }
+                }
             }
-            .padding()
             VStack {
                 Spacer()
                 HStack {
