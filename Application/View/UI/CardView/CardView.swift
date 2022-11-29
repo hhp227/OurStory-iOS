@@ -9,12 +9,14 @@
 import SwiftUI
 
 struct CardView<Content: View>: View {
+    var radius: CGFloat = 10
+    
     var content: () -> Content
     
     var body: some View {
         VStack(alignment: .leading) {
             content().frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
-        }.cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1)).padding([.leading, .trailing], 10)
+        }.overlay(RoundedRectangle(cornerRadius: radius).stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1)).padding([.leading, .trailing], 10)
     }
 }
 

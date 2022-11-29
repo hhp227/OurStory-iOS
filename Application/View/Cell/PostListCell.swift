@@ -16,13 +16,19 @@ struct PostListCell: View {
     let onResult: () -> Void
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, PostListCell!")
+        CardView {
+            VStack(alignment: .center, spacing: 0) {
+                NavigationLink(destination: PostDetailView(onResult: onResult)) {
+                    VStack {
+                        Image(systemName: "globe")
+                            .imageScale(.large)
+                            .foregroundColor(.accentColor)
+                        Text("Hello, PostListCell!")
+                    }
+                    .padding()
+                }.frame(width: UIScreen.main.bounds.width)
+            }
         }
-        .padding()
     }
 }
 

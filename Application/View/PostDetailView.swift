@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct PostDetailView: View {
+    let onResult: () -> Void
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -22,6 +24,6 @@ struct PostDetailView: View {
 
 struct PostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDetailView()
+        PostDetailView(onResult: {})
     }
 }
