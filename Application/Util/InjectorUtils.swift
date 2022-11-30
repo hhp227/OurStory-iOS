@@ -69,5 +69,9 @@ class InjectorUtils {
         return ChatListViewModel()
     }
     
+    func providePostDetailViewModel() -> PostDetailViewModel {
+        return PostDetailViewModel()
+    }
+    
     static var instance = InjectorUtils.init()
 }

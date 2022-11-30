@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct PostDetailView: View {
+    @ObservedObject var viewModel = InjectorUtils.instance.providePostDetailViewModel()
+    
     let onResult: () -> Void
     
     var body: some View {
