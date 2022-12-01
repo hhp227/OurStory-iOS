@@ -17,7 +17,8 @@ class GroupListViewModel: ObservableObject {
     struct State {
         var isLoading: Bool = false
         
-        var groups: [GroupItem] = Array()
+        // temp
+        var groups: [GroupItem] = [GroupItem(id: 0, authorId: 0, joinType: 0), GroupItem(id: 1, authorId: 1, joinType: 0), GroupItem(id: 2, authorId: 2, joinType: 0), GroupItem(id: 3, authorId: 3, joinType: 0), GroupItem(id: 4, authorId: 4, joinType: 0)]
         
         var offset: Int = 0
         
