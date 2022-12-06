@@ -15,6 +15,7 @@
 		0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A02917CF4100AD4546 /* ApiService.swift */; };
 		0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A22917D58D00AD4546 /* RegisterView.swift */; };
 		0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */; };
+		0A2E9A18293F721800C2BB9B /* ReplyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E9A17293F721800C2BB9B /* ReplyRepository.swift */; };
 		0A30343E2926937200FF9D97 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30343D2926937200FF9D97 /* CreatePostView.swift */; };
 		0A303440292693D400FF9D97 /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */; };
 		0A3034432926958B00FF9D97 /* CollapsingNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3034422926958B00FF9D97 /* CollapsingNavigationBarView.swift */; };
@@ -69,6 +70,7 @@
 		0A25D4A02917CF4100AD4546 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		0A25D4A22917D58D00AD4546 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		0A2E9A17293F721800C2BB9B /* ReplyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyRepository.swift; sourceTree = "<group>"; };
 		0A30343D2926937200FF9D97 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
 		0A3034422926958B00FF9D97 /* CollapsingNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsingNavigationBarView.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				0ACE4E8829156E3E00CD454F /* UserRepository.swift */,
 				0A5CF5AB29280C9400FE34DA /* PostRepository.swift */,
+				0A2E9A17293F721800C2BB9B /* ReplyRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */,
 				0A303440292693D400FF9D97 /* CreatePostViewModel.swift in Sources */,
 				0A5547B52932544000CC2E82 /* PostDetailView.swift in Sources */,
+				0A2E9A18293F721800C2BB9B /* ReplyRepository.swift in Sources */,
 				0A30343E2926937200FF9D97 /* CreatePostView.swift in Sources */,
 				0AAD2BA72923D40C001A0310 /* LoungeViewModel.swift in Sources */,
 				0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */,
