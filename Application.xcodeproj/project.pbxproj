@@ -10,6 +10,7 @@
 		0A10430B2929250D00B4B3A2 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10430A2929250D00B4B3A2 /* PostItem.swift */; };
 		0A10430D2929255300B4B3A2 /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10430C2929255300B4B3A2 /* ImageItem.swift */; };
 		0A10430F292926B000B4B3A2 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10430E292926B000B4B3A2 /* ListItem.swift */; };
+		0A25780429478A2C00AA2331 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25780329478A2C00AA2331 /* AuthService.swift */; };
 		0A25D49C2917C8C000AD4546 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D49B2917C8C000AD4546 /* User.swift */; };
 		0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D49D2917CE9500AD4546 /* Resource.swift */; };
 		0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A02917CF4100AD4546 /* ApiService.swift */; };
@@ -66,6 +67,7 @@
 		0A10430A2929250D00B4B3A2 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		0A10430C2929255300B4B3A2 /* ImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
 		0A10430E292926B000B4B3A2 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		0A25780329478A2C00AA2331 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		0A25D49B2917C8C000AD4546 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0A25D49D2917CE9500AD4546 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		0A25D4A02917CF4100AD4546 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				0A25D4A02917CF4100AD4546 /* ApiService.swift */,
+				0A25780329478A2C00AA2331 /* AuthService.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -163,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				0AF55CD1290ECAB90045505E /* ApplicationApp.swift */,
-				0A409EA92914063A0036BF69 /* URLs.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				0A62C44129142114008B9F59 /* InjectorUtils.swift */,
+				0A409EA92914063A0036BF69 /* URLs.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				0A62C43D29141D50008B9F59 /* MainView.swift in Sources */,
 				0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */,
 				0A58741E2925299600879505 /* JoinRequestGroupViewModel.swift in Sources */,
+				0A25780429478A2C00AA2331 /* AuthService.swift in Sources */,
 				0A587425292535DE00879505 /* GroupGridCell.swift in Sources */,
 				0AAD2BAF2923D645001A0310 /* FriendViewModel.swift in Sources */,
 				0A58742029252A9500879505 /* CreateGroupView.swift in Sources */,
