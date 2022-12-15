@@ -34,6 +34,8 @@ struct LoginView: View {
             }.padding(16).onReceive(viewModel.$state) { state in
                 if let user = state.user {
                     viewModel.storeUser(user)
+                } else if !state.error.isEmpty {
+                    viewModel.showSnackBar()
                 }
             }
             if viewModel.state.isLoading {

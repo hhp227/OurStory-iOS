@@ -63,6 +63,10 @@ class LoginViewModel: ObservableObject {
         }
     }
     
+    func showSnackBar() {
+        print("error: \(state.error)")
+    }
+    
     init(_ repository: UserRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
         self.userDefaultsManager = userDefaultsManager
