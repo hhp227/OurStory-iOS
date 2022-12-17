@@ -18,9 +18,9 @@ struct LoginView: View {
                     Text("Welcome!").font(.title)
                     VStack(alignment: .leading) {
                         Text("Email")
-                        TextField("Email", text: $viewModel.email).autocapitalization(.none).keyboardType(.emailAddress).disableAutocorrection(true).padding(10)
+                        TextField("Email", text: $viewModel.email).autocapitalization(.none).keyboardType(.emailAddress).disableAutocorrection(true).padding(15).background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
                         Text("Password")
-                        SecureField("Password", text: $viewModel.password).padding(10)
+                        SecureField("Password", text: $viewModel.password).padding().background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
                     }.padding(10)
                 }
                 Button(action: viewModel.login) {
