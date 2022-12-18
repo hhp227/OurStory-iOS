@@ -16,16 +16,16 @@ struct LoginView: View {
             VStack {
                 VStack {
                     Text("Welcome!").font(.title)
-                    VStack(alignment: .leading) {
-                        Text("Email")
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Email").padding(.bottom, 10)
                         TextField("Email", text: $viewModel.email).autocapitalization(.none).keyboardType(.emailAddress).disableAutocorrection(true).padding(15).background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
-                        Text("Password")
+                        Text("Password").padding(.vertical, 10)
                         SecureField("Password", text: $viewModel.password).padding().background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
                     }.padding(10)
                 }
                 Button(action: viewModel.login) {
-                    Text("LOGIN").font(.system(size: 15, weight: .semibold)).frame(width: 200, alignment: .center).padding(12.5).background(RoundedRectangle(cornerRadius: 3).strokeBorder())
-                }
+                    Text("LOGIN").foregroundColor(.white).frame(maxWidth: .infinity).padding(10)
+                }.buttonStyle(.borderedProminent).padding(10)
                 Button(action: { viewModel.isShowRegister.toggle() }) {
                     Text("Register").font(.system(size: 13)).padding(5)
                 }.sheet(isPresented: $viewModel.isShowRegister) {
