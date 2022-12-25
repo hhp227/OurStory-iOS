@@ -32,6 +32,9 @@ class AuthService {
         urlRequest.httpBody = params
         urlRequest.timeoutInterval = 10
         let (data, response) = try! await URLSession.shared.data(for: urlRequest)
+        guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
+            fatalError(response.description)
+        }
         let user = try! JSONDecoder().decode(User.self, from: data)
         return user
     }

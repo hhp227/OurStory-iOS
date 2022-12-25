@@ -12,6 +12,8 @@ import Combine
 class UserRepository {
     private let apiService: ApiService
     
+    private let authService: AuthService
+    
     func login(_ email: String, _ password: String) -> AnyPublisher<Resource<User>, Error> {
         return apiService.request(with: URL_LOGIN, method: .post, header: [:], params: ["email": email, "password": password], prepend: Resource<User>.loading(nil)) { data, response in
             guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
@@ -27,18 +29,24 @@ class UserRepository {
             }
         }
     }
+    /*func login(_ email: String, _ password: String) -> AnyPublisher<Resource<User>, Error> {
+        return Future { _ in
+            
+        }.eraseToAnyPublisher()
+    }*/
     
-    init(_ apiService: ApiService) {
+    init(_ apiService: ApiService, _ authService: AuthService) {
         self.apiService = apiService
+        self.authService = authService
     }
     
     private static var instance: UserRepository? = nil
     
-    static func getInstance(apiService: ApiService) -> UserRepository {
+    static func getInstance(apiService: ApiService, authService: AuthService) -> UserRepository {
         if let instance = self.instance {
             return instance
         } else {
-            let userRepository = UserRepository(apiService)
+            let userRepository = UserRepository(apiService, authService)
             self.instance = userRepository
             return userRepository
         }

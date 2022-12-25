@@ -9,6 +9,10 @@
 import Foundation
 
 class InjectorUtils {
+    private func getAuthService() -> AuthService {
+        return AuthService()
+    }
+    
     private func getApiService() -> ApiService {
         return ApiServiceImpl.init()
     }
@@ -18,7 +22,7 @@ class InjectorUtils {
     }
     
     private func getUserRepository() -> UserRepository {
-        return UserRepository.getInstance(apiService: getApiService())
+        return UserRepository.getInstance(apiService: getApiService(), authService: getAuthService())
     }
     
     func provideLoginViewModel() -> LoginViewModel {
