@@ -16,6 +16,7 @@
 		0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A02917CF4100AD4546 /* ApiService.swift */; };
 		0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A22917D58D00AD4546 /* RegisterView.swift */; };
 		0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */; };
+		0A270F022958917F00004A7C /* ReplyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A270F012958917F00004A7C /* ReplyListCell.swift */; };
 		0A2E9A18293F721800C2BB9B /* ReplyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E9A17293F721800C2BB9B /* ReplyRepository.swift */; };
 		0A30343E2926937200FF9D97 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30343D2926937200FF9D97 /* CreatePostView.swift */; };
 		0A303440292693D400FF9D97 /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */; };
@@ -73,6 +74,7 @@
 		0A25D4A02917CF4100AD4546 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		0A25D4A22917D58D00AD4546 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		0A270F012958917F00004A7C /* ReplyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyListCell.swift; sourceTree = "<group>"; };
 		0A2E9A17293F721800C2BB9B /* ReplyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyRepository.swift; sourceTree = "<group>"; };
 		0A30343D2926937200FF9D97 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			children = (
 				0A587424292535DE00879505 /* GroupGridCell.swift */,
 				0A4E3EFC29310C8D002D990D /* PostListCell.swift */,
+				0A270F012958917F00004A7C /* ReplyListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				0AAD2BAF2923D645001A0310 /* FriendViewModel.swift in Sources */,
 				0A58742029252A9500879505 /* CreateGroupView.swift in Sources */,
 				0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */,
+				0A270F022958917F00004A7C /* ReplyListCell.swift in Sources */,
 				0A409EAA2914063A0036BF69 /* URLs.swift in Sources */,
 				0AAD2BA52923D3B7001A0310 /* LoungeView.swift in Sources */,
 				0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */,
