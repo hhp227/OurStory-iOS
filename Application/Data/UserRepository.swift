@@ -10,43 +10,38 @@ import Foundation
 import Combine
 
 class UserRepository {
-    private let apiService: ApiService
-    
     private let authService: AuthService
     
-    func login(_ email: String, _ password: String) -> AnyPublisher<Resource<User>, Error> {
-        return apiService.request(with: URL_LOGIN, method: .post, header: [:], params: ["email": email, "password": password], prepend: Resource<User>.loading(nil)) { data, response in
-            guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
-                return Resource.error(response.description, nil)
-            }
-            guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                return Resource.error(response.debugDescription, nil)
-            }
-            if !(jsonObject["error"] as? Bool ?? false) {
-                return Resource.success(try JSONDecoder().decode(User.self, from: data))
-            } else {
-                return Resource.error(jsonObject["message"] as! String, nil)
+    func login(_ email: String, _ password: String) -> Publishers.Catch<AnyPublisher<Resource<User>, Error>, Just<Resource<User>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let response = try await self.authService.login(email, password)
+                    
+                    promise(.success(Resource.success(response)))
+                } catch {
+                    promise(.failure(error))
+                }
             }
         }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(Resource.error(error.localizedDescription, nil))
+        }
     }
-    /*func login(_ email: String, _ password: String) -> AnyPublisher<Resource<User>, Error> {
-        return Future { _ in
-            
-        }.eraseToAnyPublisher()
-    }*/
     
-    init(_ apiService: ApiService, _ authService: AuthService) {
-        self.apiService = apiService
+    init(_ authService: AuthService) {
         self.authService = authService
     }
     
     private static var instance: UserRepository? = nil
     
-    static func getInstance(apiService: ApiService, authService: AuthService) -> UserRepository {
+    static func getInstance(authService: AuthService) -> UserRepository {
         if let instance = self.instance {
             return instance
         } else {
-            let userRepository = UserRepository(apiService, authService)
+            let userRepository = UserRepository(authService)
             self.instance = userRepository
             return userRepository
         }

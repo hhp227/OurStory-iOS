@@ -40,14 +40,8 @@ class LoginViewModel: ObservableObject {
     func login() {
         if isEmailValid(email) && isPasswordValid(password) {
             repository.login(email, password)
-                .sink { completion in
-                    switch (completion) {
-                    case .failure(let error):
-                        do { self.state.error = error.localizedDescription }
-                    case .finished:
-                        break
-                    }
-                } receiveValue: { result in
+                .receive(on: RunLoop.main)
+                .sink { result in
                     switch result.status {
                     case .SUCCESS:
                         self.state = State(user: result.data)

@@ -22,7 +22,7 @@ class InjectorUtils {
     }
     
     private func getUserRepository() -> UserRepository {
-        return UserRepository.getInstance(apiService: getApiService(), authService: getAuthService())
+        return UserRepository.getInstance(authService: getAuthService())
     }
     
     func provideLoginViewModel() -> LoginViewModel {
