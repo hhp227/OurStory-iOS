@@ -18,7 +18,7 @@ struct MainView: View {
             NavigationStack {
                 switch drawerViewModel.route {
                 case "Lounge":
-                    LoungeView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                    LoungeView().navigationTitle("Lounge").navigationBarTitleDisplayMode(.large).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
                         Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "GroupList":
