@@ -43,6 +43,7 @@
 		0A5874282925365A00879505 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5874272925365A00879505 /* CardView.swift */; };
 		0A58742A2925374100879505 /* GroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5874292925374100879505 /* GroupItem.swift */; };
 		0A5CF5AC29280C9400FE34DA /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CF5AB29280C9400FE34DA /* PostRepository.swift */; };
+		0A611712295D995E00323737 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A611711295D995E00323737 /* AlbumView.swift */; };
 		0A62C43D29141D50008B9F59 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C43C29141D50008B9F59 /* MainView.swift */; };
 		0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C43E29141D8C008B9F59 /* LoginView.swift */; };
 		0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44129142114008B9F59 /* InjectorUtils.swift */; };
@@ -103,6 +104,7 @@
 		0A5874272925365A00879505 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0A5874292925374100879505 /* GroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItem.swift; sourceTree = "<group>"; };
 		0A5CF5AB29280C9400FE34DA /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
+		0A611711295D995E00323737 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		0A62C43C29141D50008B9F59 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0A62C43E29141D8C008B9F59 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A62C44129142114008B9F59 /* InjectorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorUtils.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				0A587423292535C500879505 /* Cell */,
 				0A573D8E291A8CFC005E4434 /* UI */,
+				0A611711295D995E00323737 /* AlbumView.swift */,
 				0AF55CD3290ECAB90045505E /* ContentView.swift */,
 				0A62C43C29141D50008B9F59 /* MainView.swift */,
 				0A62C43E29141D8C008B9F59 /* LoginView.swift */,
@@ -438,6 +441,7 @@
 				0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */,
 				0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */,
 				0A10430D2929255300B4B3A2 /* ImageItem.swift in Sources */,
+				0A611712295D995E00323737 /* AlbumView.swift in Sources */,
 				0AAD2BAB2923D549001A0310 /* GroupListViewModel.swift in Sources */,
 				0A10430F292926B000B4B3A2 /* ListItem.swift in Sources */,
 				0A58741C2925295900879505 /* JoinRequestGroupView.swift in Sources */,
