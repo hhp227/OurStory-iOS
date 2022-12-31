@@ -13,6 +13,8 @@ class RegisterViewModel: ObservableObject {
     
     @Published var password: String = ""
     
+    @Published var confirmPassword: String = ""
+    
     private let repository: UserRepository
     
     init(_ repository: UserRepository) {
