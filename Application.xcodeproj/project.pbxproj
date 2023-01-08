@@ -17,6 +17,7 @@
 		0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A22917D58D00AD4546 /* RegisterView.swift */; };
 		0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */; };
 		0A270F022958917F00004A7C /* ReplyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A270F012958917F00004A7C /* ReplyListCell.swift */; };
+		0A2A28F5296B1B560044A0E4 /* LazyPagingItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2A28F4296B1B560044A0E4 /* LazyPagingItems.swift */; };
 		0A2E9A18293F721800C2BB9B /* ReplyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E9A17293F721800C2BB9B /* ReplyRepository.swift */; };
 		0A30343E2926937200FF9D97 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30343D2926937200FF9D97 /* CreatePostView.swift */; };
 		0A303440292693D400FF9D97 /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */; };
@@ -78,6 +79,7 @@
 		0A25D4A22917D58D00AD4546 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		0A25D4A42917D5B800AD4546 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		0A270F012958917F00004A7C /* ReplyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyListCell.swift; sourceTree = "<group>"; };
+		0A2A28F4296B1B560044A0E4 /* LazyPagingItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyPagingItems.swift; sourceTree = "<group>"; };
 		0A2E9A17293F721800C2BB9B /* ReplyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyRepository.swift; sourceTree = "<group>"; };
 		0A30343D2926937200FF9D97 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
@@ -161,6 +163,14 @@
 				0A25780329478A2C00AA2331 /* AuthService.swift */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		0A2A28F3296B1B220044A0E4 /* Paging */ = {
+			isa = PBXGroup;
+			children = (
+				0A2A28F4296B1B560044A0E4 /* LazyPagingItems.swift */,
+			);
+			path = Paging;
 			sourceTree = "<group>";
 		};
 		0A3034412926956700FF9D97 /* CollapsingNavigationBar */ = {
@@ -255,6 +265,7 @@
 		0A62C44329142253008B9F59 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				0A2A28F3296B1B220044A0E4 /* Paging */,
 				0A62C44429142261008B9F59 /* UserDefaultsManager.swift */,
 				0A6CA52F292D26E8002EFBEC /* SavedStateHandle.swift */,
 			);
@@ -425,6 +436,7 @@
 				0A58741E2925299600879505 /* JoinRequestGroupViewModel.swift in Sources */,
 				0A25780429478A2C00AA2331 /* AuthService.swift in Sources */,
 				0A587425292535DE00879505 /* GroupGridCell.swift in Sources */,
+				0A2A28F5296B1B560044A0E4 /* LazyPagingItems.swift in Sources */,
 				0AAD2BAF2923D645001A0310 /* FriendViewModel.swift in Sources */,
 				0A58742029252A9500879505 /* CreateGroupView.swift in Sources */,
 				0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */,
