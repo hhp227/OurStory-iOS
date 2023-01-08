@@ -17,6 +17,10 @@ class RegisterViewModel: ObservableObject {
     
     private let repository: UserRepository
     
+    func register() {
+        
+    }
+    
     init(_ repository: UserRepository) {
         self.repository = repository
     }
