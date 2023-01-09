@@ -27,6 +27,31 @@
 		0A409EAA2914063A0036BF69 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A409EA92914063A0036BF69 /* URLs.swift */; };
 		0A4E3EFD29310C8D002D990D /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E3EFC29310C8D002D990D /* PostListCell.swift */; };
 		0A4ED618295C77140020C317 /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4ED617295C77140020C317 /* GroupListCell.swift */; };
+		0A53F8A0296C4C4000173D84 /* CombinedLoadStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F89F296C4C4000173D84 /* CombinedLoadStates.swift */; };
+		0A53F8A2296C4C9300173D84 /* LoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8A1296C4C9300173D84 /* LoadState.swift */; };
+		0A53F8A4296C4D6F00173D84 /* LoadStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8A3296C4D6F00173D84 /* LoadStates.swift */; };
+		0A53F8A6296C4DA600173D84 /* LoadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8A5296C4DA600173D84 /* LoadType.swift */; };
+		0A53F8A8296C4E6300173D84 /* ItemSnapshotList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8A7296C4E6300173D84 /* ItemSnapshotList.swift */; };
+		0A53F8AA296C505400173D84 /* MutableCombinedLoadStateCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8A9296C505400173D84 /* MutableCombinedLoadStateCollection.swift */; };
+		0A53F8AC296C519900173D84 /* NullPaddedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8AB296C519900173D84 /* NullPaddedList.swift */; };
+		0A53F8AE296C520600173D84 /* PageEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8AD296C520600173D84 /* PageEvent.swift */; };
+		0A53F8B0296C525500173D84 /* PagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8AF296C525500173D84 /* PagePresenter.swift */; };
+		0A53F8B2296C52A100173D84 /* PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8B1296C52A100173D84 /* PagingData.swift */; };
+		0A53F8B4296C530000173D84 /* PagingDataDiffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8B3296C530000173D84 /* PagingDataDiffer.swift */; };
+		0A53F8B6296C536100173D84 /* TransformablePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8B5296C536100173D84 /* TransformablePage.swift */; };
+		0A53F8B8296C53E000173D84 /* UiReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8B7296C53E000173D84 /* UiReceiver.swift */; };
+		0A53F8BA296C540F00173D84 /* ViewportHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8B9296C540F00173D84 /* ViewportHint.swift */; };
+		0A53F8BD296C54F200173D84 /* InvalidateCallbackTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8BC296C54F200173D84 /* InvalidateCallbackTracker.swift */; };
+		0A53F8BF296C5E9F00173D84 /* PagingConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8BE296C5E9F00173D84 /* PagingConfig.swift */; };
+		0A53F8C1296C5EF600173D84 /* PagingSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8C0296C5EF600173D84 /* PagingSource.swift */; };
+		0A53F8C3296C5F6300173D84 /* PagingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8C2296C5F6300173D84 /* PagingState.swift */; };
+		0A53F8C6296C613200173D84 /* ConflatedEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8C5296C613200173D84 /* ConflatedEventBus.swift */; };
+		0A53F8C8296C61C300173D84 /* HintHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8C7296C61C300173D84 /* HintHandler.swift */; };
+		0A53F8CA296C623100173D84 /* MutableLoadStateCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8C9296C623100173D84 /* MutableLoadStateCollection.swift */; };
+		0A53F8CC296C628300173D84 /* PageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8CB296C628300173D84 /* PageFetcher.swift */; };
+		0A53F8CE296C62D100173D84 /* PageFetcherSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8CD296C62D100173D84 /* PageFetcherSnapshot.swift */; };
+		0A53F8D0296C632F00173D84 /* PageFetcherSnapshotState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8CF296C632F00173D84 /* PageFetcherSnapshotState.swift */; };
+		0A53F8D2296C63A400173D84 /* Pager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F8D1296C63A400173D84 /* Pager.swift */; };
 		0A5547B52932544000CC2E82 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5547B42932544000CC2E82 /* PostDetailView.swift */; };
 		0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D8C291A8C29005E4434 /* DrawerViewModel.swift */; };
 		0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A573D90291A8D4D005E4434 /* DrawerStatus.swift */; };
@@ -89,6 +114,31 @@
 		0A409EA92914063A0036BF69 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		0A4E3EFC29310C8D002D990D /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
 		0A4ED617295C77140020C317 /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
+		0A53F89F296C4C4000173D84 /* CombinedLoadStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedLoadStates.swift; sourceTree = "<group>"; };
+		0A53F8A1296C4C9300173D84 /* LoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadState.swift; sourceTree = "<group>"; };
+		0A53F8A3296C4D6F00173D84 /* LoadStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadStates.swift; sourceTree = "<group>"; };
+		0A53F8A5296C4DA600173D84 /* LoadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadType.swift; sourceTree = "<group>"; };
+		0A53F8A7296C4E6300173D84 /* ItemSnapshotList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSnapshotList.swift; sourceTree = "<group>"; };
+		0A53F8A9296C505400173D84 /* MutableCombinedLoadStateCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCombinedLoadStateCollection.swift; sourceTree = "<group>"; };
+		0A53F8AB296C519900173D84 /* NullPaddedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullPaddedList.swift; sourceTree = "<group>"; };
+		0A53F8AD296C520600173D84 /* PageEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageEvent.swift; sourceTree = "<group>"; };
+		0A53F8AF296C525500173D84 /* PagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenter.swift; sourceTree = "<group>"; };
+		0A53F8B1296C52A100173D84 /* PagingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingData.swift; sourceTree = "<group>"; };
+		0A53F8B3296C530000173D84 /* PagingDataDiffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingDataDiffer.swift; sourceTree = "<group>"; };
+		0A53F8B5296C536100173D84 /* TransformablePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformablePage.swift; sourceTree = "<group>"; };
+		0A53F8B7296C53E000173D84 /* UiReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiReceiver.swift; sourceTree = "<group>"; };
+		0A53F8B9296C540F00173D84 /* ViewportHint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewportHint.swift; sourceTree = "<group>"; };
+		0A53F8BC296C54F200173D84 /* InvalidateCallbackTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidateCallbackTracker.swift; sourceTree = "<group>"; };
+		0A53F8BE296C5E9F00173D84 /* PagingConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingConfig.swift; sourceTree = "<group>"; };
+		0A53F8C0296C5EF600173D84 /* PagingSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingSource.swift; sourceTree = "<group>"; };
+		0A53F8C2296C5F6300173D84 /* PagingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingState.swift; sourceTree = "<group>"; };
+		0A53F8C5296C613200173D84 /* ConflatedEventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflatedEventBus.swift; sourceTree = "<group>"; };
+		0A53F8C7296C61C300173D84 /* HintHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintHandler.swift; sourceTree = "<group>"; };
+		0A53F8C9296C623100173D84 /* MutableLoadStateCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableLoadStateCollection.swift; sourceTree = "<group>"; };
+		0A53F8CB296C628300173D84 /* PageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFetcher.swift; sourceTree = "<group>"; };
+		0A53F8CD296C62D100173D84 /* PageFetcherSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFetcherSnapshot.swift; sourceTree = "<group>"; };
+		0A53F8CF296C632F00173D84 /* PageFetcherSnapshotState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFetcherSnapshotState.swift; sourceTree = "<group>"; };
+		0A53F8D1296C63A400173D84 /* Pager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pager.swift; sourceTree = "<group>"; };
 		0A5547B42932544000CC2E82 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		0A573D8C291A8C29005E4434 /* DrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewModel.swift; sourceTree = "<group>"; };
 		0A573D90291A8D4D005E4434 /* DrawerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerStatus.swift; sourceTree = "<group>"; };
@@ -168,7 +218,23 @@
 		0A2A28F3296B1B220044A0E4 /* Paging */ = {
 			isa = PBXGroup;
 			children = (
+				0A53F8BB296C54D600173D84 /* Extension */,
+				0A53F8C4296C611400173D84 /* Pager */,
+				0A53F89F296C4C4000173D84 /* CombinedLoadStates.swift */,
+				0A53F8A7296C4E6300173D84 /* ItemSnapshotList.swift */,
 				0A2A28F4296B1B560044A0E4 /* LazyPagingItems.swift */,
+				0A53F8A1296C4C9300173D84 /* LoadState.swift */,
+				0A53F8A3296C4D6F00173D84 /* LoadStates.swift */,
+				0A53F8A5296C4DA600173D84 /* LoadType.swift */,
+				0A53F8A9296C505400173D84 /* MutableCombinedLoadStateCollection.swift */,
+				0A53F8AB296C519900173D84 /* NullPaddedList.swift */,
+				0A53F8AD296C520600173D84 /* PageEvent.swift */,
+				0A53F8AF296C525500173D84 /* PagePresenter.swift */,
+				0A53F8B1296C52A100173D84 /* PagingData.swift */,
+				0A53F8B3296C530000173D84 /* PagingDataDiffer.swift */,
+				0A53F8B5296C536100173D84 /* TransformablePage.swift */,
+				0A53F8B7296C53E000173D84 /* UiReceiver.swift */,
+				0A53F8B9296C540F00173D84 /* ViewportHint.swift */,
 			);
 			path = Paging;
 			sourceTree = "<group>";
@@ -212,6 +278,31 @@
 				0A5547B42932544000CC2E82 /* PostDetailView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0A53F8BB296C54D600173D84 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0A53F8BC296C54F200173D84 /* InvalidateCallbackTracker.swift */,
+				0A53F8BE296C5E9F00173D84 /* PagingConfig.swift */,
+				0A53F8C0296C5EF600173D84 /* PagingSource.swift */,
+				0A53F8C2296C5F6300173D84 /* PagingState.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0A53F8C4296C611400173D84 /* Pager */ = {
+			isa = PBXGroup;
+			children = (
+				0A53F8C5296C613200173D84 /* ConflatedEventBus.swift */,
+				0A53F8C7296C61C300173D84 /* HintHandler.swift */,
+				0A53F8C9296C623100173D84 /* MutableLoadStateCollection.swift */,
+				0A53F8CB296C628300173D84 /* PageFetcher.swift */,
+				0A53F8CD296C62D100173D84 /* PageFetcherSnapshot.swift */,
+				0A53F8CF296C632F00173D84 /* PageFetcherSnapshotState.swift */,
+				0A53F8D1296C63A400173D84 /* Pager.swift */,
+			);
+			path = Pager;
 			sourceTree = "<group>";
 		};
 		0A573D8E291A8CFC005E4434 /* UI */ = {
@@ -417,49 +508,72 @@
 				0A4ED618295C77140020C317 /* GroupListCell.swift in Sources */,
 				0A573D95291A8E4A005E4434 /* DrawerContainer.swift in Sources */,
 				0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */,
+				0A53F8A4296C4D6F00173D84 /* LoadStates.swift in Sources */,
 				0A303440292693D400FF9D97 /* CreatePostViewModel.swift in Sources */,
+				0A53F8B4296C530000173D84 /* PagingDataDiffer.swift in Sources */,
 				0A5547B52932544000CC2E82 /* PostDetailView.swift in Sources */,
 				0A2E9A18293F721800C2BB9B /* ReplyRepository.swift in Sources */,
 				0A30343E2926937200FF9D97 /* CreatePostView.swift in Sources */,
 				0AAD2BA72923D40C001A0310 /* LoungeViewModel.swift in Sources */,
+				0A53F8B0296C525500173D84 /* PagePresenter.swift in Sources */,
 				0A573D8D291A8C29005E4434 /* DrawerViewModel.swift in Sources */,
+				0A53F8A8296C4E6300173D84 /* ItemSnapshotList.swift in Sources */,
 				0A573D97291A8FB7005E4434 /* DrawerView.swift in Sources */,
 				0A3111EE29421A44004E0300 /* GroupRepository.swift in Sources */,
 				0A5874282925365A00879505 /* CardView.swift in Sources */,
 				0A587418292526C900879505 /* FindGroupView.swift in Sources */,
 				0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */,
+				0A53F8CA296C623100173D84 /* MutableLoadStateCollection.swift in Sources */,
+				0A53F8C6296C613200173D84 /* ConflatedEventBus.swift in Sources */,
+				0A53F8BA296C540F00173D84 /* ViewportHint.swift in Sources */,
+				0A53F8B8296C53E000173D84 /* UiReceiver.swift in Sources */,
+				0A53F8BD296C54F200173D84 /* InvalidateCallbackTracker.swift in Sources */,
 				0AAD2BAD2923D609001A0310 /* FriendView.swift in Sources */,
+				0A53F8A2296C4C9300173D84 /* LoadState.swift in Sources */,
 				0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */,
 				0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */,
 				0A62C43D29141D50008B9F59 /* MainView.swift in Sources */,
 				0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */,
+				0A53F8B6296C536100173D84 /* TransformablePage.swift in Sources */,
 				0A58741E2925299600879505 /* JoinRequestGroupViewModel.swift in Sources */,
 				0A25780429478A2C00AA2331 /* AuthService.swift in Sources */,
 				0A587425292535DE00879505 /* GroupGridCell.swift in Sources */,
 				0A2A28F5296B1B560044A0E4 /* LazyPagingItems.swift in Sources */,
 				0AAD2BAF2923D645001A0310 /* FriendViewModel.swift in Sources */,
 				0A58742029252A9500879505 /* CreateGroupView.swift in Sources */,
+				0A53F8C1296C5EF600173D84 /* PagingSource.swift in Sources */,
 				0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */,
+				0A53F8CC296C628300173D84 /* PageFetcher.swift in Sources */,
+				0A53F8D2296C63A400173D84 /* Pager.swift in Sources */,
 				0A270F022958917F00004A7C /* ReplyListCell.swift in Sources */,
+				0A53F8AA296C505400173D84 /* MutableCombinedLoadStateCollection.swift in Sources */,
 				0A409EAA2914063A0036BF69 /* URLs.swift in Sources */,
 				0AAD2BA52923D3B7001A0310 /* LoungeView.swift in Sources */,
 				0A62C44529142261008B9F59 /* UserDefaultsManager.swift in Sources */,
+				0A53F8AE296C520600173D84 /* PageEvent.swift in Sources */,
 				0A58742229252ACE00879505 /* CreateGroupViewModel.swift in Sources */,
+				0A53F8C8296C61C300173D84 /* HintHandler.swift in Sources */,
 				0A3C6AA729595E6D00D70BBC /* OurStoryError.swift in Sources */,
 				0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */,
 				0A6CA530292D26E8002EFBEC /* SavedStateHandle.swift in Sources */,
 				0A8D45D32937B45600E16D79 /* PostDetailViewModel.swift in Sources */,
 				0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */,
+				0A53F8AC296C519900173D84 /* NullPaddedList.swift in Sources */,
 				0A573D93291A8DD1005E4434 /* DrawerDefine.swift in Sources */,
 				0A25D4A12917CF4100AD4546 /* ApiService.swift in Sources */,
 				0A10430D2929255300B4B3A2 /* ImageItem.swift in Sources */,
 				0A611712295D995E00323737 /* AlbumView.swift in Sources */,
+				0A53F8A6296C4DA600173D84 /* LoadType.swift in Sources */,
+				0A53F8B2296C52A100173D84 /* PagingData.swift in Sources */,
 				0AAD2BAB2923D549001A0310 /* GroupListViewModel.swift in Sources */,
 				0A10430F292926B000B4B3A2 /* ListItem.swift in Sources */,
+				0A53F8A0296C4C4000173D84 /* CombinedLoadStates.swift in Sources */,
 				0A58741C2925295900879505 /* JoinRequestGroupView.swift in Sources */,
 				0A58742A2925374100879505 /* GroupItem.swift in Sources */,
+				0A53F8D0296C632F00173D84 /* PageFetcherSnapshotState.swift in Sources */,
 				0A5CF5AC29280C9400FE34DA /* PostRepository.swift in Sources */,
 				0A3034432926958B00FF9D97 /* CollapsingNavigationBarView.swift in Sources */,
+				0A53F8CE296C62D100173D84 /* PageFetcherSnapshot.swift in Sources */,
 				0A4E3EFD29310C8D002D990D /* PostListCell.swift in Sources */,
 				0A10430B2929250D00B4B3A2 /* PostItem.swift in Sources */,
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
@@ -468,8 +582,10 @@
 				0AAD2BB12923D6DD001A0310 /* ChatListView.swift in Sources */,
 				0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */,
 				0A573D99291A8FF3005E4434 /* ProfileView.swift in Sources */,
+				0A53F8C3296C5F6300173D84 /* PagingState.swift in Sources */,
 				0AAD2BB32923D721001A0310 /* ChatListViewModel.swift in Sources */,
 				0A58741A2925272D00879505 /* FindGroupViewModel.swift in Sources */,
+				0A53F8BF296C5E9F00173D84 /* PagingConfig.swift in Sources */,
 				0A25D49C2917C8C000AD4546 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
