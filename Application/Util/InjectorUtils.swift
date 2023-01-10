@@ -10,7 +10,11 @@ import Foundation
 
 class InjectorUtils {
     private func getAuthService() -> AuthService {
-        return AuthService()
+        return AuthServiceImpl()
+    }
+    
+    private func getpostService() -> PostService {
+        return PostServiceImpl.init()
     }
     
     private func getApiService() -> ApiService {
@@ -19,6 +23,10 @@ class InjectorUtils {
     
     func getUserDefaultsManager() -> UserDefaultsManager {
         return UserDefaultsManager.instance
+    }
+    
+    private func getPostRepository() -> PostRepository {
+        return PostRepository.getInstance(postService: getpostService())
     }
     
     private func getUserRepository() -> UserRepository {
@@ -42,7 +50,7 @@ class InjectorUtils {
     }
     
     func provideLoungeViewModel() -> LoungeViewModel {
-        return LoungeViewModel()
+        return LoungeViewModel(getPostRepository(), getUserDefaultsManager())
     }
     
     func provideCreatePostViewModel() -> CreatePostViewModel {

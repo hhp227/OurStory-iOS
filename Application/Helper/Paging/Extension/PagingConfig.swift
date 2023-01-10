@@ -10,7 +10,7 @@ class PagingConfig {
     
     let prefetchDistance: Int
     
-    let enablePlaceholders: Bool = true
+    let enablePlaceholders: Bool
     
     let initialLoadSize: Int
     
@@ -22,8 +22,9 @@ class PagingConfig {
     
     internal static let DEFAULT_INITIAL_PAGE_MULTIPLIER = 3
     
-    init(pageSize: Int) {
+    init(pageSize: Int, enablePlaceholders: Bool = true) {
         self.pageSize = pageSize
+        self.enablePlaceholders = enablePlaceholders
         self.prefetchDistance = self.pageSize
         self.initialLoadSize = self.pageSize * PagingConfig.DEFAULT_INITIAL_PAGE_MULTIPLIER
         

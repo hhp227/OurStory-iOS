@@ -6,14 +6,21 @@
 //  Copyright © 2021 홍희표. All rights reserved.
 //
 
-import Foundation
+import Combine
 
 class LoungeViewModel: ObservableObject {
-    var posts: [ListItem] = (0..<20).map { PostItem(id: $0, userId: 0, name: "Test", text: "Test\($0 + 1)", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [])) }
+    private let repository: PostRepository
+    
+    var posts: AnyPublisher<PagingData<PostItem>, Never>
     
     func refreshPosts() {
     }
     
     func togglePostLike(_ post: PostItem) {
+    }
+    
+    init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
+        self.repository = repository
+        self.posts = repository.getPosts(groupId: 0)
     }
 }

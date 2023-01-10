@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AuthService {
+class AuthServiceImpl: AuthService {
     // 임시 표본
     /*func request(
         with endpoint: String,
@@ -40,4 +40,8 @@ class AuthService {
         }
         return user
     }
+}
+
+protocol AuthService {
+    func login(_ email: String, _ password: String) async throws -> User
 }

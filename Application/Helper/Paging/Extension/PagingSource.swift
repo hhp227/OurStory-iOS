@@ -139,7 +139,7 @@ open class PagingSource<Key: Any, Value: Any> {
         abort()
     }
     
-    func getFreshKey(state: PagingState<Key, Value>) -> Key? {
+    func getRefreshKey(state: PagingState<Key, Value>) -> Key? {
         abort()
     }
 }

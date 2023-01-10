@@ -19,20 +19,39 @@ struct LoungeView: View {
     
     var body: some View {
         ZStack {
-            ScrollView {
-                LazyVStack(spacing: 10) {
-                    ForEach(Array(viewModel.posts.enumerated()), id: \.offset) { i, item in
-                        if let post = item as? PostItem {
-                            PostListCell(post: post, onLikeClick: { viewModel.togglePostLike(post) }, onResult: viewModel.refreshPosts)
-                        }
-                    }
-                }
-            }
+            PostList(lazyPagingItems: viewModel.posts.collectAsLazyPagingItems())
             VStack {
                 Spacer()
                 HStack {
                     Spacer()
                     fab
+                }
+            }
+        }
+    }
+}
+
+struct PostList: View {
+    @ObservedObject var lazyPagingItems: LazyPagingItems<PostItem>
+    
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 10) {
+                ForEach(lazyPagingItems) { item in
+                    if let post = item {
+                        PostListCell(post: post, onLikeClick: { /*viewModel.togglePostLike(post)*/ }, onResult: /*viewModel.refreshPosts*/{})
+                    }
+                }
+                HStack {
+                    if lazyPagingItems.loadState.refresh is LoadState.Loading {
+                        ProgressView()
+                    } else if lazyPagingItems.loadState.append is LoadState.Loading {
+                        ProgressView()
+                    } else if lazyPagingItems.loadState.refresh is LoadState.Error {
+                        
+                    } else if lazyPagingItems.loadState.append is LoadState.Error {
+                        
+                    }
                 }
             }
         }

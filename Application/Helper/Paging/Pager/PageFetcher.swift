@@ -32,7 +32,7 @@ internal class PageFetcher<Key: Equatable, Value: Any> {
                         previousPagingState = previousGeneration!.state
                     }
                     
-                    let initialKey: Key? = previousPagingState == nil ? self.initialKey : pagingSource.getFreshKey(state: previousPagingState!)
+                    let initialKey: Key? = previousPagingState == nil ? self.initialKey : pagingSource.getRefreshKey(state: previousPagingState!)
                     
                     previousGeneration?.snapshot.close()
                     return GenerationInfo(
