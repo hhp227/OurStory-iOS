@@ -93,7 +93,7 @@ class InjectorUtils {
         let savedStatedHandle = SavedStateHandle()
         
         savedStatedHandle.set(POST_KEY, post)
-        return PostDetailViewModel(getPostRepository(), getReplyRepository(), savedStatedHandle)
+        return PostDetailViewModel(getPostRepository(), getReplyRepository(), savedStatedHandle, getUserDefaultsManager())
     }
     
     static var instance = InjectorUtils.init()

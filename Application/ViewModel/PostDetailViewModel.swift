@@ -19,7 +19,8 @@ class PostDetailViewModel: ObservableObject {
     init(
         _ postRepository: PostRepository,
         _ replyRepository: ReplyRepository,
-        _ savedStatedHandle: SavedStateHandle
+        _ savedStatedHandle: SavedStateHandle,
+        _ userDefaultsManager: UserDefaultsManager
     ) {
         self.postRepository = postRepository
         self.replyRepository = replyRepository
