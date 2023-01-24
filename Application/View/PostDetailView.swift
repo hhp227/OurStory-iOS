@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    @ObservedObject var viewModel = InjectorUtils.instance.providePostDetailViewModel()
+    @ObservedObject var viewModel: PostDetailViewModel
     
     let onResult: () -> Void
     
@@ -22,10 +22,15 @@ struct PostDetailView: View {
         }
         .padding()
     }
+    
+    init(post: PostItem, onResult: @escaping () -> Void) {
+        self.viewModel = InjectorUtils.instance.providePostDetailViewModel(post)
+        self.onResult = onResult
+    }
 }
 
 struct PostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDetailView(onResult: {})
+        PostDetailView(post: .EMPTY, onResult: {})
     }
 }

@@ -7,9 +7,27 @@
 //
 
 import Foundation
+import Combine
 
 class PostDetailViewModel: ObservableObject {
-    init() {
+    private let postRepository: PostRepository
+    
+    private let replyRepository: ReplyRepository
+    
+    private let savedStateHandle: SavedStateHandle
+    
+    init(
+        _ postRepository: PostRepository,
+        _ replyRepository: ReplyRepository,
+        _ savedStatedHandle: SavedStateHandle
+    ) {
+        self.postRepository = postRepository
+        self.replyRepository = replyRepository
+        self.savedStateHandle = savedStatedHandle
         print("PostDetailViewModel init")
+        
+        if let test: PostItem = savedStatedHandle.get(POST_KEY) {
+            print("savedStatedHandle: \(test)")
+        }
     }
 }

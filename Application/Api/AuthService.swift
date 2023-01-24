@@ -40,8 +40,14 @@ class AuthServiceImpl: AuthService {
         }
         return user
     }
+    
+    func register() {
+        
+    }
 }
 
 protocol AuthService {
     func login(_ email: String, _ password: String) async throws -> User
+    
+    func register()
 }

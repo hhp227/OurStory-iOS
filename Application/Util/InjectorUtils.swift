@@ -13,8 +13,12 @@ class InjectorUtils {
         return AuthServiceImpl()
     }
     
-    private func getpostService() -> PostService {
+    private func getPostService() -> PostService {
         return PostServiceImpl.init()
+    }
+    
+    private func getReplyService() -> ReplyService {
+        return ReplyServiceImpl()
     }
     
     private func getApiService() -> ApiService {
@@ -26,7 +30,11 @@ class InjectorUtils {
     }
     
     private func getPostRepository() -> PostRepository {
-        return PostRepository.getInstance(postService: getpostService())
+        return PostRepository.getInstance(postService: getPostService())
+    }
+    
+    private func getReplyRepository() -> ReplyRepository {
+        return ReplyRepository.getInstance(replyService: getReplyService())
     }
     
     private func getUserRepository() -> UserRepository {
@@ -81,8 +89,11 @@ class InjectorUtils {
         return ChatListViewModel()
     }
     
-    func providePostDetailViewModel() -> PostDetailViewModel {
-        return PostDetailViewModel()
+    func providePostDetailViewModel(_ post: PostItem) -> PostDetailViewModel {
+        let savedStatedHandle = SavedStateHandle()
+        
+        savedStatedHandle.set(POST_KEY, post)
+        return PostDetailViewModel(getPostRepository(), getReplyRepository(), savedStatedHandle)
     }
     
     static var instance = InjectorUtils.init()

@@ -18,7 +18,7 @@ struct PostListCell: View {
     var body: some View {
         CardView {
             VStack(alignment: .center, spacing: 0) {
-                NavigationLink(destination: PostDetailView(onResult: onResult)) {
+                NavigationLink(destination: PostDetailView(post: post, onResult: onResult)) {
                     VStack {
                         Image(systemName: "globe")
                             .imageScale(.large)

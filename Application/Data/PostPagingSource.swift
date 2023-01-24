@@ -21,7 +21,7 @@ class PostPagingSource: PagingSource<Int, PostItem> {
             return LoadResult<Int, PostItem>.Page(
                 data: range.map { number in
                     PostItem(
-                        id: 0,
+                        id: number,
                         userId: 0,
                         name: "",
                         text: "",

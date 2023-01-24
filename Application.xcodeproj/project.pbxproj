@@ -79,6 +79,8 @@
 		0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62C44729142401008B9F59 /* ContentViewModel.swift */; };
 		0A6CA530292D26E8002EFBEC /* SavedStateHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CA52F292D26E8002EFBEC /* SavedStateHandle.swift */; };
 		0A8D45D32937B45600E16D79 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D45D22937B45600E16D79 /* PostDetailViewModel.swift */; };
+		0A951309297E697800661CDA /* ReplyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A951308297E697800661CDA /* ReplyService.swift */; };
+		0A95130B297E74E900661CDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95130A297E74E900661CDA /* Constant.swift */; };
 		0AAD2BA52923D3B7001A0310 /* LoungeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA42923D3B7001A0310 /* LoungeView.swift */; };
 		0AAD2BA72923D40C001A0310 /* LoungeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA62923D40C001A0310 /* LoungeViewModel.swift */; };
 		0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BA82923D4FF001A0310 /* GroupListView.swift */; };
@@ -168,6 +170,8 @@
 		0A62C44729142401008B9F59 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		0A6CA52F292D26E8002EFBEC /* SavedStateHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedStateHandle.swift; sourceTree = "<group>"; };
 		0A8D45D22937B45600E16D79 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
+		0A951308297E697800661CDA /* ReplyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyService.swift; sourceTree = "<group>"; };
+		0A95130A297E74E900661CDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		0AAD2BA42923D3B7001A0310 /* LoungeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeView.swift; sourceTree = "<group>"; };
 		0AAD2BA62923D40C001A0310 /* LoungeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoungeViewModel.swift; sourceTree = "<group>"; };
 		0AAD2BA82923D4FF001A0310 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 				0A25D4A02917CF4100AD4546 /* ApiService.swift */,
 				0A25780329478A2C00AA2331 /* AuthService.swift */,
 				0A2367A5296DA03900B63747 /* PostService.swift */,
+				0A951308297E697800661CDA /* ReplyService.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 			children = (
 				0A62C44129142114008B9F59 /* InjectorUtils.swift */,
 				0A409EA92914063A0036BF69 /* URLs.swift */,
+				0A95130A297E74E900661CDA /* Constant.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 				0A53F8BD296C54F200173D84 /* InvalidateCallbackTracker.swift in Sources */,
 				0AAD2BAD2923D609001A0310 /* FriendView.swift in Sources */,
 				0A53F8A2296C4C9300173D84 /* LoadState.swift in Sources */,
+				0A951309297E697800661CDA /* ReplyService.swift in Sources */,
 				0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */,
 				0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */,
 				0A62C43D29141D50008B9F59 /* MainView.swift in Sources */,
@@ -587,6 +594,7 @@
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
 				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,
 				0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */,
+				0A95130B297E74E900661CDA /* Constant.swift in Sources */,
 				0AAD2BB12923D6DD001A0310 /* ChatListView.swift in Sources */,
 				0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */,
 				0A573D99291A8FF3005E4434 /* ProfileView.swift in Sources */,
