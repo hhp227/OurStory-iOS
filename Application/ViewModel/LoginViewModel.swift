@@ -10,13 +10,7 @@ import Foundation
 import Combine
 
 class LoginViewModel: ObservableObject {
-    @Published var email: String = ""
-    
-    @Published var password: String = ""
-    
     @Published var state: State = State()
-    
-    @Published var isShowRegister = false
     
     private let repository: UserRepository
     
@@ -38,17 +32,32 @@ class LoginViewModel: ObservableObject {
     }
     
     func login() {
-        if isEmailValid(email) && isPasswordValid(password) {
-            repository.login(email, password)
+        if isEmailValid(state.email) && isPasswordValid(state.password) {
+            repository.login(state.email, state.password)
                 .receive(on: RunLoop.main)
                 .sink { result in
                     switch result.status {
                     case .SUCCESS:
-                        self.state = State(user: result.data)
+                        self.state = State(
+                            email: self.state.email,
+                            password: self.state.password,
+                            isLoading: false,
+                            user: result.data
+                        )
                     case .ERROR:
-                        self.state = State(error: result.message ?? "An unexpected error occured")
+                        self.state = State(
+                            email: self.state.email,
+                            password: self.state.password,
+                            isLoading: false,
+                            error: result.message ?? "An unexpected error occured"
+                        )
                     case .LOADING:
-                        self.state = State(isLoading: true)
+                        self.state = State(
+                            email: self.state.email,
+                            password: self.state.password,
+                            isLoading: true,
+                            error: ""
+                        )
                     }
                 }
                 .store(in: &subscriptions)
@@ -71,10 +80,16 @@ class LoginViewModel: ObservableObject {
     }
     
     struct State {
+        var email: String = ""
+        
+        var password: String = ""
+        
         var isLoading: Bool = false
         
         var user: User? = nil
         
         var error: String = ""
+        
+        var isShowRegister: Bool = false
     }
 }
