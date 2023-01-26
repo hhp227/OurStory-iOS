@@ -9,11 +9,7 @@
 import Foundation
 
 class RegisterViewModel: ObservableObject {
-    @Published var email: String = ""
-    
-    @Published var password: String = ""
-    
-    @Published var confirmPassword: String = ""
+    @Published var state = State()
     
     private let repository: UserRepository
     
@@ -23,5 +19,13 @@ class RegisterViewModel: ObservableObject {
     
     init(_ repository: UserRepository) {
         self.repository = repository
+    }
+    
+    struct State {
+        var email: String = ""
+        
+        var password: String = ""
+        
+        var confirmPassword: String = ""
     }
 }
