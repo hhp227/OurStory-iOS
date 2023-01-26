@@ -96,6 +96,8 @@
 		0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF55CD3290ECAB90045505E /* ContentView.swift */; };
 		0AF55CD6290ECABC0045505E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF55CD5290ECABC0045505E /* Assets.xcassets */; };
 		0AF55CD9290ECABC0045505E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF55CD8290ECABC0045505E /* Preview Assets.xcassets */; };
+		2C8232BE29826C22002E3589 /* RemoteMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8232BD29826C22002E3589 /* RemoteMediator.swift */; };
+		2C8232C02982719F002E3589 /* RemoteMediatorAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8232BF2982719F002E3589 /* RemoteMediatorAccessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +191,8 @@
 		0AF55CD3290ECAB90045505E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0AF55CD5290ECABC0045505E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AF55CD8290ECABC0045505E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2C8232BD29826C22002E3589 /* RemoteMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMediator.swift; sourceTree = "<group>"; };
+		2C8232BF2982719F002E3589 /* RemoteMediatorAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMediatorAccessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +303,8 @@
 				0A53F8BE296C5E9F00173D84 /* PagingConfig.swift */,
 				0A53F8C0296C5EF600173D84 /* PagingSource.swift */,
 				0A53F8C2296C5F6300173D84 /* PagingState.swift */,
+				2C8232BD29826C22002E3589 /* RemoteMediator.swift */,
+				2C8232BF2982719F002E3589 /* RemoteMediatorAccessor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -536,6 +542,7 @@
 				0A53F8A8296C4E6300173D84 /* ItemSnapshotList.swift in Sources */,
 				0A573D97291A8FB7005E4434 /* DrawerView.swift in Sources */,
 				0A3111EE29421A44004E0300 /* GroupRepository.swift in Sources */,
+				2C8232BE29826C22002E3589 /* RemoteMediator.swift in Sources */,
 				0A5874282925365A00879505 /* CardView.swift in Sources */,
 				0A587418292526C900879505 /* FindGroupView.swift in Sources */,
 				0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */,
@@ -547,6 +554,7 @@
 				0AAD2BAD2923D609001A0310 /* FriendView.swift in Sources */,
 				0A53F8A2296C4C9300173D84 /* LoadState.swift in Sources */,
 				0A951309297E697800661CDA /* ReplyService.swift in Sources */,
+				2C8232C02982719F002E3589 /* RemoteMediatorAccessor.swift in Sources */,
 				0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */,
 				0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */,
 				0A62C43D29141D50008B9F59 /* MainView.swift in Sources */,

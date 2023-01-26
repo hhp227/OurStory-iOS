@@ -78,7 +78,8 @@ internal class PageFetcher<Key: Equatable, Value: Any> {
     init(
         _ pagingSourceFactory: @escaping () -> PagingSource<Key, Value>,
         _ initialKey: Key?,
-        _ config: PagingConfig
+        _ config: PagingConfig,
+        _ remoteMediator: RemoteMediator<Key, Value>? = nil
     ) {
         self.pagingSourceFactory = pagingSourceFactory
         self.initialKey = initialKey
