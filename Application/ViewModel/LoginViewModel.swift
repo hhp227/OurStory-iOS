@@ -31,9 +31,9 @@ class LoginViewModel: ObservableObject {
         userDefaultsManager.storeUser(user)
     }
     
-    func login() {
-        if isEmailValid(state.email) && isPasswordValid(state.password) {
-            repository.login(state.email, state.password)
+    func login(_ email: String, _ password: String) {
+        if isEmailValid(email) && isPasswordValid(password) {
+            repository.login(email, password)
                 .receive(on: RunLoop.main)
                 .sink { result in
                     switch result.status {

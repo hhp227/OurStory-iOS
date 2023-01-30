@@ -23,7 +23,7 @@ struct LoginView: View {
                         SecureField("Password", text: $viewModel.state.password).padding().background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
                     }.padding(10)
                 }
-                Button(action: viewModel.login) {
+                Button(action: { viewModel.login(viewModel.state.email, viewModel.state.password) }) {
                     Text("LOGIN").foregroundColor(.white).frame(maxWidth: .infinity).padding(10)
                 }.buttonStyle(.borderedProminent).padding(10)
                 Button(action: { viewModel.state.isShowRegister.toggle() }) {
