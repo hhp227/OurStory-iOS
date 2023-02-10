@@ -12,7 +12,12 @@ struct JoinRequestGroupView: View {
     @StateObject var viewModel = InjectorUtils.instance.provideJoinRequestGroupViewModel()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Image("image3").resizable().scaledToFill().frame(height: 200).clipped().listRowInsets(EdgeInsets())
+            ForEach(["Item1", "Item2", "Item3", "Item4", "Item5"], id: \.self) { item in
+                Text(item)
+            }.listRowInsets(EdgeInsets())
+        }.listStyle(.inset)
     }
 }
 
