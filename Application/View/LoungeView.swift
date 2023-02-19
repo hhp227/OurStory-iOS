@@ -37,10 +37,8 @@ struct PostList: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 10) {
-                ForEach(lazyPagingItems) { item in
-                    if let post = item {
-                        PostListCell(post: post, onLikeClick: { /*viewModel.togglePostLike(post)*/ }, onResult: /*viewModel.refreshPosts*/{})
-                    }
+                ForEach(lazyPagingItems) { post in
+                    PostListCell(post: post, onLikeClick: { /*viewModel.togglePostLike(post)*/ }, onResult: /*viewModel.refreshPosts*/{})
                 }
                 HStack {
                     if lazyPagingItems.loadState.refresh is LoadState.Loading {

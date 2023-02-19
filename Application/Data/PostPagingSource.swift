@@ -23,7 +23,7 @@ class PostPagingSource: PagingSource<Int, PostItem> {
                     PostItem(
                         id: number,
                         userId: 0,
-                        name: "Test",
+                        name: "Test \(number)",
                         text: "Test Description",
                         status: 0,
                         timeStamp: .now,

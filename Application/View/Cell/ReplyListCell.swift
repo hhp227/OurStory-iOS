@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 struct ReplyListCell: View {
+    let reply: ReplyItem
+    
     var body: some View {
         VStack(alignment: .trailing) {
         }
@@ -18,6 +20,6 @@ struct ReplyListCell: View {
 
 struct ReplyListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ReplyListCell()
+        ReplyListCell(reply: .EMPTY)
     }
 }

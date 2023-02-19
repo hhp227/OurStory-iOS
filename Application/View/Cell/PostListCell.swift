@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PostListCell: View {
-    let post: PostItem
+    @State var post: PostItem?
     
     let onLikeClick: () -> Void
     
@@ -18,10 +18,10 @@ struct PostListCell: View {
     var body: some View {
         CardView {
             VStack(alignment: .leading, spacing: 0) {
-                NavigationLink(destination: PostDetailView(post: post, onResult: onResult)) {
+                NavigationLink(destination: PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel(post), onResult: onResult, post: $post)) {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .top) {
-                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!) { result in
+                            AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post?.profileImage ?? ""))!) { result in
                                 switch result {
                                 case .success(let image):
                                     image.resizable().aspectRatio(contentMode: .fill)
@@ -34,14 +34,14 @@ struct PostListCell: View {
                                 }
                             }.frame(width: 55, height: 55).cornerRadius(45)
                             VStack(alignment: .leading) {
-                                Text(post.name).fontWeight(.bold)
-                                Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
+                                Text(post?.name ?? "").fontWeight(.bold)
+                                Text(DateUtil.getPeriodTimeGenerator(post?.timeStamp ?? .now))
                             }.padding(.leading, 7)
                         }.padding([.horizontal], 15)
-                        if !post.text.isEmpty {
-                            Text(post.text).multilineTextAlignment(.leading).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding(.horizontal, 15).padding(.top, 10).padding(.bottom, 5)
+                        if !(post?.text.isEmpty ?? false) {
+                            Text(post?.text ?? "").multilineTextAlignment(.leading).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding(.horizontal, 15).padding(.top, 10).padding(.bottom, 5)
                         }
-                        if let imageItem = post.attachment.images.first {
+                        if let imageItem = post?.attachment.images.first {
                             AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!) { result in
                                 switch result {
                                 case .success(let image):
@@ -60,22 +60,22 @@ struct PostListCell: View {
                 Divider()
                 HStack(alignment: .center) {
                     HStack {
-                        if post.likeCount > 0 {
+                        if post?.likeCount ?? 0 > 0 {
                             Image(systemName: "heart.fill")
                         }
                         Button(action: onLikeClick) {
                             Text("Like")
-                            if post.likeCount > 0 {
-                                Text(String(post.likeCount))
+                            if post?.likeCount ?? 0 > 0 {
+                                Text(String(post?.likeCount ?? 0))
                             }
                         }
                     }.frame(maxWidth: .infinity).padding(10)
                     Divider()
-                    NavigationLink(destination: PostDetailView(post: post, onResult: onResult), label: {
+                    NavigationLink(destination: PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel(post), onResult: onResult, post: $post), label: {
                         HStack {
                             Text("Comment")
-                            if post.replyCount > 0 {
-                                Text(String(post.replyCount))
+                            if post?.replyCount ?? 0 > 0 {
+                                Text(String(post?.replyCount ?? 0))
                             }
                         }.frame(maxWidth: .infinity).padding(10)
                     })
@@ -85,8 +85,9 @@ struct PostListCell: View {
     }
 }
 
-struct PostListCell_Previews: PreviewProvider {
+/*struct PostListCell_Previews: PreviewProvider {
     static var previews: some View {
         PostListCell(post: PostItem.EMPTY, onLikeClick: {}, onResult: {})
     }
 }
+*/

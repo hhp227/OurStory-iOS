@@ -11,7 +11,7 @@ import Combine
 class LoungeViewModel: ObservableObject {
     private let repository: PostRepository
     
-    var posts: AnyPublisher<PagingData<PostItem>, Never>
+    lazy var posts: AnyPublisher<PagingData<PostItem>, Never> = repository.getPosts(groupId: 0)
     
     func refreshPosts() {
     }
@@ -21,6 +21,5 @@ class LoungeViewModel: ObservableObject {
     
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
-        self.posts = repository.getPosts(groupId: 0)
     }
 }

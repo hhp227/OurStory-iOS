@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class InjectorUtils {
     private func getAuthService() -> AuthService {
@@ -89,9 +90,9 @@ class InjectorUtils {
         return ChatListViewModel()
     }
     
-    func providePostDetailViewModel(_ post: PostItem) -> PostDetailViewModel {
-        let savedStatedHandle = SavedStateHandle()
-        
+    func providePostDetailViewModel(_ post: PostItem?) -> PostDetailViewModel {
+        var savedStatedHandle = SavedStateHandle()
+
         savedStatedHandle.set(POST_KEY, post)
         return PostDetailViewModel(getPostRepository(), getReplyRepository(), savedStatedHandle, getUserDefaultsManager())
     }
