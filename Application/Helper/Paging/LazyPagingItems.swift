@@ -31,9 +31,14 @@ public class LazyPagingItems<T : Any>: ObservableObject, DifferCallback {
         self.itemSnapshotList = self.pagingDataDiffer.snapshot()
     }
     
-    func get(_ index: Int) -> T? {
+    public func get(_ index: Int) -> T {
         let _ = pagingDataDiffer.get(index: index)
         return itemSnapshotList[index]
+    }
+    
+    public func get(_ index: Int) -> Binding<T> {
+        let _ = pagingDataDiffer.get(index: index)
+        return Binding(get: { self.itemSnapshotList[index] }, set: { self.itemSnapshotList[index] = $0 })
     }
     
     func peek(_ index: Int) -> T? {
@@ -102,7 +107,13 @@ extension AnyPublisher where Failure == Never {
 }
 
 extension ForEach where Data == Range<Int>, ID == Int, Content : View {
-    public init<T>(_ data: LazyPagingItems<T>, @ViewBuilder content: @escaping (T?) -> Content) {
+    public init<T>(_ data: LazyPagingItems<T>, @ViewBuilder content: @escaping (T) -> Content) {
+        self.init(0..<data.itemCount, id: \.self) { index in
+            content(data.get(index))
+        }
+    }
+    
+    public init<T>(_ data: LazyPagingItems<T>, @ViewBuilder content: @escaping (Binding<T>) -> Content) {
         self.init(0..<data.itemCount, id: \.self) { index in
             content(data.get(index))
         }

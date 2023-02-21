@@ -90,8 +90,8 @@ class InjectorUtils {
         return ChatListViewModel()
     }
     
-    func providePostDetailViewModel(_ post: PostItem?) -> PostDetailViewModel {
-        var savedStatedHandle = SavedStateHandle()
+    func providePostDetailViewModel(_ post: Binding<PostItem>) -> PostDetailViewModel {
+        let savedStatedHandle = SavedStateHandle()
 
         savedStatedHandle.set(POST_KEY, post)
         return PostDetailViewModel(getPostRepository(), getReplyRepository(), savedStatedHandle, getUserDefaultsManager())

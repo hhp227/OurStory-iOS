@@ -19,6 +19,25 @@ class PostRepository {
         ).publisher
     }
     
+    func getPost(postId: Int) -> Publishers.Catch<AnyPublisher<Resource<PostItem>, Error>, Just<Resource<PostItem>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let post = PostItem(id: 0, userId: 0, name: "newPost", text: "newPostText", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: []))
+                    
+                    promise(.success(Resource.success(post)))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(Resource.error(error.localizedDescription, nil))
+        }
+    }
+    
     init(_ postService: PostService) {
         self.postService = postService
     }

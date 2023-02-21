@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class PostDetailViewModel: ObservableObject {
     private let postRepository: PostRepository
@@ -16,26 +17,58 @@ class PostDetailViewModel: ObservableObject {
     
     private let savedStateHandle: SavedStateHandle
     
-    @Published var post: PostItem
+    @Binding var post: PostItem
     
     @Published var state = State()
     
-    func fetchPost(_ postId: Int) {
-        let post = PostItem(id: 0, userId: 0, name: "newPost", text: "newPostText", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: []))
-        savedStateHandle.set("post", post)
-        state = State(
-            reply: self.state.reply,
-            isLoading: false,
-            items: self.state.items + [post],
-            replyId: self.state.replyId,
-            isSetResultOK: self.state.isSetResultOK,
-            error: self.state.error
-        )
-        
-        updatePost(post)
+    private func fetchPost(_ postId: Int) {
+        postRepository.getPost(postId: postId)
+            .receive(on: RunLoop.main)
+            .sink { result in
+                switch result.status {
+                case .SUCCESS:
+                    if let post = result.data {
+                        self.savedStateHandle.set(POST_KEY, post)
+                        self.state = State(
+                            reply: self.state.reply,
+                            isLoading: false,
+                            items: self.state.items + [post],
+                            replyId: self.state.replyId,
+                            isSetResultOK: self.state.isSetResultOK,
+                            error: self.state.error
+                        )
+                        
+                        self.updatePost(post)
+                    }
+                    self.fetchReplys(postId)
+                case .ERROR:
+                    self.state = State(
+                        reply: self.state.reply,
+                        isLoading: false,
+                        items: self.state.items,
+                        replyId: self.state.replyId,
+                        isSetResultOK: self.state.isSetResultOK,
+                        error: result.message ?? "An unexpected error occured",
+                        isShowingActionSheet: self.state.isShowingActionSheet,
+                        subscriptions: self.state.subscriptions
+                    )
+                case .LOADING:
+                    self.state = State(
+                        reply: self.state.reply,
+                        isLoading: true,
+                        items: self.state.items,
+                        replyId: self.state.replyId,
+                        isSetResultOK: self.state.isSetResultOK,
+                        error: self.state.error,
+                        isShowingActionSheet: self.state.isShowingActionSheet,
+                        subscriptions: self.state.subscriptions
+                    )
+                }
+            }
+            .store(in: &state.subscriptions)
     }
     
-    func updatePost(_ newPost: PostItem) {
+    private func updatePost(_ newPost: PostItem) {
         post.id = newPost.id
         post.userId = newPost.userId
         post.name = newPost.name
@@ -46,6 +79,10 @@ class PostDetailViewModel: ObservableObject {
         post.replyCount = newPost.replyCount
         post.likeCount = newPost.likeCount
         post.attachment = newPost.attachment
+    }
+    
+    private func fetchReplys(_ postId: Int) {
+        
     }
     
     func insertReply(message reply: String) {
@@ -71,14 +108,17 @@ class PostDetailViewModel: ObservableObject {
         self.postRepository = postRepository
         self.replyRepository = replyRepository
         self.savedStateHandle = savedStatedHandle
-        print("PostDetailViewModel init")
         
-        if let post: PostItem = savedStatedHandle.get(POST_KEY) {
-            self.post = post
-            self.state.items = [post]
+        if let post: Binding<PostItem> = savedStatedHandle.get(POST_KEY) {
+            self._post = post
+            self.state.items = [self.post]
         } else {
-            self.post = .EMPTY
+            self._post = Binding(get: { PostItem.EMPTY }, set: { _ in })
         }
+    }
+    
+    deinit {
+        self.state.subscriptions.removeAll()
     }
     
     struct State {
@@ -95,5 +135,7 @@ class PostDetailViewModel: ObservableObject {
         var error: String = ""
         
         var isShowingActionSheet: Bool = false
+        
+        var subscriptions: Set<AnyCancellable> = []
     }
 }

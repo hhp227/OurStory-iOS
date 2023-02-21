@@ -20,4 +20,8 @@ class ContentViewModel: ObservableObject {
             .assign(to: \.user, on: self)
             .store(in: &subscription)
     }
+    
+    deinit {
+        subscription.removeAll()
+    }
 }

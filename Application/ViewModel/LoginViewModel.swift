@@ -16,8 +16,6 @@ class LoginViewModel: ObservableObject {
     
     private let userDefaultsManager: UserDefaultsManager
     
-    private var subscriptions = Set<AnyCancellable>()
-    
     private func isEmailValid(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         return email.contains("@") ? NSPredicate(format: "SELF MATCHES %@", emailRegEx).evaluate(with: email) : !email.isEmpty
@@ -42,25 +40,34 @@ class LoginViewModel: ObservableObject {
                             email: self.state.email,
                             password: self.state.password,
                             isLoading: false,
-                            user: result.data
+                            user: result.data,
+                            error: self.state.error,
+                            isShowRegister: self.state.isShowRegister,
+                            subscriptions: self.state.subscriptions
                         )
                     case .ERROR:
                         self.state = State(
                             email: self.state.email,
                             password: self.state.password,
                             isLoading: false,
-                            error: result.message ?? "An unexpected error occured"
+                            user: self.state.user,
+                            error: result.message ?? "An unexpected error occured",
+                            isShowRegister: self.state.isShowRegister,
+                            subscriptions: self.state.subscriptions
                         )
                     case .LOADING:
                         self.state = State(
                             email: self.state.email,
                             password: self.state.password,
                             isLoading: true,
-                            error: ""
+                            user: self.state.user,
+                            error: "",
+                            isShowRegister: self.state.isShowRegister,
+                            subscriptions: self.state.subscriptions
                         )
                     }
                 }
-                .store(in: &subscriptions)
+                .store(in: &state.subscriptions)
         } else {
             print("email 또는 password가 잘못되었습니다.")
         }
@@ -76,7 +83,7 @@ class LoginViewModel: ObservableObject {
     }
     
     deinit {
-        subscriptions.removeAll()
+        state.subscriptions.removeAll()
     }
     
     struct State {
@@ -91,5 +98,7 @@ class LoginViewModel: ObservableObject {
         var error: String = ""
         
         var isShowRegister: Bool = false
+        
+        var subscriptions: Set<AnyCancellable> = []
     }
 }

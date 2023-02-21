@@ -9,13 +9,11 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    //@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @ObservedObject var viewModel: PostDetailViewModel
     
     let onResult: () -> Void
-    
-    @Binding var post: PostItem?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -68,10 +66,7 @@ struct PostDetailView: View {
                     Spacer()
                 }.padding(.horizontal, 5)
                 if !post.text.isEmpty {
-                    Button(action: {
-                        self.post?.text = "New"
-                        self.post?.name = "STar"
-                    }) {
+                    Button(action: viewModel.refreshPosts) {
                         Text(post.text).fixedSize(horizontal: false, vertical: true).padding([.bottom, .horizontal], 5).padding(.top, 10)
                     }
                 }
@@ -111,16 +106,10 @@ struct PostDetailView: View {
         buttons.append(.cancel())
         return ActionSheet(title: Text("Selection Action"), buttons: buttons)
     }
-    
-    /*init(post: Binding<PostItem?>, onResult: @escaping () -> Void) {
-        self.viewModel = InjectorUtils.instance.providePostDetailViewModel(post.wrappedValue!)
-        self.onResult = onResult
-    }*/
 }
 
-/*struct PostDetailView_Previews: PreviewProvider {
+struct PostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDetailView(post: .EMPTY, onResult: {})
+        PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel(Binding(get: { .EMPTY }, set: { _ in })), onResult: {})
     }
-}*/
-
+}
