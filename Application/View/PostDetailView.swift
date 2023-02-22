@@ -11,6 +11,8 @@ import SwiftUI
 struct PostDetailView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @State var isShowingActionSheet = false
+    
     @ObservedObject var viewModel: PostDetailViewModel
     
     let onResult: () -> Void
@@ -91,7 +93,7 @@ struct PostDetailView: View {
             }.padding([.top, .horizontal], 10)
             Spacer(minLength: 10)
             /*NavigationLink(destination: CreatePostView(args: ["post": post], onResult: {}), isActive: $isNavigate, label: {  })*/
-        }.actionSheet(isPresented: $viewModel.state.isShowingActionSheet, content: getActionSheet)
+        }.actionSheet(isPresented: $isShowingActionSheet, content: getActionSheet)
     }
     
     private func getActionSheet() -> ActionSheet {

@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State var isShowRegister = false
+    
     @StateObject var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
     
     var body: some View {
@@ -26,9 +28,9 @@ struct LoginView: View {
                 Button(action: { viewModel.login(viewModel.state.email, viewModel.state.password) }) {
                     Text("LOGIN").foregroundColor(.white).frame(maxWidth: .infinity).padding(10)
                 }.buttonStyle(.borderedProminent).padding(10)
-                Button(action: { viewModel.state.isShowRegister.toggle() }) {
+                Button(action: { isShowRegister.toggle() }) {
                     Text("Register").font(.system(size: 13)).padding(5)
-                }.sheet(isPresented: $viewModel.state.isShowRegister) {
+                }.sheet(isPresented: $isShowRegister) {
                     RegisterView()
                 }
             }.padding(16).onReceive(viewModel.$state) { state in

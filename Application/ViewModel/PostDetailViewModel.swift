@@ -29,39 +29,22 @@ class PostDetailViewModel: ObservableObject {
                 case .SUCCESS:
                     if let post = result.data {
                         self.savedStateHandle.set(POST_KEY, post)
-                        self.state = State(
-                            reply: self.state.reply,
+                        self.state = self.state.copy(
                             isLoading: false,
-                            items: self.state.items + [post],
-                            replyId: self.state.replyId,
-                            isSetResultOK: self.state.isSetResultOK,
-                            error: self.state.error
+                            items: self.state.items + [post]
                         )
                         
                         self.updatePost(post)
                     }
                     self.fetchReplys(postId)
                 case .ERROR:
-                    self.state = State(
-                        reply: self.state.reply,
+                    self.state = self.state.copy(
                         isLoading: false,
-                        items: self.state.items,
-                        replyId: self.state.replyId,
-                        isSetResultOK: self.state.isSetResultOK,
-                        error: result.message ?? "An unexpected error occured",
-                        isShowingActionSheet: self.state.isShowingActionSheet,
-                        subscriptions: self.state.subscriptions
+                        error: result.message ?? "An unexpected error occured"
                     )
                 case .LOADING:
-                    self.state = State(
-                        reply: self.state.reply,
-                        isLoading: true,
-                        items: self.state.items,
-                        replyId: self.state.replyId,
-                        isSetResultOK: self.state.isSetResultOK,
-                        error: self.state.error,
-                        isShowingActionSheet: self.state.isShowingActionSheet,
-                        subscriptions: self.state.subscriptions
+                    self.state = self.state.copy(
+                        isLoading: true
                     )
                 }
             }
@@ -95,7 +78,7 @@ class PostDetailViewModel: ObservableObject {
     
     func refreshPosts() {
         state = State()
-        
+
         fetchPost(post.id)
     }
     
@@ -134,8 +117,28 @@ class PostDetailViewModel: ObservableObject {
         
         var error: String = ""
         
-        var isShowingActionSheet: Bool = false
-        
         var subscriptions: Set<AnyCancellable> = []
+    }
+}
+
+extension PostDetailViewModel.State {
+    func copy(
+        reply: String? = nil,
+        isLoading: Bool? = nil,
+        items: [ListItem]? = nil,
+        replyId: Int? = nil,
+        isSetResultOK: Bool? = nil,
+        error: String? = nil,
+        subscriptions: Set<AnyCancellable>? = nil
+    ) -> PostDetailViewModel.State {
+        .init(
+            reply: reply ?? self.reply,
+            isLoading: isLoading ?? self.isLoading,
+            items: items ?? self.items,
+            replyId: replyId ?? self.replyId,
+            isSetResultOK: isSetResultOK ?? self.isSetResultOK,
+            error: error ?? self.error,
+            subscriptions: subscriptions ?? self.subscriptions
+        )
     }
 }

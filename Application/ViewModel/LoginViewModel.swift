@@ -36,34 +36,19 @@ class LoginViewModel: ObservableObject {
                 .sink { result in
                     switch result.status {
                     case .SUCCESS:
-                        self.state = State(
-                            email: self.state.email,
-                            password: self.state.password,
+                        self.state = self.state.copy(
                             isLoading: false,
-                            user: result.data,
-                            error: self.state.error,
-                            isShowRegister: self.state.isShowRegister,
-                            subscriptions: self.state.subscriptions
+                            user: result.data
                         )
                     case .ERROR:
-                        self.state = State(
-                            email: self.state.email,
-                            password: self.state.password,
+                        self.state = self.state.copy(
                             isLoading: false,
-                            user: self.state.user,
-                            error: result.message ?? "An unexpected error occured",
-                            isShowRegister: self.state.isShowRegister,
-                            subscriptions: self.state.subscriptions
+                            error: result.message ?? "An unexpected error occured"
                         )
                     case .LOADING:
-                        self.state = State(
-                            email: self.state.email,
-                            password: self.state.password,
+                        self.state = self.state.copy(
                             isLoading: true,
-                            user: self.state.user,
-                            error: "",
-                            isShowRegister: self.state.isShowRegister,
-                            subscriptions: self.state.subscriptions
+                            error: ""
                         )
                     }
                 }
@@ -97,8 +82,26 @@ class LoginViewModel: ObservableObject {
         
         var error: String = ""
         
-        var isShowRegister: Bool = false
-        
         var subscriptions: Set<AnyCancellable> = []
+    }
+}
+
+extension LoginViewModel.State {
+    func copy(
+        email: String? = nil,
+        password: String? = nil,
+        isLoading: Bool? = nil,
+        user: User? = nil,
+        error: String? = nil,
+        subscriptions: Set<AnyCancellable>? = nil
+    ) -> LoginViewModel.State {
+        return .init(
+            email: email ?? self.email,
+            password: password ?? self.password,
+            isLoading: isLoading ?? self.isLoading,
+            user: user ?? self.user,
+            error: error ?? self.error,
+            subscriptions: subscriptions ?? self.subscriptions
+        )
     }
 }
