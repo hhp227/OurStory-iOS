@@ -65,7 +65,12 @@ class PostDetailViewModel: ObservableObject {
     }
     
     private func fetchReplys(_ postId: Int) {
-        
+        // 데이터 추가가 되지 않음 고민해볼것
+        print("fetchReplys before \(state.items.count)")
+        self.state = self.state.copy(
+            items: self.state.items + (1..<10).map { ReplyItem(id: $0, userId: 0, name: "Name", reply: "Reply", status: 0, timeStamp: "") }
+        )
+        print("fetchReplys after \(state.items.count)")
     }
     
     func insertReply(message reply: String) {
@@ -94,7 +99,7 @@ class PostDetailViewModel: ObservableObject {
         
         if let post: Binding<PostItem> = savedStatedHandle.get(POST_KEY) {
             self._post = post
-            self.state.items = [self.post]
+            self.state.items = [self.post] + (1..<10).map { ReplyItem(id: $0, userId: 0, name: "Name", reply: "Reply", status: 0, timeStamp: "") }
         } else {
             self._post = Binding(get: { PostItem.EMPTY }, set: { _ in })
         }

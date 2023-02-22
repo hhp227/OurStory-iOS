@@ -25,7 +25,7 @@ struct PostDetailView: View {
                     case let post as PostItem:
                         PostDetailCell(post: post)
                     case let reply as ReplyItem:
-                        ReplyListCell(reply: reply)
+                        ReplyListCell(reply: reply, onAction: {})
                     default:
                         EmptyView()
                     }
