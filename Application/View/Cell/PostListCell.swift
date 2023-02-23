@@ -82,8 +82,10 @@ struct PostListCell: View {
                         }.frame(maxWidth: .infinity).padding(10)
                     })
                 }
-                NavigationLink(destination: PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult), isActive: $isNavigate, label: EmptyView.init)
+                //NavigationLink(destination: PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult), isActive: $isNavigate, label: EmptyView.init) // old NavigationLink
             }
+        }.navigationDestination(isPresented: $isNavigate) {
+            PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult) // new NavigationLink
         }
     }
 }
