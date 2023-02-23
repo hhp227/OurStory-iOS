@@ -16,9 +16,11 @@ struct PostListCell: View {
     let onResult: () -> Void
     
     var body: some View {
+        let postDetailView = PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult)
+        
         CardView {
             VStack(alignment: .leading, spacing: 0) {
-                NavigationLink(destination: PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult)) {
+                NavigationLink(destination: postDetailView) {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .top) {
                             AsyncImage(url: URL(string: URL_USER_PROFILE_IMAGE + (post.profileImage ?? ""))!) { result in
@@ -71,7 +73,7 @@ struct PostListCell: View {
                         }
                     }.frame(maxWidth: .infinity).padding(10)
                     Divider()
-                    NavigationLink(destination: PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult), label: {
+                    NavigationLink(destination: postDetailView, label: {
                         HStack {
                             Text("Comment")
                             if post.replyCount > 0 {
