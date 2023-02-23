@@ -22,7 +22,7 @@ class PostPagingSource: PagingSource<Int, PostItem> {
                 data: range.map { number in
                     PostItem(
                         id: number,
-                        userId: 1,
+                        userId: 0,
                         name: "Test \(number)",
                         text: "Test Description",
                         status: 0,

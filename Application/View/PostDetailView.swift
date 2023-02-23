@@ -43,7 +43,16 @@ struct PostDetailView: View {
                 }.padding(5)
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
+            isShowingActionSheet.toggle()
+        } label: {
+            Image(systemName: "ellipsis")
+        }).onReceive(viewModel.$state) { state in
+            if state.isSetResultOK {
+                onResult()
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
     }
     
     @ViewBuilder
@@ -101,7 +110,7 @@ struct PostDetailView: View {
     private func getActionSheet() -> ActionSheet {
         var buttons = [ActionSheet.Button]()
         
-        if viewModel.isAuth {
+        if viewModel.user?.id == viewModel.post.userId {
             buttons.append(.default(Text("Edit Post")) {
                 isNavigate.toggle()
             })

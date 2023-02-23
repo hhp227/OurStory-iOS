@@ -17,13 +17,13 @@ class PostDetailViewModel: ObservableObject {
     
     private let savedStateHandle: SavedStateHandle
     
-    private lazy var apiKey: String = ""
+    private lazy var apiKey: String = user?.apiKey ?? ""
     
     @Binding var post: PostItem
     
-    @Published var state = State()
+    @Published var user: User?
     
-    var isAuth = false
+    @Published var state = State()
     
     private func fetchPost(_ postId: Int) {
         postRepository.getPost(postId: postId)
@@ -107,16 +107,11 @@ class PostDetailViewModel: ObservableObject {
         } else {
             self._post = Binding(get: { PostItem.EMPTY }, set: { _ in })
         }
-        // isAuth를  user로 판단하는걸로 개선해보기: isAuth변수 삭제
         userDefaultsManager.userPublisher
             .catch { error in
                 Just(nil)
             }
-            .sink {
-                self.apiKey = $0?.apiKey ?? ""
-                self.isAuth = $0?.id == self.post.userId
-            }
-            .store(in: &state.subscriptions)
+            .assign(to: &$user)
         fetchReplys(post.id)
     }
     
