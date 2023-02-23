@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
-    @State var isShowingActionSheet = false
+    @State private var isShowingActionSheet = false
     
-    @State var isNavigate = false
+    @State private var isNavigate = false
     
     @ObservedObject var viewModel: PostDetailViewModel
     

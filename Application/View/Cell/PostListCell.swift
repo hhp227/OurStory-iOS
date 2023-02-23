@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PostListCell: View {
-    @State var isNavigate = false
+    @State private var isNavigate = false
     
     @Binding var post: PostItem
     

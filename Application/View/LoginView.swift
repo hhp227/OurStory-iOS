@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var isShowRegister = false
+    @State private var isShowRegister = false
     
     @StateObject var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
     
