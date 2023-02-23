@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 class UserDefaultsManager {
-    let userDefaults: UserDefaults = .standard
+    private let userDefaults: UserDefaults = .standard
     
     var userPublisher: AnyPublisher<User?, Error> {
         get {

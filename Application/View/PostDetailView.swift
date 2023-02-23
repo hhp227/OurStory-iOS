@@ -13,6 +13,8 @@ struct PostDetailView: View {
     
     @State var isShowingActionSheet = false
     
+    @State var isNavigate = false
+    
     @ObservedObject var viewModel: PostDetailViewModel
     
     let onResult: () -> Void
@@ -99,12 +101,12 @@ struct PostDetailView: View {
     private func getActionSheet() -> ActionSheet {
         var buttons = [ActionSheet.Button]()
         
-        /*if viewModel.isAuth {
+        if viewModel.isAuth {
             buttons.append(.default(Text("Edit Post")) {
                 isNavigate.toggle()
             })
             buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
-        }*/
+        }
         buttons.append(.cancel())
         return ActionSheet(title: Text("Selection Action"), buttons: buttons)
     }
