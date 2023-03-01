@@ -9,4 +9,9 @@
 import Foundation
 
 class CreateGroupViewModel: ObservableObject {
+    @Published var state = State()
+    
+    struct State {
+        var title: String = ""
+    }
 }

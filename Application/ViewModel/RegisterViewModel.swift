@@ -9,9 +9,9 @@
 import Foundation
 
 class RegisterViewModel: ObservableObject {
-    @Published var state = State()
-    
     private let repository: UserRepository
+    
+    @Published var state = State()
     
     func register() {
         

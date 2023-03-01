@@ -63,7 +63,7 @@ class InjectorUtils {
     }
     
     func provideCreatePostViewModel() -> CreatePostViewModel {
-        return CreatePostViewModel()
+        return CreatePostViewModel(getPostRepository(), getUserDefaultsManager(), SavedStateHandle())
     }
     
     func provideGroupListViewModel() -> GroupListViewModel {
@@ -95,6 +95,10 @@ class InjectorUtils {
 
         savedStatedHandle.set(POST_KEY, post)
         return PostDetailViewModel(getPostRepository(), getReplyRepository(), savedStatedHandle, getUserDefaultsManager())
+    }
+    
+    func proviteUpdateReplyViewModel() -> UpdateReplyViewModel {
+        return UpdateReplyViewModel()
     }
     
     static var instance = InjectorUtils.init()

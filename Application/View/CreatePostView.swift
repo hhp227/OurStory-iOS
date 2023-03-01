@@ -9,15 +9,48 @@
 import SwiftUI
 
 struct CreatePostView: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    
+    @State private var isShowingActionSheet = false
+    
     @StateObject var viewModel = InjectorUtils.instance.provideCreatePostViewModel()
     
+    let onResult: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ZStack {
+                TextEditor(text: $viewModel.state.text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
+                Text(viewModel.state.text).opacity(0).padding(.all, 8)
+            }.listRowInsets(EdgeInsets()).shadow(radius: 1)
+        }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button(action: { viewModel.actionSend(viewModel.state.text, items: viewModel.state.items) }) { Text("Send") })
+        VStack(alignment: .leading, spacing: 0) {
+            Divider()
+            HStack(spacing: 5) {
+                Button(action: { isShowingActionSheet.toggle() }) {
+                    Image(systemName: "photo.fill").padding(10)
+                }
+                Button(action: {}) {
+                    Image(systemName: "video.fill").padding(10)
+                }
+            }.padding(5)
+        }.actionSheet(isPresented: $isShowingActionSheet) {
+            ActionSheet(title: Text("Selection Action"), buttons: [
+                .default(Text("Gallery")) {},
+                .default(Text("Camera")),
+                .cancel()
+            ])
+        }.onReceive(viewModel.$state) { state in
+            if state.postId >= 0 {
+                onResult()
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
     }
 }
 
 struct CreatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePostView()
+        CreatePostView(onResult: {})
     }
 }

@@ -11,16 +11,6 @@ import Combine
 import SwiftUI
 
 class DrawerViewModel: ObservableObject {
-    @Published private(set) var drawerView = [DrawerType: AnyView]()
-    
-    @Published private(set) var maxShowRate: CGFloat = .zero
-    
-    @Published var route = "Lounge"
-    
-    @Published var isShowProfile = false
-    
-    @Published var user: User? = nil
-    
     private let userDefaultsManager: UserDefaultsManager
     
     private var statusObserver = [AnyCancellable]()
@@ -44,6 +34,14 @@ class DrawerViewModel: ObservableObject {
         }
     }
     
+    @Published private(set) var drawerView = [DrawerType: AnyView]()
+    
+    @Published private(set) var maxShowRate: CGFloat = .zero
+    
+    @Published var route = "Lounge"
+    
+    @Published var user: User? = nil
+    
     public func setDrawer<V: DrawerViewProtocol>(view: V, widthType: DrawerWidth = .percent(rate: 0.8), shadowRadius: CGFloat = 10) {
         let status = DrawerStatus(type: view.type)
         status.maxWidth = widthType
@@ -64,6 +62,7 @@ class DrawerViewModel: ObservableObject {
     }
     
     func clear() {
+        print("clear")
         userDefaultsManager.clear()
     }
     

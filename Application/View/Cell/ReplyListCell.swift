@@ -16,6 +16,8 @@ struct ReplyListCell: View {
     
     let reply: ReplyItem
     
+    let user: User?
+    
     let onAction: () -> Void
     
     var body: some View {
@@ -40,7 +42,7 @@ struct ReplyListCell: View {
                 Spacer()
             }.padding(.horizontal, 5)
             Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
-            /*NavigationLink(destination: UpdateReplyView(args: ["reply": reply], onResult: onAction), isActive: $isNavigateUpdateReplyView, label: { EmptyView() })*/
+            NavigationLink(destination: UpdateReplyView(onResult: onAction), isActive: $isNavigateUpdateReplyView, label: { EmptyView() })
         }.padding(8).onLongPressGesture {
             isActionSheetVisible.toggle()
         }.actionSheet(isPresented: $isActionSheetVisible, content: getActionSheet)
@@ -52,12 +54,12 @@ struct ReplyListCell: View {
         buttons.append(.default(Text("Copy Content")) {
             UIPasteboard.general.string = reply.reply
         })
-        /*if let user = UserDefaultsManager.instance.user, user.id == reply.userId {
+        if user != nil, user?.id == reply.userId {
             buttons.append(.default(Text("Edit Comment")) {
                 isNavigateUpdateReplyView.toggle()
             })
-            buttons.append(.destructive(Text("Delete Comment"), action: { onAction([:]) }))
-        }*/
+            buttons.append(.destructive(Text("Delete Comment"), action: { onAction() }))
+        }
         buttons.append(.cancel())
         return ActionSheet(title: Text("Selection Action"), buttons: buttons)
     }
@@ -65,6 +67,6 @@ struct ReplyListCell: View {
 
 struct ReplyListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ReplyListCell(reply: .EMPTY, onAction: {})
+        ReplyListCell(reply: .EMPTY, user: nil, onAction: {})
     }
 }

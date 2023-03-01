@@ -12,7 +12,12 @@ struct CreateGroupView: View {
     @StateObject var viewModel = InjectorUtils.instance.provideCreateGroupViewModel()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            TextField("Enter Group Title", text: $viewModel.state.title)
+            Image("add_photo").resizable().aspectRatio(contentMode: .fit)
+            Text("Hello, CreateGroupView")
+            Spacer()
+        }
     }
 }
 

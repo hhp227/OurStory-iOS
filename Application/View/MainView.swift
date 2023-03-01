@@ -34,7 +34,7 @@ struct MainView: View {
                         Image("hamburger-menu-icon").colorMultiply(.accentColor)
                     })
                 case "Logout":
-                    LoginView().onAppear(perform: drawerViewModel.clear)
+                    let _ = drawerViewModel.clear()
                 default:
                     EmptyView()
                 }

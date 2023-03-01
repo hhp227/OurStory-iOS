@@ -91,6 +91,16 @@
 		0AAD2BB12923D6DD001A0310 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BB02923D6DC001A0310 /* ChatListView.swift */; };
 		0AAD2BB32923D721001A0310 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAD2BB22923D721001A0310 /* ChatListViewModel.swift */; };
 		0AAEBFBF299D17340085E5AF /* ReplyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAEBFBE299D17340085E5AF /* ReplyItem.swift */; };
+		0ABA911029AF6F0000E04299 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA910F29AF6F0000E04299 /* ChatView.swift */; };
+		0ABA911229AF714F00E04299 /* GroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA911129AF714F00E04299 /* GroupDetailView.swift */; };
+		0ABA911429AF746D00E04299 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA911329AF746D00E04299 /* MemberView.swift */; };
+		0ABA911629AF751400E04299 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA911529AF751400E04299 /* PostView.swift */; };
+		0ABA911829AF755600E04299 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA911729AF755600E04299 /* SettingsView.swift */; };
+		0ABA911A29AF7A7200E04299 /* UpdateReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA911929AF7A7200E04299 /* UpdateReplyView.swift */; };
+		0ABA911C29AF7ABF00E04299 /* UpdateReplyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA911B29AF7ABF00E04299 /* UpdateReplyViewModel.swift */; };
+		0ABA911E29AF7E3B00E04299 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA911D29AF7E3B00E04299 /* UserView.swift */; };
+		0ABA912029AF7EE600E04299 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA911F29AF7EE600E04299 /* ReachabilityService.swift */; };
+		0ABA912229AF7F1600E04299 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA912129AF7F1600E04299 /* ImagePicker.swift */; };
 		0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE4E8529156D7100CD454F /* LoginViewModel.swift */; };
 		0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE4E8829156E3E00CD454F /* UserRepository.swift */; };
 		0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF55CD1290ECAB90045505E /* ApplicationApp.swift */; };
@@ -186,6 +196,16 @@
 		0AAD2BB02923D6DC001A0310 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		0AAD2BB22923D721001A0310 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		0AAEBFBE299D17340085E5AF /* ReplyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyItem.swift; sourceTree = "<group>"; };
+		0ABA910F29AF6F0000E04299 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		0ABA911129AF714F00E04299 /* GroupDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailView.swift; sourceTree = "<group>"; };
+		0ABA911329AF746D00E04299 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
+		0ABA911529AF751400E04299 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		0ABA911729AF755600E04299 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0ABA911929AF7A7200E04299 /* UpdateReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReplyView.swift; sourceTree = "<group>"; };
+		0ABA911B29AF7ABF00E04299 /* UpdateReplyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReplyViewModel.swift; sourceTree = "<group>"; };
+		0ABA911D29AF7E3B00E04299 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		0ABA911F29AF7EE600E04299 /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
+		0ABA912129AF7F1600E04299 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0ACE4E8529156D7100CD454F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0ACE4E8829156E3E00CD454F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		0AF55CCE290ECAB90045505E /* Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Application.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,7 +300,10 @@
 				0A587423292535C500879505 /* Cell */,
 				0A573D8E291A8CFC005E4434 /* UI */,
 				0A611711295D995E00323737 /* AlbumView.swift */,
+				0AAD2BB02923D6DC001A0310 /* ChatListView.swift */,
+				0ABA910F29AF6F0000E04299 /* ChatView.swift */,
 				0AF55CD3290ECAB90045505E /* ContentView.swift */,
+				0A58741F29252A9500879505 /* CreateGroupView.swift */,
 				0A62C43C29141D50008B9F59 /* MainView.swift */,
 				0A62C43E29141D8C008B9F59 /* LoginView.swift */,
 				0A25D4A22917D58D00AD4546 /* RegisterView.swift */,
@@ -289,12 +312,16 @@
 				0AAD2BA42923D3B7001A0310 /* LoungeView.swift */,
 				0AAD2BA82923D4FF001A0310 /* GroupListView.swift */,
 				0AAD2BAC2923D609001A0310 /* FriendView.swift */,
-				0AAD2BB02923D6DC001A0310 /* ChatListView.swift */,
 				0A587417292526C900879505 /* FindGroupView.swift */,
 				0A58741B2925295900879505 /* JoinRequestGroupView.swift */,
-				0A58741F29252A9500879505 /* CreateGroupView.swift */,
 				0A30343D2926937200FF9D97 /* CreatePostView.swift */,
 				0A5547B42932544000CC2E82 /* PostDetailView.swift */,
+				0ABA911129AF714F00E04299 /* GroupDetailView.swift */,
+				0ABA911329AF746D00E04299 /* MemberView.swift */,
+				0ABA911529AF751400E04299 /* PostView.swift */,
+				0ABA911729AF755600E04299 /* SettingsView.swift */,
+				0ABA911929AF7A7200E04299 /* UpdateReplyView.swift */,
+				0ABA911D29AF7E3B00E04299 /* UserView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,6 +399,8 @@
 				0A409EA92914063A0036BF69 /* URLs.swift */,
 				0A95130A297E74E900661CDA /* Constant.swift */,
 				0A6F5AC429802AC00053201C /* DateUtil.swift */,
+				0ABA911F29AF7EE600E04299 /* ReachabilityService.swift */,
+				0ABA912129AF7F1600E04299 /* ImagePicker.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -402,6 +431,7 @@
 				0A58742129252ACE00879505 /* CreateGroupViewModel.swift */,
 				0A30343F292693D400FF9D97 /* CreatePostViewModel.swift */,
 				0A8D45D22937B45600E16D79 /* PostDetailViewModel.swift */,
+				0ABA911B29AF7ABF00E04299 /* UpdateReplyViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -531,6 +561,7 @@
 			files = (
 				0A4ED618295C77140020C317 /* GroupListCell.swift in Sources */,
 				0A573D95291A8E4A005E4434 /* DrawerContainer.swift in Sources */,
+				0ABA911629AF751400E04299 /* PostView.swift in Sources */,
 				0A62C44829142401008B9F59 /* ContentViewModel.swift in Sources */,
 				0A2367A6296DA03900B63747 /* PostService.swift in Sources */,
 				0A53F8A4296C4D6F00173D84 /* LoadStates.swift in Sources */,
@@ -548,6 +579,7 @@
 				2C8232BE29826C22002E3589 /* RemoteMediator.swift in Sources */,
 				0A5874282925365A00879505 /* CardView.swift in Sources */,
 				0A587418292526C900879505 /* FindGroupView.swift in Sources */,
+				0ABA911229AF714F00E04299 /* GroupDetailView.swift in Sources */,
 				0A573D91291A8D4D005E4434 /* DrawerStatus.swift in Sources */,
 				0A53F8CA296C623100173D84 /* MutableLoadStateCollection.swift in Sources */,
 				0A53F8C6296C613200173D84 /* ConflatedEventBus.swift in Sources */,
@@ -561,6 +593,7 @@
 				0A25D4A52917D5B800AD4546 /* RegisterViewModel.swift in Sources */,
 				0AF55CD4290ECAB90045505E /* ContentView.swift in Sources */,
 				0A62C43D29141D50008B9F59 /* MainView.swift in Sources */,
+				0ABA911029AF6F0000E04299 /* ChatView.swift in Sources */,
 				0A6F5AC529802AC00053201C /* DateUtil.swift in Sources */,
 				0A25D4A32917D58D00AD4546 /* RegisterView.swift in Sources */,
 				0A53F8B6296C536100173D84 /* TransformablePage.swift in Sources */,
@@ -584,6 +617,7 @@
 				0A53F8C8296C61C300173D84 /* HintHandler.swift in Sources */,
 				0A3C6AA729595E6D00D70BBC /* OurStoryError.swift in Sources */,
 				0A62C43F29141D8C008B9F59 /* LoginView.swift in Sources */,
+				0ABA911A29AF7A7200E04299 /* UpdateReplyView.swift in Sources */,
 				0A6CA530292D26E8002EFBEC /* SavedStateHandle.swift in Sources */,
 				0A8D45D32937B45600E16D79 /* PostDetailViewModel.swift in Sources */,
 				0AF55CD2290ECAB90045505E /* ApplicationApp.swift in Sources */,
@@ -594,6 +628,7 @@
 				0A10430D2929255300B4B3A2 /* ImageItem.swift in Sources */,
 				0A611712295D995E00323737 /* AlbumView.swift in Sources */,
 				0A53F8A6296C4DA600173D84 /* LoadType.swift in Sources */,
+				0ABA911E29AF7E3B00E04299 /* UserView.swift in Sources */,
 				0A53F8B2296C52A100173D84 /* PagingData.swift in Sources */,
 				0AAD2BAB2923D549001A0310 /* GroupListViewModel.swift in Sources */,
 				0A10430F292926B000B4B3A2 /* ListItem.swift in Sources */,
@@ -601,6 +636,8 @@
 				0A58741C2925295900879505 /* JoinRequestGroupView.swift in Sources */,
 				0A58742A2925374100879505 /* GroupItem.swift in Sources */,
 				0A53F8D0296C632F00173D84 /* PageFetcherSnapshotState.swift in Sources */,
+				0ABA912229AF7F1600E04299 /* ImagePicker.swift in Sources */,
+				0ABA911829AF755600E04299 /* SettingsView.swift in Sources */,
 				0A5CF5AC29280C9400FE34DA /* PostRepository.swift in Sources */,
 				0A3034432926958B00FF9D97 /* CollapsingNavigationBarView.swift in Sources */,
 				0A53F8CE296C62D100173D84 /* PageFetcherSnapshot.swift in Sources */,
@@ -609,8 +646,11 @@
 				0A62C44229142114008B9F59 /* InjectorUtils.swift in Sources */,
 				0ACE4E8929156E3E00CD454F /* UserRepository.swift in Sources */,
 				0A25D49E2917CE9500AD4546 /* Resource.swift in Sources */,
+				0ABA912029AF7EE600E04299 /* ReachabilityService.swift in Sources */,
 				0A95130B297E74E900661CDA /* Constant.swift in Sources */,
+				0ABA911C29AF7ABF00E04299 /* UpdateReplyViewModel.swift in Sources */,
 				0AAD2BB12923D6DD001A0310 /* ChatListView.swift in Sources */,
+				0ABA911429AF746D00E04299 /* MemberView.swift in Sources */,
 				0ACE4E8629156D7100CD454F /* LoginViewModel.swift in Sources */,
 				0A573D99291A8FF3005E4434 /* ProfileView.swift in Sources */,
 				0A53F8C3296C5F6300173D84 /* PagingState.swift in Sources */,

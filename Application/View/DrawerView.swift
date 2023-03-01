@@ -9,13 +9,15 @@
 import SwiftUI
 
 struct DrawerView: View, DrawerProtocol {
+    @State private var isShowProfile = false
+    
     @EnvironmentObject var drawerViewModel: DrawerViewModel
     
     private var headerView: some View {
         VStack(alignment: .leading) {
-            Button(action: { drawerViewModel.isShowProfile.toggle() }) {
+            Button(action: { isShowProfile.toggle() }) {
                 Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
-            }.fullScreenCover(isPresented: $drawerViewModel.isShowProfile) {
+            }.fullScreenCover(isPresented: $isShowProfile) {
                 ProfileView()
             }
             if let user = drawerViewModel.user {
