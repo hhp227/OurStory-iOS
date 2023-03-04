@@ -20,7 +20,7 @@ class UpdateReplyViewModel: ObservableObject {
     
     func updateReply(_ text: String) {
         if !text.isEmpty {
-            replyRepository.setReply(apiKey, 1232, text) // replyId 1232를 변경해야한다
+            replyRepository.setReply(apiKey, reply.id, text) 
                 .receive(on: RunLoop.main)
                 .sink { result in
                     switch result.status {
@@ -43,7 +43,6 @@ class UpdateReplyViewModel: ObservableObject {
                     }
                 }
                 .store(in: &state.subscriptions)
-            
         } else {
             print("text is empty")
         }

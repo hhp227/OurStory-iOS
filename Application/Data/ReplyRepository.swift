@@ -16,9 +16,8 @@ class ReplyRepository {
         return Future { promise in
             Task {
                 do {
-                    let response = try await self.replyService.setReply(apiKey, replyId, text, "0")
+                    let response = try await self.replyService.setReply(apiKey, 1232, text, "0") // replyId 1232를 변경해야한다
                     
-                    print("setReply: \(response)")
                     promise(.success(Resource.success(response)))
                 } catch {
                     promise(.failure(error))
