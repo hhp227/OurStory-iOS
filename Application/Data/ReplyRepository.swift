@@ -12,6 +12,26 @@ import Combine
 class ReplyRepository {
     private let replyService: ReplyService
     
+    func setReply(_ apiKey: String, _ replyId: Int, _ text: String) -> Publishers.Catch<AnyPublisher<Resource<String>, Error>, Just<Resource<String>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let response = try await self.replyService.setReply(apiKey, replyId, text, "0")
+                    
+                    print("setReply: \(response)")
+                    promise(.success(Resource.success(response)))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(Resource.error(error.localizedDescription, nil))
+        }
+    }
+    
     init(_ replyService: ReplyService) {
         self.replyService = replyService
     }

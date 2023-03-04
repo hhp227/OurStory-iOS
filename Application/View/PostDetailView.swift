@@ -42,8 +42,7 @@ struct PostDetailView: View {
                     }
                 }.padding(5)
             }
-        }
-        .navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
+        }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
             isShowingActionSheet.toggle()
         } label: {
             Image(systemName: "ellipsis")

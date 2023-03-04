@@ -42,7 +42,8 @@ struct ReplyListCell: View {
                 Spacer()
             }.padding(.horizontal, 5)
             Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
-            NavigationLink(destination: UpdateReplyView(onResult: onAction), isActive: $isNavigateUpdateReplyView, label: { EmptyView() })
+        }.navigationDestination(isPresented: $isNavigateUpdateReplyView) {
+            UpdateReplyView(viewModel: InjectorUtils.proviteUpdateReplyViewModel(InjectorUtils.instance)(reply), onResult: onAction)
         }.padding(8).onLongPressGesture {
             isActionSheetVisible.toggle()
         }.actionSheet(isPresented: $isActionSheetVisible, content: getActionSheet)

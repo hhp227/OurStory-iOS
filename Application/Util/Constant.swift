@@ -8,3 +8,4 @@
 import Foundation
 
 let POST_KEY = "post"
+let REPLY_KEY = "reply"
