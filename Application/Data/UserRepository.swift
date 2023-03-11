@@ -31,6 +31,29 @@ class UserRepository {
         }
     }
     
+    func register(_ name: String, _ email: String, _ password: String) -> Publishers.Catch<AnyPublisher<Resource<Bool>, Error>, Just<Resource<Bool>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let response = try await self.authService.register(name, email, password)
+                        
+                    if !response.error {
+                        promise(.success(Resource.success(true)))
+                    } else {
+                        promise(.failure(Error.self as! Error))
+                    }
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(Resource.error(error.localizedDescription, nil))
+        }
+    }
+    
     init(_ authService: AuthService) {
         self.authService = authService
     }
