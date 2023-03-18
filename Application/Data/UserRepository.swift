@@ -40,7 +40,7 @@ class UserRepository {
                     if !response.error {
                         promise(.success(Resource.success(true)))
                     } else {
-                        promise(.failure(Error.self as! Error))
+                        promise(.success(.error("", response.error)))
                     }
                 } catch {
                     promise(.failure(error))

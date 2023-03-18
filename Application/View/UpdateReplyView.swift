@@ -13,8 +13,6 @@ struct UpdateReplyView: View {
     
     @ObservedObject var viewModel: UpdateReplyViewModel
     
-    let onResult: () -> Void
-    
     var body: some View {
         List {
             ZStack {
@@ -26,8 +24,7 @@ struct UpdateReplyView: View {
                     reply.reply = state.text*/
                     
                     //onResult()
-                    //presentationMode.wrappedValue.dismiss()
-                    print("isSuccess")
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
         }.navigationBarItems(trailing: Button(action: {
@@ -38,6 +35,6 @@ struct UpdateReplyView: View {
 
 struct UpdateReplyView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateReplyView(viewModel: InjectorUtils.proviteUpdateReplyViewModel(InjectorUtils.instance)(.EMPTY), onResult: {})
+        UpdateReplyView(viewModel: InjectorUtils.proviteUpdateReplyViewModel(InjectorUtils.instance)(Binding(get: { .EMPTY }, set: { _ in })))
     }
 }

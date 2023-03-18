@@ -12,13 +12,17 @@ import Combine
 class ReplyRepository {
     private let replyService: ReplyService
     
-    func setReply(_ apiKey: String, _ replyId: Int, _ text: String) -> Publishers.Catch<AnyPublisher<Resource<String>, Error>, Just<Resource<String>>> {
+    func setReply(_ apiKey: String, _ replyId: Int, _ text: String) -> Publishers.Catch<AnyPublisher<Resource<Bool>, Error>, Just<Resource<Bool>>> {
         return Future { promise in
             Task {
                 do {
-                    let response = try await self.replyService.setReply(apiKey, 1232, text, "0") // replyId 1232를 변경해야한다
+                    let response = try await self.replyService.setReply(apiKey, replyId, text, "0")
                     
-                    promise(.success(Resource.success(response)))
+                    if !response.error {
+                        promise(.success(.success(true)))
+                    } else {
+                        promise(.success(.error(response.message ?? "Reply failed to update. Please try again!", false)))
+                    }
                 } catch {
                     promise(.failure(error))
                 }

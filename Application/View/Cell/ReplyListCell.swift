@@ -14,7 +14,7 @@ struct ReplyListCell: View {
     
     @State private var isActionSheetVisible = false
     
-    let reply: ReplyItem
+    @State var reply: ReplyItem
     
     let user: User?
     
@@ -43,7 +43,7 @@ struct ReplyListCell: View {
             }.padding(.horizontal, 5)
             Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
         }.navigationDestination(isPresented: $isNavigateUpdateReplyView) {
-            UpdateReplyView(viewModel: InjectorUtils.proviteUpdateReplyViewModel(InjectorUtils.instance)(reply), onResult: onAction)
+            UpdateReplyView(viewModel: InjectorUtils.proviteUpdateReplyViewModel(InjectorUtils.instance)($reply))
         }.padding(8).onLongPressGesture {
             isActionSheetVisible.toggle()
         }.actionSheet(isPresented: $isActionSheetVisible, content: getActionSheet)

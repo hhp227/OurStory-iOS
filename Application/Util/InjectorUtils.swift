@@ -97,9 +97,9 @@ class InjectorUtils {
         return PostDetailViewModel(getPostRepository(), getReplyRepository(), savedStatedHandle, getUserDefaultsManager())
     }
     
-    func proviteUpdateReplyViewModel(_ reply: ReplyItem) -> UpdateReplyViewModel {
+    func proviteUpdateReplyViewModel(_ reply: Binding<ReplyItem>) -> UpdateReplyViewModel {
         let savedStatedHandle = SavedStateHandle()
-        
+
         savedStatedHandle.set(REPLY_KEY, reply)
         return UpdateReplyViewModel(getReplyRepository(), getUserDefaultsManager(), savedStatedHandle)
     }

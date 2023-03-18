@@ -7,28 +7,28 @@
 //
 
 import Combine
-import Foundation
+import SwiftUI
 
 class UpdateReplyViewModel: ObservableObject {
     private let replyRepository: ReplyRepository
     
     private var apiKey: String = ""
     
-    private var reply: ReplyItem
+    @Binding private var reply: ReplyItem
     
     @Published var state = State()
     
     func updateReply(_ text: String) {
         if !text.isEmpty {
-            replyRepository.setReply(apiKey, reply.id, text) 
+            replyRepository.setReply(apiKey, reply.id, text)
                 .receive(on: RunLoop.main)
                 .sink { result in
                     switch result.status {
-                    case .SUCCESS: // Success 로 값이 넘어오지 않는다
-                        self.reply.reply = result.data ?? ""
+                    case .SUCCESS:
+                        self.reply.reply = text
                         self.state = self.state.copy(
                             isLoading: false,
-                            isSuccess: text == result.data
+                            isSuccess: result.data
                         )
                     case .ERROR:
                         self.state = self.state.copy(
@@ -54,9 +54,13 @@ class UpdateReplyViewModel: ObservableObject {
         _ savedStateHandle: SavedStateHandle
     ) {
         self.replyRepository = replyRepository
-        self.reply = savedStateHandle.get(REPLY_KEY) ?? .EMPTY
-        self.state.text = reply.reply
         
+        if let reply: Binding<ReplyItem> = savedStateHandle.get(REPLY_KEY) {
+            self._reply = reply
+            self.state.text = reply.reply.wrappedValue
+        } else {
+            self._reply = Binding(get: { ReplyItem.EMPTY }, set: { _ in })
+        }
         userDefaultsManager.userPublisher
             .catch { _ in
                 Just(nil)
@@ -85,13 +89,15 @@ extension UpdateReplyViewModel.State {
         text: String? = nil,
         isLoading: Bool? = nil,
         isSuccess: Bool? = nil,
-        error: String? = nil
+        error: String? = nil,
+        subscriptions: Set<AnyCancellable>? = nil
     ) -> UpdateReplyViewModel.State {
         return UpdateReplyViewModel.State(
             text: text ?? self.text,
             isLoading: isLoading ?? self.isLoading,
             isSuccess: isSuccess ?? self.isSuccess,
-            error: error ?? self.error
+            error: error ?? self.error,
+            subscriptions: subscriptions ?? self.subscriptions
         )
     }
 }

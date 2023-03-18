@@ -7,11 +7,16 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct CreatePostView: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
     @State private var isShowingActionSheet = false
+    
+    @State private var isShowingImagePicker = false
+    
+    @State private var selectedItems: [PhotosPickerItem] = []
     
     @StateObject var viewModel = InjectorUtils.instance.provideCreatePostViewModel()
     
@@ -36,11 +41,13 @@ struct CreatePostView: View {
             }.padding(5)
         }.actionSheet(isPresented: $isShowingActionSheet) {
             ActionSheet(title: Text("Selection Action"), buttons: [
-                .default(Text("Gallery")) {},
+                .default(Text("Gallery")) {
+                    isShowingImagePicker.toggle()
+                },
                 .default(Text("Camera")),
                 .cancel()
             ])
-        }.onReceive(viewModel.$state) { state in
+        }.photosPicker(isPresented: $isShowingImagePicker, selection: $selectedItems, matching: .images).onReceive(viewModel.$state) { state in
             if state.postId >= 0 {
                 onResult()
                 presentationMode.wrappedValue.dismiss()

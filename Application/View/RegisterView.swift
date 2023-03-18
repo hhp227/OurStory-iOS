@@ -29,7 +29,7 @@ struct RegisterView: View {
                 Button(action: {
                     let state = viewModel.state
                     
-                    viewModel.register(state.name, state.email,state.password,state.confirmPassword)
+                    viewModel.register(state.name, state.email, state.password, state.confirmPassword)
                 }) {
                     Text("REGISTER").foregroundColor(.white).frame(maxWidth: .infinity).padding(10)
                 }.buttonStyle(.borderedProminent).padding(10)

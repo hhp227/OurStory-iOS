@@ -72,7 +72,7 @@ class PostDetailViewModel: ObservableObject {
         // 데이터 추가가 되지 않음 고민해볼것
         print("fetchReplys before \(state.items.count)")
         self.state = self.state.copy(
-            items: self.state.items + (1..<10).map { ReplyItem(id: $0, userId: 1, name: "Name", reply: "Reply", status: 0, timeStamp: "") }
+            items: self.state.items + (1..<10).map { _ in ReplyItem(id: 1232, userId: 1, name: "Name", reply: "Reply", status: 0, timeStamp: "") }
         )
         print("fetchReplys after \(state.items.count)")
     }
