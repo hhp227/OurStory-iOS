@@ -52,6 +52,17 @@ struct CreatePostView: View {
                 onResult()
                 presentationMode.wrappedValue.dismiss()
             }
+        }.onChange(of: selectedItems) { newValue in
+            newValue.forEach { item in
+                item.loadTransferable(type: Data.self) { result in
+                    switch result {
+                    case .success(let data):
+                        viewModel.addItem(ImageItem(data: data))
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
         }
     }
 }

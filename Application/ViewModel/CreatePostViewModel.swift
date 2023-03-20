@@ -33,8 +33,8 @@ class CreatePostViewModel: ObservableObject {
         
     }
     
-    func addItem() {
-        
+    func addItem(_ item: ImageItem) {
+        print("addItem: \(item)")
     }
     
     func removeItem() {
