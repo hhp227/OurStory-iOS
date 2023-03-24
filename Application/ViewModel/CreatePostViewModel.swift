@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 class CreatePostViewModel: ObservableObject {
     private let repository: PostRepository
@@ -34,7 +35,9 @@ class CreatePostViewModel: ObservableObject {
     }
     
     func addItem(_ item: ImageItem) {
-        print("addItem: \(item)")
+        state = state.copy(
+            items: state.items + [item]
+        )
     }
     
     func removeItem() {
@@ -63,5 +66,27 @@ class CreatePostViewModel: ObservableObject {
         var postId: Int = -1
         
         var error: String = ""
+        
+        var subscriptions: Set<AnyCancellable> = []
+    }
+}
+
+extension CreatePostViewModel.State {
+    func copy(
+        text: String? = nil,
+        isLoading: Bool? = nil,
+        items: [ListItem]? = nil,
+        postId: Int? = nil,
+        error: String? = nil,
+        subscriptions: Set<AnyCancellable>? = nil
+    ) -> CreatePostViewModel.State {
+        return .init(
+            text: text ?? self.text,
+            isLoading: isLoading ?? self.isLoading,
+            items: items ?? self.items,
+            postId: postId ?? self.postId,
+            error: error ?? self.error,
+            subscriptions: subscriptions ?? self.subscriptions
+        )
     }
 }

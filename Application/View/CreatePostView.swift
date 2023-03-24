@@ -28,6 +28,9 @@ struct CreatePostView: View {
                 TextEditor(text: $viewModel.state.text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
                 Text(viewModel.state.text).opacity(0).padding(.all, 8)
             }.listRowInsets(EdgeInsets()).shadow(radius: 1)
+            ForEach(viewModel.state.items, id: \.id) { item in
+                Text("Test: \(item.id)")
+            }
         }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button(action: { viewModel.actionSend(viewModel.state.text, items: viewModel.state.items) }) { Text("Send") })
         VStack(alignment: .leading, spacing: 0) {
             Divider()
