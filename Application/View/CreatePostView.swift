@@ -29,9 +29,14 @@ struct CreatePostView: View {
                 Text(viewModel.state.text).opacity(0).padding(.all, 8)
             }.listRowInsets(EdgeInsets()).shadow(radius: 1)
             ForEach(viewModel.state.items, id: \.id) { item in
-                Text("Test: \(item.id)")
+                if let imageItem = item as? ImageItem {
+                    ZStack {
+                        Image(uiImage: UIImage(data: imageItem.data!) ?? UIImage()).resizable().aspectRatio(contentMode: .fill)
+                        Text("\(imageItem.tag), \(imageItem.id)")
+                    }
+                }
             }
-        }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button(action: { viewModel.actionSend(viewModel.state.text, items: viewModel.state.items) }) { Text("Send") })
+        }.listStyle(.inset).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button(action: { viewModel.actionSend(viewModel.state.text, viewModel.state.items) }) { Text("Send") })
         VStack(alignment: .leading, spacing: 0) {
             Divider()
             HStack(spacing: 5) {
@@ -60,7 +65,7 @@ struct CreatePostView: View {
                 item.loadTransferable(type: Data.self) { result in
                     switch result {
                     case .success(let data):
-                        viewModel.addItem(ImageItem(data: data))
+                        viewModel.addItem(ImageItem(data: data)) // TODO id값을 뭘로 기준으로 할것인가?
                     case .failure(let error):
                         print(error)
                     }

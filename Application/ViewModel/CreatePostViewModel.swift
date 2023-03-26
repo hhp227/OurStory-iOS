@@ -35,16 +35,18 @@ class CreatePostViewModel: ObservableObject {
     }
     
     func addItem(_ item: ImageItem) {
-        state = state.copy(
-            items: state.items + [item]
-        )
+        DispatchQueue.main.async {
+            self.state = self.state.copy(
+                items: self.state.items + [item]
+            )
+        }
     }
     
     func removeItem() {
         
     }
     
-    func actionSend(_ text: String, items: [ListItem]) {
+    func actionSend(_ text: String, _ items: [ListItem]) {
         print("text: \(text), items: \(items)")
     }
     
