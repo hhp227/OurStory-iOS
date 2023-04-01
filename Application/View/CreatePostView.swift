@@ -30,10 +30,7 @@ struct CreatePostView: View {
             }.listRowInsets(EdgeInsets()).shadow(radius: 1)
             ForEach(viewModel.state.items, id: \.id) { item in
                 if let imageItem = item as? ImageItem {
-                    ZStack {
-                        Image(uiImage: UIImage(data: imageItem.data!) ?? UIImage()).resizable().aspectRatio(contentMode: .fill)
-                        Text("\(imageItem.tag), \(imageItem.id)")
-                    }
+                    Image(uiImage: UIImage(data: imageItem.data!) ?? UIImage()).resizable().aspectRatio(contentMode: .fill)
                 }
             }
         }.listStyle(.inset).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button(action: { viewModel.actionSend(viewModel.state.text, viewModel.state.items) }) { Text("Send") })
