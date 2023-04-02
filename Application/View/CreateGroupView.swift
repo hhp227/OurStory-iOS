@@ -15,7 +15,7 @@ struct CreateGroupView: View {
         VStack(alignment: .leading) {
             TextField("Enter Group Title", text: $viewModel.state.title)
             Image("add_photo").resizable().aspectRatio(contentMode: .fit)
-            Text("Hello, CreateGroupView")
+            TextEditor(text: $viewModel.state.description)
             Spacer()
         }
     }

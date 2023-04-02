@@ -13,5 +13,7 @@ class CreateGroupViewModel: ObservableObject {
     
     struct State {
         var title: String = ""
+        
+        var description: String = ""
     }
 }
