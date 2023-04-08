@@ -9,12 +9,26 @@
 import SwiftUI
 
 struct CreateGroupView: View {
+    @State private var isShowingActionSheet = false
+    
+    @State private var isShowingImagePicker = false
+    
     @StateObject var viewModel = InjectorUtils.instance.provideCreateGroupViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
             TextField("Enter Group Title", text: $viewModel.state.title)
-            Image("add_photo").resizable().aspectRatio(contentMode: .fit)
+            Image("add_photo").resizable().aspectRatio(contentMode: .fit).onTapGesture {
+                isShowingActionSheet.toggle()
+            }.actionSheet(isPresented: $isShowingActionSheet) {
+                ActionSheet(title: Text("Selection Action"), buttons: [
+                    .default(Text("Gallery")) {
+                        isShowingImagePicker.toggle()
+                    },
+                    .default(Text("Camera")),
+                    .cancel()
+                ])
+            }
             TextEditor(text: $viewModel.state.description)
             Spacer()
         }
