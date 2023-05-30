@@ -15,8 +15,7 @@ class CreateGroupViewModel: ObservableObject {
         var title: String = ""
         
         var description: String = ""
-        
-        //
+       
         let isLoading: Bool = false
         
         let error: String = ""
