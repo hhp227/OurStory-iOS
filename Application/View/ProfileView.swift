@@ -18,20 +18,12 @@ struct ProfileView: View {
             PagerTabView(tint: .black, selection: $currentSelection, labels: {
                 Image(systemName: "house.fill")
                     .pageLabel()
-                Image(systemName: "magnifyingglass")
-                    .pageLabel()
                 Image(systemName: "person.fill")
                     .pageLabel()
-                Image(systemName: "gearshape")
-                    .pageLabel()
             }, content: {
-                Color.red
+                MyInfoView()
                     .pageView(ignoresSafeArea: true, edges: .bottom)
-                Color.green
-                    .pageView(ignoresSafeArea: true, edges: .bottom)
-                Color.yellow
-                    .pageView(ignoresSafeArea: true, edges: .bottom)
-                Color.purple
+                MyPostView()
                     .pageView(ignoresSafeArea: true, edges: .bottom)
             })
             .padding(.top)
