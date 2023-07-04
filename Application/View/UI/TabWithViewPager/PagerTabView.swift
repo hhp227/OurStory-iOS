@@ -90,10 +90,6 @@ struct TabPreferenceKey: PreferenceKey {
 }
 
 extension View {
-    func pageLabel() -> some View {
-        self.frame(maxWidth: .infinity, alignment: .center)
-    }
-    
     func pageView(ignoresSafeArea: Bool = false, edges: Edge.Set = []) -> some View {
         self.frame(width: getScreenBounds().width, alignment: .center)
             .ignoresSafeArea(ignoresSafeArea ? .container : .init(), edges: edges)

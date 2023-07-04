@@ -16,10 +16,8 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             PagerTabView(tint: .black, selection: $currentSelection, labels: {
-                Image(systemName: "house.fill")
-                    .pageLabel()
-                Image(systemName: "person.fill")
-                    .pageLabel()
+                Text("내 정보").frame(maxWidth: .infinity, alignment: .center)
+                Text("내가 쓴 글").frame(maxWidth: .infinity, alignment: .center)
             }, content: {
                 MyInfoView()
                     .pageView(ignoresSafeArea: true, edges: .bottom)

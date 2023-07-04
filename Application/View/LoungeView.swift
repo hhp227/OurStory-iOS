@@ -34,8 +34,16 @@ struct LoungeView: View {
 struct PostList: View {
     @ObservedObject var lazyPagingItems: LazyPagingItems<PostItem>
     
+    @State private var headerVisibleRatio: CGFloat = 1
+
+    @State private var scrollOffset: CGPoint = .zero
+    
     var body: some View {
-        ScrollView {
+        CollapsingNavigationBarView(
+            headerHeight: 250,
+            onScroll: handleScrollOffset,
+            header: header
+        ) {
             LazyVStack(spacing: 10) {
                 ForEach(lazyPagingItems) { $post in
                     PostListCell(post: $post, onLikeClick: { /*viewModel.togglePostLike(post)*/ }, onResult: /*viewModel.refreshPosts*/{})
@@ -53,6 +61,24 @@ struct PostList: View {
                 }
             }
         }
+    }
+    
+    func header() -> some View {
+        ZStack(alignment: .bottomLeading) {
+            // headerView
+            ZStack {
+                Color.red
+                //ScrollViewHeaderImage(image: Image("header"))
+                //ScrollViewHeaderGradient(.black.opacity(0.2), .black.opacity(0.5))
+            }
+            //ScrollViewHeaderGradient()
+            //headerTitle.previewHeaderContent()
+        }
+    }
+    
+    func handleScrollOffset(_ offset: CGPoint, headerVisibleRatio: CGFloat) {
+        self.scrollOffset = offset
+        self.headerVisibleRatio = headerVisibleRatio
     }
 }
 

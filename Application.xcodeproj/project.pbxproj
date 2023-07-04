@@ -113,6 +113,7 @@
 		0AF55CD9290ECABC0045505E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF55CD8290ECABC0045505E /* Preview Assets.xcassets */; };
 		2C3F1D2A2A29BD3200556C0F /* OffsetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F1D292A29BD3200556C0F /* OffsetTabView.swift */; };
 		2C3F1D2C2A29C7A600556C0F /* PagerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F1D2B2A29C7A600556C0F /* PagerTabView.swift */; };
+		2C4859142A4C2D3000476BE1 /* ScrollViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4859132A4C2D3000476BE1 /* ScrollViewHeader.swift */; };
 		2C8232BE29826C22002E3589 /* RemoteMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8232BD29826C22002E3589 /* RemoteMediator.swift */; };
 		2C8232C02982719F002E3589 /* RemoteMediatorAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8232BF2982719F002E3589 /* RemoteMediatorAccessor.swift */; };
 /* End PBXBuildFile section */
@@ -225,6 +226,7 @@
 		0AF55CD8290ECABC0045505E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C3F1D292A29BD3200556C0F /* OffsetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetTabView.swift; sourceTree = "<group>"; };
 		2C3F1D2B2A29C7A600556C0F /* PagerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerTabView.swift; sourceTree = "<group>"; };
+		2C4859132A4C2D3000476BE1 /* ScrollViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewHeader.swift; sourceTree = "<group>"; };
 		2C8232BD29826C22002E3589 /* RemoteMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMediator.swift; sourceTree = "<group>"; };
 		2C8232BF2982719F002E3589 /* RemoteMediatorAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMediatorAccessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				0A3034422926958B00FF9D97 /* CollapsingNavigationBarView.swift */,
+				2C4859132A4C2D3000476BE1 /* ScrollViewHeader.swift */,
 			);
 			path = CollapsingNavigationBar;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				0A53F8C1296C5EF600173D84 /* PagingSource.swift in Sources */,
 				0AAD2BA92923D4FF001A0310 /* GroupListView.swift in Sources */,
 				0A53F8CC296C628300173D84 /* PageFetcher.swift in Sources */,
+				2C4859142A4C2D3000476BE1 /* ScrollViewHeader.swift in Sources */,
 				0A53F8D2296C63A400173D84 /* Pager.swift in Sources */,
 				0A270F022958917F00004A7C /* ReplyListCell.swift in Sources */,
 				0A53F8AA296C505400173D84 /* MutableCombinedLoadStateCollection.swift in Sources */,
