@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct PagerTabView<Content: View, Label: View>: View {
-    @State var offset: CGFloat = 0
+    @State
+    var offset: CGFloat = 0
     
-    @State var maxTabs: CGFloat = 0
+    @State
+    var maxTabs: CGFloat = 0
     
-    @State var tabOffset: CGFloat = 0
+    @State
+    var tabOffset: CGFloat = 0
     
-    @Binding var selection: Int
+    @Binding
+    var selection: Int
     
     var content: Content
     

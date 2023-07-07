@@ -10,15 +10,20 @@ import SwiftUI
 import PhotosUI
 
 struct CreatePostView: View {
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode)
+    private var presentationMode: Binding<PresentationMode>
     
-    @State private var isShowingActionSheet = false
+    @State
+    private var isShowingActionSheet = false
     
-    @State private var isShowingImagePicker = false
+    @State
+    private var isShowingImagePicker = false
     
-    @State private var selectedItems: [PhotosPickerItem] = []
+    @State
+    private var selectedItems: [PhotosPickerItem] = []
     
-    @StateObject var viewModel = InjectorUtils.instance.provideCreatePostViewModel()
+    @StateObject
+    var viewModel = InjectorUtils.instance.provideCreatePostViewModel()
     
     let onResult: () -> Void
     

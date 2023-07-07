@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct DrawerView: View, DrawerProtocol {
-    @State private var isShowProfile = false
+    @State
+    private var isShowProfile = false
     
-    @EnvironmentObject var drawerViewModel: DrawerViewModel
+    @EnvironmentObject
+    var drawerViewModel: DrawerViewModel
     
     private var headerView: some View {
         VStack(alignment: .leading) {

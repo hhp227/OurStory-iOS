@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var drawerViewModel: DrawerViewModel = InjectorUtils.instance.provideDrawerViewModel()
+    @StateObject
+    private var drawerViewModel: DrawerViewModel = InjectorUtils.instance.provideDrawerViewModel()
     
     private static let MAX_MASK_ALPHA: CGFloat = 0.25
     

@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct UpdateReplyView: View {
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode)
+    private var presentationMode: Binding<PresentationMode>
     
-    @ObservedObject var viewModel: UpdateReplyViewModel
+    @ObservedObject
+    var viewModel: UpdateReplyViewModel
     
     var body: some View {
         List {

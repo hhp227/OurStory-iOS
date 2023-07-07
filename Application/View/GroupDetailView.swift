@@ -9,13 +9,17 @@
 import SwiftUI
 
 struct GroupDetailView: View {
-    @State var selectedTab: String = "square.grid.3x3"
+    @State
+    var selectedTab: String = "square.grid.3x3"
 
-    @Namespace var animation
+    @Namespace
+    var animation
 
-    @Environment(\.colorScheme) var scheme
+    @Environment(\.colorScheme)
+    var scheme
 
-    @State var topHeaderOffset: CGFloat = 0
+    @State
+    var topHeaderOffset: CGFloat = 0
     
     var body: some View {
         VStack {
@@ -47,9 +51,9 @@ struct GroupDetailView: View {
                         return AnyView(
                             // Sticky Top Segmented Bar...
                             HStack(spacing: 0) {
-                                TabBarButton(image: "square.grid.3x3", isSystemImage: true, animation: animation, selectedTab: $selectedTab)
-                                TabBarButton(image: "reels", isSystemImage: true, animation: animation, selectedTab: $selectedTab)
-                                TabBarButton(image: "person.crop.square", isSystemImage: true, animation: animation, selectedTab: $selectedTab)
+                                TabBarButton(selectedTab: $selectedTab, image: "square.grid.3x3", isSystemImage: true, animation: animation)
+                                TabBarButton(selectedTab: $selectedTab, image: "reels", isSystemImage: true, animation: animation)
+                                TabBarButton(selectedTab: $selectedTab, image: "person.crop.square", isSystemImage: true, animation: animation)
                             }.frame(height: 70, alignment: .bottom).background(scheme == .dark ? Color.black : Color.white).offset(y: offset < 0 ? -offset : 0)
                         )
                     }.frame(height: 70).zIndex(4)
@@ -91,13 +95,14 @@ struct ImageView: View {
 }
 
 struct TabBarButton: View {
+    @Binding
+    var selectedTab: String
+    
     var image: String
 
     var isSystemImage: Bool
 
     var animation: Namespace.ID
-
-    @Binding var selectedTab: String
 
     var body: some View {
         Button(action: {

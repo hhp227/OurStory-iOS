@@ -10,7 +10,8 @@ import Foundation
 import Combine
 
 class ContentViewModel: ObservableObject {
-    @Published var user: User? = nil
+    @Published
+    var user: User? = nil
     
     init(_ userDefaultManager: UserDefaultsManager) {
         userDefaultManager.userPublisher

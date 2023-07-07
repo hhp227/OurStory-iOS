@@ -9,13 +9,17 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode)
+    private var presentationMode: Binding<PresentationMode>
     
-    @State private var isShowingActionSheet = false
+    @State
+    private var isShowingActionSheet = false
     
-    @State private var isNavigate = false
+    @State
+    private var isNavigate = false
     
-    @ObservedObject var viewModel: PostDetailViewModel
+    @ObservedObject
+    var viewModel: PostDetailViewModel
     
     let onResult: () -> Void
     

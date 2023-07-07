@@ -10,9 +10,11 @@ import SwiftUI
 import Combine
 
 struct DrawerContainer<Content: DrawerViewProtocol>: View {
-    @ObservedObject public var viewModel: DrawerViewModel
+    @ObservedObject
+    public var viewModel: DrawerViewModel
     
-    @ObservedObject private var status: DrawerStatus
+    @ObservedObject
+    private var status: DrawerStatus
     
     let drawer: AnyView
     

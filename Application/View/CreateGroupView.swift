@@ -9,11 +9,14 @@
 import SwiftUI
 
 struct CreateGroupView: View {
-    @State private var isShowingActionSheet = false
+    @State
+    private var isShowingActionSheet = false
     
-    @State private var isShowingImagePicker = false
+    @State
+    private var isShowingImagePicker = false
     
-    @StateObject var viewModel = InjectorUtils.instance.provideCreateGroupViewModel()
+    @StateObject
+    var viewModel = InjectorUtils.instance.provideCreateGroupViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {

@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct FriendView: View {
-    @StateObject var viewModel: FriendViewModel = InjectorUtils.instance.provideFriendViewModel()
+    @StateObject
+    var viewModel: FriendViewModel = InjectorUtils.instance.provideFriendViewModel()
     
     var body: some View {
         VStack {

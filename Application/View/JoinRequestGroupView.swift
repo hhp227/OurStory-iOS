@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct JoinRequestGroupView: View {
-    @StateObject var viewModel = InjectorUtils.instance.provideJoinRequestGroupViewModel()
+    @StateObject
+    var viewModel = InjectorUtils.instance.provideJoinRequestGroupViewModel()
     
     var body: some View {
         List {

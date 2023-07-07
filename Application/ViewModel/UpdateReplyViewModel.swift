@@ -14,9 +14,11 @@ class UpdateReplyViewModel: ObservableObject {
     
     private var apiKey: String = ""
     
-    @Binding private var reply: ReplyItem
+    @Binding
+    private var reply: ReplyItem
     
-    @Published var state = State()
+    @Published
+    var state = State()
     
     func updateReply(_ text: String) {
         if !text.isEmpty {

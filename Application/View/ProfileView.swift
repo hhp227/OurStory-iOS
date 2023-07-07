@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode)
+    private var presentationMode: Binding<PresentationMode>
     
-    @State var currentSelection: Int = 0
+    @State
+    var currentSelection: Int = 0
     
     var body: some View {
         NavigationView {

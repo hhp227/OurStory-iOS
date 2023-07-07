@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct LoungeView: View {
-    @StateObject var viewModel: LoungeViewModel = InjectorUtils.instance.provideLoungeViewModel()
+    @StateObject
+    var viewModel: LoungeViewModel = InjectorUtils.instance.provideLoungeViewModel()
     
     private var fab: some View {
         NavigationLink(destination: CreatePostView(onResult: {})) {
@@ -32,11 +33,14 @@ struct LoungeView: View {
 }
 
 struct PostList: View {
-    @ObservedObject var lazyPagingItems: LazyPagingItems<PostItem>
-    
-    @State private var headerVisibleRatio: CGFloat = 1
+    @State
+    private var headerVisibleRatio: CGFloat = 1
 
-    @State private var scrollOffset: CGPoint = .zero
+    @State
+    private var scrollOffset: CGPoint = .zero
+    
+    @ObservedObject
+    var lazyPagingItems: LazyPagingItems<PostItem>
     
     var body: some View {
         CollapsingNavigationBarView(

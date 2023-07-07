@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @StateObject var viewModel: RegisterViewModel = InjectorUtils.instance.provideRegisterViewModel()
+    @StateObject
+    var viewModel: RegisterViewModel = InjectorUtils.instance.provideRegisterViewModel()
     
     var body: some View {
         ZStack {

@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct FindGroupView: View {
-    @StateObject var viewModel = InjectorUtils.instance.provideFindGroupViewModel()
+    @StateObject
+    var viewModel = InjectorUtils.instance.provideFindGroupViewModel()
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

@@ -10,11 +10,14 @@ import Foundation
 import SwiftUI
 
 struct ReplyListCell: View {
-    @State private var isNavigateUpdateReplyView = false
+    @State
+    private var isNavigateUpdateReplyView = false
     
-    @State private var isActionSheetVisible = false
+    @State
+    private var isActionSheetVisible = false
     
-    @State var reply: ReplyItem
+    @State
+    var reply: ReplyItem
     
     let user: User?
     

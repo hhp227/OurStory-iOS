@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct OffsetPageTabView<Content: View>: UIViewRepresentable {
+    @Binding
+    var offset: CGFloat
+    
+    @Binding
+    var selection: Int
+    
     var content: Content
-    
-    @Binding var offset: CGFloat
-    
-    @Binding var selection: Int
     
     func makeCoordinator() -> Coordinator {
         return OffsetPageTabView.Coordinator(parent: self)

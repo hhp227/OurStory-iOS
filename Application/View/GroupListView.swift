@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct GroupListView: View {
-    @StateObject var viewModel: GroupListViewModel = InjectorUtils.provideGroupListViewModel(InjectorUtils.instance)()
+    @StateObject
+    var viewModel: GroupListViewModel = InjectorUtils.provideGroupListViewModel(InjectorUtils.instance)()
     
     private var topNavigationLinks: some View {
         HStack(alignment: .bottom) {

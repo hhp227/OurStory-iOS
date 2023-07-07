@@ -19,11 +19,14 @@ class PostDetailViewModel: ObservableObject {
     
     private lazy var apiKey: String = user?.apiKey ?? ""
     
-    @Binding var post: PostItem
+    @Binding
+    var post: PostItem
     
-    @Published var user: User?
+    @Published
+    var user: User?
     
-    @Published var state = State()
+    @Published
+    var state = State()
     
     private func fetchPost(_ postId: Int) {
         postRepository.getPost(postId: postId)

@@ -12,7 +12,8 @@ import Combine
 class RegisterViewModel: ObservableObject {
     private let repository: UserRepository
     
-    @Published var state = State()
+    @Published
+    var state = State()
     
     private func isEmailValid(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"

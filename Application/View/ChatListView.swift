@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct ChatListView: View {
-    @StateObject var viewModel: ChatListViewModel = InjectorUtils.provideChatListViewModel(InjectorUtils.instance)()
+    @StateObject
+    var viewModel: ChatListViewModel = InjectorUtils.provideChatListViewModel(InjectorUtils.instance)()
     
     var body: some View {
         VStack {

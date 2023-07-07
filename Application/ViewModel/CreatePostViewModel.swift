@@ -12,7 +12,8 @@ import Combine
 class CreatePostViewModel: ObservableObject {
     private let repository: PostRepository
     
-    @Published var state = State()
+    @Published
+    var state = State()
     
     private func insertPost(_ text: String) {
         

@@ -18,11 +18,14 @@ enum NetworkType {
 }
 
 final class ReachabilityService: ObservableObject {
-    @Published var reachabilityInfos: NWPath?
+    @Published
+    var reachabilityInfos: NWPath?
     
-    @Published var isNetworkAvailable: Bool?
+    @Published
+    var isNetworkAvailable: Bool?
     
-    @Published var typeOfCurrentConnection: NetworkType?
+    @Published
+    var typeOfCurrentConnection: NetworkType?
     
     private let monitor = NWPathMonitor()
     

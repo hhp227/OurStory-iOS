@@ -9,7 +9,8 @@
 import Foundation
 
 class GroupListViewModel: ObservableObject {
-    @Published private(set) var state = State()
+    @Published
+    private(set) var state = State()
     
     func fetchGroups(_ offset: Int) {
     }

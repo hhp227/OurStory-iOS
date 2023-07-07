@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct PostListCell: View {
-    @State private var isNavigate = false
+    @State
+    private var isNavigate = false
     
-    @Binding var post: PostItem
+    @Binding
+    var post: PostItem
     
     let onLikeClick: () -> Void
     

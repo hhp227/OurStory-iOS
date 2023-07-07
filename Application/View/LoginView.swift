@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var isShowRegister = false
+    @State
+    private var isShowRegister = false
     
-    @StateObject var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
+    @StateObject
+    var viewModel: LoginViewModel = InjectorUtils.instance.provideLoginViewModel()
     
     var body: some View {
         ZStack {
