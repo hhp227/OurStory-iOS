@@ -9,10 +9,17 @@
 import SwiftUI
 
 struct GroupGridCell: View {
+    @State
+    private var isNavigate = false
+    
     let group: GroupItem
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: { isNavigate.toggle() }) {
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        }.navigationDestination(isPresented: $isNavigate) {
+            GroupDetailView()
+        }
     }
 }
 

@@ -20,12 +20,12 @@ struct ProfileView: View {
             PagerTabView(tint: .black, selection: $currentSelection, labels: {
                 Text("내 정보").frame(maxWidth: .infinity, alignment: .center)
                 Text("내가 쓴 글").frame(maxWidth: .infinity, alignment: .center)
-            }, content: {
+            }) {
                 MyInfoView()
                     .pageView(ignoresSafeArea: true, edges: .bottom)
                 MyPostView()
                     .pageView(ignoresSafeArea: true, edges: .bottom)
-            })
+            }
             .padding(.top)
             .navigationTitle("Profile")
             .navigationBarItems(leading: Button(action: { presentationMode.wrappedValue.dismiss() }) {

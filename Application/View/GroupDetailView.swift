@@ -10,116 +10,102 @@ import SwiftUI
 
 struct GroupDetailView: View {
     @State
-    var selectedTab: String = "square.grid.3x3"
-
-    @Namespace
-    var animation
-
-    @Environment(\.colorScheme)
-    var scheme
-
+    private var offsetY = CGFloat.zero
+    
     @State
-    var topHeaderOffset: CGFloat = 0
+    var currentTab = 0
     
     var body: some View {
         VStack {
-            ScrollView(.vertical, showsIndicators: false, content: {
-                VStack {
-                    Divider()
-                    HStack(spacing: 10) {
-                        Button(action: {}, label: {
-                            Text("Edit Profile").fontWeight(.semibold).foregroundColor(.primary).padding(.vertical, 10).frame(maxWidth: .infinity).background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray))
-                        })
-                        Button(action: {}, label: {
-                            Text("Promotion's").fontWeight(.semibold).foregroundColor(.primary).padding(.vertical, 10).frame(maxWidth: .infinity).background(RoundedRectangle(cornerRadius: 4).stroke(Color.gray))
-                        })
-                    }.padding([.horizontal, .top])
-                    // Stories Sections...
-                    ScrollView(.horizontal, showsIndicators: false, content: {
-                        HStack(spacing: 15) {
-                            Button(action: {}, label: {
-                                VStack {
-                                    Image(systemName: "plus").font(.title2).foregroundColor(.primary).padding(18).background(Circle().stroke(Color.gray))
-                                    Text("New").foregroundColor(.primary)
-                                }
-                            })
-                        }.padding([.horizontal, .top])
-                    })
-                    GeometryReader { proxy -> AnyView in
-                        let minY = proxy.frame(in: .global).minY
-                        let offset = minY - topHeaderOffset
-                        return AnyView(
-                            // Sticky Top Segmented Bar...
-                            HStack(spacing: 0) {
-                                TabBarButton(selectedTab: $selectedTab, image: "square.grid.3x3", isSystemImage: true, animation: animation)
-                                TabBarButton(selectedTab: $selectedTab, image: "reels", isSystemImage: true, animation: animation)
-                                TabBarButton(selectedTab: $selectedTab, image: "person.crop.square", isSystemImage: true, animation: animation)
-                            }.frame(height: 70, alignment: .bottom).background(scheme == .dark ? Color.black : Color.white).offset(y: offset < 0 ? -offset : 0)
-                        )
-                    }.frame(height: 70).zIndex(4)
-                    ZStack {
-                        LazyVStack {
-                            ForEach(1...20, id: \.self) { index in
-                                GeometryReader { proxy in
-                                    let width = proxy.frame(in: .global).width
-                                    
-                                    ImageView(index: index, width: width)
-                                }.frame(height: 120)
-                            }
+            ScrollView {
+                GeometryReader { proxy in
+                    let offset = proxy.frame(in: .global).minY
+                    
+                    /*DispatchQueue.main.async {
+                        self.offsetY = offset
+                    }*/
+                    VStack {
+                        Image("image3")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(
+                                width: proxy.size.width,
+                                height: 300 + (offset > 0 ? offset : 0)
+                            )
+                            .clipped()
+                            .opacity(offsetY < 0 ? 0 : 1)
+                            .animation(.easeIn(duration: 0.5), value: offsetY)
+                            .offset(y: offset > 0 ? -offset : 0)
+                    }
+                }
+                .frame(minHeight: 250)
+                LazyVStack(pinnedViews: .sectionHeaders) {
+                    Section(header: SegmentTabBarView(currentTab: $currentTab)) {
+                        switch currentTab {
+                            case 0:
+                                TabBarView(title: "소식")
+                            case 1:
+                                TabBarView(title: "일정")
+                            case 2:
+                                TabBarView(title: "맴버")
+                            case 3:
+                                TabBarView(title: "설정")
+                            default:
+                                EmptyView()
                         }
                     }
                 }
-            })
+            }
+            .navigationTitle("경북대 소모임")
+            .toolbar {
+                ToolbarItem {
+                    Button("Item") {}
+                }
+            }
         }
     }
 }
 
-struct GroupDetailView_Previews: PreviewProvider {
+/*struct GroupDetailView_Previews: PreviewProvider {
     static var previews: some View {
         GroupDetailView()
     }
-}
+}*/
 
-struct ImageView: View {
-    var index: Int
-
-    var width: CGFloat
-
-    var body: some View {
+struct TabBarView: View {
+    let contents = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    
+    let title: String
+    
+    var body: some View{
         VStack {
-            let imageName = index > 10 ? index - (10 * (index / 10)) == 0 ? 10 : index - (10 * (index / 10)) : index
-        
-            Image("image\(imageName)").resizable().aspectRatio(contentMode: .fill).frame(width: width, height: 120).cornerRadius(0)
+            Text("\(title) 칸입니다.")
+            ForEach(contents, id: \.self) { name in
+                TempItem(title: name)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 4)
+            }
         }
     }
 }
 
-struct TabBarButton: View {
-    @Binding
-    var selectedTab: String
+struct TempItem: View {
+    let title: String
     
-    var image: String
-
-    var isSystemImage: Bool
-
-    var animation: Namespace.ID
-
     var body: some View {
-        Button(action: {
-            withAnimation(.easeInOut) {
-                selectedTab = image
-            }
-        }, label: {
-            VStack(spacing: 12) {
-                (isSystemImage ? Image(systemName: image) : Image(image)).renderingMode(.template).resizable().aspectRatio(contentMode: .fit).frame(width: 28, height: 28).foregroundColor(selectedTab == image ? .primary : .gray)
-                ZStack {
-                    if selectedTab == image {
-                        Rectangle().fill(Color.primary).matchedGeometryEffect(id: "TAB", in: animation)
-                    } else {
-                        Rectangle().fill(Color.clear)
-                    }
-                }.frame(height: 1)
-            }
-        })
+        ZStack {
+            Image(title)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundColor(.black)
+                .opacity(0.5)
+            Text(title)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+        }
     }
 }
