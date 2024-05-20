@@ -20,7 +20,7 @@ struct LoungeView: View {
     
     var body: some View {
         ZStack {
-            PostList(lazyPagingItems: viewModel.posts.collectAsLazyPagingItems())
+            PostList(lazyPagingItems: viewModel.$state.map { $0.pagingData }.eraseToAnyPublisher().collectAsLazyPagingItems())
             VStack {
                 Spacer()
                 HStack {

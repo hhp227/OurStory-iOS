@@ -7,11 +7,17 @@
 //
 
 import Combine
+import Foundation
 
 class LoungeViewModel: ObservableObject {
     private let repository: PostRepository
     
-    lazy var posts: AnyPublisher<PagingData<PostItem>, Never> = repository.getPosts(groupId: 0)
+    @Published
+    var state = State()
+    
+    private func setPagingData(pagingData: PagingData<PostItem>) {
+        self.state.pagingData = pagingData
+    }
     
     func refreshPosts() {
     }
@@ -21,5 +27,24 @@ class LoungeViewModel: ObservableObject {
     
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
+        
+        repository.getPosts(groupId: 0)
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: setPagingData)
+            .store(in: &state.subscriptions)
+    }
+    
+    deinit {
+        self.state.subscriptions.removeAll()
+    }
+    
+    struct State {
+        var isLoading: Bool = false
+        
+        var pagingData: PagingData<PostItem> = PagingData<PostItem>.empty()
+        
+        var error: String = ""
+        
+        var subscriptions: Set<AnyCancellable> = []
     }
 }
