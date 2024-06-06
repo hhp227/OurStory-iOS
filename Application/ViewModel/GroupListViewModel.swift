@@ -24,6 +24,6 @@ class GroupListViewModel: ObservableObject {
         
         var canLoadNextPage = true
         
-        var error: String = ""
+        var message: String = ""
     }
 }

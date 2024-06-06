@@ -13,7 +13,7 @@ class PostPagingSource: PagingSource<Int, PostItem> {
     private let groupId: Int
     
     override func load(params: LoadParams<Int>) async -> LoadResult<Int, PostItem> {
-        let offset: Int = params.getKey() ?? 0
+        /*let offset: Int = params.getKey() ?? 0
         let range = offset..<offset + params.loadSize // TODO
         
         do {
@@ -35,6 +35,30 @@ class PostPagingSource: PagingSource<Int, PostItem> {
                 prevKey: offset == 0 ? nil : offset - 1,
                 nextKey: (range.last ?? 0) + 1
             )
+        } catch {
+            return LoadResult<Int, PostItem>.Error(error: error)
+        }*/
+        let offset = params.getKey() ?? 0
+        let loadSize = params.loadSize
+        let key = max(0, offset)
+        let nextKey = key + loadSize
+        let prevKey = key - loadSize
+        
+        do {
+            let response = try await postService.getPosts(groupId, key, loadSize)
+            
+            if !response.error {
+                let data: [PostItem] = response.data ?? []
+                
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+                return LoadResult<Int, PostItem>.Page(
+                    data: data,
+                    prevKey: offset == 0 ? nil : prevKey,
+                    nextKey: data.isEmpty ? nil : nextKey
+                )
+            } else {
+                return LoadResult<Int, PostItem>.Error(error: Error.self as! Error)
+            }
         } catch {
             return LoadResult<Int, PostItem>.Error(error: error)
         }

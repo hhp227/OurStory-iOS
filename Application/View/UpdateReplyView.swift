@@ -18,20 +18,30 @@ struct UpdateReplyView: View {
     var body: some View {
         List {
             ZStack {
-                TextEditor(text: $viewModel.state.text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
-                Text(viewModel.state.text).opacity(0).padding(.all, 8)
-            }.listRowInsets(EdgeInsets()).shadow(radius: 1).onReceive(viewModel.$state) { state in
+                TextEditor(text: $viewModel.state.text)
+                    .autocapitalization(.none)
+                    .keyboardType(.default)
+                    .disableAutocorrection(true)
+                Text(viewModel.state.text)
+                    .opacity(0)
+                    .padding(.all, 8)
+            }
+            .listRowInsets(EdgeInsets())
+            .shadow(radius: 1)
+            .onReceive(viewModel.$state) { state in
                 if state.isSuccess {
                     /*var reply = viewModel.reply // TODO viewModel에서 처리하는것으로 변경하기
-                    reply.reply = state.text*/
+                     reply.reply = state.text*/
                     
                     //onResult()
                     presentationMode.wrappedValue.dismiss()
                 }
             }
-        }.navigationBarItems(trailing: Button(action: {
-            viewModel.updateReply(viewModel.state.text)
-        }) { Text("Send") }).navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationBarItems(trailing: Button(action: viewModel.updateReply) {
+            Text("Send")
+        })
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

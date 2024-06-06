@@ -47,7 +47,7 @@ class PostDetailViewModel: ObservableObject {
                 case .ERROR:
                     self.state = self.state.copy(
                         isLoading: false,
-                        error: result.message ?? "An unexpected error occured"
+                        message: result.message ?? "An unexpected error occured"
                     )
                 case .LOADING:
                     self.state = self.state.copy(
@@ -80,8 +80,8 @@ class PostDetailViewModel: ObservableObject {
         print("fetchReplys after \(state.items.count)")
     }
     
-    func insertReply(message reply: String) {
-        print("insertReply: \(reply)")
+    func insertReply() {
+        print("insertReply: \(state.reply)")
     }
     
     func deletePost() {
@@ -133,7 +133,7 @@ class PostDetailViewModel: ObservableObject {
         
         var isSetResultOK: Bool = false
         
-        var error: String = ""
+        var message: String = ""
         
         var subscriptions: Set<AnyCancellable> = []
     }
@@ -146,7 +146,7 @@ extension PostDetailViewModel.State {
         items: [ListItem]? = nil,
         replyId: Int? = nil,
         isSetResultOK: Bool? = nil,
-        error: String? = nil,
+        message: String? = nil,
         subscriptions: Set<AnyCancellable>? = nil
     ) -> PostDetailViewModel.State {
         .init(
@@ -155,7 +155,7 @@ extension PostDetailViewModel.State {
             items: items ?? self.items,
             replyId: replyId ?? self.replyId,
             isSetResultOK: isSetResultOK ?? self.isSetResultOK,
-            error: error ?? self.error,
+            message: message ?? self.message,
             subscriptions: subscriptions ?? self.subscriptions
         )
     }

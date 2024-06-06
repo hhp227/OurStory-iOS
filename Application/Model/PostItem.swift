@@ -21,15 +21,18 @@ struct PostItem: Codable, Identifiable, Equatable, ListItem {
     
     var profileImage: String?
     
-    var timeStamp: Date
+    //var timeStamp: Date
+    var timeStamp: String?
     
     var replyCount: Int
     
     var likeCount: Int
     
+    var reportCount: Int
+    
     var attachment: Attachment
     
-    static var EMPTY = PostItem(id: 0, userId: 0, name: "", text: "", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: [], video: nil))
+    static var EMPTY = PostItem(id: 0, userId: 0, name: "", text: "", status: 0, timeStamp: ""/*timeStamp: .now*/, replyCount: 0, likeCount: 0, reportCount: 0, attachment: .init(images: [], video: nil))
     
     static func == (lhs: PostItem, rhs: PostItem) -> Bool {
         return lhs.id == rhs.id
@@ -42,6 +45,7 @@ struct PostItem: Codable, Identifiable, Equatable, ListItem {
         case timeStamp = "created_at"
         case replyCount = "reply_count"
         case likeCount = "like_count"
+        case reportCount = "report_count"
     }
     
     struct Attachment: Codable {

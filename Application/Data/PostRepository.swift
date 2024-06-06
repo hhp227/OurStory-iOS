@@ -23,7 +23,7 @@ class PostRepository {
         return Future { promise in
             Task {
                 do {
-                    let post = PostItem(id: 0, userId: 0, name: "newPost", text: "newPostText", status: 0, timeStamp: .now, replyCount: 0, likeCount: 0, attachment: .init(images: []))
+                    let post = PostItem(id: 0, userId: 0, name: "newPost", text: "newPostText", status: 0, timeStamp: ""/*timeStamp: .now*/, replyCount: 0, likeCount: 0, reportCount: 0, attachment: .init(images: []))
                     
                     promise(.success(Resource.success(post)))
                 } catch {

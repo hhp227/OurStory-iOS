@@ -19,6 +19,6 @@ class CreateGroupViewModel: ObservableObject {
        
         let isLoading: Bool = false
         
-        let error: String = ""
+        let message: String = ""
     }
 }

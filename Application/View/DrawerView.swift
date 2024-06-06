@@ -18,8 +18,12 @@ struct DrawerView: View, DrawerProtocol {
     private var headerView: some View {
         VStack(alignment: .leading) {
             Button(action: { isShowProfile.toggle() }) {
-                Image("profile_img_circle").resizable().aspectRatio(contentMode: .fit).frame(width: 90, height: 90, alignment: .center)
-            }.fullScreenCover(isPresented: $isShowProfile) {
+                Image("profile_img_circle")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 90, height: 90, alignment: .center)
+            }
+            .fullScreenCover(isPresented: $isShowProfile) {
                 ProfileView()
             }
             if let user = drawerViewModel.user {
@@ -62,7 +66,8 @@ struct DrawerView: View, DrawerProtocol {
                     drawerViewModel.hideAll()
                 }
             }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     
     init(type: DrawerType) {
@@ -85,9 +90,15 @@ struct DrawerButton: View {
                 HStack(spacing: 16) {
                     Image(systemName: icon)
                     Text(label)
-                }.frame(maxWidth: .infinity, alignment: .leading).foregroundColor(isSelected ? .purple : .gray)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(isSelected ? .purple : .gray)
             }
-        }.padding(8).background(isSelected ? Color("DrawerButtonColor") : Color.clear).cornerRadius(4).padding(8)
+        }
+        .padding(8)
+        .background(isSelected ? Color("DrawerButtonColor") : Color.clear)
+        .cornerRadius(4)
+        .padding(8)
     }
 }
 

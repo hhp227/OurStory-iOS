@@ -14,8 +14,16 @@ struct LoungeView: View {
     
     private var fab: some View {
         NavigationLink(destination: CreatePostView(onResult: {})) {
-            Text("+").font(.system(.largeTitle)).frame(width: 66, height: 60).foregroundColor(.white).padding(.bottom, 7)
-        }.background(Color.blue).cornerRadius(38.5).padding().shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
+            Text("+")
+                .font(.system(.largeTitle))
+                .frame(width: 66, height: 60)
+                .foregroundColor(.white)
+                .padding(.bottom, 7)
+        }
+        .background(Color.blue)
+        .cornerRadius(38.5)
+        .padding()
+        .shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
     }
     
     var body: some View {

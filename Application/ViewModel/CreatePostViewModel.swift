@@ -47,8 +47,8 @@ class CreatePostViewModel: ObservableObject {
         
     }
     
-    func actionSend(_ text: String, _ items: [ListItem]) {
-        print("text: \(text), items: \(items)")
+    func actionSend() {
+        print("text: \(state.text), items: \(state.items)")
     }
     
     init(
@@ -68,7 +68,7 @@ class CreatePostViewModel: ObservableObject {
         
         var postId: Int = -1
         
-        var error: String = ""
+        var message: String = ""
         
         var subscriptions: Set<AnyCancellable> = []
     }
@@ -80,7 +80,7 @@ extension CreatePostViewModel.State {
         isLoading: Bool? = nil,
         items: [ListItem]? = nil,
         postId: Int? = nil,
-        error: String? = nil,
+        message: String? = nil,
         subscriptions: Set<AnyCancellable>? = nil
     ) -> CreatePostViewModel.State {
         return .init(
@@ -88,7 +88,7 @@ extension CreatePostViewModel.State {
             isLoading: isLoading ?? self.isLoading,
             items: items ?? self.items,
             postId: postId ?? self.postId,
-            error: error ?? self.error,
+            message: message ?? self.message,
             subscriptions: subscriptions ?? self.subscriptions
         )
     }

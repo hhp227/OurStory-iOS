@@ -7,8 +7,15 @@
 
 import Foundation
 
-struct BasicApiResponse: Codable {
+struct BasicApiResponse<T: Codable>: Codable {
     var error: Bool
-    
     var message: String? = nil
+    var data: T? = nil
+    
+    enum CodingKeys: String, CodingKey {
+        case error, message
+        case data = "result"
+    }
 }
+
+struct VoidCodable: Codable {}

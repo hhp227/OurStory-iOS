@@ -19,28 +19,37 @@ struct MainView: View {
             NavigationStack {
                 switch drawerViewModel.route {
                 case "Lounge":
-                    LoungeView().navigationTitle("Lounge").navigationBarTitleDisplayMode(.inline).navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
-                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
-                    })
+                    LoungeView()
+                        .navigationTitle("Lounge")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                            Image("hamburger-menu-icon").colorMultiply(.accentColor)
+                        })
                 case "GroupList":
-                    GroupListView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
-                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
-                    })
+                    GroupListView()
+                        .navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                            Image("hamburger-menu-icon").colorMultiply(.accentColor)
+                        })
                 case "FriendList":
-                    FriendView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
-                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
-                    })
+                    FriendView()
+                        .navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                            Image("hamburger-menu-icon").colorMultiply(.accentColor)
+                        })
                 case "ChatList":
-                    ChatListView().navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
-                        Image("hamburger-menu-icon").colorMultiply(.accentColor)
-                    })
+                    ChatListView()
+                        .navigationBarItems(leading: Button(action: { drawerViewModel.show(type: .left, isShow: true) }) {
+                            Image("hamburger-menu-icon").colorMultiply(.accentColor)
+                        })
                 case "Logout":
                     let _ = drawerViewModel.clear()
                 default:
                     EmptyView()
                 }
             }
-            Color.black.opacity(Double(drawerViewModel.maxShowRate * MainView.MAX_MASK_ALPHA)).onTapGesture(perform: drawerViewModel.hideAll).ignoresSafeArea()
+            Color.black
+                .opacity(Double(drawerViewModel.maxShowRate * MainView.MAX_MASK_ALPHA))
+                .onTapGesture(perform: drawerViewModel.hideAll)
+                .ignoresSafeArea()
             drawerViewModel.drawerView[.left]
         }
     }

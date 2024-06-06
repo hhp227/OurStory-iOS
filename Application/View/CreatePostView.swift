@@ -30,15 +30,27 @@ struct CreatePostView: View {
     var body: some View {
         List {
             ZStack {
-                TextEditor(text: $viewModel.state.text).autocapitalization(.none).keyboardType(.default).disableAutocorrection(true)
-                Text(viewModel.state.text).opacity(0).padding(.all, 8)
-            }.listRowInsets(EdgeInsets()).shadow(radius: 1)
+                TextEditor(text: $viewModel.state.text)
+                    .autocapitalization(.none)
+                    .keyboardType(.default)
+                    .disableAutocorrection(true)
+                Text(viewModel.state.text)
+                    .opacity(0)
+                    .padding(.all, 8)
+            }
+            .listRowInsets(EdgeInsets())
+            .shadow(radius: 1)
             ForEach(viewModel.state.items, id: \.id) { item in
                 if let imageItem = item as? ImageItem {
-                    Image(uiImage: UIImage(data: imageItem.data!) ?? UIImage()).resizable().aspectRatio(contentMode: .fill)
+                    Image(uiImage: UIImage(data: imageItem.data!) ?? UIImage())
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
                 }
             }
-        }.listStyle(.inset).navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button(action: { viewModel.actionSend(viewModel.state.text, viewModel.state.items) }) { Text("Send") })
+        }
+        .listStyle(.inset)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(trailing: Button(action: viewModel.actionSend) { Text("Send") })
         VStack(alignment: .leading, spacing: 0) {
             Divider()
             HStack(spacing: 5) {
@@ -48,8 +60,10 @@ struct CreatePostView: View {
                 Button(action: {}) {
                     Image(systemName: "video.fill").padding(10)
                 }
-            }.padding(5)
-        }.actionSheet(isPresented: $isShowingActionSheet) {
+            }
+            .padding(5)
+        }
+        .actionSheet(isPresented: $isShowingActionSheet) {
             ActionSheet(title: Text("Selection Action"), buttons: [
                 .default(Text("Gallery")) {
                     isShowingImagePicker.toggle()
@@ -57,12 +71,15 @@ struct CreatePostView: View {
                 .default(Text("Camera")),
                 .cancel()
             ])
-        }.photosPicker(isPresented: $isShowingImagePicker, selection: $selectedItems, matching: .images).onReceive(viewModel.$state) { state in
+        }
+        .photosPicker(isPresented: $isShowingImagePicker, selection: $selectedItems, matching: .images)
+        .onReceive(viewModel.$state) { state in
             if state.postId >= 0 {
                 onResult()
                 presentationMode.wrappedValue.dismiss()
             }
-        }.onChange(of: selectedItems) { newValue in
+        }
+        .onChange(of: selectedItems) { newValue in
             newValue.forEach { item in
                 item.loadTransferable(type: Data.self) { result in
                     switch result {

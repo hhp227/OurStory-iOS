@@ -39,7 +39,7 @@ struct PostListCell: View {
                             }.frame(width: 55, height: 55).cornerRadius(45)
                             VStack(alignment: .leading) {
                                 Text(post.name).fontWeight(.bold)
-                                Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
+                                Text(/*DateUtil.getPeriodTimeGenerator(post.timeStamp)*/post.timeStamp ?? "")
                             }.padding(.leading, 7)
                         }.padding([.horizontal], 15)
                         if !post.text.isEmpty {

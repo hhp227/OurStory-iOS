@@ -20,14 +20,14 @@ class UpdateReplyViewModel: ObservableObject {
     @Published
     var state = State()
     
-    func updateReply(_ text: String) {
-        if !text.isEmpty {
-            replyRepository.setReply(apiKey, reply.id, text)
+    func updateReply() {
+        if !state.text.isEmpty {
+            replyRepository.setReply(apiKey, reply.id, state.text)
                 .receive(on: RunLoop.main)
                 .sink { result in
                     switch result.status {
                     case .SUCCESS:
-                        self.reply.reply = text
+                        self.reply.reply = self.state.text
                         self.state = self.state.copy(
                             isLoading: false,
                             isSuccess: result.data
@@ -36,7 +36,7 @@ class UpdateReplyViewModel: ObservableObject {
                         self.state = self.state.copy(
                             isLoading: false,
                             isSuccess: false,
-                            error: result.message ?? "An unexpected error occured"
+                            message: result.message ?? "An unexpected error occured"
                         )
                     case .LOADING:
                         self.state = self.state.copy(
@@ -80,7 +80,7 @@ class UpdateReplyViewModel: ObservableObject {
         
         var isSuccess: Bool = false
         
-        var error: String = ""
+        var message: String = ""
         
         var subscriptions: Set<AnyCancellable> = []
     }
@@ -91,14 +91,14 @@ extension UpdateReplyViewModel.State {
         text: String? = nil,
         isLoading: Bool? = nil,
         isSuccess: Bool? = nil,
-        error: String? = nil,
+        message: String? = nil,
         subscriptions: Set<AnyCancellable>? = nil
     ) -> UpdateReplyViewModel.State {
         return UpdateReplyViewModel.State(
             text: text ?? self.text,
             isLoading: isLoading ?? self.isLoading,
             isSuccess: isSuccess ?? self.isSuccess,
-            error: error ?? self.error,
+            message: message ?? self.message,
             subscriptions: subscriptions ?? self.subscriptions
         )
     }

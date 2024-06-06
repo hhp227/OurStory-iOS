@@ -30,9 +30,9 @@ class LoginViewModel: ObservableObject {
         userDefaultsManager.storeUser(user)
     }
     
-    func login(_ email: String, _ password: String) {
-        if isEmailValid(email) && isPasswordValid(password) {
-            repository.login(email, password)
+    func login() {
+        if isEmailValid(state.email) && isPasswordValid(state.password) {
+            repository.login(state.email, state.password)
                 .receive(on: RunLoop.main)
                 .sink { result in
                     switch result.status {
@@ -44,12 +44,12 @@ class LoginViewModel: ObservableObject {
                     case .ERROR:
                         self.state = self.state.copy(
                             isLoading: false,
-                            error: result.message ?? "An unexpected error occured"
+                            message: result.message ?? "An unexpected error occured"
                         )
                     case .LOADING:
                         self.state = self.state.copy(
                             isLoading: true,
-                            error: ""
+                            message: ""
                         )
                     }
                 }
@@ -60,7 +60,7 @@ class LoginViewModel: ObservableObject {
     }
     
     func showSnackBar() {
-        print("error: \(state.error)")
+        print("error: \(state.message)")
     }
     
     init(_ repository: UserRepository, _ userDefaultsManager: UserDefaultsManager) {
@@ -81,7 +81,7 @@ class LoginViewModel: ObservableObject {
         
         var user: User? = nil
         
-        var error: String = ""
+        var message: String = ""
         
         var subscriptions: Set<AnyCancellable> = []
     }
@@ -93,7 +93,7 @@ extension LoginViewModel.State {
         password: String? = nil,
         isLoading: Bool? = nil,
         user: User? = nil,
-        error: String? = nil,
+        message: String? = nil,
         subscriptions: Set<AnyCancellable>? = nil
     ) -> LoginViewModel.State {
         return .init(
@@ -101,7 +101,7 @@ extension LoginViewModel.State {
             password: password ?? self.password,
             isLoading: isLoading ?? self.isLoading,
             user: user ?? self.user,
-            error: error ?? self.error,
+            message: message ?? self.message,
             subscriptions: subscriptions ?? self.subscriptions
         )
     }

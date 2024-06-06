@@ -14,11 +14,18 @@ struct JoinRequestGroupView: View {
     
     var body: some View {
         List {
-            Image("image3").resizable().scaledToFill().frame(height: 200).clipped().listRowInsets(EdgeInsets())
+            Image("image3")
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .clipped()
+                .listRowInsets(EdgeInsets())
             ForEach(["Item1", "Item2", "Item3"], id: \.self) { item in
                 Text(item)
-            }.listRowInsets(EdgeInsets())
-        }.listStyle(.inset)
+            }
+            .listRowInsets(EdgeInsets())
+        }
+        .listStyle(.inset)
     }
 }
 

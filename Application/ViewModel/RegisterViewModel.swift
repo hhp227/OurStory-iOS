@@ -28,9 +28,9 @@ class RegisterViewModel: ObservableObject {
         return password == confirmedPassword
     }
     
-    func register(_ name: String, _ email: String, _ password: String, _ confirmPassword: String) {
-        if isEmailValid(email) && isPasswordValid(password) && isPasswordAndConfirmationValid(password, confirmPassword) {
-            repository.register(name, email, password)
+    func register() {
+        if isEmailValid(state.email) && isPasswordValid(state.password) && isPasswordAndConfirmationValid(state.password, state.confirmPassword) {
+            repository.register(state.name, state.email, state.password)
                 .receive(on: RunLoop.main)
                 .sink { result in
                     switch result.status {
@@ -43,7 +43,7 @@ class RegisterViewModel: ObservableObject {
                         self.state = self.state.copy(
                             isLoading: false,
                             isSuccess: false,
-                            error: result.message
+                            message: result.message
                         )
                     case .LOADING:
                         self.state = self.state.copy(
@@ -74,7 +74,7 @@ class RegisterViewModel: ObservableObject {
         
         var isSuccess: Bool = false
         
-        var error: String = ""
+        var message: String = ""
         
         var subscriptions: Set<AnyCancellable> = []
     }
@@ -88,7 +88,7 @@ extension RegisterViewModel.State {
         confirmPassword: String? = nil,
         isLoading: Bool? = nil,
         isSuccess: Bool? = nil,
-        error: String? = nil,
+        message: String? = nil,
         subscriptions: Set<AnyCancellable>? = nil
     ) -> RegisterViewModel.State {
         return .init(
@@ -98,7 +98,7 @@ extension RegisterViewModel.State {
             confirmPassword: confirmPassword ?? self.confirmPassword,
             isLoading: isLoading ?? self.isLoading,
             isSuccess: isSuccess ?? self.isSuccess,
-            error: error ?? self.error,
+            message: message ?? self.message,
             subscriptions: subscriptions ?? self.subscriptions
         )
     }

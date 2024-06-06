@@ -18,7 +18,7 @@ class UserRepository {
                 do {
                     let response = try await self.authService.login(email, password)
                     
-                    promise(.success(Resource.success(response)))
+                    promise(.success(Resource.success(response.data)))
                 } catch {
                     promise(.failure(error))
                 }

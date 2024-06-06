@@ -21,17 +21,19 @@ struct CreateGroupView: View {
     var body: some View {
         VStack(alignment: .leading) {
             TextField("Enter Group Title", text: $viewModel.state.title)
-            Image("add_photo").resizable().aspectRatio(contentMode: .fit).onTapGesture {
-                isShowingActionSheet.toggle()
-            }.actionSheet(isPresented: $isShowingActionSheet) {
-                ActionSheet(title: Text("Selection Action"), buttons: [
-                    .default(Text("Gallery")) {
-                        isShowingImagePicker.toggle()
-                    },
-                    .default(Text("Camera")),
-                    .cancel()
-                ])
-            }
+            Image("add_photo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .onTapGesture {
+                    isShowingActionSheet.toggle()
+                }
+                .actionSheet(isPresented: $isShowingActionSheet) {
+                    ActionSheet(title: Text("Selection Action"), buttons: [
+                        .default(Text("Gallery")) { isShowingImagePicker.toggle() },
+                        .default(Text("Camera")),
+                        .cancel()
+                    ])
+                }
             TextEditor(text: $viewModel.state.description)
             Spacer()
         }

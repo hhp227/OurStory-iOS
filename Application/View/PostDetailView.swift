@@ -41,16 +41,23 @@ struct PostDetailView: View {
                 Divider()
                 HStack(spacing: 5) {
                     TextField("Add a Comment", text: $viewModel.state.reply).padding(10)
-                    Button(action: { viewModel.insertReply(message: viewModel.state.reply) }) {
-                        Text("Send").padding(10).foregroundColor(viewModel.state.reply.isEmpty ? .gray : .red).overlay(RoundedRectangle(cornerRadius: 2).stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1))
+                    Button(action: viewModel.insertReply) {
+                        Text("Send")
+                            .padding(10)
+                            .foregroundColor(viewModel.state.reply.isEmpty ? .gray : .red)
+                            .overlay(RoundedRectangle(cornerRadius: 2).stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1))
                     }
-                }.padding(5)
+                }
+                .padding(5)
             }
-        }.navigationBarTitleDisplayMode(.inline).navigationBarItems(trailing: Button {
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(trailing: Button {
             isShowingActionSheet.toggle()
         } label: {
             Image(systemName: "ellipsis")
-        }).onReceive(viewModel.$state) { state in
+        })
+        .onReceive(viewModel.$state) { state in
             if state.isSetResultOK {
                 onResult()
                 presentationMode.wrappedValue.dismiss()
@@ -74,16 +81,23 @@ struct PostDetailView: View {
                         @unknown default:
                             EmptyView()
                         }
-                    }.frame(width: 55, height: 55).cornerRadius(45)
+                    }
+                    .frame(width: 55, height: 55)
+                    .cornerRadius(45)
                     VStack(alignment: .leading) {
                         Text(post.name).fontWeight(.bold)
-                        Text(DateUtil.getPeriodTimeGenerator(post.timeStamp))
-                    }.padding(.leading, 7)
+                        Text(/*DateUtil.getPeriodTimeGenerator(post.timeStamp)*/post.timeStamp ?? "")
+                    }
+                    .padding(.leading, 7)
                     Spacer()
-                }.padding(.horizontal, 5)
+                }
+                .padding(.horizontal, 5)
                 if !post.text.isEmpty {
                     Button(action: viewModel.refreshPosts) {
-                        Text(post.text).fixedSize(horizontal: false, vertical: true).padding([.bottom, .horizontal], 5).padding(.top, 10)
+                        Text(post.text)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.bottom, .horizontal], 5)
+                            .padding(.top, 10)
                     }
                 }
                 if !post.attachment.images.isEmpty {
@@ -100,14 +114,18 @@ struct PostDetailView: View {
                                 @unknown default:
                                     EmptyView()
                                 }
-                            }.padding(.bottom, 15)
+                            }
+                            .padding(.bottom, 15)
                         }
-                    }.padding(.top, 10)
+                    }
+                    .padding(.top, 10)
                 }
-            }.padding([.top, .horizontal], 10)
+            }
+            .padding([.top, .horizontal], 10)
             Spacer(minLength: 10)
             /*NavigationLink(destination: CreatePostView(args: ["post": post], onResult: {}), isActive: $isNavigate, label: {  })*/
-        }.actionSheet(isPresented: $isShowingActionSheet, content: getActionSheet)
+        }
+        .actionSheet(isPresented: $isShowingActionSheet, content: getActionSheet)
     }
     
     private func getActionSheet() -> ActionSheet {

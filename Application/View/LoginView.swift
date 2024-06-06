@@ -22,23 +22,41 @@ struct LoginView: View {
                     Text("Welcome!").font(.title)
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Email").padding(.bottom, 10)
-                        TextField("Email", text: $viewModel.state.email).autocapitalization(.none).keyboardType(.emailAddress).disableAutocorrection(true).padding(15).background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
+                        TextField("Email", text: $viewModel.state.email)
+                            .autocapitalization(.none)
+                            .keyboardType(.emailAddress)
+                            .disableAutocorrection(true)
+                            .padding(15)
+                            .background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
                         Text("Password").padding(.vertical, 10)
-                        SecureField("Password", text: $viewModel.state.password).padding().background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
-                    }.padding(10)
+                        SecureField("Password", text: $viewModel.state.password)
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 4).stroke(Color.accentColor, lineWidth: 2))
+                    }
+                    .padding(10)
                 }
-                Button(action: { viewModel.login(viewModel.state.email, viewModel.state.password) }) {
-                    Text("LOGIN").foregroundColor(.white).frame(maxWidth: .infinity).padding(10)
-                }.buttonStyle(.borderedProminent).padding(10)
+                Button(action: viewModel.login) {
+                    Text("LOGIN")
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(10)
+                }
+                .buttonStyle(.borderedProminent)
+                .padding(10)
                 Button(action: { isShowRegister.toggle() }) {
-                    Text("Register").font(.system(size: 13)).padding(5)
-                }.sheet(isPresented: $isShowRegister) {
+                    Text("Register")
+                        .font(.system(size: 13))
+                        .padding(5)
+                }
+                .sheet(isPresented: $isShowRegister) {
                     RegisterView()
                 }
-            }.padding(16).onReceive(viewModel.$state) { state in
+            }
+            .padding(16)
+            .onReceive(viewModel.$state) { state in
                 if let user = state.user {
                     viewModel.storeUser(user)
-                } else if !state.error.isEmpty {
+                } else if !state.message.isEmpty {
                     viewModel.showSnackBar()
                 }
             }
