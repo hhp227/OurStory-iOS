@@ -9,3 +9,5 @@ import Foundation
 
 let POST_KEY = "post"
 let REPLY_KEY = "reply"
+let TYPE_KEY = "type"
+let GROUP_ID_KEY = "groupId"

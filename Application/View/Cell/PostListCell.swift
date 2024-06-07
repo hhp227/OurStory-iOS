@@ -36,14 +36,24 @@ struct PostListCell: View {
                                 @unknown default:
                                     EmptyView()
                                 }
-                            }.frame(width: 55, height: 55).cornerRadius(45)
+                            }
+                            .frame(width: 55, height: 55)
+                            .cornerRadius(45)
                             VStack(alignment: .leading) {
                                 Text(post.name).fontWeight(.bold)
                                 Text(/*DateUtil.getPeriodTimeGenerator(post.timeStamp)*/post.timeStamp ?? "")
-                            }.padding(.leading, 7)
-                        }.padding([.horizontal], 15)
+                            }
+                            .padding(.leading, 7)
+                        }
+                        .padding([.horizontal], 15)
                         if !post.text.isEmpty {
-                            Text(post.text).multilineTextAlignment(.leading).lineLimit(4).fixedSize(horizontal: false, vertical: true).padding(.horizontal, 15).padding(.top, 10).padding(.bottom, 5)
+                            Text(post.text)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(4)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.horizontal, 15)
+                                .padding(.top, 10)
+                                .padding(.bottom, 5)
                         }
                         if let imageItem = post.attachment.images.first {
                             AsyncImage(url: URL(string: URL_POST_IMAGE_PATH + imageItem.image)!) { result in
@@ -57,9 +67,11 @@ struct PostListCell: View {
                                 @unknown default:
                                     EmptyView()
                                 }
-                            }.padding(.top, 10)
+                            }
+                            .padding(.top, 10)
                         }
-                    }.padding(.vertical, 20)
+                    }
+                    .padding(.vertical, 20)
                 }
                 Divider()
                 HStack(alignment: .center) {
@@ -73,7 +85,9 @@ struct PostListCell: View {
                                 Text(String(post.likeCount))
                             }
                         }
-                    }.frame(maxWidth: .infinity).padding(10)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(10)
                     Divider()
                     Button(action: { isNavigate.toggle() }, label: {
                         HStack {
@@ -81,12 +95,15 @@ struct PostListCell: View {
                             if post.replyCount > 0 {
                                 Text(String(post.replyCount))
                             }
-                        }.frame(maxWidth: .infinity).padding(10)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(10)
                     })
                 }
                 //NavigationLink(destination: PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult), isActive: $isNavigate, label: EmptyView.init) // old NavigationLink
             }
-        }.navigationDestination(isPresented: $isNavigate) {
+        }
+        .navigationDestination(isPresented: $isNavigate) {
             PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult) // new NavigationLink
         }
     }

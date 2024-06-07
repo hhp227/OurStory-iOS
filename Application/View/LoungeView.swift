@@ -13,7 +13,7 @@ struct LoungeView: View {
     var viewModel: LoungeViewModel = InjectorUtils.instance.provideLoungeViewModel()
     
     private var fab: some View {
-        NavigationLink(destination: CreatePostView(onResult: {})) {
+        NavigationLink(destination: CreatePostView(viewModel: InjectorUtils.instance.provideCreatePostViewModel(type: 0, groupId: 0), onResult: {})) {
             Text("+")
                 .font(.system(.largeTitle))
                 .frame(width: 66, height: 60)

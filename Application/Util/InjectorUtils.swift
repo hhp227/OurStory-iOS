@@ -62,8 +62,12 @@ class InjectorUtils {
         return LoungeViewModel(getPostRepository(), getUserDefaultsManager())
     }
     
-    func provideCreatePostViewModel() -> CreatePostViewModel {
-        return CreatePostViewModel(getPostRepository(), getUserDefaultsManager(), SavedStateHandle())
+    func provideCreatePostViewModel(type: Int, groupId: Int) -> CreatePostViewModel {
+        let savedStatedHandle = SavedStateHandle()
+        
+        savedStatedHandle.set(TYPE_KEY, type)
+        savedStatedHandle.set(GROUP_ID_KEY, groupId)
+        return CreatePostViewModel(getPostRepository(), getUserDefaultsManager(), savedStatedHandle)
     }
     
     func provideGroupListViewModel() -> GroupListViewModel {

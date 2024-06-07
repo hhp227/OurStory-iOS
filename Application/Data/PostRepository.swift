@@ -38,6 +38,29 @@ class PostRepository {
         }
     }
     
+    func addPost(_ apiKey: String, groupId: Int, _ text: String) -> Publishers.Catch<AnyPublisher<Resource<Int>, Error>, Just<Resource<Int>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let response = try await self.postService.addPost(apiKey, text, groupId)
+                    
+                    if !response.error {
+                        promise(.success(Resource.success(response.data)))
+                    } else {
+                        promise(.success(Resource.error(response.message!, nil)))
+                    }
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(Resource.error(error.localizedDescription, nil))
+        }
+    }
+    
     init(_ postService: PostService) {
         self.postService = postService
     }

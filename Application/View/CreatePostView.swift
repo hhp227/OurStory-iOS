@@ -23,7 +23,7 @@ struct CreatePostView: View {
     private var selectedItems: [PhotosPickerItem] = []
     
     @StateObject
-    var viewModel = InjectorUtils.instance.provideCreatePostViewModel()
+    var viewModel: CreatePostViewModel
     
     let onResult: () -> Void
     
@@ -65,9 +65,7 @@ struct CreatePostView: View {
         }
         .actionSheet(isPresented: $isShowingActionSheet) {
             ActionSheet(title: Text("Selection Action"), buttons: [
-                .default(Text("Gallery")) {
-                    isShowingImagePicker.toggle()
-                },
+                .default(Text("Gallery")) { isShowingImagePicker.toggle() },
                 .default(Text("Camera")),
                 .cancel()
             ])
@@ -96,6 +94,6 @@ struct CreatePostView: View {
 
 struct CreatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        CreatePostView(onResult: {})
+        CreatePostView(viewModel: InjectorUtils.instance.provideCreatePostViewModel(type: 0, groupId: 0), onResult: {})
     }
 }

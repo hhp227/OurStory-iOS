@@ -12,11 +12,41 @@ import Combine
 class CreatePostViewModel: ObservableObject {
     private let repository: PostRepository
     
+    private var apiKey: String = ""
+    
+    private let post: PostItem
+    
+    private let type: Int
+    
+    private let groupId: Int
+    
     @Published
     var state = State()
     
     private func insertPost(_ text: String) {
-        
+        repository.addPost(apiKey, groupId: groupId, text)
+            .receive(on: RunLoop.main)
+            .sink { result in
+                switch result.status {
+                case .SUCCESS:
+                    if self.state.items.count > 1 {
+                        // TODO
+                    } else {
+                        self.state = self.state.copy(
+                            isLoading: false,
+                            postId: result.data ?? -1
+                        )
+                    }
+                case .ERROR:
+                    self.state = self.state.copy(
+                        isLoading: false,
+                        message: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = self.state.copy(isLoading: true)
+                }
+            }
+            .store(in: &state.subscriptions)
     }
     
     private func updatePost(_ text: String) {
@@ -48,7 +78,20 @@ class CreatePostViewModel: ObservableObject {
     }
     
     func actionSend() {
-        print("text: \(state.text), items: \(state.items)")
+        if !state.text.isEmpty || state.items.count > 1 {
+            switch type {
+            case 0:
+                insertPost(state.text)
+                break
+            case 1:
+                updatePost(state.text)
+                break
+            default:
+                break
+            }
+        } else {
+            state = state.copy(message: "입력해주세요.")
+        }
     }
     
     init(
@@ -57,6 +100,18 @@ class CreatePostViewModel: ObservableObject {
         _ savedStateHandle: SavedStateHandle
     ) {
         self.repository = repository
+        self.post = savedStateHandle.get(POST_KEY) ?? PostItem.EMPTY
+        self.type = savedStateHandle.get(TYPE_KEY) ?? 0
+        self.groupId = savedStateHandle.get(GROUP_ID_KEY) ?? 0
+        
+        userDefaultsManager.userPublisher
+            .catch { _ in
+                Just(nil)
+            }
+            .sink {
+                self.apiKey = $0?.apiKey ?? ""
+            }
+            .store(in: &state.subscriptions)
     }
     
     struct State {
