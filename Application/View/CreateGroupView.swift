@@ -37,6 +37,7 @@ struct CreateGroupView: View {
             TextEditor(text: $viewModel.state.description)
             Spacer()
         }
+        .navigationBarItems(trailing: Button(action: viewModel.createGroup) { Text("Send") })
     }
 }
 

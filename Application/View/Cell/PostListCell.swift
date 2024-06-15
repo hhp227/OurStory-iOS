@@ -17,7 +17,7 @@ struct PostListCell: View {
     
     let onLikeClick: () -> Void
     
-    let onResult: () -> Void
+    let onResult: (PostItem) -> Void
     
     var body: some View {
         CardView {
@@ -104,14 +104,14 @@ struct PostListCell: View {
             }
         }
         .navigationDestination(isPresented: $isNavigate) {
-            PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: onResult) // new NavigationLink
+            PostDetailView(viewModel: InjectorUtils.instance.providePostDetailViewModel($post), onResult: { onResult(post) }) // new NavigationLink
         }
     }
 }
 
 struct PostListCell_Previews: PreviewProvider {
     static var previews: some View {
-        PostListCell(post: Binding(get: { PostItem.EMPTY }, set: { _ in }), onLikeClick: {}, onResult: {})
+        PostListCell(post: Binding(get: { PostItem.EMPTY }, set: { _ in }), onLikeClick: {}, onResult: { _ in })
     }
 }
 

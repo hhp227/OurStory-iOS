@@ -80,15 +80,23 @@ class PostDetailViewModel: ObservableObject {
         print("fetchReplys after \(state.items.count)")
     }
     
+    func deletePost() {
+        print("deletePost")
+    }
+    
+    func fetchReply(_ replyId: Int) {
+        print("fetchReply")
+    }
+    
     func insertReply() {
         print("insertReply: \(state.reply)")
     }
     
-    func deletePost() {
-        
+    func deleteReply(_ reply: ReplyItem) {
+        print("deleteReply \(reply)")
     }
     
-    func refreshPosts() {
+    func refresh() {
         state = State()
 
         fetchPost(post.id)

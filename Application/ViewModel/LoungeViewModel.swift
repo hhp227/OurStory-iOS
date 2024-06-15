@@ -18,10 +18,22 @@ class LoungeViewModel: ObservableObject {
     var state = State()
     
     private func setPagingData(pagingData: PagingData<PostItem>) {
-        self.state.pagingData = pagingData
+        state = state.copy(pagingData: pagingData)
     }
     
     func togglePostLike(_ post: PostItem) {
+    }
+    
+    func onDeletePost(_ post: PostItem) {
+        let pagingData = state.pagingData.filter { $0.id != post.id }
+        
+        setPagingData(pagingData: pagingData)
+    }
+    
+    func temp() {
+        let pagingData = state.pagingData
+        
+        setPagingData(pagingData: pagingData)
     }
     
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
@@ -36,6 +48,7 @@ class LoungeViewModel: ObservableObject {
             .store(in: &state.subscriptions)
         repository.getPosts(groupId: 0)
             .receive(on: RunLoop.main)
+            .cachedIn()
             .sink(receiveValue: setPagingData)
             .store(in: &state.subscriptions)
     }
@@ -54,5 +67,23 @@ class LoungeViewModel: ObservableObject {
         var message: String = ""
         
         var subscriptions: Set<AnyCancellable> = []
+    }
+}
+
+extension LoungeViewModel.State {
+    func copy(
+        isLoading: Bool? = nil,
+        pagingData: PagingData<PostItem>? = nil,
+        user: User? = nil,
+        message: String? = nil,
+        subscriptions: Set<AnyCancellable>? = nil
+    ) -> LoungeViewModel.State {
+        .init(
+            isLoading: isLoading ?? self.isLoading,
+            pagingData: pagingData ?? self.pagingData,
+            user: user ?? self.user,
+            message: message ?? self.message,
+            subscriptions: subscriptions ?? self.subscriptions
+        )
     }
 }

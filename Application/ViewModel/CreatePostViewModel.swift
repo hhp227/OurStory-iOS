@@ -21,7 +21,7 @@ class CreatePostViewModel: ObservableObject {
     private let groupId: Int
     
     @Published
-    var state = State()
+    var state: State
     
     private func insertPost(_ text: String) {
         repository.addPost(apiKey, groupId: groupId, text)
@@ -50,7 +50,32 @@ class CreatePostViewModel: ObservableObject {
     }
     
     private func updatePost(_ text: String) {
-        
+        repository.setPost(apiKey, post.id, text)
+            .receive(on: RunLoop.main)
+            .sink { result in
+                switch result.status {
+                case .SUCCESS:
+                    if result.data == true {
+                        self.deleteImages(self.post.id)
+                        if self.state.items.count > 1 {
+                            self.uploadImage(1, self.post.id)
+                        } else {
+                            self.state = self.state.copy(
+                                isLoading: false,
+                                postId: self.post.id
+                            )
+                        }
+                    }
+                case .ERROR:
+                    self.state = self.state.copy(
+                        isLoading: false,
+                        message: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = self.state.copy(isLoading: true)
+                }
+            }
+            .store(in: &state.subscriptions)
     }
     
     private func uploadImage(_ position: Int, _ postId: Int) {
@@ -103,6 +128,7 @@ class CreatePostViewModel: ObservableObject {
         self.post = savedStateHandle.get(POST_KEY) ?? PostItem.EMPTY
         self.type = savedStateHandle.get(TYPE_KEY) ?? 0
         self.groupId = savedStateHandle.get(GROUP_ID_KEY) ?? 0
+        self.state = State(text: post.text, items: [post])
         
         userDefaultsManager.userPublisher
             .catch { _ in

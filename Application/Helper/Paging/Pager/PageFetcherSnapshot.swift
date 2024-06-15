@@ -8,13 +8,22 @@
 import Combine
 import SwiftUI
 
+// TODO input값이 사용되지 않고 있음
 internal class PageFetcherSnapshot<Key: Equatable, Value: Any> {
     internal let initialKey: Key?
     
     internal let pagingSource: PagingSource<Key, Value>
     
     private let config: PagingConfig
-    
+
+    private let retryPublisher: AnyPublisher<Void, Never>
+
+    private let triggerRemoteRefresh: Bool
+
+    let remoteMediatorConnection: (any RemoteMediatorConnection)?
+
+    private let previousPagingState: PagingState<Key, Value>?
+
     private let invalidate: () -> Void
     
     private let hintHandler = HintHandler()
@@ -271,11 +280,19 @@ internal class PageFetcherSnapshot<Key: Equatable, Value: Any> {
         initialKey: Key?,
         pagingSource: PagingSource<Key, Value>,
         config: PagingConfig,
+        retryPublisher: AnyPublisher<Void, Never>,
+        triggerRemoteRefresh: Bool = false,
+        remoteMediatorConnection: (some RemoteMediatorConnection)? = nil,
+        previousPagingState: PagingState<Key, Value>? = nil,
         invalidate: @escaping () -> Void = {}
     ) {
         self.initialKey = initialKey
         self.pagingSource = pagingSource
         self.config = config
+        self.retryPublisher = retryPublisher
+        self.triggerRemoteRefresh = triggerRemoteRefresh
+        self.remoteMediatorConnection = remoteMediatorConnection
+        self.previousPagingState = previousPagingState
         self.invalidate = invalidate
         self.stateHolder = PageFetcherSnapshotState<Key, Value>.Holder<Key, Value>(config: self.config)
         self.pageEventSubject = CurrentValueSubject<PageEvent<Value>, Never>(pageEvent.value)

@@ -8,12 +8,12 @@
 public class PagingState<Key : Any, Value : Any> {
     let pages: [PagingSource<Key, Value>.LoadResult<Key, Value>.Page<Key, Value>]
     
-    let anchorPosition: Int?
+    public let anchorPosition: Int?
     
     private let leadingPlaceholderCount: Int
     
     func closesItemToPosition(_ anchorPosition: Int) -> Value? {
-        if pages.all(predicate: { $0.data.isEmpty }) {
+        if pages.allSatisfy({ $0.data.isEmpty }) {
             return nil
         }
         return anchorPositionToPagedIndices(anchorPosition) { pageIndex, index in
@@ -30,8 +30,8 @@ public class PagingState<Key : Any, Value : Any> {
         }
     }
     
-    func closestPageToPosition(_ anchorPosition: Int) -> PagingSource<Key, Value>.LoadResult<Key, Value>.Page<Key, Value>? {
-        if pages.all(predicate: { $0.data.isEmpty }) {
+    public func closestPageToPosition(_ anchorPosition: Int) -> PagingSource<Key, Value>.LoadResult<Key, Value>.Page<Key, Value>? {
+        if pages.allSatisfy({ $0.data.isEmpty }) {
             return nil
         }
         return anchorPositionToPagedIndices(anchorPosition) { pageIndex, index in
@@ -43,7 +43,7 @@ public class PagingState<Key : Any, Value : Any> {
         }
     }
     
-    func isEmpty() -> Bool { pages.all(predicate: { $0.data.isEmpty }) }
+    func isEmpty() -> Bool { pages.allSatisfy({ $0.data.isEmpty }) }
     
     func firstItemOrNil() -> Value? {
         return pages.first { !$0.data.isEmpty }?.data.first
@@ -75,28 +75,5 @@ public class PagingState<Key : Any, Value : Any> {
         self.pages = pages
         self.anchorPosition = anchorPosition
         self.leadingPlaceholderCount = leadingPlaceholderCount
-    }
-}
-
-extension Array {
-    func all(predicate: (Element) -> Bool) -> Bool {
-        if isEmpty {
-            return true
-        }
-        for element in self {
-            if !predicate(element) {
-                return false
-            }
-        }
-        return true
-    }
-    
-    func any(predicate: (Element) -> Bool) -> Bool {
-        for element in self {
-            if predicate(element) {
-                return true
-            }
-        }
-        return false
     }
 }

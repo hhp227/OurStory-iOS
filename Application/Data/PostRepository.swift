@@ -61,6 +61,53 @@ class PostRepository {
         }
     }
     
+    func setPost(_ apiKey: String, _ postId: Int, _ text: String) -> Publishers.Catch<AnyPublisher<Resource<Bool>, Error>, Just<Resource<Bool>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let response = try await self.postService.setPost(apiKey, postId, text, 0)
+                    
+                    if !response.error {
+                        promise(.success(Resource.success(response.data)))
+                    } else {
+                        promise(.success(Resource.error(response.message!, nil)))
+                    }
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(Resource.error(error.localizedDescription, nil))
+        }
+    }
+    
+    func removePost(_ apiKey: String, _ postId: Int) -> Publishers.Catch<AnyPublisher<Resource<Bool>, Error>, Just<Resource<Bool>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let response = try await self.postService.removePost(apiKey, postId)
+                    
+                    if !response.error {
+                        // TODO localDataSource.deletePost(postId)
+                        promise(.success(Resource.success(true)))
+                    } else {
+                        promise(.success(Resource.error(response.message!, nil)))
+                    }
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(Resource.error(error.localizedDescription, nil))
+        }
+    }
+    
     init(_ postService: PostService) {
         self.postService = postService
     }

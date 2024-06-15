@@ -31,7 +31,7 @@ struct PostDetailView: View {
                     case let post as PostItem:
                         PostDetailCell(post: post)
                     case let reply as ReplyItem:
-                        ReplyListCell(reply: reply, user: viewModel.user, onAction: {})
+                        ReplyListCell(reply: reply, user: viewModel.user, onAction: viewModel.deleteReply)
                     default:
                         EmptyView()
                     }
@@ -93,7 +93,7 @@ struct PostDetailView: View {
                 }
                 .padding(.horizontal, 5)
                 if !post.text.isEmpty {
-                    Button(action: viewModel.refreshPosts) {
+                    Button(action: viewModel.refresh) {
                         Text(post.text)
                             .fixedSize(horizontal: false, vertical: true)
                             .padding([.bottom, .horizontal], 5)
@@ -123,18 +123,19 @@ struct PostDetailView: View {
             }
             .padding([.top, .horizontal], 10)
             Spacer(minLength: 10)
-            /*NavigationLink(destination: CreatePostView(args: ["post": post], onResult: {}), isActive: $isNavigate, label: {  })*/
+            //NavigationLink(destination: CreatePostView(viewModel: InjectorUtils.instance.provideCreatePostViewModel(type: 1, groupId: 0, post: post), onResult: viewModel.refresh), isActive: $isNavigate, label: {  })
         }
         .actionSheet(isPresented: $isShowingActionSheet, content: getActionSheet)
+        .navigationDestination(isPresented: $isNavigate) {
+            CreatePostView(viewModel: InjectorUtils.instance.provideCreatePostViewModel(type: 1, groupId: 0, post: post), onResult: viewModel.refresh)
+        }
     }
     
     private func getActionSheet() -> ActionSheet {
         var buttons = [ActionSheet.Button]()
         
         if viewModel.user?.id == viewModel.post.userId {
-            buttons.append(.default(Text("Edit Post")) {
-                isNavigate.toggle()
-            })
+            buttons.append(.default(Text("Edit Post")) { isNavigate.toggle() })
             buttons.append(.default(Text("Delete Post"), action: viewModel.deletePost))
         }
         buttons.append(.cancel())

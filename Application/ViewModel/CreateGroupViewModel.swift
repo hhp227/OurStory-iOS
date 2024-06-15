@@ -12,6 +12,10 @@ class CreateGroupViewModel: ObservableObject {
     @Published
     var state = State()
     
+    func createGroup() {
+        print("createGroup")
+    }
+    
     struct State {
         var title: String = ""
         

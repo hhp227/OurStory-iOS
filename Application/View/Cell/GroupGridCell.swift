@@ -17,7 +17,8 @@ struct GroupGridCell: View {
     var body: some View {
         Button(action: { isNavigate.toggle() }) {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        }.navigationDestination(isPresented: $isNavigate) {
+        }
+        .navigationDestination(isPresented: $isNavigate) {
             GroupDetailView()
         }
     }

@@ -48,7 +48,7 @@ class PagingDataDiffer<T: Any>: ProcessPageEventCallback {
     func collectFrom(_ pagingData: PagingData<T>) {
         receiver = pagingData.receiver
         
-        pagingData.currentValueSubject.sink { event in
+        pagingData.publisher.sink { event in
             DispatchQueue.main.async {
                 if let event = event as? PageEvent<T>.Insert<T>, event.loadType == LoadType.REFRESH {
                     self.presentNewList(
@@ -77,7 +77,7 @@ class PagingDataDiffer<T: Any>: ProcessPageEventCallback {
                         let prependDone = self.combinedLoadStatesCollection.source.prepend.endOfPaginationReached
                         let appendDone = self.combinedLoadStatesCollection.source.append.endOfPaginationReached
                         let canContinueLoading = !(event.loadType == .PREPEND && prependDone) && !(event.loadType == .APPEND && appendDone)
-                        let emptyInsert = event.pages.all(predicate: { $0.data.isEmpty })
+                        let emptyInsert = event.pages.allSatisfy { $0.data.isEmpty }
                         
                         if !canContinueLoading {
                             self.lastAccessedIndexUnfulfilled = false

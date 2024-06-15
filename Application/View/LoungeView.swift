@@ -28,11 +28,12 @@ struct LoungeView: View {
     
     var body: some View {
         ZStack {
-            PostList(lazyPagingItems: viewModel.$state.map { $0.pagingData }.eraseToAnyPublisher().collectAsLazyPagingItems())
+            PostList(lazyPagingItems: viewModel.$state.map { $0.pagingData }.eraseToAnyPublisher().collectAsLazyPagingItems(), onResult: viewModel.onDeletePost)
             VStack {
                 Spacer()
                 HStack {
                     Spacer()
+                    Button(action: viewModel.temp, label: { Text("Test") })
                     fab
                 }
             }
@@ -50,6 +51,8 @@ struct PostList: View {
     @ObservedObject
     var lazyPagingItems: LazyPagingItems<PostItem>
     
+    let onResult: (PostItem) -> Void
+    
     var body: some View {
         CollapsingNavigationBarView(
             headerHeight: 250,
@@ -58,7 +61,7 @@ struct PostList: View {
         ) {
             LazyVStack(spacing: 10) {
                 ForEach(lazyPagingItems) { $post in
-                    PostListCell(post: $post, onLikeClick: { /*viewModel.togglePostLike(post)*/ }, onResult: /*viewModel.refreshPosts*/{})
+                    PostListCell(post: $post, onLikeClick: { /*viewModel.togglePostLike(post)*/ }, onResult: onResult)
                 }
                 HStack {
                     if lazyPagingItems.loadState.refresh is LoadState.Loading {

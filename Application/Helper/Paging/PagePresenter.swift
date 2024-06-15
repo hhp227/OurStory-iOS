@@ -170,7 +170,7 @@ internal class PagePresenter<T: Any>: NullPaddedList {
         let pageEnumerated = pages.enumerated()
         
         for (index, page) in pageEnumerated {
-            if page.originalPageOffsets.any(predicate: { pageOffsetsToDrop.contains($0) }) {
+            if page.originalPageOffsets.contains(where: { pageOffsetsToDrop.contains($0) }) {
                 removeCount += page.data.count
                 pages.remove(at: index)
             }

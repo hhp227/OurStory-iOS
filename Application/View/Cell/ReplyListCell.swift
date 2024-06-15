@@ -21,7 +21,7 @@ struct ReplyListCell: View {
     
     let user: User?
     
-    let onAction: () -> Void
+    let onAction: (ReplyItem) -> Void
     
     var body: some View {
         VStack(alignment: .trailing) {
@@ -37,19 +37,27 @@ struct ReplyListCell: View {
                     @unknown default:
                         EmptyView()
                     }
-                }.frame(width: 55, height: 55).cornerRadius(45)
+                }
+                .frame(width: 55, height: 55)
+                .cornerRadius(45)
                 VStack(alignment: .leading) {
                     Text(reply.name).fontWeight(.bold)
                     Text(reply.reply)
-                }.padding(.leading, 7)
+                }
+                .padding(.leading, 7)
                 Spacer()
-            }.padding(.horizontal, 5)
+            }
+            .padding(.horizontal, 5)
             Text(DateUtil.getPeriodTimeGenerator(DateUtil.parseDate(reply.timeStamp))).font(.system(size: 14))
-        }.navigationDestination(isPresented: $isNavigateUpdateReplyView) {
+        }
+        .navigationDestination(isPresented: $isNavigateUpdateReplyView) {
             UpdateReplyView(viewModel: InjectorUtils.proviteUpdateReplyViewModel(InjectorUtils.instance)($reply))
-        }.padding(8).onLongPressGesture {
+        }
+        .padding(8)
+        .onLongPressGesture {
             isActionSheetVisible.toggle()
-        }.actionSheet(isPresented: $isActionSheetVisible, content: getActionSheet)
+        }
+        .actionSheet(isPresented: $isActionSheetVisible, content: getActionSheet)
     }
     
     func getActionSheet() -> ActionSheet {
@@ -59,10 +67,8 @@ struct ReplyListCell: View {
             UIPasteboard.general.string = reply.reply
         })
         if user != nil, user?.id == reply.userId {
-            buttons.append(.default(Text("Edit Comment")) {
-                isNavigateUpdateReplyView.toggle()
-            })
-            buttons.append(.destructive(Text("Delete Comment"), action: { onAction() }))
+            buttons.append(.default(Text("Edit Comment")) { isNavigateUpdateReplyView.toggle() })
+            buttons.append(.destructive(Text("Delete Comment"), action: { onAction(reply) }))
         }
         buttons.append(.cancel())
         return ActionSheet(title: Text("Selection Action"), buttons: buttons)
@@ -71,6 +77,6 @@ struct ReplyListCell: View {
 
 struct ReplyListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ReplyListCell(reply: .EMPTY, user: nil, onAction: {})
+        ReplyListCell(reply: .EMPTY, user: nil, onAction: { _ in })
     }
 }

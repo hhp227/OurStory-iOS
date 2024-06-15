@@ -33,6 +33,73 @@ open class PageEvent<T: Any> {
         
         var mediatorLoadStates: LoadStates? = nil
         
+        private func mapPages<R: Any>(_ transform: @escaping (TransformablePage<T>) -> TransformablePage<R>) -> Insert<R> {
+            return transformPages { pages in
+                pages.map(transform)
+            }
+        }
+        
+        internal func transformPages<R: Any>(_ transform: @escaping ([TransformablePage<T>]) -> [TransformablePage<R>]) -> Insert<R> {
+            return Insert<R>(
+                loadType: loadType,
+                pages: transform(pages),
+                placeholdersBefore: placeholdersBefore,
+                placeholdersAfter: placeholdersAfter,
+                sourceLoadStates: sourceLoadStates,
+                mediatorLoadStates: mediatorLoadStates
+            )
+        }
+        
+        override func map<R>(_ transform: @escaping (T) -> R) -> PageEvent<R> {
+            return mapPages {
+                TransformablePage(
+                    originalPageOffsets: $0.originalPageOffsets,
+                    data: $0.data.map(transform),
+                    hintOriginalPageOffset: $0.hintOriginalPageOffset,
+                    hintOriginalIndices: $0.hintOriginalIndices
+                )
+            }
+        }
+        
+        override func flatMap<R>(_ transform: @escaping (T) -> [R]) -> PageEvent<R> {
+            return mapPages { transformPage in
+                var data = [R]()
+                var originalIndices = [Int]()
+                transformPage.data.enumerated().forEach { (offset, element) in
+                    data.append(contentsOf: transform(element))
+                    let indexToStore = transformPage.hintOriginalIndices?[offset] ?? offset
+                    while originalIndices.count < data.count {
+                        originalIndices.append(indexToStore)
+                    }
+                }
+                return TransformablePage(
+                    originalPageOffsets: transformPage.originalPageOffsets,
+                    data: data,
+                    hintOriginalPageOffset: transformPage.hintOriginalPageOffset,
+                    hintOriginalIndices: originalIndices
+                )
+            }
+        }
+        
+        override func filter(_ predicate: @escaping (T) -> Bool) -> PageEvent<T> {
+            return mapPages { transformPage in
+                var data = [T]()
+                var originalIndices = [Int]()
+                transformPage.data.enumerated().forEach { (index, t) in
+                    if predicate(t) {
+                        data.append(t)
+                        originalIndices.append(transformPage.hintOriginalIndices?[index] ?? index)
+                    }
+                }
+                return TransformablePage(
+                    originalPageOffsets: transformPage.originalPageOffsets,
+                    data: data,
+                    hintOriginalPageOffset: transformPage.hintOriginalPageOffset,
+                    hintOriginalIndices: originalIndices
+                )
+            }
+        }
+        
         static func Refresh(
             pages: [TransformablePage<T>],
             placeholdersBefore: Int,
@@ -149,5 +216,17 @@ open class PageEvent<T: Any> {
             self.source = source
             self.mediator = mediator
         }
+    }
+    
+    open func map<R: Any>(_ transform: @escaping (T) -> R) -> PageEvent<R> {
+        return self as! PageEvent<R>
+    }
+    
+    open func flatMap<R: Any>(_ transform: @escaping (T) -> [R]) -> PageEvent<R> {
+        return self as! PageEvent<R>
+    }
+    
+    open func filter(_ predicate: @escaping (T) -> Bool) -> PageEvent<T> {
+        return self
     }
 }
