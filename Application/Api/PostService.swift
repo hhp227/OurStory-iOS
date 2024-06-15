@@ -42,7 +42,7 @@ class PostServiceImpl: PostService {
         }
         return basicResponse
     }
-    
+
     func setPost(_ apiKey: String, _ postId: Int, _ text: String, _ status: Int = 0) async throws -> BasicApiResponse<Bool> {
         var urlRequest = URLRequest(url: URL(string: "\(URL_POST)/\(postId)")!)
         let params = ["post_id": String(postId), "text": text, "status": String(status)]
@@ -90,7 +90,7 @@ protocol PostService {
     func getPosts(_ groupId: Int, _ offset: Int, _ loadSize: Int) async throws -> BasicApiResponse<[PostItem]>
     
     func addPost(_ apiKey: String, _ text: String, _ groupId: Int) async throws -> BasicApiResponse<Int>
-    
+
     func setPost(_ apiKey: String, _ postId: Int, _ text: String, _ status: Int) async throws -> BasicApiResponse<Bool>
     
     func removePost(_ apiKey: String, _ postId: Int) async throws -> BasicApiResponse<VoidCodable>
