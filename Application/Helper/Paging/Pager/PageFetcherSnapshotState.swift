@@ -192,6 +192,7 @@ internal class PageFetcherSnapshotState<Key: Any, Value: Any> {
                     return nil
                 }
             }(),
+            config: config,
             leadingPlaceholderCount: placeholdersBefore
         )
     }

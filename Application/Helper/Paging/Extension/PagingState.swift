@@ -10,6 +10,8 @@ public class PagingState<Key : Any, Value : Any> {
     
     public let anchorPosition: Int?
     
+    public let config: PagingConfig
+    
     private let leadingPlaceholderCount: Int
     
     func closesItemToPosition(_ anchorPosition: Int) -> Value? {
@@ -43,7 +45,7 @@ public class PagingState<Key : Any, Value : Any> {
         }
     }
     
-    func isEmpty() -> Bool { pages.allSatisfy({ $0.data.isEmpty }) }
+    func isEmpty() -> Bool { pages.allSatisfy { $0.data.isEmpty } }
     
     func firstItemOrNil() -> Value? {
         return pages.first { !$0.data.isEmpty }?.data.first
@@ -70,10 +72,12 @@ public class PagingState<Key : Any, Value : Any> {
     init(
         pages: [PagingSource<Key, Value>.LoadResult<Key, Value>.Page<Key, Value>],
         anchorPosition: Int?,
+        config: PagingConfig,
         leadingPlaceholderCount: Int
     ) {
         self.pages = pages
         self.anchorPosition = anchorPosition
+        self.config = config
         self.leadingPlaceholderCount = leadingPlaceholderCount
     }
 }
