@@ -60,6 +60,7 @@ struct PostList: View {
             header: header
         ) {
             LazyVStack(spacing: 10) {
+                Button(action: lazyPagingItems.refresh, label: { Text("Refresh") })
                 ForEach(lazyPagingItems) { $post in
                     PostListCell(post: $post, onLikeClick: { /*viewModel.togglePostLike(post)*/ }, onResult: onResult)
                 }

@@ -27,6 +27,9 @@ internal class PageFetcher<Key: Equatable, Value: Any> {
             return refreshEvents.publisher
                 .prepend(remoteMediatorAccessor?.initialize() == .LAUNCH_INITIAL_REFRESH)
                 .scan(initialValue) { previousGeneration, triggerRemoteRefresh in
+                    if triggerRemoteRefresh {
+                        remoteMediatorAccessor?.allowRefresh()
+                    }
                     let pagingSource = self.generateNewPagingSource(previousGeneration?.snapshot.pagingSource)
                     var previousPagingState = previousGeneration?.snapshot.currentPagingState()
                 
@@ -58,7 +61,7 @@ internal class PageFetcher<Key: Equatable, Value: Any> {
                 .map { generation in
                     PagingData<Value>(
                         generation!.snapshot.pageEventSubject.eraseToAnyPublisher(),
-                        PagerUiReceiver<Key, Value>(generation!.snapshot, self.retryEvents)
+                        PagerUiReceiver<Key, Value>(generation!.snapshot, self.retryEvents, self.refresh)
                     )
                 }
                 .eraseToAnyPublisher()
@@ -70,7 +73,7 @@ internal class PageFetcher<Key: Equatable, Value: Any> {
     }
     
     private func invalidate() {
-        refreshEvents.send(data: false)
+        //refreshEvents.send(data: false)
     }
     
     private func generateNewPagingSource(_ previousPagingSource: PagingSource<Key, Value>?) -> PagingSource<Key, Value> {
@@ -101,6 +104,8 @@ internal class PageFetcher<Key: Equatable, Value: Any> {
         private let pageFetcherSnapshot: PageFetcherSnapshot<Key, Value>
 
         private let retryEventBus: ConflatedEventBus<Void>
+        
+        private let refreshCallback: () -> Void
 
         func accessHint(viewportHint: ViewportHint) {
             pageFetcherSnapshot.accessHint(viewportHint)
@@ -111,12 +116,17 @@ internal class PageFetcher<Key: Equatable, Value: Any> {
         }
 
         func refresh() {
-
+            refreshCallback()
         }
 
-        init(_ pageFetcherSnapshot: PageFetcherSnapshot<Key, Value>, _ retryEventBus: ConflatedEventBus<Void>) {
+        init(
+            _ pageFetcherSnapshot: PageFetcherSnapshot<Key, Value>,
+            _ retryEventBus: ConflatedEventBus<Void>,
+            _ refreshCallback: @escaping () -> Void
+        ) {
             self.pageFetcherSnapshot = pageFetcherSnapshot
             self.retryEventBus = retryEventBus
+            self.refreshCallback = refreshCallback
         }
     }
 

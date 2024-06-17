@@ -36,6 +36,10 @@ class LoungeViewModel: ObservableObject {
         setPagingData(pagingData: pagingData)
     }
     
+    func refresh() {
+        print("refresh")
+    }
+    
     init(_ repository: PostRepository, _ userDefaultsManager: UserDefaultsManager) {
         self.repository = repository
         
