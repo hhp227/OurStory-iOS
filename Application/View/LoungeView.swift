@@ -9,11 +9,14 @@
 import SwiftUI
 
 struct LoungeView: View {
+    @State
+    var isNavigateToCreatePostView = false
+    
     @StateObject
     var viewModel: LoungeViewModel = InjectorUtils.instance.provideLoungeViewModel()
     
     private var fab: some View {
-        NavigationLink(destination: CreatePostView(viewModel: InjectorUtils.instance.provideCreatePostViewModel(type: 0, groupId: 0), onResult: {})) {
+        Button(action: { isNavigateToCreatePostView.toggle() }) {
             Text("+")
                 .font(.system(.largeTitle))
                 .frame(width: 66, height: 60)
@@ -28,7 +31,12 @@ struct LoungeView: View {
     
     var body: some View {
         ZStack {
-            PostList(lazyPagingItems: viewModel.$state.map { $0.pagingData }.eraseToAnyPublisher().collectAsLazyPagingItems(), onResult: viewModel.onDeletePost)
+            PostList(
+                isNavigateToCreatePostView: $isNavigateToCreatePostView,
+                lazyPagingItems: viewModel.$state.map { $0.pagingData }.collectAsLazyPagingItems(),
+                onResult: viewModel.onDeletePost,
+                refreshCallback: viewModel.refresh
+            )
             VStack {
                 Spacer()
                 HStack {
@@ -48,10 +56,15 @@ struct PostList: View {
     @State
     private var scrollOffset: CGPoint = .zero
     
+    @Binding
+    var isNavigateToCreatePostView: Bool
+    
     @ObservedObject
     var lazyPagingItems: LazyPagingItems<PostItem>
     
     let onResult: (PostItem) -> Void
+    
+    let refreshCallback: () -> Void
     
     var body: some View {
         CollapsingNavigationBarView(
@@ -77,6 +90,12 @@ struct PostList: View {
                 }
             }
         }
+        .navigationDestination(isPresented: $isNavigateToCreatePostView) {
+            CreatePostView(
+                viewModel: InjectorUtils.instance.provideCreatePostViewModel(type: 0, groupId: 0),
+                onResult: refresh
+            )
+        }
     }
     
     func header() -> some View {
@@ -95,6 +114,11 @@ struct PostList: View {
     func handleScrollOffset(_ offset: CGPoint, headerVisibleRatio: CGFloat) {
         self.scrollOffset = offset
         self.headerVisibleRatio = headerVisibleRatio
+    }
+    
+    func refresh() {
+        lazyPagingItems.refresh()
+        refreshCallback()
     }
 }
 

@@ -25,9 +25,10 @@ class LoungeViewModel: ObservableObject {
     }
     
     func onDeletePost(_ post: PostItem) {
-        let pagingData = state.pagingData.filter { $0.id != post.id }
+        /*let pagingData = state.pagingData.filter { $0.id != post.id }
         
-        setPagingData(pagingData: pagingData)
+        setPagingData(pagingData: pagingData)*/
+        print("onDeletePost")
     }
     
     func temp() {

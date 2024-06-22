@@ -81,7 +81,25 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func deletePost() {
-        print("deletePost")
+        postRepository.removePost(apiKey, post.id)
+            .receive(on: RunLoop.main)
+            .sink { result in
+                switch result.status {
+                case .SUCCESS:
+                    self.state = self.state.copy(
+                        isLoading: false,
+                        isSetResultOK: result.data ?? false
+                    )
+                case .ERROR:
+                    self.state = self.state.copy(
+                        isLoading: false,
+                        message: result.message ?? "An unexpected error occured"
+                    )
+                case .LOADING:
+                    self.state = self.state.copy(isLoading: true)
+                }
+            }
+            .store(in: &state.subscriptions)
     }
     
     func fetchReply(_ replyId: Int) {
