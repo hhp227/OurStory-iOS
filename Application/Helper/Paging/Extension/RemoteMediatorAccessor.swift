@@ -77,9 +77,9 @@ private class AccessorState<Key, Value> {
 
     func computeLoadStates() -> LoadStates {
         return LoadStates(
-            computeLoadTypeState(loadType: .REFRESH),
-            computeLoadTypeState(loadType: .APPEND),
-            computeLoadTypeState(loadType: .PREPEND)
+            refresh: computeLoadTypeState(loadType: .REFRESH),
+            prepend: computeLoadTypeState(loadType: .PREPEND),
+            append: computeLoadTypeState(loadType: .APPEND)
         )
     }
 
@@ -208,7 +208,7 @@ private class RemoteMediatorAccessImpl<Key: Any, Value: Any>: RemoteMediatorAcce
 
             switch (loadResult) {
             case .Success(let endOfPaginationReached):
-                accessorState.use {
+                launchAppendPrepend = accessorState.use {
                     $0.clearPendingRequest(loadType: .REFRESH)
                     if endOfPaginationReached {
                         $0.setBlockState(loadType: .REFRESH, state: .completed)
@@ -225,7 +225,7 @@ private class RemoteMediatorAccessImpl<Key: Any, Value: Any>: RemoteMediatorAcce
                 }
                 break
             case .Error(let e):
-                accessorState.use {
+                launchAppendPrepend = accessorState.use {
                     $0.clearPendingRequest(loadType: .REFRESH)
                     $0.setError(loadType: .REFRESH, errorState: LoadState.Error(e))
                     return $0.getPendingBoundary() != nil

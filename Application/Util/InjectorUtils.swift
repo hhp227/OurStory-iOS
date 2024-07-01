@@ -10,6 +10,10 @@ import Foundation
 import SwiftUI
 
 class InjectorUtils {
+    private func getGroupService() -> GroupService {
+        return GroupServiceImpl()
+    }
+    
     private func getAuthService() -> AuthService {
         return AuthServiceImpl()
     }
@@ -28,6 +32,10 @@ class InjectorUtils {
     
     func getUserDefaultsManager() -> UserDefaultsManager {
         return UserDefaultsManager.instance
+    }
+    
+    private func getGroupRepository() -> GroupRepository {
+        return GroupRepository.getInstance(groupService: getGroupService())
     }
     
     private func getPostRepository() -> PostRepository {
@@ -76,7 +84,7 @@ class InjectorUtils {
     }
     
     func provideFindGroupViewModel() -> FindGroupViewModel {
-        return FindGroupViewModel()
+        return FindGroupViewModel(getGroupRepository(), getUserDefaultsManager())
     }
     
     func provideJoinRequestGroupViewModel() -> JoinRequestGroupViewModel {

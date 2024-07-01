@@ -59,7 +59,7 @@ struct PostList: View {
     @Binding
     var isNavigateToCreatePostView: Bool
     
-    @ObservedObject
+    @StateObject
     var lazyPagingItems: LazyPagingItems<PostItem>
     
     let onResult: (PostItem) -> Void
