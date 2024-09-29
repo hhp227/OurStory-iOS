@@ -22,6 +22,11 @@ class LoungeViewModel: ObservableObject {
     }
     
     func togglePostLike(_ post: PostItem) {
+        // 임시 코드
+        let pagingData = state.pagingData.filter { $0.id != post.id }
+        
+        setPagingData(pagingData: pagingData)
+        print("togglePostLike \(post)")
     }
     
     func onDeletePost(_ post: PostItem) {
@@ -29,12 +34,6 @@ class LoungeViewModel: ObservableObject {
         
         setPagingData(pagingData: pagingData)
         print("onDeletePost")
-    }
-    
-    func temp() {
-        let pagingData = state.pagingData
-        
-        setPagingData(pagingData: pagingData)
     }
     
     func refresh() {

@@ -11,6 +11,28 @@ import Foundation
 class GroupRepository {
     private let groupService: GroupService
     
+    func getGroups() {
+        // TODO
+    }
+    
+    func requestToJoinOrCancel() {
+        // TODO
+    }
+    
+    func addGroupImage() {
+        // TODO
+    }
+    
+    func addGroup() {
+        // TODO
+    }
+    
+    func removeGroup() {
+        // TODO
+    }
+    
+    // TODO clearCache
+    
     init(_ groupService: GroupService) {
         self.groupService = groupService
     }

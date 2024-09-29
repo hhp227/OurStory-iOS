@@ -72,12 +72,20 @@ class PostDetailViewModel: ObservableObject {
     }
     
     private func fetchReplys(_ postId: Int) {
+        /*replyRepository.getReplys(apiKey, postId)
+            .receive(on: RunLoop.main)
+            .sink { result in
+                print("result: \(result)")
+            }
+            .store(in: &state.subscriptions)*/
+        
+        
         // 데이터 추가가 되지 않음 고민해볼것
-        print("fetchReplys before \(state.items.count)")
+        /*print("fetchReplys before \(state.items.count)")
         self.state = self.state.copy(
             items: self.state.items + (1..<10).map { _ in ReplyItem(id: 1232, userId: 1, name: "Name", reply: "Reply", status: 0, timeStamp: "") }
         )
-        print("fetchReplys after \(state.items.count)")
+        print("fetchReplys after \(state.items.count)")*/
     }
     
     func deletePost() {
@@ -107,11 +115,34 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func insertReply() {
-        print("insertReply: \(state.reply)")
+        if !state.reply.isEmpty {
+            replyRepository.addReply(apiKey, post.id, state.reply)
+                .receive(on: RunLoop.main)
+                .sink { result in
+                    switch result.status {
+                    case .SUCCESS:
+                        self.state = self.state.copy(
+                            isLoading: false,
+                            replyId: result.data?.id
+                        )
+                    case .ERROR:
+                        self.state = self.state.copy(
+                            isLoading: false,
+                            message: result.message ?? "An unexpected error occured"
+                        )
+                    case .LOADING:
+                        self.state = self.state.copy(isLoading: true)
+                    }
+                }
+                .store(in: &state.subscriptions)
+        } else {
+            
+        }
     }
     
     func deleteReply(_ reply: ReplyItem) {
-        print("deleteReply \(reply)")
+        // TODO
+        //replyRepository.removeReply(apiKey, reply.id)
     }
     
     func refresh() {

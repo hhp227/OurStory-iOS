@@ -34,6 +34,7 @@ struct LoungeView: View {
             PostList(
                 isNavigateToCreatePostView: $isNavigateToCreatePostView,
                 lazyPagingItems: viewModel.$state.map { $0.pagingData }.collectAsLazyPagingItems(),
+                onLikeClick: viewModel.togglePostLike,
                 onResult: viewModel.onDeletePost,
                 refreshCallback: viewModel.refresh
             )
@@ -41,7 +42,6 @@ struct LoungeView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Button(action: viewModel.temp, label: { Text("Test") })
                     fab
                 }
             }
@@ -62,6 +62,8 @@ struct PostList: View {
     @StateObject
     var lazyPagingItems: LazyPagingItems<PostItem>
     
+    let onLikeClick: (PostItem) -> Void
+    
     let onResult: (PostItem) -> Void
     
     let refreshCallback: () -> Void
@@ -75,7 +77,7 @@ struct PostList: View {
             LazyVStack(spacing: 10) {
                 Button(action: lazyPagingItems.refresh, label: { Text("Refresh") })
                 ForEach(lazyPagingItems) { $post in
-                    PostListCell(post: $post, onLikeClick: { /*viewModel.togglePostLike(post)*/ }, onResult: onResult)
+                    PostListCell(post: $post, onLikeClick: { onLikeClick(post) }, onResult: onResult)
                 }
                 HStack {
                     if lazyPagingItems.loadState.refresh is LoadState.Loading {

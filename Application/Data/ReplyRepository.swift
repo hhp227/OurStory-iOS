@@ -12,6 +12,56 @@ import Combine
 class ReplyRepository {
     private let replyService: ReplyService
     
+    func getReplys(_ apiKey: String, _ postId: Int) -> Publishers.Catch<AnyPublisher<Resource<[ReplyItem]>, Error>, Just<Resource<[ReplyItem]>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let response = try await self.replyService.getReplys(apiKey, postId)
+                    
+                    if !response.error {
+                        promise(.success(.success(response.data)))
+                    } else {
+                        promise(.success(.error(response.message!, nil)))
+                    }
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(.error(error.localizedDescription, nil))
+        }
+    }
+    
+    func getReply(_ apiKey: String, _ replyId: Int) {
+        // TODO
+    }
+    
+    func addReply(_ apiKey: String, _ postId: Int, _ text: String) -> Publishers.Catch<AnyPublisher<Resource<ReplyItem>, Error>, Just<Resource<ReplyItem>>> {
+        return Future { promise in
+            Task {
+                do {
+                    let response = try await self.replyService.addReply(apiKey, postId, text)
+                    
+                    if !response.error {
+                        promise(.success(.success(response.data)))
+                    } else {
+                        promise(.success(.error(response.message!, nil)))
+                    }
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .prepend(Resource.loading(nil))
+        .eraseToAnyPublisher()
+        .catch { error in
+            Just(Resource.error(error.localizedDescription, nil))
+        }
+    }
+    
     func setReply(_ apiKey: String, _ replyId: Int, _ text: String) -> Publishers.Catch<AnyPublisher<Resource<Bool>, Error>, Just<Resource<Bool>>> {
         return Future { promise in
             Task {
@@ -33,6 +83,10 @@ class ReplyRepository {
         .catch { error in
             Just(Resource.error(error.localizedDescription, nil))
         }
+    }
+    
+    func removeReply(_ apiKey: String, _ replyId: Int) {
+        // TODO
     }
     
     init(_ replyService: ReplyService) {
