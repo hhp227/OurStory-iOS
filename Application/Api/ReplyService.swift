@@ -14,7 +14,6 @@ class ReplyServiceImpl: ReplyService {
         urlRequest.timeoutInterval = 10
         let (data, response) = try! await URLSession.shared.data(for: urlRequest)
         guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
-            //fatalError(response.description)
             return BasicApiResponse(error: false)
         }
         guard let basicResponse = try? JSONDecoder().decode(BasicApiResponse<[ReplyItem]>.self, from: data) else {
