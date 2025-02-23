@@ -12,22 +12,35 @@ import Combine
 class UserDefaultsManager {
     private let userDefaults: UserDefaults = .standard
     
-    var userPublisher: AnyPublisher<User?, Error> {
+    var userDefault: AnyPublisher<UserDefault, Error> {
         get {
-            return userDefaults.publisher(for: \.user)
+            return userDefaults
+                .publisher(for: \.userDefault)
                 .tryMap {
                     if let data = $0 {
-                        return try? PropertyListDecoder().decode(User.self, from: data)
+                        return try! PropertyListDecoder().decode(UserDefault.self, from: data)
                     } else {
-                        return nil
+                        return UserDefault(user: nil, notifications: nil)
                     }
                 }
                 .eraseToAnyPublisher()
         }
     }
     
-    func storeUser(_ user: User) {
-        userDefaults.user = try? PropertyListEncoder().encode(user)
+    var notificationsPublisher: AnyPublisher<String?, Error> {
+        get {
+            return userDefault.map { $0.notifications }.eraseToAnyPublisher()
+        }
+    }
+    
+    var userPublisher: AnyPublisher<User?, Error> {
+        get {
+            return userDefault.map { $0.user }.eraseToAnyPublisher()
+        }
+    }
+    
+    func storeUser(_ user: User?) {
+        userDefaults.userDefault = try? PropertyListEncoder().encode(UserDefault(user: user))
     }
     
     func removeUser() {
@@ -56,7 +69,7 @@ extension UserDefaults {
         return self.data(forKey: UserDefaultsManager.USER_KEY)
     }
     // 일단 이것으로 해결
-    @objc var user: Data? {
+    @objc var userDefault: Data? {
         get {
             return data(forKey: UserDefaultsManager.USER_KEY)
         }
