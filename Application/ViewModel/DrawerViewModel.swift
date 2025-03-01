@@ -66,8 +66,7 @@ class DrawerViewModel: ObservableObject {
     }
     
     func clear() {
-        print("clear")
-        userDefaultsManager.clear()
+        userDefaultsManager.storeUser(nil)
     }
     
     init(_ userDefaultsManager: UserDefaultsManager) {
