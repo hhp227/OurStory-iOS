@@ -78,3 +78,15 @@ extension UserDefaults {
         }
     }
 }
+
+extension UserDefault {
+    func copy(
+        user: User? = nil,
+        notifications: String? = nil
+    ) -> UserDefault {
+        return .init(
+            user: user ?? self.user,
+            notifications: self.notifications
+        )
+    }
+}
